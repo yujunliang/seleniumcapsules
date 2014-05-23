@@ -1,0 +1,8 @@
+.idea
+target
+test
+*.iml
+src/main/java/com/jquery/
+src/main/java/com/manning/
+src/main/java/com/orgsync/
+src/main/resources/Firefox/
