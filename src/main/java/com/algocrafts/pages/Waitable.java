@@ -39,6 +39,9 @@ public interface Waitable<Where> {
     }
 
     default public FluentWait<Where> getFluentWait(int duration, TimeUnit timeUnit) {
-        return new FluentWait<>((Where) this).withTimeout(duration, timeUnit).pollingEvery(50, MILLISECONDS).ignoring(Exception.class);
+        return new FluentWait<>((Where) this)
+            .withTimeout(duration, timeUnit)
+            .pollingEvery(50, MILLISECONDS)
+            .ignoring(Exception.class);
     }
 }

@@ -24,8 +24,8 @@ public abstract class AbstractPage implements Searchable<AbstractPage>, FormCont
 
     private final Clickable clickable;
 
-    public AbstractPage(Browser browser) {
-        this(browser, null, (Predicate<AbstractPage>) null);
+    public AbstractPage(AbstractPage page) {
+        this(page.browser, null, (Predicate<AbstractPage>) null);
     }
 
     public AbstractPage(Browser browser, Clickable clickable, String title) {
