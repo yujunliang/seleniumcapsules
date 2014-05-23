@@ -12,8 +12,8 @@ public interface Waitable<Where> {
 
     void save();
 
-    default public <What> What until(Locator<Where, What> predicate) {
-        return until(30, SECONDS, predicate);
+    default public <What> What until(Locator<Where, What> locator) {
+        return until(30, SECONDS, locator);
     }
 
     default public void until(Predicate<Where> predicate) {
