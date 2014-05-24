@@ -2,18 +2,12 @@ package com.algocrafts.pages;
 
 
 import com.algocrafts.browsers.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Stream;
 
 import static org.apache.commons.io.FileUtils.copyFile;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -27,11 +21,11 @@ public enum Browsers implements Browser {
     SAFARI(new Safari()),
     INTERNET_EXPLORER(new InternetExplorer());
 
-    private Browsers(Driver driverDecorator) {
+    private Browsers(WebDriverSupplier driverDecorator) {
         this.driver = driverDecorator;
     }
 
-    private final Driver driver;
+    private final WebDriverSupplier<WebDriver> driver;
 
     private static final Logger logger = getLogger(Browsers.class);
 
@@ -52,102 +46,11 @@ public enum Browsers implements Browser {
         store.remove();
     }
 
-    @Override
-    public Element findElement(By by) {
-        logger.info("Seeking [{}]", by);
-        WebElement element = get().findElement(by);
-        logger.info("Found [{}]", element);
-        return new Element(element);
-    }
-
-    public Stream<Element> getElements(By by) {
-        return findElements(by).stream().map(Element::new);
-    }
-
-    public void accept() {
-        try {
-            switchTo().alert().accept();
-        } catch (Exception e) {
-        }
-    }
-
-    public void cancel() {
-        try {
-            switchTo().alert().dismiss();
-        } catch (Exception e) {
-        }
-    }
-
-    public void frame(int i) {
-        switchTo().frame(i);
-    }
-
-    public void defaultContent() {
-        switchTo().defaultContent();
-    }
-
-    @Override
-    public void get(String url) {
-        get().get(url);
-    }
-
-    @Override
-    public String getCurrentUrl() {
-        return get().getCurrentUrl();
-    }
-
-    @Override
-    public String getTitle() {
-        return get().getTitle();
-    }
-
-    @Override
-    public List<WebElement> findElements(By by) {
-        return get().findElements(by);
-    }
-
-    @Override
-    public String getPageSource() {
-        return get().getPageSource();
-    }
-
-    @Override
-    public Set<String> getWindowHandles() {
-        return get().getWindowHandles();
-    }
-
-    @Override
-    public String getWindowHandle() {
-        return get().getWindowHandle();
-    }
-
-    @Override
-    public TargetLocator switchTo() {
-        return get().switchTo();
-    }
-
-    @Override
-    public Navigation navigate() {
-        return get().navigate();
-    }
-
-    @Override
-    public Options manage() {
-        return get().manage();
-    }
-
-    @Override
-    public void mouseOver(Element element) {
-        Actions builder = new Actions(get());
-        Actions hoverOverRegistrar = builder.moveToElement(element);
-        hoverOverRegistrar.perform();
-    }
-
     public void save(String title) {
         logger.info("Saving screenshot [title={}]", title);
         File scrFile = null;
         try {
-            scrFile = driver.takeScreenShot(get());
+            scrFile = takeScreenShot(driver);
             copyFile(scrFile, new File("target/screenshots/" + title + new Date().getTime() + ".png"));
             scrFile.delete();
         } catch (IOException e) {
@@ -157,9 +60,5 @@ public enum Browsers implements Browser {
                 e1.printStackTrace();
             }
         }
-    }
-
-    public void close() {
-        get().close();
     }
 }

@@ -5,7 +5,8 @@ import org.openqa.selenium.WebDriver;
 import java.io.File;
 import java.util.function.Supplier;
 
-public interface Driver extends Supplier<WebDriver>{
+public interface WebDriverSupplier<T extends WebDriver> extends Supplier<T>{
 
-    File takeScreenShot(WebDriver driver);
+    File takeScreenShot(WebDriverSupplier<T> driver);
+
 }
