@@ -8,7 +8,7 @@ import static org.openqa.selenium.OutputType.FILE;
 
 public class Safari implements WebDriverSupplier<SafariDriver> {
     @Override
-    public SafariDriver get() {
+    public SafariDriver init() {
         return new SafariDriver();
     }
 

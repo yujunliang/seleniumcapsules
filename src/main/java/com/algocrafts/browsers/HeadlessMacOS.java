@@ -1,6 +1,5 @@
 package com.algocrafts.browsers;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -12,7 +11,7 @@ import static org.openqa.selenium.OutputType.FILE;
 
 public class HeadlessMacOS implements WebDriverSupplier<FirefoxDriver> {
     @Override
-    public FirefoxDriver get() {
+    public FirefoxDriver init() {
         FirefoxBinary binary = new FirefoxBinary(new File("/opt/local/lib/firefox-x11/firefox-bin"));
         binary.setEnvironmentProperty("DISPLAY", ":88");
         return new FirefoxDriver(binary, new FirefoxProfile());

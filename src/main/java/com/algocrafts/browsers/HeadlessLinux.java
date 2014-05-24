@@ -11,7 +11,7 @@ import static org.openqa.selenium.OutputType.FILE;
 
 public class HeadlessLinux implements WebDriverSupplier<FirefoxDriver> {
     @Override
-    public FirefoxDriver get() {
+    public FirefoxDriver init() {
         FirefoxBinary binary = new FirefoxBinary(new File("/opt/local/lib/firefox-x11/firefox-bin"));
         binary.setEnvironmentProperty("DISPLAY", ":88");
         return new FirefoxDriver(binary, new FirefoxProfile());

@@ -9,7 +9,7 @@ import static org.openqa.selenium.OutputType.FILE;
 
 public class InternetExplorer implements WebDriverSupplier<InternetExplorerDriver> {
     @Override
-    public InternetExplorerDriver get() {
+    public InternetExplorerDriver init() {
         return new InternetExplorerDriver();
     }
 

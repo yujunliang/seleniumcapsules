@@ -8,8 +8,9 @@ import static org.openqa.selenium.OutputType.FILE;
 
 
 public class Chrome implements WebDriverSupplier<ChromeDriver> {
+
     @Override
-    public ChromeDriver get() {
+    public ChromeDriver init() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
         return new ChromeDriver();
     }
@@ -18,4 +19,5 @@ public class Chrome implements WebDriverSupplier<ChromeDriver> {
     public File takeScreenShot(WebDriverSupplier<ChromeDriver> supplier) {
         return supplier.get().getScreenshotAs(FILE);
     }
+
 }
