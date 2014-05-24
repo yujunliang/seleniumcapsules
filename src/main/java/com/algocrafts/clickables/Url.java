@@ -1,6 +1,6 @@
 package com.algocrafts.clickables;
 
-import com.algocrafts.pages.Browser;
+import com.algocrafts.pages.Browsers;
 import com.algocrafts.pages.Clickable;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,7 +13,7 @@ public class Url implements Clickable {
     private static final Logger log = getLogger(Url.class);
 
     @Value("${browser}")
-    private Browser browser;
+    private Browsers browser;
     private String url;
 
     public Url(String url) {

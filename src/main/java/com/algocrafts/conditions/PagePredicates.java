@@ -1,16 +1,14 @@
 package com.algocrafts.conditions;
 
-import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.locators.ElementLocator;
 import com.algocrafts.locators.ElementTryLocator;
+import com.algocrafts.pages.AbstractPage;
 
 import java.util.function.Predicate;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.conditions.ElementPredicates.NOT_DISPLAYED;
-import static com.algocrafts.conditions.StringEquals.DATEPICKER;
-import static com.algocrafts.conditions.StringEquals.MANNING;
-import static com.algocrafts.conditions.StringEquals.YAHOO;
+import static com.algocrafts.conditions.StringEquals.*;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.searchmethods.Id.CONTENT;
 import static com.algocrafts.searchmethods.Id.UI_DATEPICKER_DIV;
