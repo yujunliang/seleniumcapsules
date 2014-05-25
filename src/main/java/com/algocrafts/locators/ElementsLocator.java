@@ -8,7 +8,8 @@ import org.openqa.selenium.By;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-public class ElementsLocator<Where extends Searchable<Where>> extends AbstractLocator<Where, Stream<Element>> {
+public class ElementsLocator<Where extends Searchable<Where>>
+    extends AbstractLocator<Where, Stream<Element>> {
 
     public ElementsLocator(By by) {
         super(by);

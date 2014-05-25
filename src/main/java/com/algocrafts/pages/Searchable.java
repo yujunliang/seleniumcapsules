@@ -49,6 +49,14 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     Stream<Element> getElements(By by);
 
+    /**
+     *
+     * Find the first button meeting the By method.
+     * method to find the button.
+     *
+     * @param method
+     * @return
+     */
     default public Clickable button(Supplier<By> method) {
         return button(method, 0);
     }

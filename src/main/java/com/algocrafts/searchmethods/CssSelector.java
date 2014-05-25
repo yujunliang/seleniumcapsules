@@ -10,8 +10,7 @@ import static org.openqa.selenium.By.cssSelector;
 public enum CssSelector implements Supplier<By> {
 
     UPDATE("input[value='Update']"),
-    CONTINUE("input[value='Continue']")
-    ;
+    CONTINUE("input[value='Continue']");
 
     private final By by;
 
