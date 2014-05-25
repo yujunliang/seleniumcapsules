@@ -13,7 +13,7 @@ import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.searchmethods.Id.CONTENT;
 import static com.algocrafts.searchmethods.Id.UI_DATEPICKER_DIV;
 import static com.algocrafts.searchmethods.TagName.*;
-import static com.manning.ManningId.*;
+import static com.bookstore.BookStoreId.*;
 
 public enum PagePredicates implements Predicate<AbstractPage> {
     REACHED_CALENDAR_PAGE(

@@ -15,5 +15,4 @@ public interface WebDriverSupplier<T extends WebDriver> extends Supplier<T>{
     default public T get() {
         return this.init();
     }
-
 }

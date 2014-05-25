@@ -12,7 +12,7 @@ import static org.openqa.selenium.OutputType.FILE;
 public class FirefoxOnWindows implements  Browser<FirefoxDriver>, WebDriverSupplier<FirefoxDriver> {
 
     public FirefoxDriver init() {
-        FirefoxBinary binary = new FirefoxBinary(new File("src/main/resources/Firefox/Contents/MacOS/firefox-bin"));
+        FirefoxBinary binary = new FirefoxBinary(new File("src/main/resources/Firefox/firefox.exe"));
         FirefoxProfile profile = new FirefoxProfile(new File("src/main/resources/Firefox/Profiles/default"));
         return new FirefoxDriver(binary, profile);
     }
