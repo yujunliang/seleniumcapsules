@@ -11,12 +11,7 @@ public enum Id implements Supplier<By> {
     MAIN_NAV("main-nav"),
     UI_DATEPICKER_DIV("ui-datepicker-div"),
     CONTENT("content"),
-    DATE_PICKER("datepicker"),
-
-    TRY_UI_DATEPICKER_DIV("ui-datepicker-div"),
-    TRY_CONTENT("content"),
-    TRY_YS_CART("ys_cart"),
-    TRY_DATE_PICKER("datepicker");
+    DATE_PICKER("datepicker");
 
     private final By by;
 

@@ -9,8 +9,8 @@ import static org.openqa.selenium.By.linkText;
 
 public enum LinkText implements Supplier<By> {
 
-    ActiveMQ_In_Action("ActiveMQ in Action"),
-    Java("Java");
+    ACTIVE_MQ_IN_ACTION("ActiveMQ in Action"),
+    JAVA("Java");
 
     private final By by;
 
