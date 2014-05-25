@@ -17,7 +17,7 @@ public class AbstractForm implements Searchable<AbstractForm>,  FormControl<Abst
     private final Locator<AbstractPage, Element> locator;
 
     public AbstractForm(AbstractPage page, String name) {
-        this(page, new ElementLocator<>(name(name)));
+        this(page, new ElementLocator<>(()->name(name)));
     }
 
     public AbstractForm(AbstractPage page, Locator<AbstractPage, Element> locator) {
