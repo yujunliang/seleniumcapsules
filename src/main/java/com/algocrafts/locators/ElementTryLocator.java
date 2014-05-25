@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 public class ElementTryLocator<Where extends Searchable<Where>> extends AbstractLocator<Where, Element> {
 
     public ElementTryLocator(Supplier<By> method) {
-        super(method.get());
+        super(method);
     }
 
     @Override

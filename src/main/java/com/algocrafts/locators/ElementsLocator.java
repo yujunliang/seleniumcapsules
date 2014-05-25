@@ -9,10 +9,10 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 public class ElementsLocator<Where extends Searchable<Where>>
-    extends AbstractLocator<Where, Stream<Element>> {
+        extends AbstractLocator<Where, Stream<Element>> {
 
     public ElementsLocator(Supplier<By> method) {
-        super(method.get());
+        super(method);
     }
 
     @Override
