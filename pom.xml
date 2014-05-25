@@ -50,7 +50,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <artifactId>spring-com.algocrafts.context</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>

@@ -8,12 +8,8 @@ import java.util.function.Supplier;
 
 public class ElementLocator<Where extends Searchable<Where>> extends AbstractLocator<Where, Element> {
 
-    public ElementLocator(By by) {
-        super(by);
-    }
-
     public ElementLocator(Supplier<By> method) {
-        this(method.get());
+        super(method.get());
     }
 
     @Override

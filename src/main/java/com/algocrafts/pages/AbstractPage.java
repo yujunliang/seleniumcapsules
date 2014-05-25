@@ -20,30 +20,37 @@ public abstract class AbstractPage implements Searchable<AbstractPage>, FormCont
     @Value("${quit.browser}")
     private boolean close;
 
+    @Value("${take.screenshot}")
+    private boolean takeScreenshot;
+
     private final Browser browser;
 
     private final Clickable clickable;
 
     public AbstractPage(AbstractPage page) {
-        this(page.browser, null, (Predicate<AbstractPage>) null);
-    }
-
-    public AbstractPage(Browser browser, Clickable clickable, String title) {
-        this(browser, clickable, THE_PAGE_TITLE.and(new IsStringEqual(title)));
+        this(page.browser, null, null, page.close, page.takeScreenshot);
     }
 
     public AbstractPage(AbstractPage page, Clickable clickable, String title) {
-        this(page.browser, clickable, THE_PAGE_TITLE.and(new IsStringEqual(title)));
+        this(page.browser, clickable, THE_PAGE_TITLE.and(new IsStringEqual(title)), page.close, page.takeScreenshot);
     }
 
     public AbstractPage(AbstractPage page, Clickable clickable, Predicate<AbstractPage> condition) {
-        this(page.browser, clickable, condition);
+        this(page.browser, clickable, condition, page.close, page.takeScreenshot);
     }
 
     public AbstractPage(Browser browser, Clickable clickable, Predicate<AbstractPage> condition) {
         this.browser = browser;
         this.clickable = clickable;
         this.condition = condition;
+    }
+
+    public AbstractPage(Browser browser, Clickable clickable, Predicate<AbstractPage> condition, boolean close, boolean takeScreenshot) {
+        this.browser = browser;
+        this.clickable = clickable;
+        this.condition = condition;
+        this.close = close;
+        this.takeScreenshot = takeScreenshot;
     }
 
     public final void open() {
@@ -123,7 +130,9 @@ public abstract class AbstractPage implements Searchable<AbstractPage>, FormCont
     }
 
     public final void save() {
-        browser.save(this.getTitle());
+        if (takeScreenshot) {
+            browser.save(this.getTitle());
+        }
     }
 
     public final void get(String url) {

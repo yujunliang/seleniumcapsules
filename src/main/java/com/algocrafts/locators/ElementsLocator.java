@@ -11,12 +11,8 @@ import java.util.stream.Stream;
 public class ElementsLocator<Where extends Searchable<Where>>
     extends AbstractLocator<Where, Stream<Element>> {
 
-    public ElementsLocator(By by) {
-        super(by);
-    }
-
     public ElementsLocator(Supplier<By> method) {
-        this(method.get());
+        super(method.get());
     }
 
     @Override

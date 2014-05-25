@@ -20,7 +20,7 @@ public class SelectLocator<Where extends Searchable<Where>> implements Locator<W
     private final Locator<Where, Element> locator;
 
     public SelectLocator(final String name) {
-        this(new ElementLocator<>(name(name)));
+        this(new ElementLocator<>(() -> name(name)));
     }
 
     public SelectLocator(final Locator<Where, Element> locator) {
