@@ -1,10 +1,13 @@
 package com.algocrafts.forms;
 
+import com.algocrafts.pages.Element;
+import com.algocrafts.pages.Locator;
 import com.algocrafts.pages.Searchable;
 import com.algocrafts.locators.ElementLocator;
 import com.algocrafts.locators.SelectLocator;
 import org.openqa.selenium.By;
 
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 
@@ -47,6 +50,10 @@ public interface FormControl<Where extends Searchable<Where>> {
      */
     default public void put(Supplier<By> method, Object value ) {
           new Input<>((Where)this).put(method, value);
+    }
+
+    default public void autocomplete(Supplier<By> method, Object value, Locator<Where, Element> locator) {
+        new Input<>((Where) this).autocomplete(method, value, locator);
     }
 
 }

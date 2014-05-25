@@ -2,9 +2,6 @@
 target
 test
 *.iml
-src/main/java/com/jquery/
 src/main/java/com/bookstore/
-src/main/java/com/orgsync/
 src/main/resources/Firefox/
-src/main/resources/context/
 src/main/resources/bookstore/

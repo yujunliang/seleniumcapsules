@@ -2,14 +2,14 @@ package com.algocrafts.forms;
 
 
 import com.algocrafts.algorithm.Retry;
-import com.algocrafts.pages.Element;
-import com.algocrafts.pages.Searchable;
 import com.algocrafts.locators.ElementLocator;
 import com.algocrafts.locators.ElementTryLocator;
+import com.algocrafts.pages.Element;
+import com.algocrafts.pages.Locator;
+import com.algocrafts.pages.Searchable;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import static com.algocrafts.converters.GetText.VALUE;
@@ -47,15 +47,21 @@ class Input<Where extends Searchable<Where>> {
         }
     }
 
-    public void autoComplete(Supplier<By> method, Object value, Predicate<Where> condition) {
-        new ElementLocator<Where>(method).apply((Where) this).clear();
+    public void autocomplete(Supplier<By> method, Object value, Locator<Where, Element> condition) {
+        Element apply = new ElementLocator<Where>(method).apply(where);
+        apply.clear();
         for (char c : value.toString().toCharArray()) {
-            new ElementLocator<Where>(method).apply((Where) this).sendKeys(String.valueOf(c));
-            if (condition.test((Where) this)) {
-                break;
+            apply.sendKeys(String.valueOf(c));
+            Element apply1 = condition.apply(where);
+            if (apply1 != null) {
+                apply1.click();
+                return;
             }
         }
-        ((Where) this).until(condition);
+        Element element = where.until(condition);
+        if (element!= null) {
+            element.click();
+        }
     }
 
 }

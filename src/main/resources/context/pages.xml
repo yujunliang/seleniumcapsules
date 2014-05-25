@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="properties.xml"/>
+
+    <bean id="firefox" class="com.algocrafts.browsers.FirefoxOnWindows"/>
+
+    <bean id="jQueryDatePickerPage" class="com.jquery.JQueryDatePickerPage">
+        <constructor-arg value="${browser}"/>
+        <constructor-arg ref="jQueryUrl"/>
+    </bean>
+
+    <bean id="jQueryUrl" class="com.algocrafts.clickables.Url">
+        <constructor-arg value="${jquery.url}"/>
+    </bean>
+
+    <bean id="googleUrl" class="com.algocrafts.clickables.Url">
+        <constructor-arg value="${google.com}"/>
+    </bean>
+
+    <bean id="googlePage" class="com.google.GooglePage">
+        <constructor-arg ref="firefox"/>
+        <constructor-arg ref="googleUrl"/>
+    </bean>
+</beans>
