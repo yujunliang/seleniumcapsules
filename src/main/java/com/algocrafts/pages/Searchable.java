@@ -24,7 +24,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
     /**
      * Find the first element or return null if nothing found.
      *
-     * @param by The search method
+     * @param by selector
      * @return the first element or return null if nothing found.
      */
     Element findElement(By by);
@@ -32,7 +32,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
     /**
      * Find the first element or throw TimeoutException
      *
-     * @param by
+     * @param by selector
      * @return the first element or throw TimeoutException
      */
     Element untilFound(By by);
@@ -40,37 +40,36 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
     /**
      * Find all elements within the area using the given search method.
      *
-     * @param by The search method
+     * @param by selector
      * @return A stream of all {@link Element}s, or an empty stream if nothing matches.
      * @see org.openqa.selenium.By
      */
     Stream<Element> findElements(Supplier<By> by);
 
     /**
-     *
      * Find the first button meeting the By method.
      * method to find the button.
      *
-     * @param method
+     * @param by selector
      * @return
      */
-    default public Clickable button(Supplier<By> method) {
-        return button(method, 0);
+    default public Clickable button(Supplier<By> by) {
+        return button(by, 0);
     }
 
     /**
      * If there are multiple buttons with the same name on the same page, use this
      * method to find the button.
      *
-     * @param button
+     * @param by    selector
      * @param index
      * @return
      */
-    default public Clickable button(Supplier<By> button, int index) {
+    default public Clickable button(Supplier<By> by, int index) {
         return new Button<>((Where) this,
-            new ElementsLocator<Where>(button)
-                .and(new StreamToList<>())
-                .and(new ElementAtIndex<>(index))
+                new ElementsLocator<Where>(by)
+                        .and(new StreamToList<>())
+                        .and(new ElementAtIndex<>(index))
         );
     }
 
@@ -103,8 +102,8 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     default public Element image(String fileName, int index) {
         return new StreamToList<Element>()
-            .and(new ElementAtIndex<>(index))
-            .apply(images(fileName));
+                .and(new ElementAtIndex<>(index))
+                .apply(images(fileName));
     }
 
     /**
@@ -115,7 +114,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     default public Stream<Element> images(String fileName) {
         return until(new ElementsLocator<Where>(IMG)
-                .and(new Filter<>(DISPLAYED.and(SRC.and(new StringContains(fileName)))))
+                        .and(new Filter<>(DISPLAYED.and(SRC.and(new StringContains(fileName)))))
         );
     }
 
