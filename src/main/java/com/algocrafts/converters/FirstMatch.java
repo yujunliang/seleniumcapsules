@@ -1,4 +1,4 @@
-package com.algocrafts.locators;
+package com.algocrafts.converters;
 
 import com.algocrafts.converters.Filter;
 import com.algocrafts.converters.FirstItem;

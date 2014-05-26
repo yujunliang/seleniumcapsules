@@ -3,7 +3,7 @@ package com.algocrafts;
 import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.locators.ElementTryLocator;
 import com.algocrafts.locators.ElementsLocator;
-import com.algocrafts.locators.FirstMatch;
+import com.algocrafts.converters.FirstMatch;
 import com.algocrafts.pages.AbstractPage;
 import com.google.GooglePage;
 import org.junit.After;
