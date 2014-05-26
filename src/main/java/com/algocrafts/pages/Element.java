@@ -9,6 +9,7 @@ import org.openqa.selenium.internal.Locatable;
 import org.slf4j.Logger;
 
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -74,14 +75,14 @@ public class Element implements Searchable<Element>, WebElement, Locatable {
     }
 
     @Override
-    public Stream<Element> getElements(By by) {
-        return element.findElements(by).stream().map(Element::new);
+    public Stream<Element> findElements(Supplier<By> by) {
+        return findElements(by.get()).stream().map(Element::new);
     }
 
     @Deprecated
     @Override
     public List<WebElement> findElements(By by) {
-        return getElements(by).collect(toList());
+        return element.findElements(by);
     }
 
     @Override
@@ -114,7 +115,7 @@ public class Element implements Searchable<Element>, WebElement, Locatable {
     }
 
     @Override
-    public Element untilFindElement(final By by) {
+    public Element untilFound(final By by) {
         logger.info("Seeking [{}]", by);
         return until((Element element) -> getElement(by));
     }
@@ -133,8 +134,8 @@ public class Element implements Searchable<Element>, WebElement, Locatable {
     public String toString() {
         String tagName = element.getTagName();
         return tagName.equals("input") ?
-            element.getAttribute("value") : tagName.equals("img") ?
-            element.getAttribute("src") : element.getText();
+                element.getAttribute("value") : tagName.equals("img") ?
+                element.getAttribute("src") : element.getText();
     }
 
     private Element getElement(By by) {

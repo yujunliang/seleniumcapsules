@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static com.algocrafts.converters.GetText.TEXT;
@@ -72,13 +73,13 @@ public abstract class AbstractPage implements Searchable<AbstractPage>, FormCont
     }
 
     @Override
-    public final Element untilFindElement(final By by) {
+    public final Element untilFound(final By by) {
         return until((AbstractPage page) -> browser.findElement(by));
     }
 
     @Override
-    public final Stream<Element> getElements(By by) {
-        return browser.getElements(by);
+    public final Stream<Element> findElements(Supplier<By> by) {
+        return browser.findElements(by);
     }
 
     public final void accept() {

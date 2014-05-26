@@ -17,6 +17,6 @@ public class ElementsLocator<Where extends Searchable<Where>>
 
     @Override
     public Stream<Element> find(Where where) {
-        return where.getElements(by);
+        return where.findElements(() -> by);
     }
 }

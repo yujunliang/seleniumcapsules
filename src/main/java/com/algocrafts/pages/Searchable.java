@@ -35,7 +35,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      * @param by
      * @return the first element or throw TimeoutException
      */
-    Element untilFindElement(By by);
+    Element untilFound(By by);
 
     /**
      * Find all elements within the area using the given search method.
@@ -44,7 +44,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      * @return A stream of all {@link Element}s, or an empty stream if nothing matches.
      * @see org.openqa.selenium.By
      */
-    Stream<Element> getElements(By by);
+    Stream<Element> findElements(Supplier<By> by);
 
     /**
      *
@@ -120,12 +120,12 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
     }
 
     /**
-     * Find the link using the text.
+     * Find the link using the selector.
      *
-     * @param locator
+     * @param selector
      * @return
      */
-    default public Clickable link(Supplier<By> locator) {
-        return new Link<>((Where) this, new ElementLocator<>(locator));
+    default public Clickable link(Supplier<By> selector) {
+        return new Link<>((Where) this, new ElementLocator<>(selector));
     }
 }

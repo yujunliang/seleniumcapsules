@@ -14,6 +14,6 @@ public class ElementLocator<Where extends Searchable<Where>> extends AbstractLoc
 
     @Override
     public Element find(Where where) {
-        return where.untilFindElement(by);
+        return where.untilFound(by);
     }
 }

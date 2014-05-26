@@ -7,17 +7,18 @@ import com.algocrafts.locators.ElementLocator;
 import com.algocrafts.pages.Locator;
 import org.openqa.selenium.By;
 
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static org.openqa.selenium.By.name;
 
-public class AbstractForm implements Searchable<AbstractForm>,  FormControl<AbstractForm> {
+public class AbstractForm implements Searchable<AbstractForm>, FormControl<AbstractForm> {
 
     protected final AbstractPage page;
     private final Locator<AbstractPage, Element> locator;
 
     public AbstractForm(AbstractPage page, String name) {
-        this(page, new ElementLocator<>(()->name(name)));
+        this(page, new ElementLocator<>(() -> name(name)));
     }
 
     public AbstractForm(AbstractPage page, Locator<AbstractPage, Element> locator) {
@@ -36,12 +37,12 @@ public class AbstractForm implements Searchable<AbstractForm>,  FormControl<Abst
     }
 
     @Override
-    public Element untilFindElement(By by) {
-        return locator.apply(page).untilFindElement(by);
+    public Element untilFound(By by) {
+        return locator.apply(page).untilFound(by);
     }
 
     @Override
-    public Stream<Element> getElements(By by) {
-        return locator.apply(page).findElements(by).stream().map(Element::new);
+    public Stream<Element> findElements(Supplier<By> by) {
+        return locator.apply(page).findElements(by).map(Element::new);
     }
 }
