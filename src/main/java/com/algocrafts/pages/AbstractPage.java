@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.PageFunctions.THE_PAGE_TITLE;
-import static com.algocrafts.searchmethods.ClassName.PAGE_TITLE;
+import static com.algocrafts.selectors.ClassName.PAGE_TITLE;
 
 public abstract class AbstractPage implements Searchable<AbstractPage>, FormControl<AbstractPage> {
 

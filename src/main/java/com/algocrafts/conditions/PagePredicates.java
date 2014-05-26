@@ -10,9 +10,9 @@ import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.conditions.ElementPredicates.NOT_DISPLAYED;
 import static com.algocrafts.conditions.StringEquals.*;
 import static com.algocrafts.converters.GetText.TEXT;
-import static com.algocrafts.searchmethods.Id.CONTENT;
-import static com.algocrafts.searchmethods.Id.UI_DATEPICKER_DIV;
-import static com.algocrafts.searchmethods.TagName.*;
+import static com.algocrafts.selectors.Id.CONTENT;
+import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
+import static com.algocrafts.selectors.TagName.*;
 import static com.bookstore.BookStoreId.*;
 
 public enum PagePredicates implements Predicate<AbstractPage> {

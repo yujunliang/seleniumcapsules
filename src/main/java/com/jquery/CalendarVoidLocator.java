@@ -9,9 +9,9 @@ import com.algocrafts.locators.FrameLocator;
 import com.algocrafts.pages.Locator;
 
 import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
-import static com.algocrafts.searchmethods.ClassName.*;
-import static com.algocrafts.searchmethods.Id.DATE_PICKER;
-import static com.algocrafts.searchmethods.Id.UI_DATEPICKER_DIV;
+import static com.algocrafts.selectors.ClassName.*;
+import static com.algocrafts.selectors.Id.DATE_PICKER;
+import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 
 public enum CalendarVoidLocator implements Locator<AbstractPage, Void> {
     TRIGGER(

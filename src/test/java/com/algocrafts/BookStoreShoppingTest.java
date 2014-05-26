@@ -18,8 +18,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static com.algocrafts.conditions.PagePredicates.IS_COPYRIGHTED;
-import static com.algocrafts.searchmethods.LinkText.ACTIVE_MQ_IN_ACTION;
-import static com.algocrafts.searchmethods.LinkText.JAVA;
+import static com.algocrafts.selectors.LinkText.ACTIVE_MQ_IN_ACTION;
+import static com.algocrafts.selectors.LinkText.JAVA;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)

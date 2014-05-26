@@ -1,4 +1,4 @@
-package com.algocrafts.searchmethods;
+package com.algocrafts.selectors;
 
 
 import org.openqa.selenium.By;
@@ -10,7 +10,7 @@ import static org.openqa.selenium.By.xpath;
 public enum Xpath implements Supplier<By> {
 
     DIV_CONTAINER_ID("//div[@id='container']"),
-    ORACLE_AUTOCOMPLETE("//table[contains(concat(' ', @class, ' '), 'gssb_c')]/descendant::span[text()='oracle']"),
+    ORACLE_AUTOCOMPLETE("//table[contains(@class, 'gssb_c')]/descendant::span[text()='oracle']"),
     QUANTITY("//div[@id='ys_cartInfo']/descendant::input[@name='cartDS.shoppingcart_ROW0_m_orderItemVector_ROW0_m_quantity']");
 
     private final By by;

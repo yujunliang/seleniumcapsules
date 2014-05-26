@@ -6,7 +6,7 @@ import com.algocrafts.pages.Browser;
 import com.algocrafts.pages.Clickable;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
-import static com.algocrafts.searchmethods.Name.Q;
+import static com.algocrafts.selectors.Name.Q;
 
 
 public class GooglePage extends AbstractPage {

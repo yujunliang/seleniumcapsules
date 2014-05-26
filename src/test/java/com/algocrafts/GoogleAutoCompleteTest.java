@@ -26,9 +26,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.io.File;
 
 import static com.algocrafts.converters.GetText.TEXT;
-import static com.algocrafts.searchmethods.Name.Q;
-import static com.algocrafts.searchmethods.TagName.SPAN;
-import static com.algocrafts.searchmethods.Xpath.ORACLE_AUTOCOMPLETE;
+import static com.algocrafts.selectors.Name.Q;
+import static com.algocrafts.selectors.TagName.SPAN;
+import static com.algocrafts.selectors.Xpath.ORACLE_AUTOCOMPLETE;
 import static org.openqa.selenium.By.className;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -69,7 +69,7 @@ public class GoogleAutoCompleteTest {
      * This is a clean test using page framework.  it has the same function as the test above.  :)
      */
     @Test
-    public void autoCompleteUsingXpath() {
+        public void autoCompleteUsingXpath() {
         googlePage.autocomplete(Q, "oracle", new ElementTryLocator<>(ORACLE_AUTOCOMPLETE));
     }
 

@@ -9,8 +9,8 @@ import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.Ordinal.ORDINAL;
 import static com.algocrafts.converters.StringToInt.PARSE_INT;
 import static com.algocrafts.converters.StringToMonth.TO_MONTH;
-import static com.algocrafts.searchmethods.ClassName.*;
-import static com.algocrafts.searchmethods.Id.UI_DATEPICKER_DIV;
+import static com.algocrafts.selectors.ClassName.*;
+import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 
 public enum CalendarIntegerLocator implements Locator<AbstractPage, Integer> {
 

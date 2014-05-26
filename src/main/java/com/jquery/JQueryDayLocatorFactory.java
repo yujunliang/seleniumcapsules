@@ -12,9 +12,9 @@ import com.algocrafts.pages.Locator;
 
 import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
 import static com.algocrafts.converters.GetText.TEXT;
-import static com.algocrafts.searchmethods.ClassName.UI_DATEPICKER_CALENDAR;
-import static com.algocrafts.searchmethods.Id.UI_DATEPICKER_DIV;
-import static com.algocrafts.searchmethods.TagName.TD;
+import static com.algocrafts.selectors.ClassName.UI_DATEPICKER_CALENDAR;
+import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
+import static com.algocrafts.selectors.TagName.TD;
 
 public class JQueryDayLocatorFactory implements DayLocatorFactory {
 

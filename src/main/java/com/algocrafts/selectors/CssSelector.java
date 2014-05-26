@@ -1,4 +1,4 @@
-package com.algocrafts.searchmethods;
+package com.algocrafts.selectors;
 
 
 import org.openqa.selenium.By;

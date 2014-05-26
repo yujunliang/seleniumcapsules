@@ -10,7 +10,7 @@ import com.algocrafts.locators.ElementLocator;
 
 import static com.algocrafts.conditions.PagePredicates.REACHED_CALENDAR_PAGE;
 import static com.algocrafts.converters.GetText.VALUE;
-import static com.algocrafts.searchmethods.Id.DATE_PICKER;
+import static com.algocrafts.selectors.Id.DATE_PICKER;
 import static com.jquery.CalendarIntegerLocator.CURRENT_MONTH;
 import static com.jquery.CalendarIntegerLocator.CURRENT_YEAR;
 import static com.jquery.CalendarVoidLocator.*;

@@ -8,7 +8,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 
-import static com.algocrafts.searchmethods.TagName.OPTION;
+import static com.algocrafts.selectors.TagName.OPTION;
 import static org.openqa.selenium.By.name;
 import static org.slf4j.LoggerFactory.getLogger;
 

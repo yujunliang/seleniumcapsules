@@ -3,7 +3,6 @@ package com.algocrafts.pages;
 import com.algocrafts.clickables.Button;
 import com.algocrafts.clickables.Link;
 import com.algocrafts.conditions.StringContains;
-import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.converters.ElementAtIndex;
 import com.algocrafts.converters.Filter;
 import com.algocrafts.converters.FirstItem;
@@ -17,9 +16,7 @@ import java.util.stream.Stream;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.converters.GetText.SRC;
-import static com.algocrafts.converters.GetText.VALUE;
-import static com.algocrafts.searchmethods.TagName.IMG;
-import static com.algocrafts.searchmethods.TagName.INPUT;
+import static com.algocrafts.selectors.TagName.IMG;
 
 
 public interface Searchable<Where extends Searchable<Where>> extends Waitable<Where> {
