@@ -45,13 +45,21 @@ public interface FormControl<Where extends Searchable<Where>> {
 
     /**
      * Enter text into an input filed.
+     *
      * @param method
      * @param value
      */
-    default public void put(Supplier<By> method, Object value ) {
-          new Input<>((Where)this).put(method, value);
+    default public void put(Supplier<By> method, Object value) {
+        new Input<>((Where) this).put(method, value);
     }
 
+    /**
+     * Autocomplete for text field and return the first found suggestion match the whole word.
+     *
+     * @param method
+     * @param value
+     * @param locator
+     */
     default public void autocomplete(Supplier<By> method, Object value, Locator<Where, Element> locator) {
         new Input<>((Where) this).autocomplete(method, value, locator);
     }

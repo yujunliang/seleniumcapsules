@@ -1,13 +1,12 @@
 package com.algocrafts.forms;
 
+import com.algocrafts.locators.SelectLocator;
 import com.algocrafts.pages.Element;
 import com.algocrafts.pages.Searchable;
-import com.algocrafts.locators.SelectLocator;
 import org.slf4j.Logger;
 
-import java.util.List;
+import java.util.stream.Stream;
 
-import static com.google.common.collect.Lists.transform;
 import static org.slf4j.LoggerFactory.getLogger;
 
 class Select<Where extends Searchable<Where>> {
@@ -16,10 +15,6 @@ class Select<Where extends Searchable<Where>> {
 
     private final Where page;
     private final SelectLocator<Where> selectLocator;
-
-    Select(Where page, String name) {
-        this(page, new SelectLocator<>(name));
-    }
 
     Select(Where page, SelectLocator<Where> selectLocator) {
         this.page = page;
@@ -36,12 +31,12 @@ class Select<Where extends Searchable<Where>> {
     }
 
 
-    public List<Element> getOptions() {
-        return transform(selectLocator.apply(page).getOptions(), Element::new);
+    public Stream<Element> getOptions() {
+        return selectLocator.apply(page).getOptions().stream().map(Element::new);
     }
 
-    public List<Element> getAllSelectedOptions() {
-        return transform(selectLocator.apply(page).getAllSelectedOptions(), Element::new);
+    public Stream<Element> getAllSelectedOptions() {
+        return selectLocator.apply(page).getAllSelectedOptions().stream().map(Element::new);
     }
 
     public Element getFirstSelectedOption() {
