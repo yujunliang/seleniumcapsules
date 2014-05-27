@@ -1,7 +1,5 @@
 package com.algocrafts.converters;
 
-import com.algocrafts.converters.Filter;
-import com.algocrafts.converters.FirstItem;
 import com.algocrafts.pages.Locator;
 
 import java.util.function.Predicate;

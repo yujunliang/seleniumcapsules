@@ -18,7 +18,7 @@ public enum StringToMonth implements Locator<String, Month> {
         return maps.valueOf(element.toUpperCase());
     }
 
-    private static final SelfPopulatingCache<String, Month> maps = new SelfPopulatingCache<>(100, new OneKeyLFUPolicy<>(), MONTH_MAPPER);
+    private static final SelfPopulatingCache<String, Month> maps = new SelfPopulatingCache<>(48, new OneKeyLFUPolicy<>(), MONTH_MAPPER);
 
     static enum MonthMapper implements Creator<String, Month> {
         MONTH_MAPPER;
@@ -36,7 +36,6 @@ public enum StringToMonth implements Locator<String, Month> {
                 } else {
                     newKey = key;
                 }
-                System.out.println(maps.values());
                 for (Month m : Month.values()) {
                     if (m.name().contains(newKey)) {
                         return m;
