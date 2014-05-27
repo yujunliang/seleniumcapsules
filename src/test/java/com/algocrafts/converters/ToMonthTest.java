@@ -11,11 +11,11 @@ public class ToMonthTest {
 
     @Test
     public void test() {
-        assertEquals(APRIL, TO_MONTH.apply("apr"));
-        assertEquals(APRIL, TO_MONTH.apply("apr."));
-        assertEquals(APRIL, TO_MONTH.apply("Apr."));
-        assertEquals(APRIL, TO_MONTH.apply("April"));
-        assertEquals(JANUARY, TO_MONTH.apply("Jan."));
+        assertEquals(APRIL, TO_MONTH.locate("apr"));
+        assertEquals(APRIL, TO_MONTH.locate("apr."));
+        assertEquals(APRIL, TO_MONTH.locate("Apr."));
+        assertEquals(APRIL, TO_MONTH.locate("April"));
+        assertEquals(JANUARY, TO_MONTH.locate("Jan."));
     }
 
 }

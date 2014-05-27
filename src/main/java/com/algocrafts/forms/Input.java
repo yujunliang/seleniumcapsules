@@ -33,10 +33,10 @@ class Input<Where extends Searchable<Where>> {
         try {
             retry.attempt(() -> {
                 log.info("{}", retry);
-                Element element = new ElementTryLocator<Where>(method).apply(where);
+                Element element = new ElementTryLocator<Where>(method).locate(where);
                 element.clear();
                 element.sendKeys(string);
-                if (VALUE.apply(element).equals(string)) {
+                if (VALUE.locate(element).equals(string)) {
                     retry.off();
                 }
                 return null;
@@ -48,11 +48,11 @@ class Input<Where extends Searchable<Where>> {
     }
 
     public void autocomplete(Supplier<By> method, Object value, Locator<Where, Element> condition) {
-        Element apply = new ElementLocator<Where>(method).apply(where);
+        Element apply = new ElementLocator<Where>(method).locate(where);
         apply.clear();
         for (char c : value.toString().toCharArray()) {
             apply.sendKeys(String.valueOf(c));
-            Element apply1 = condition.apply(where);
+            Element apply1 = condition.locate(where);
             if (apply1 != null) {
                 apply1.click();
                 return;

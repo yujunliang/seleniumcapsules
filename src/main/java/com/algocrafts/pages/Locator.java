@@ -7,8 +7,6 @@ import java.util.function.Predicate;
 
 public interface Locator<Where, What> extends Function<Where, What> {
 
-    abstract What find(Where where);
-
     /**
      * Returns a composed function that first applies this function to
      * its input, and then applies the {@code after} function to the result.
@@ -17,7 +15,7 @@ public interface Locator<Where, What> extends Function<Where, What> {
      *
      * @param <V>   the type of output of the {@code after} function, and of the
      *              composed function
-     * @param after the function to apply after this function is applied
+     * @param after the function to locate after this function is applied
      * @return a composed function that first applies this function and then
      * applies the {@code after} function
      * @throws NullPointerException if after is null
@@ -25,17 +23,29 @@ public interface Locator<Where, What> extends Function<Where, What> {
      */
     default <V> Locator<Where, V> and(Locator<? super What, ? extends V> after) {
         Objects.requireNonNull(after);
-        return (Where t) -> after.apply(apply(t));
+        return (Where t) -> after.locate(locate(t));
     }
 
     default Predicate<Where> and(Predicate<What> other) {
         Objects.requireNonNull(other);
-        return (Where t) -> other.test(apply(t));
+        return (Where t) -> other.test(locate(t));
     }
 
-    @Override
-    default public What apply(Where where) {
-        return find(where);
-    }
+    /**
+     * Applies this function to the given argument.
+     *
+     * @param t the function argument
+     * @return the function result
+     */
+    What locate(Where t);
 
+    /**
+     * Applies this function to the given argument.
+     *
+     * @param t the function argument
+     * @return the function result
+     */
+    default What apply(Where t) {
+        return locate(t);
+    }
 }

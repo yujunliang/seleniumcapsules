@@ -15,7 +15,7 @@ public class Filter<T> implements Locator<Stream<T>, Stream<T>> {
     }
 
     @Override
-    public Stream<T> apply(Stream<T> elements) {
+    public Stream<T> locate(Stream<T> elements) {
         return elements.filter(predicate);
     }
 

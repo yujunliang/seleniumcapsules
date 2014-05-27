@@ -29,6 +29,6 @@ class RadioButton<Where extends Searchable<Where>> {
             .and(new Filter<>(DISPLAYED.and(VALUE.and(new IsStringEqual(value)))))
             .and(new FirstItem<>())
             .and(CLICK_IF_NOT_NULL)
-            .apply(page);
+            .locate(page);
     }
 }

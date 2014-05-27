@@ -11,7 +11,7 @@ import static java.util.stream.Collectors.toList;
 public class StreamToList<T> implements Locator<Stream<T>, List<T>> {
 
     @Override
-    public List<T> apply(Stream<T> element) {
+    public List<T> locate(Stream<T> element) {
         return element.collect(toList());
     }
 

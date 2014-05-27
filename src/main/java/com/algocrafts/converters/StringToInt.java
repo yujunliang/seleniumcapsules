@@ -9,7 +9,7 @@ public enum StringToInt implements Locator<String, Integer> {
 
     PARSE_INT {
         @Override
-        public Integer apply(String element) {
+        public Integer locate(String element) {
             return parseInt(element);
         }
 

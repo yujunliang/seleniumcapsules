@@ -15,9 +15,9 @@ public class JQueryDayLocator implements Locator<AbstractPage, Void>  {
     private Locator<AbstractPage, Void> locator;
 
     @Override
-    public Void apply(AbstractPage page) {
-        locator.apply(page);
-        CLOSE_BUTTON.apply(page);
+    public Void locate(AbstractPage page) {
+        locator.locate(page);
+        CLOSE_BUTTON.locate(page);
         page.until(CALENDAR_NOT_DISPLAYED);
         return null;
     }

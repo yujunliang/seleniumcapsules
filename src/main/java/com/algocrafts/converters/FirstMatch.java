@@ -14,7 +14,7 @@ public class FirstMatch<T> implements Locator<Stream<T>, T> {
     }
 
     @Override
-    public T apply(Stream<T> stream) {
-        return new Filter<>(predicate).and(new FirstItem<>()).apply(stream);
+    public T locate(Stream<T> stream) {
+        return new Filter<>(predicate).and(new FirstItem<>()).locate(stream);
     }
 }

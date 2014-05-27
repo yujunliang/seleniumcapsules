@@ -14,7 +14,7 @@ public enum StringToMonth implements Locator<String, Month> {
     TO_MONTH;
 
     @Override
-    public Month apply(String element) {
+    public Month locate(String element) {
         return maps.valueOf(element.toUpperCase());
     }
 

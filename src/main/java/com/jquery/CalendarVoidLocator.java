@@ -38,7 +38,7 @@ public enum CalendarVoidLocator implements Locator<AbstractPage, Void> {
     }
 
     @Override
-    public Void apply(AbstractPage page) {
-        return locator.and(CLICK_IF_NOT_NULL).apply(page);
+    public Void locate(AbstractPage page) {
+        return locator.and(CLICK_IF_NOT_NULL).locate(page);
     }
 }

@@ -36,7 +36,7 @@ public enum CalendarIntegerLocator implements Locator<AbstractPage, Integer> {
     }
 
     @Override
-    public Integer apply(AbstractPage page) {
-        return locator.apply(page);
+    public Integer locate(AbstractPage page) {
+        return locator.locate(page);
     }
 }

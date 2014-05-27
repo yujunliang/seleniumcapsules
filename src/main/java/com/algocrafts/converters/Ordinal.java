@@ -7,7 +7,7 @@ public enum Ordinal implements Locator<Enum, Integer> {
 
     ORDINAL {
         @Override
-        public Integer apply(Enum input) {
+        public Integer locate(Enum input) {
             return input.ordinal();
         }
     };

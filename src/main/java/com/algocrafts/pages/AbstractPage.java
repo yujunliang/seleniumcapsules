@@ -90,6 +90,7 @@ public abstract class AbstractPage implements Searchable<AbstractPage>, FormCont
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public final Stream<Element> findElements(Supplier<By> by) {
         return browser.findElements(by);
     }
@@ -126,7 +127,7 @@ public abstract class AbstractPage implements Searchable<AbstractPage>, FormCont
 
     public String getTitle() {
         try {
-            return new ElementTryLocator<AbstractPage>(PAGE_TITLE).and(TEXT).apply(this);
+            return new ElementTryLocator<AbstractPage>(PAGE_TITLE).and(TEXT).locate(this);
         } catch (Exception e) {
             return "";
         }

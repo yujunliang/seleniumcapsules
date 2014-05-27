@@ -14,7 +14,7 @@ public class ElementAtIndex<T> implements Locator<List<T>, T> {
     }
 
     @Override
-    public T apply(List<T> list) {
+    public T locate(List<T> list) {
         return list.get(index);
     }
 

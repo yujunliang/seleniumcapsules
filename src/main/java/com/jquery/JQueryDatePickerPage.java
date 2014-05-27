@@ -32,7 +32,7 @@ public class JQueryDatePickerPage extends AbstractPage {
     public String getDate() {
         return new ElementLocator<AbstractPage>(DATE_PICKER)
             .and(VALUE)
-            .apply(this);
+            .locate(this);
     }
 
 }

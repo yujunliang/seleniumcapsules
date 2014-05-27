@@ -92,7 +92,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      * @return
      */
     default public Element image(String fileName) {
-        return new FirstItem<Element>().apply(images(fileName));
+        return new FirstItem<Element>().locate(images(fileName));
     }
 
     /**
@@ -105,7 +105,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
     default public Element image(String fileName, int index) {
         return new StreamToList<Element>()
                 .and(new ElementAtIndex<>(index))
-                .apply(images(fileName));
+                .locate(images(fileName));
     }
 
     /**

@@ -32,7 +32,7 @@ class Checkbox<Where extends Searchable<Where>> implements Clickable {
     }
 
     public void check() {
-        Element apply = locator.apply(where);
+        Element apply = locator.locate(where);
         if (apply != null) {
             if (!apply.isSelected()) {
                 apply.click();
@@ -41,7 +41,7 @@ class Checkbox<Where extends Searchable<Where>> implements Clickable {
     }
 
     public void uncheck() {
-        Element apply = locator.apply(where);
+        Element apply = locator.locate(where);
         if (apply != null) {
             if (apply.isSelected()) {
                 apply.click();
@@ -62,6 +62,6 @@ class Checkbox<Where extends Searchable<Where>> implements Clickable {
      */
     @Override
     public void click() {
-        locator.and(CLICK_IF_NOT_NULL).apply(where);
+        locator.and(CLICK_IF_NOT_NULL).locate(where);
     }
 }

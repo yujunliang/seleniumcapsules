@@ -49,7 +49,7 @@ public class Calendar {
      * Pop up the date picker calendar.
      */
     public void show() {
-        trigger.apply(page);
+        trigger.locate(page);
     }
 
     /**
@@ -58,7 +58,7 @@ public class Calendar {
      * @return
      */
     public int currentYear() {
-        return currentYear.apply(page);
+        return currentYear.locate(page);
     }
 
     /**
@@ -67,21 +67,21 @@ public class Calendar {
      * @return
      */
     public int currentMonth() {
-        return currentMonth.apply(page);
+        return currentMonth.locate(page);
     }
 
     /**
      * Click the previous month button.
      */
     public void previousMonth() {
-        previousMonth.apply(page);
+        previousMonth.locate(page);
     }
 
     /**
      * Click the next month button.
      */
     public void nextMonth() {
-        nextMonth.apply(page);
+        nextMonth.locate(page);
     }
 
     /**
@@ -90,7 +90,7 @@ public class Calendar {
      * @param day
      */
     public void pickDay(int day) {
-        dayLocator.forDay(day).apply(page);
+        dayLocator.forDay(day).locate(page);
     }
 
     /**

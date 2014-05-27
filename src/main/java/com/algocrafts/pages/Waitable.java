@@ -45,7 +45,7 @@ public interface Waitable<Where> {
      */
     default public <What> What until(int duration, TimeUnit timeUnit, Locator<Where, What> locator) {
         try {
-            return getFluentWait(duration, timeUnit).until((Where where) -> locator.apply(where));
+            return getFluentWait(duration, timeUnit).until((Where where) -> locator.locate(where));
         } catch (TimeoutException e) {
             save();
             throw new NoSuchElementException("Nothing found by " + locator, e);

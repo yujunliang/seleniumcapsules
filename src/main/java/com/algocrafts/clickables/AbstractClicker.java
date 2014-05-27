@@ -21,7 +21,7 @@ public class AbstractClicker<Where extends Searchable<Where>> implements Clickab
     }
 
     public void click() {
-        Element apply = locator.apply(where);
+        Element apply = locator.locate(where);
         log.info("clicking [" + apply + "]");
         where.save();
         apply.click();

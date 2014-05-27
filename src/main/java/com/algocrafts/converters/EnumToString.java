@@ -7,7 +7,7 @@ public enum EnumToString implements Locator<Enum, String> {
 
     REPLACE_UNDERSCORE {
         @Override
-        public String apply(Enum element) {
+        public String locate(Enum element) {
             return element.name().replace('_', ' ');
         }
     };

@@ -17,8 +17,8 @@ public abstract class AbstractLocator<Where extends Searchable<Where>, What> imp
     }
 
     @Override
-    public What find(Where where) {
-        return loctor.apply(where);
+    public What locate(Where where) {
+        return loctor.locate(where);
     }
 
     @Override
