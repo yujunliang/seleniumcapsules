@@ -7,10 +7,10 @@ import org.openqa.selenium.By;
 import java.util.function.Supplier;
 
 public class ElementTryLocator<Where extends Searchable<Where>>
-        extends AbstractLocator<Where, Element> {
+        extends BaseLocator<Where, Element> {
 
     public ElementTryLocator(Supplier<By> selector) {
-        super(selector, (Where where) ->
+        super((Where where) ->
                 where.findElement(selector.get()));
     }
 }

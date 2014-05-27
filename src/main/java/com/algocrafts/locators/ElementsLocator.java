@@ -8,9 +8,9 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 public class ElementsLocator<Where extends Searchable<Where>>
-        extends AbstractLocator<Where, Stream<Element>> {
+        extends BaseLocator<Where, Stream<Element>> {
 
     public ElementsLocator(Supplier<By> selector) {
-        super(selector, (Where where) -> where.findElements(() -> selector.get()));
+        super((Where where) -> where.findElements(() -> selector.get()));
     }
 }

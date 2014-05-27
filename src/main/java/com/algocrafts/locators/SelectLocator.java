@@ -16,12 +16,12 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 
 public class SelectLocator<Where extends Searchable<Where>>
-        extends AbstractLocator<Where, Select> {
+        extends BaseLocator<Where, Select> {
 
     private static final Logger log = getLogger(SelectLocator.class);
 
     public SelectLocator(Supplier<By> selector) {
-        super(selector, (Where where) -> {
+        super((Where where) -> {
             final Element element = where.untilFound(selector.get());
             try {
                 element.until(new ElementsLocator<Element>(OPTION).and(new HasElements<>()));
