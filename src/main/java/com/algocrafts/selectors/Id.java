@@ -6,6 +6,9 @@ import java.util.function.Supplier;
 
 import static org.openqa.selenium.By.id;
 
+/**
+ * This enum has elements with ById from Selenium By API.
+ */
 public enum Id implements Supplier<By> {
 
     MAIN_NAV("main-nav"),
@@ -19,6 +22,9 @@ public enum Id implements Supplier<By> {
         this.by = id(id);
     }
 
+    /**
+     * @return the by instance variable which is a ById.
+     */
     @Override
     public By get() {
         return by;

@@ -7,6 +7,9 @@ import java.util.function.Supplier;
 
 import static org.openqa.selenium.By.cssSelector;
 
+/**
+ * This enum has elements with ByCssSelector from Selenium By API.
+ */
 public enum CssSelector implements Supplier<By> {
 
     UPDATE("input[value='Update']"),
@@ -18,6 +21,9 @@ public enum CssSelector implements Supplier<By> {
         this.by = cssSelector(id);
     }
 
+    /**
+     * @return the by instance variable which is a ByCssSelector.
+     */
     @Override
     public By get() {
         return by;

@@ -7,6 +7,9 @@ import java.util.function.Supplier;
 
 import static org.openqa.selenium.By.className;
 
+/**
+ * This enum has elements with ByClassType from Selenium By API.
+ */
 public enum ClassName implements Supplier<By> {
 
     SF_JS_ENABLED("sf-js-enabled"),
@@ -27,6 +30,9 @@ public enum ClassName implements Supplier<By> {
         this.by = className(id);
     }
 
+    /**
+     * @return the by instance variable which is a ByClassName.
+     */
     @Override
     public By get() {
         return by;

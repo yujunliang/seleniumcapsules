@@ -7,6 +7,9 @@ import java.util.function.Supplier;
 
 import static org.openqa.selenium.By.xpath;
 
+/**
+ * This enum has elements with ByXpath from Selenium By API.
+ */
 public enum Xpath implements Supplier<By> {
 
     DIV_CONTAINER_ID("//div[@id='container']"),
@@ -19,6 +22,9 @@ public enum Xpath implements Supplier<By> {
         this.by = xpath(id);
     }
 
+    /**
+     * @return the by instance variable which is a ByXpath.
+     */
     @Override
     public By get() {
         return by;

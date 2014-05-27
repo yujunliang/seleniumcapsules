@@ -7,6 +7,9 @@ import java.util.function.Supplier;
 
 import static org.openqa.selenium.By.partialLinkText;
 
+/**
+ * This enum has elements with ByPartialLinkText from Selenium By API.
+ */
 public enum PartialLinkText implements Supplier<By> {
 
     UI_DATEPICKER_CLOSE("ui-datepicker-close");
@@ -17,6 +20,9 @@ public enum PartialLinkText implements Supplier<By> {
         this.by = partialLinkText(id);
     }
 
+    /**
+     * @return the by instance variable which is a ByPartialLinkText.
+     */
     @Override
     public By get() {
         return by;

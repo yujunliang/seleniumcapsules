@@ -7,6 +7,9 @@ import java.util.function.Supplier;
 
 import static org.openqa.selenium.By.tagName;
 
+/**
+ * This enum has elements with ByTagName from Selenium By API.
+ */
 public enum TagName implements Supplier<By> {
     A("a"),
     EM("em"),
@@ -32,6 +35,9 @@ public enum TagName implements Supplier<By> {
         this.by = tagName(id);
     }
 
+    /**
+     * @return the by instance variable which is a ByTagName.
+     */
     @Override
     public By get() {
         return by;

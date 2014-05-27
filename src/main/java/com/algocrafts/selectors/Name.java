@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 
 import java.util.function.Supplier;
 
+/**
+ * This enum has elements with ByName from Selenium By API.
+ */
 public enum Name implements Supplier<By> {
 
     Q("q"),
@@ -16,6 +19,9 @@ public enum Name implements Supplier<By> {
         this.by = By.name(id);
     }
 
+    /**
+     * @return the by instance variable which is a ByName.
+     */
     @Override
     public By get() {
         return by;
