@@ -5,7 +5,19 @@
 
     <import resource="properties.xml"/>
 
+    <bean id="entryUrl" class="com.algocrafts.pages.Url">
+        <constructor-arg value="${entry.url}"/>
+    </bean>
+
+    <bean id="homePage" class="com.orgsync.OrgSyncHomePage">
+        <constructor-arg ref="firefox"/>
+        <constructor-arg ref="entryUrl"/>
+        <constructor-arg ref="allMenuLocator"/>
+    </bean>
+
     <bean id="firefox" class="com.algocrafts.browsers.FirefoxOnWindows"/>
+
+    <bean id="allMenuLocator" class="com.orgsync.AllMenuLocatorForOrgSync"/>
 
     <bean id="jQueryDatePickerPage" class="com.jquery.JQueryDatePickerPage">
         <constructor-arg value="${browser}"/>

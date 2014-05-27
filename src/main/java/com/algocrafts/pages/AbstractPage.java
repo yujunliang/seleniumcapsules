@@ -4,6 +4,7 @@ import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.forms.FormControl;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.function.Predicate;
@@ -13,31 +14,31 @@ import java.util.stream.Stream;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.PageFunctions.THE_PAGE_TITLE;
 import static com.algocrafts.selectors.ClassName.PAGE_TITLE;
+import static org.slf4j.LoggerFactory.getLogger;
 
 public abstract class AbstractPage implements Searchable<AbstractPage>, FormControl<AbstractPage> {
+
+    public static final Logger logger = getLogger(AbstractPage.class);
 
     private final Predicate<AbstractPage> condition;
 
     @Value("${quit.browser}")
     private boolean close;
 
-    @Value("${take.screenshot}")
-    private boolean takeScreenshot;
-
     private final Browser browser;
 
     private final Clickable clickable;
 
     public AbstractPage(AbstractPage page) {
-        this(page.browser, null, null, page.close, page.takeScreenshot);
+        this(page.browser, null, null, page.close);
     }
 
     public AbstractPage(AbstractPage page, Clickable clickable, String title) {
-        this(page.browser, clickable, THE_PAGE_TITLE.and(new IsStringEqual(title)), page.close, page.takeScreenshot);
+        this(page.browser, clickable, THE_PAGE_TITLE.and(new IsStringEqual(title)), page.close);
     }
 
     public AbstractPage(AbstractPage page, Clickable clickable, Predicate<AbstractPage> condition) {
-        this(page.browser, clickable, condition, page.close, page.takeScreenshot);
+        this(page.browser, clickable, condition, page.close);
     }
 
     public AbstractPage(Browser browser, Clickable clickable, Predicate<AbstractPage> condition) {
@@ -46,12 +47,11 @@ public abstract class AbstractPage implements Searchable<AbstractPage>, FormCont
         this.condition = condition;
     }
 
-    public AbstractPage(Browser browser, Clickable clickable, Predicate<AbstractPage> condition, boolean close, boolean takeScreenshot) {
+    public AbstractPage(Browser browser, Clickable clickable, Predicate<AbstractPage> condition, boolean close) {
         this.browser = browser;
         this.clickable = clickable;
         this.condition = condition;
         this.close = close;
-        this.takeScreenshot = takeScreenshot;
     }
 
     public final void open() {
@@ -62,6 +62,7 @@ public abstract class AbstractPage implements Searchable<AbstractPage>, FormCont
             }
         }
     }
+
     /**
      * Find the first element or return null if nothing found.
      *
@@ -143,7 +144,7 @@ public abstract class AbstractPage implements Searchable<AbstractPage>, FormCont
     }
 
     public final void save() {
-        if (takeScreenshot) {
+        if (logger.isDebugEnabled()) {
             browser.save(this.getTitle());
         }
     }

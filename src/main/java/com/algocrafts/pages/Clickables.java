@@ -24,7 +24,6 @@ public class Clickables<Where extends Searchable<Where>> implements Clickable {
     }
 
     private static final Logger log = getLogger(Clickables.class);
-
     private final Where where;
     private final Locator<Where, Element> locator;
 
