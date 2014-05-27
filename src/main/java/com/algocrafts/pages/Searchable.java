@@ -64,11 +64,9 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     @SuppressWarnings("unchecked")
     default public Clickable button(Supplier<By> by, int index) {
-        return Clickables.button((Where) this,
-                Locators.<Where>elements(by)
-                        .and(new StreamToList<>())
-                        .and(new ElementAtIndex<>(index))
-        );
+        return new Clickables<>((Where) this, Locators.<Where>elements(by)
+                .and(new StreamToList<>())
+                .and(new ElementAtIndex<>(index)));
     }
 
     /**
@@ -79,7 +77,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     @SuppressWarnings("unchecked")
     default public Clickable button(Locator<Where, Element> locator) {
-        return Clickables.button((Where) this, locator);
+        return new Clickables<>((Where) this, locator);
     }
 
     /**
@@ -125,6 +123,17 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     @SuppressWarnings("unchecked")
     default public Clickable link(Supplier<By> selector) {
-        return Clickables.link((Where) this, element(selector));
+        return new Clickables<>((Where) this, element(selector));
     }
+
+    @SuppressWarnings("unchecked")
+    default public Clickable menu(Locator<Where, Element> locator) {
+        return new Clickables<>((Where) this, locator);
+    }
+
+    @SuppressWarnings("unchecked")
+    default public Clickable imageButton(String fileName, int index) {
+        return new Clickables<>((Where) this, (Where input) -> input.image(fileName, index));
+    }
+
 }
