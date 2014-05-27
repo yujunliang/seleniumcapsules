@@ -1,11 +1,11 @@
 package com.jquery;
 
 
-import com.algocrafts.conditions.StringEquals;
-import com.algocrafts.pages.Locators;
+import com.algocrafts.converters.FrameLocator;
 import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.pages.Element;
 import com.algocrafts.pages.Locator;
+import com.algocrafts.pages.Locators;
 
 import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
 import static com.algocrafts.pages.Locators.element;
@@ -15,7 +15,7 @@ import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 
 public enum CalendarVoidLocator implements Locator<AbstractPage, Void> {
     TRIGGER(
-            new StringEquals.FrameLocator(0)
+            new FrameLocator(0)
                     .and(element(DATE_PICKER))
     ),
     NEXT_MONTH(
