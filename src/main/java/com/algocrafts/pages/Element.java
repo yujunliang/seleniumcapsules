@@ -10,11 +10,8 @@ import org.slf4j.Logger;
 
 import java.util.List;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.google.common.collect.Lists.transform;
-import static java.util.stream.Collectors.toList;
 import static org.slf4j.LoggerFactory.getLogger;
 
 public class Element implements Searchable<Element>, WebElement, Locatable {

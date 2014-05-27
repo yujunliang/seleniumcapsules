@@ -65,6 +65,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      * @param index
      * @return
      */
+    @SuppressWarnings("unchecked")
     default public Clickable button(Supplier<By> by, int index) {
         return new Button<>((Where) this,
                 new ElementsLocator<Where>(by)
@@ -79,6 +80,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      * @param locator
      * @return
      */
+    @SuppressWarnings("unchecked")
     default public Clickable button(Locator<Where, Element> locator) {
         return new Button<>((Where) this, locator);
     }
@@ -124,6 +126,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      * @param selector
      * @return
      */
+    @SuppressWarnings("unchecked")
     default public Clickable link(Supplier<By> selector) {
         return new Link<>((Where) this, new ElementLocator<>(selector));
     }
