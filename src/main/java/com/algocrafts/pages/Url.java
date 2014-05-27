@@ -1,7 +1,5 @@
-package com.algocrafts.clickables;
+package com.algocrafts.pages;
 
-import com.algocrafts.pages.Browsers;
-import com.algocrafts.pages.Clickable;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 

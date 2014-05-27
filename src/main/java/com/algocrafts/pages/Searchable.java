@@ -1,7 +1,5 @@
 package com.algocrafts.pages;
 
-import com.algocrafts.clickables.Button;
-import com.algocrafts.clickables.Link;
 import com.algocrafts.conditions.StringContains;
 import com.algocrafts.converters.ElementAtIndex;
 import com.algocrafts.converters.Filter;
@@ -66,7 +64,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     @SuppressWarnings("unchecked")
     default public Clickable button(Supplier<By> by, int index) {
-        return new Button<>((Where) this,
+        return Clickables.button((Where) this,
                 Locators.<Where>elements(by)
                         .and(new StreamToList<>())
                         .and(new ElementAtIndex<>(index))
@@ -81,7 +79,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     @SuppressWarnings("unchecked")
     default public Clickable button(Locator<Where, Element> locator) {
-        return new Button<>((Where) this, locator);
+        return Clickables.button((Where) this, locator);
     }
 
     /**
@@ -127,6 +125,6 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     @SuppressWarnings("unchecked")
     default public Clickable link(Supplier<By> selector) {
-        return new Link<>((Where) this, element(selector));
+        return Clickables.link((Where) this, element(selector));
     }
 }
