@@ -6,14 +6,11 @@ import org.openqa.selenium.By;
 
 import java.util.function.Supplier;
 
-public class ElementTryLocator<Where extends Searchable<Where>> extends AbstractLocator<Where, Element> {
+public class ElementTryLocator<Where extends Searchable<Where>>
+        extends AbstractLocator<Where, Element> {
 
-    public ElementTryLocator(Supplier<By> method) {
-        super(method);
-    }
-
-    @Override
-    public Element find(Where where) {
-        return where.findElement(by);
+    public ElementTryLocator(Supplier<By> selector) {
+        super(selector, (Where where) ->
+                where.findElement(selector.get()));
     }
 }

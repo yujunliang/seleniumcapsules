@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 
 public interface Locator<Where, What> extends Function<Where, What> {
 
+    abstract What find(Where where);
+
     /**
      * Returns a composed function that first applies this function to
      * its input, and then applies the {@code after} function to the result.
@@ -29,6 +31,11 @@ public interface Locator<Where, What> extends Function<Where, What> {
     default Predicate<Where> and(Predicate<What> other) {
         Objects.requireNonNull(other);
         return (Where t) -> other.test(apply(t));
+    }
+
+    @Override
+    default public What apply(Where where) {
+        return find(where);
     }
 
 }

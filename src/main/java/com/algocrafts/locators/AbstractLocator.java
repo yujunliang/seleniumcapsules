@@ -9,17 +9,17 @@ import java.util.function.Supplier;
 public abstract class AbstractLocator<Where extends Searchable<Where>, What> implements Locator<Where, What> {
 
     protected final By by;
+    private final Locator<Where, What> loctor;
 
-    public AbstractLocator(Supplier<By> method) {
+    public AbstractLocator(Supplier<By> method, Locator<Where, What> loctor) {
+        this.loctor = loctor;
         this.by = method.get();
     }
 
     @Override
-    public What apply(Where where) {
-        return find(where);
+    public What find(Where where) {
+        return loctor.apply(where);
     }
-
-    protected abstract What find(Where where);
 
     @Override
     public String toString() {

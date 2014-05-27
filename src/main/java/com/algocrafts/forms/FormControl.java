@@ -19,6 +19,7 @@ public interface FormControl<Where extends Searchable<Where>> {
      * @param method
      * @param value
      */
+    @SuppressWarnings("unchecked")
     default public void check(Supplier<By> method, boolean value) {
         new Checkbox<>((Where) this, method).setValue(value);
     }
@@ -29,6 +30,7 @@ public interface FormControl<Where extends Searchable<Where>> {
      * @param method
      * @param option
      */
+    @SuppressWarnings("unchecked")
     default public void radio(Supplier<By> method, Object option) {
         new RadioButton<>((Where) this, method).setValue(option);
     }
@@ -39,8 +41,9 @@ public interface FormControl<Where extends Searchable<Where>> {
      * @param method
      * @param value
      */
+    @SuppressWarnings("unchecked")
     default public void select(Supplier<By> method, Object value) {
-        new Select<>((Where) this, new SelectLocator<Where>(new ElementLocator<>(method))).selectByVisibleText(value);
+        new Select<>((Where) this, new SelectLocator<>(method)).selectByVisibleText(value);
     }
 
     /**
@@ -49,6 +52,7 @@ public interface FormControl<Where extends Searchable<Where>> {
      * @param method
      * @param value
      */
+    @SuppressWarnings("unchecked")
     default public void put(Supplier<By> method, Object value) {
         new Input<>((Where) this).put(method, value);
     }
@@ -60,6 +64,7 @@ public interface FormControl<Where extends Searchable<Where>> {
      * @param value
      * @param locator
      */
+    @SuppressWarnings("unchecked")
     default public void autocomplete(Supplier<By> method, Object value, Locator<Where, Element> locator) {
         new Input<>((Where) this).autocomplete(method, value, locator);
     }

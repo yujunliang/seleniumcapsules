@@ -12,7 +12,12 @@ public class FrameLocator implements Locator<AbstractPage, AbstractPage> {
     }
 
     @Override
-    public AbstractPage apply(AbstractPage page) {
+    public AbstractPage find(AbstractPage page) {
         return page.frame(index);
+    }
+
+    @Override
+    public String toString() {
+        return "frames[" + index + "]";
     }
 }
