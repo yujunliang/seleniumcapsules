@@ -2,7 +2,6 @@ package com.algocrafts.pages;
 
 import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.forms.FormControl;
-import com.algocrafts.locators.ElementTryLocator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Value;
@@ -127,7 +126,7 @@ public abstract class AbstractPage implements Searchable<AbstractPage>, FormCont
 
     public String getTitle() {
         try {
-            return new ElementTryLocator<AbstractPage>(PAGE_TITLE).and(TEXT).locate(this);
+            return Locators.<AbstractPage>tryElement(PAGE_TITLE).and(TEXT).locate(this);
         } catch (Exception e) {
             return "";
         }

@@ -1,7 +1,6 @@
 package com.algocrafts.conditions;
 
-import com.algocrafts.locators.ElementLocator;
-import com.algocrafts.locators.ElementTryLocator;
+import com.algocrafts.pages.Locators;
 import com.algocrafts.pages.AbstractPage;
 
 import java.util.function.Predicate;
@@ -10,6 +9,7 @@ import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.conditions.ElementPredicates.NOT_DISPLAYED;
 import static com.algocrafts.conditions.StringEquals.*;
 import static com.algocrafts.converters.GetText.TEXT;
+import static com.algocrafts.pages.Locators.element;
 import static com.algocrafts.selectors.Id.CONTENT;
 import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 import static com.algocrafts.selectors.TagName.*;
@@ -17,31 +17,31 @@ import static com.bookstore.BookStoreId.*;
 
 public enum PagePredicates implements Predicate<AbstractPage> {
     REACHED_CALENDAR_PAGE(
-        new ElementLocator<AbstractPage>(CONTENT)
-            .and(new ElementLocator<>(H1))
-            .and(TEXT)
-            .and(DATEPICKER)
+            Locators.<AbstractPage>element(CONTENT)
+                    .and(element(H1))
+                    .and(TEXT)
+                    .and(DATEPICKER)
     ),
     SHOPPING_CART_DISPLAYED(
-        new ElementLocator<AbstractPage>(SHOPPING_CART)
-            .and(DISPLAYED)
+            Locators.<AbstractPage>element(SHOPPING_CART)
+                    .and(DISPLAYED)
     ),
     YAHOO_COPYRIGHTED(
-        new ElementLocator<AbstractPage>(YAHOO_COPYRIGHT)
-            .and(new ElementLocator<>(EM))
-            .and(TEXT)
-            .and(YAHOO)
+            Locators.<AbstractPage>element(YAHOO_COPYRIGHT)
+                    .and(element(EM))
+                    .and(TEXT)
+                    .and(YAHOO)
     ),
     IS_COPYRIGHTED(
-        new ElementLocator<AbstractPage>(FOOTER)
-            .and(new ElementLocator<>(P))
-            .and(new ElementLocator<>(I))
-            .and(TEXT)
-            .and(MANNING)
+            Locators.<AbstractPage>element(FOOTER)
+                    .and(element(P))
+                    .and(element(I))
+                    .and(TEXT)
+                    .and(MANNING)
     ),
     CALENDAR_NOT_DISPLAYED(
-        new ElementTryLocator<AbstractPage>(UI_DATEPICKER_DIV)
-            .and(NOT_DISPLAYED)
+            Locators.<AbstractPage>tryElement(UI_DATEPICKER_DIV)
+                    .and(NOT_DISPLAYED)
     );
     private final Predicate<AbstractPage> predicate;
 

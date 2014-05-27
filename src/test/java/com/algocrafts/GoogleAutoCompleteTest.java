@@ -1,9 +1,8 @@
 package com.algocrafts;
 
 import com.algocrafts.conditions.IsStringEqual;
-import com.algocrafts.locators.ElementTryLocator;
-import com.algocrafts.locators.ElementsLocator;
 import com.algocrafts.converters.FirstMatch;
+import com.algocrafts.pages.Locators;
 import com.algocrafts.pages.AbstractPage;
 import com.google.GooglePage;
 import org.junit.After;
@@ -26,6 +25,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.io.File;
 
 import static com.algocrafts.converters.GetText.TEXT;
+import static com.algocrafts.pages.Locators.elements;
+import static com.algocrafts.pages.Locators.tryElement;
 import static com.algocrafts.selectors.Name.Q;
 import static com.algocrafts.selectors.TagName.SPAN;
 import static com.algocrafts.selectors.Xpath.ORACLE_AUTOCOMPLETE;
@@ -60,7 +61,7 @@ public class GoogleAutoCompleteTest {
                         By.xpath("//table[contains(concat(' ', @class, ' '), 'gssb_c')]/descendant::span[text()='oracle']"));
                 oracle.click();
             } catch (NoSuchElementException e) {
-               log.debug("This is OK", e);
+                log.debug("This is OK", e);
             }
         }
     }
@@ -69,15 +70,15 @@ public class GoogleAutoCompleteTest {
      * This is a clean test using page framework.  it has the same function as the test above.  :)
      */
     @Test
-        public void autoCompleteUsingXpath() {
-        googlePage.autocomplete(Q, "oracle", new ElementTryLocator<>(ORACLE_AUTOCOMPLETE));
+    public void autoCompleteUsingXpath() {
+        googlePage.autocomplete(Q, "oracle", tryElement(ORACLE_AUTOCOMPLETE));
     }
 
     @Test
     public void autoCompleteUsingLocator() {
         googlePage.autocomplete(Q, "oracle",
-                new ElementTryLocator<AbstractPage>(() -> className("gssb_c"))
-                        .and(new ElementsLocator<>(SPAN))
+                Locators.<AbstractPage>tryElement(() -> className("gssb_c"))
+                        .and(elements(SPAN))
                         .and(new FirstMatch<>(TEXT.and(new IsStringEqual("oracle")))));
     }
 

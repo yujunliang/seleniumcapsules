@@ -2,10 +2,9 @@ package com.algocrafts.forms;
 
 
 import com.algocrafts.algorithm.Retry;
-import com.algocrafts.locators.ElementLocator;
-import com.algocrafts.locators.ElementTryLocator;
 import com.algocrafts.pages.Element;
 import com.algocrafts.pages.Locator;
+import com.algocrafts.pages.Locators;
 import com.algocrafts.pages.Searchable;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
@@ -33,7 +32,7 @@ class Input<Where extends Searchable<Where>> {
         try {
             retry.attempt(() -> {
                 log.info("{}", retry);
-                Element element = new ElementTryLocator<Where>(method).locate(where);
+                Element element = Locators.<Where>tryElement(method).locate(where);
                 element.clear();
                 element.sendKeys(string);
                 if (VALUE.locate(element).equals(string)) {
@@ -47,8 +46,8 @@ class Input<Where extends Searchable<Where>> {
         }
     }
 
-    public void autocomplete(Supplier<By> method, Object value, Locator<Where, Element> condition) {
-        Element apply = new ElementLocator<Where>(method).locate(where);
+    public void autocomplete(Supplier<By> selector, Object value, Locator<Where, Element> condition) {
+        Element apply = Locators.<Where>element(selector).locate(where);
         apply.clear();
         for (char c : value.toString().toCharArray()) {
             apply.sendKeys(String.valueOf(c));
@@ -59,7 +58,7 @@ class Input<Where extends Searchable<Where>> {
             }
         }
         Element element = where.until(condition);
-        if (element!= null) {
+        if (element != null) {
             element.click();
         }
     }

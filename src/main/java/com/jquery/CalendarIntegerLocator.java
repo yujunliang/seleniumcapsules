@@ -1,8 +1,8 @@
 package com.jquery;
 
 
+import com.algocrafts.pages.Locators;
 import com.algocrafts.pages.AbstractPage;
-import com.algocrafts.locators.ElementLocator;
 import com.algocrafts.pages.Locator;
 
 import static com.algocrafts.converters.GetText.TEXT;
@@ -15,18 +15,18 @@ import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 public enum CalendarIntegerLocator implements Locator<AbstractPage, Integer> {
 
     CURRENT_YEAR(
-        new ElementLocator<AbstractPage>(UI_DATEPICKER_DIV)
-            .and(new ElementLocator<>(UI_DATEPICKER_HEADER))
-            .and(new ElementLocator<>(UI_DATEPICKER_YEAR))
-            .and(TEXT)
-            .and(PARSE_INT)
+            Locators.<AbstractPage>element(UI_DATEPICKER_DIV)
+                    .and(Locators.element(UI_DATEPICKER_HEADER))
+                    .and(Locators.element(UI_DATEPICKER_YEAR))
+                    .and(TEXT)
+                    .and(PARSE_INT)
     ),
     CURRENT_MONTH(
-        new ElementLocator<AbstractPage>(UI_DATEPICKER_DIV)
-            .and(new ElementLocator<>(UI_DATEPICKER_MONTH))
-            .and(TEXT)
-            .and(TO_MONTH)
-            .and(ORDINAL)
+            Locators.<AbstractPage>element(UI_DATEPICKER_DIV)
+                    .and(Locators.element(UI_DATEPICKER_MONTH))
+                    .and(TEXT)
+                    .and(TO_MONTH)
+                    .and(ORDINAL)
     );
 
     private Locator<AbstractPage, Integer> locator;

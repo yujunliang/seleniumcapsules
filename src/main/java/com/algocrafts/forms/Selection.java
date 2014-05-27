@@ -1,22 +1,23 @@
 package com.algocrafts.forms;
 
-import com.algocrafts.locators.SelectLocator;
 import com.algocrafts.pages.Element;
+import com.algocrafts.pages.Locator;
 import com.algocrafts.pages.Searchable;
+import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 
 import java.util.stream.Stream;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-class Select<Where extends Searchable<Where>> {
+class Selection<Where extends Searchable<Where>> {
 
-    private static final Logger log = getLogger(Select.class);
+    private static final Logger log = getLogger(Selection.class);
 
     private final Where page;
-    private final SelectLocator<Where> selectLocator;
+    private final Locator<Where, Select> selectLocator;
 
-    Select(Where page, SelectLocator<Where> selectLocator) {
+    Selection(Where page, Locator<Where, Select> selectLocator) {
         this.page = page;
         this.selectLocator = selectLocator;
     }

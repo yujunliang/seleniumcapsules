@@ -7,8 +7,6 @@ import com.algocrafts.converters.ElementAtIndex;
 import com.algocrafts.converters.Filter;
 import com.algocrafts.converters.FirstItem;
 import com.algocrafts.converters.StreamToList;
-import com.algocrafts.locators.ElementLocator;
-import com.algocrafts.locators.ElementsLocator;
 import org.openqa.selenium.By;
 
 import java.util.function.Supplier;
@@ -16,6 +14,7 @@ import java.util.stream.Stream;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.converters.GetText.SRC;
+import static com.algocrafts.pages.Locators.element;
 import static com.algocrafts.selectors.TagName.IMG;
 
 
@@ -68,7 +67,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
     @SuppressWarnings("unchecked")
     default public Clickable button(Supplier<By> by, int index) {
         return new Button<>((Where) this,
-                new ElementsLocator<Where>(by)
+                Locators.<Where>elements(by)
                         .and(new StreamToList<>())
                         .and(new ElementAtIndex<>(index))
         );
@@ -115,7 +114,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      * @return the images  using the same image file.
      */
     default public Stream<Element> images(String fileName) {
-        return until(new ElementsLocator<Where>(IMG)
+        return until(Locators.<Where>elements(IMG)
                         .and(new Filter<>(DISPLAYED.and(SRC.and(new StringContains(fileName)))))
         );
     }
@@ -128,6 +127,6 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     @SuppressWarnings("unchecked")
     default public Clickable link(Supplier<By> selector) {
-        return new Link<>((Where) this, new ElementLocator<>(selector));
+        return new Link<>((Where) this, element(selector));
     }
 }

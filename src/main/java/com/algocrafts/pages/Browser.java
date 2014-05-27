@@ -51,6 +51,7 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
         return driver.takeScreenShot(this);
     }
 
+    @SuppressWarnings("unchecked")
     default public T get() {
         T webDriver = (T) store.get();
         if (webDriver == null) {
@@ -156,6 +157,7 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     default public void quit() {
         ((T) store.get()).quit();
         store.remove();

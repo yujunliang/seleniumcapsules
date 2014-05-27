@@ -3,24 +3,25 @@ package com.algocrafts.forms;
 
 import com.algocrafts.pages.Clickable;
 import com.algocrafts.pages.Element;
+import com.algocrafts.pages.Locator;
 import com.algocrafts.pages.Searchable;
-import com.algocrafts.locators.ElementLocator;
 import org.openqa.selenium.By;
 
 import java.util.function.Supplier;
 
+import static com.algocrafts.conditions.StringEquals.TRUE;
 import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
 import static com.algocrafts.converters.GetText.CHECKED;
-import static com.algocrafts.conditions.StringEquals.TRUE;
+import static com.algocrafts.pages.Locators.element;
 
 class Checkbox<Where extends Searchable<Where>> implements Clickable {
 
     private final Where where;
-    private final ElementLocator<Where> locator;
+    private final Locator<Where, Element> locator;
 
-    Checkbox(final Where where, Supplier<By> locator) {
+    Checkbox(final Where where, Supplier<By> selector) {
         this.where = where;
-        this.locator = new ElementLocator<>(locator);
+        this.locator = element(selector);
     }
 
     public void setValue(boolean value) {
