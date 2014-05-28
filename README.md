@@ -25,9 +25,10 @@ Or do you like this test?
         q.clear();
         for (char c : "oracle".toCharArray()) {
             q.sendKeys(String.valueOf(c));
+            Thread.sleep(50);
             try {
-                Thread.sleep(50);
-                WebElement oracle = webDriver.findElement( ORACLE_AUTOCOMPLETE.get());
+                WebElement oracle = webDriver.findElement(
+                        By.xpath("//table[contains(@class, 'gssb_c')]/descendant::span[text()='oracle']"));
                 oracle.click();
             } catch (NoSuchElementException e) {
                 log.debug("This is OK", e);
