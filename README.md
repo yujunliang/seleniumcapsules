@@ -6,7 +6,36 @@ Wrapper of Selenium WebDriver API with Functional Programming feature from Java 
 
 http://seleniumcapsules.blogspot.com/
 
-Do you like these tests?
+Do you like this test?
+
+    @Test
+    public void autoCompleteUsingXpath() {
+        googlePage.autocomplete(Q, "oracle", trying(ORACLE_AUTOCOMPLETE));
+    }
+
+Or do you like this test?
+
+    @Test
+    public void autoCompeleteUsingSelenium() throws InterruptedException {
+        FirefoxBinary binary = new FirefoxBinary(new File("src/main/resources/Firefox/Contents/MacOS/firefox-bin"));
+        FirefoxProfile profile = new FirefoxProfile(new File("src/main/resources/Firefox/Profiles/default"));
+        WebDriver webDriver = new FirefoxDriver(binary, profile);
+        webDriver.get("http://google.com");
+        WebElement q = webDriver.findElement(By.name("q"));
+        q.clear();
+        for (char c : "oracle".toCharArray()) {
+            q.sendKeys(String.valueOf(c));
+            try {
+                Thread.sleep(50);
+                WebElement oracle = webDriver.findElement( ORACLE_AUTOCOMPLETE.get());
+                oracle.click();
+            } catch (NoSuchElementException e) {
+                log.debug("This is OK", e);
+            }
+        }
+    }
+
+That's the difference Selenium Capsules made, more tests to illustrate the cleanness of the code,
 
     @Test
     public void invalidCardInfo() {
@@ -38,32 +67,5 @@ Do you like these tests?
         assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
     }
 
-    @Test
-    public void autoCompleteUsingXpath() {
-        googlePage.autocomplete(Q, "oracle", trying(ORACLE_AUTOCOMPLETE));
-    }
-
-Or do you like this test?
-
-    @Test
-    public void autoCompeleteUsingSelenium() throws InterruptedException {
-        FirefoxBinary binary = new FirefoxBinary(new File("src/main/resources/Firefox/Contents/MacOS/firefox-bin"));
-        FirefoxProfile profile = new FirefoxProfile(new File("src/main/resources/Firefox/Profiles/default"));
-        WebDriver webDriver = new FirefoxDriver(binary, profile);
-        webDriver.get("http://google.com");
-        WebElement q = webDriver.findElement(By.name("q"));
-        q.clear();
-        for (char c : "oracle".toCharArray()) {
-            q.sendKeys(String.valueOf(c));
-            try {
-                Thread.sleep(50);
-                WebElement oracle = webDriver.findElement( ORACLE_AUTOCOMPLETE.get());
-                oracle.click();
-            } catch (NoSuchElementException e) {
-                log.debug("This is OK", e);
-            }
-        }
-    }
-
-That's the difference Selenium Capsules made.
+Clean, Agile, Simple and Elegant.
 
