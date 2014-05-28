@@ -1,6 +1,9 @@
+package com.algocrafts.clickables;
 
-package com.algocrafts.pages;
-
+import com.algocrafts.pages.Clickable;
+import com.algocrafts.pages.Element;
+import com.algocrafts.pages.Locator;
+import com.algocrafts.pages.Searchable;
 import org.slf4j.Logger;
 
 import static org.slf4j.LoggerFactory.getLogger;

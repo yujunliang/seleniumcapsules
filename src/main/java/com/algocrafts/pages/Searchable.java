@@ -1,5 +1,7 @@
 package com.algocrafts.pages;
 
+import com.algocrafts.clickables.Button;
+import com.algocrafts.clickables.Link;
 import com.algocrafts.conditions.StringContains;
 import com.algocrafts.converters.ElementAtIndex;
 import com.algocrafts.converters.Filter;
@@ -64,7 +66,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     @SuppressWarnings("unchecked")
     default public Clickable button(Supplier<By> by, int index) {
-        return new Clickables<>((Where) this, Locators.<Where>elements(by)
+        return new Button<>((Where) this, Locators.<Where>elements(by)
                 .and(new StreamToList<>())
                 .and(new ElementAtIndex<>(index)));
     }
@@ -77,7 +79,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     @SuppressWarnings("unchecked")
     default public Clickable button(Locator<Where, Element> locator) {
-        return new Clickables<>((Where) this, locator);
+        return new Button<>((Where) this, locator);
     }
 
     /**
@@ -123,17 +125,7 @@ public interface Searchable<Where extends Searchable<Where>> extends Waitable<Wh
      */
     @SuppressWarnings("unchecked")
     default public Clickable link(Supplier<By> selector) {
-        return new Clickables<>((Where) this, element(selector));
-    }
-
-    @SuppressWarnings("unchecked")
-    default public Clickable menu(Locator<Where, Element> locator) {
-        return new Clickables<>((Where) this, locator);
-    }
-
-    @SuppressWarnings("unchecked")
-    default public Clickable imageButton(String fileName, int index) {
-        return new Clickables<>((Where) this, (Where input) -> input.image(fileName, index));
+        return new Link<>((Where) this, element(selector));
     }
 
 }
