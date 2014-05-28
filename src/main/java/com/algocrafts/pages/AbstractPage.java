@@ -8,9 +8,11 @@ import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -20,7 +22,7 @@ import static com.algocrafts.converters.PageFunctions.THE_PAGE_TITLE;
 import static com.algocrafts.selectors.ClassName.PAGE_TITLE;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public abstract class AbstractPage implements Searchable<AbstractPage>, FormControl<AbstractPage> {
+public class AbstractPage implements Searchable<AbstractPage>, FormControl<AbstractPage> {
 
     public static final Logger logger = getLogger(AbstractPage.class);
 
@@ -65,6 +67,11 @@ public abstract class AbstractPage implements Searchable<AbstractPage>, FormCont
                 until(condition);
             }
         }
+    }
+
+    @Override
+    public List<WebElement> findElements(By by) {
+        return browser.findElements(by);
     }
 
     /**

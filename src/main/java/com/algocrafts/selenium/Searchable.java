@@ -10,6 +10,7 @@ import com.algocrafts.converters.StreamToList;
 import com.algocrafts.pages.Element;
 import com.algocrafts.pages.Locators;
 import org.openqa.selenium.By;
+import org.openqa.selenium.SearchContext;
 
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -20,7 +21,7 @@ import static com.algocrafts.pages.Locators.element;
 import static com.algocrafts.selectors.TagName.IMG;
 
 
-public interface Searchable<Where extends Searchable<Where>> extends Waitable<Where> {
+public interface Searchable<Where extends Searchable<Where>> extends SearchContext, Waitable<Where> {
 
     /**
      * Find the first element or return null if nothing found.

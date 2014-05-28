@@ -5,11 +5,14 @@ import com.algocrafts.pages.Element;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
+import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static com.algocrafts.pages.Locators.element;
+import static java.util.stream.Collectors.toList;
 import static org.openqa.selenium.By.name;
 
 public class AbstractForm implements Searchable<AbstractForm>, FormControl<AbstractForm> {
@@ -29,6 +32,11 @@ public class AbstractForm implements Searchable<AbstractForm>, FormControl<Abstr
     @Override
     public void save() {
         page.save();
+    }
+
+    @Override
+    public List<WebElement> findElements(By by) {
+        return locator.locate(page).findElements(by).stream().map(Element::new).collect(toList());
     }
 
     @Override
