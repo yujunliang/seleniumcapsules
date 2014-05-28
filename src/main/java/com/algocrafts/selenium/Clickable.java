@@ -1,4 +1,4 @@
-package com.algocrafts.pages;
+package com.algocrafts.selenium;
 
 public interface Clickable {
 

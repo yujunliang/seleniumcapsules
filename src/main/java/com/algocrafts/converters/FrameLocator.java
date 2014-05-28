@@ -1,7 +1,7 @@
 package com.algocrafts.converters;
 
 import com.algocrafts.pages.AbstractPage;
-import com.algocrafts.pages.Locator;
+import com.algocrafts.selenium.Locator;
 
 public class FrameLocator implements Locator<AbstractPage, AbstractPage> {
 

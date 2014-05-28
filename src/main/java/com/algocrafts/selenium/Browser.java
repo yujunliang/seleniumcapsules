@@ -1,6 +1,7 @@
-package com.algocrafts.pages;
+package com.algocrafts.selenium;
 
-import com.algocrafts.browsers.WebDriverSupplier;
+import com.algocrafts.pages.Browsers;
+import com.algocrafts.pages.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

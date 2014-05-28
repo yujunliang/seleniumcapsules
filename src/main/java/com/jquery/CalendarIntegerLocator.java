@@ -3,7 +3,7 @@ package com.jquery;
 
 import com.algocrafts.pages.Locators;
 import com.algocrafts.pages.AbstractPage;
-import com.algocrafts.pages.Locator;
+import com.algocrafts.selenium.Locator;
 
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.Ordinal.ORDINAL;

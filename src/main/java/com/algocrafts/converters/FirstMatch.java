@@ -1,6 +1,6 @@
 package com.algocrafts.converters;
 
-import com.algocrafts.pages.Locator;
+import com.algocrafts.selenium.Locator;
 
 import java.util.function.Predicate;
 import java.util.stream.Stream;

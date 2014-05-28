@@ -2,7 +2,7 @@ package com.algocrafts.calendar;
 
 
 import com.algocrafts.pages.AbstractPage;
-import com.algocrafts.pages.Locator;
+import com.algocrafts.selenium.Locator;
 
 import static com.algocrafts.calendar.FlippingButton.MONTH_FLIPPER;
 import static com.algocrafts.calendar.FlippingButton.YEAR_FLIPPER;

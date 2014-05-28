@@ -1,4 +1,4 @@
-package com.algocrafts.pages;
+package com.algocrafts.selenium;
 
 
 import java.util.Objects;

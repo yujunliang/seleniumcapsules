@@ -2,6 +2,10 @@ package com.algocrafts.pages;
 
 import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.forms.FormControl;
+import com.algocrafts.selenium.Browser;
+import com.algocrafts.selenium.Clickable;
+import com.algocrafts.selenium.Locator;
+import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.slf4j.Logger;

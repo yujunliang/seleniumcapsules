@@ -2,6 +2,8 @@ package com.algocrafts.pages;
 
 
 import com.algocrafts.browsers.*;
+import com.algocrafts.selenium.Browser;
+import com.algocrafts.selenium.WebDriverSupplier;
 import org.openqa.selenium.WebDriver;
 
 public enum Browsers implements Browser {

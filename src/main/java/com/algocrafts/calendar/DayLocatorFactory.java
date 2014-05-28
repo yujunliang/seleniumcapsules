@@ -1,7 +1,7 @@
 package com.algocrafts.calendar;
 
 import com.algocrafts.pages.AbstractPage;
-import com.algocrafts.pages.Locator;
+import com.algocrafts.selenium.Locator;
 
 public interface DayLocatorFactory {
 

@@ -1,6 +1,8 @@
 package com.algocrafts.pages;
 
 import com.algocrafts.conditions.HasElements;
+import com.algocrafts.selenium.Locator;
+import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.Select;

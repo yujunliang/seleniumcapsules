@@ -2,8 +2,8 @@
 package com.algocrafts.clickables;
 
 import com.algocrafts.pages.Element;
-import com.algocrafts.pages.Searchable;
-import com.algocrafts.pages.Locator;
+import com.algocrafts.selenium.Searchable;
+import com.algocrafts.selenium.Locator;
 
 public class Link<Where extends Searchable<Where>> extends Clickables<Where> {
 

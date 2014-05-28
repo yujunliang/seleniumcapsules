@@ -1,6 +1,7 @@
 package com.algocrafts.browsers;
 
-import com.algocrafts.pages.Browser;
+import com.algocrafts.selenium.Browser;
+import com.algocrafts.selenium.WebDriverSupplier;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;

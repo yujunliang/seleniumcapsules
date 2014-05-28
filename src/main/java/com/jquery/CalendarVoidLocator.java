@@ -4,7 +4,7 @@ package com.jquery;
 import com.algocrafts.converters.FrameLocator;
 import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.pages.Element;
-import com.algocrafts.pages.Locator;
+import com.algocrafts.selenium.Locator;
 import com.algocrafts.pages.Locators;
 
 import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;

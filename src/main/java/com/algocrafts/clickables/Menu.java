@@ -1,6 +1,6 @@
 package com.algocrafts.clickables;
 
-import com.algocrafts.pages.Locator;
+import com.algocrafts.selenium.Locator;
 import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.pages.Element;
 

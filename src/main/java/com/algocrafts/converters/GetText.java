@@ -1,7 +1,7 @@
 package com.algocrafts.converters;
 
 import com.algocrafts.pages.Element;
-import com.algocrafts.pages.Locator;
+import com.algocrafts.selenium.Locator;
 
 public enum GetText implements Locator<Element, String> {
     CHECKED {

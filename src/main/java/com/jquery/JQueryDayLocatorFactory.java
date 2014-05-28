@@ -7,7 +7,7 @@ import com.algocrafts.converters.FirstItem;
 import com.algocrafts.pages.Locators;
 import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.pages.Element;
-import com.algocrafts.pages.Locator;
+import com.algocrafts.selenium.Locator;
 
 import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
 import static com.algocrafts.converters.GetText.TEXT;

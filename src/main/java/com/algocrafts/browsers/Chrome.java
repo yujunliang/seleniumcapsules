@@ -1,5 +1,6 @@
 package com.algocrafts.browsers;
 
+import com.algocrafts.selenium.WebDriverSupplier;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;

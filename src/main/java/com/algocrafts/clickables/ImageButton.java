@@ -1,7 +1,7 @@
 package com.algocrafts.clickables;
 
 
-import com.algocrafts.pages.Searchable;
+import com.algocrafts.selenium.Searchable;
 
 public class ImageButton<Where extends Searchable<Where>> extends Button<Where> {
 

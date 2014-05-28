@@ -2,7 +2,7 @@ package com.algocrafts.converters;
 
 import com.algocrafts.objectcache.OneKeyLFUPolicy;
 import com.algocrafts.objectcache.SelfPopulatingCache;
-import com.algocrafts.pages.Locator;
+import com.algocrafts.selenium.Locator;
 
 import java.time.Month;
 

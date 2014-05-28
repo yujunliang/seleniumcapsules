@@ -1,5 +1,6 @@
 package com.algocrafts.pages;
 
+import com.algocrafts.selenium.Clickable;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 

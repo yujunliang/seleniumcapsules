@@ -5,8 +5,8 @@ import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.converters.Filter;
 import com.algocrafts.converters.FirstItem;
 import com.algocrafts.pages.Element;
-import com.algocrafts.pages.Locator;
-import com.algocrafts.pages.Searchable;
+import com.algocrafts.selenium.Locator;
+import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 
 import java.util.function.Supplier;

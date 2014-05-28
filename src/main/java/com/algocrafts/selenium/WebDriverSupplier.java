@@ -1,4 +1,4 @@
-package com.algocrafts.browsers;
+package com.algocrafts.selenium;
 
 import org.openqa.selenium.WebDriver;
 

@@ -6,7 +6,7 @@ import com.algocrafts.calendar.DatePicker;
 import com.algocrafts.pages.Locators;
 import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.pages.Browsers;
-import com.algocrafts.pages.Clickable;
+import com.algocrafts.selenium.Clickable;
 
 import static com.algocrafts.conditions.PagePredicates.REACHED_CALENDAR_PAGE;
 import static com.algocrafts.converters.GetText.VALUE;

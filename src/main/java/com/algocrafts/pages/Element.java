@@ -1,5 +1,6 @@
 package com.algocrafts.pages;
 
+import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;

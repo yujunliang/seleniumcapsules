@@ -1,4 +1,4 @@
-package com.algocrafts.pages;
+package com.algocrafts.selenium;
 
 import com.algocrafts.clickables.Button;
 import com.algocrafts.clickables.Link;
@@ -7,6 +7,8 @@ import com.algocrafts.converters.ElementAtIndex;
 import com.algocrafts.converters.Filter;
 import com.algocrafts.converters.FirstItem;
 import com.algocrafts.converters.StreamToList;
+import com.algocrafts.pages.Element;
+import com.algocrafts.pages.Locators;
 import org.openqa.selenium.By;
 
 import java.util.function.Supplier;
