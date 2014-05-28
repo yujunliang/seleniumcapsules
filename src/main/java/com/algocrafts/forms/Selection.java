@@ -14,57 +14,57 @@ class Selection<Where extends Searchable<Where>> {
 
     private static final Logger log = getLogger(Selection.class);
 
-    private final Where page;
-    private final Locator<Where, Select> selectLocator;
+    private final Where where;
+    private final Locator<Where, Select> locator;
 
-    Selection(Where page, Locator<Where, Select> selectLocator) {
-        this.page = page;
-        this.selectLocator = selectLocator;
+    Selection(Where where, Locator<Where, Select> locator) {
+        this.where = where;
+        this.locator = locator;
     }
 
     public void selectByVisibleText(Object text) {
-        log.info("selecting select[" + selectLocator + "] using [" + text + "]");
-        selectLocator.locate(page).selectByVisibleText(text.toString());
+        log.info("selecting select[" + locator + "] using [" + text + "]");
+        locator.locate(where).selectByVisibleText(text.toString());
     }
 
     public boolean isMultiple() {
-        return selectLocator.locate(page).isMultiple();
+        return locator.locate(where).isMultiple();
     }
 
 
     public Stream<Element> getOptions() {
-        return selectLocator.locate(page).getOptions().stream().map(Element::new);
+        return locator.locate(where).getOptions().stream().map(Element::new);
     }
 
     public Stream<Element> getAllSelectedOptions() {
-        return selectLocator.locate(page).getAllSelectedOptions().stream().map(Element::new);
+        return locator.locate(where).getAllSelectedOptions().stream().map(Element::new);
     }
 
     public Element getFirstSelectedOption() {
-        return new Element(selectLocator.locate(page).getFirstSelectedOption());
+        return new Element(locator.locate(where).getFirstSelectedOption());
     }
 
     public void selectByIndex(int index) {
-        selectLocator.locate(page).selectByIndex(index);
+        locator.locate(where).selectByIndex(index);
     }
 
     public void selectByValue(Object value) {
-        selectLocator.locate(page).selectByValue(value.toString());
+        locator.locate(where).selectByValue(value.toString());
     }
 
     public void deselectAll() {
-        selectLocator.locate(page).deselectAll();
+        locator.locate(where).deselectAll();
     }
 
     public void deselectByValue(Object value) {
-        selectLocator.locate(page).deselectByValue(value.toString());
+        locator.locate(where).deselectByValue(value.toString());
     }
 
     public void deselectByIndex(int index) {
-        selectLocator.locate(page).deselectByIndex(index);
+        locator.locate(where).deselectByIndex(index);
     }
 
     public void deselectByVisibleText(Object text) {
-        selectLocator.locate(page).deselectByVisibleText(text.toString());
+        locator.locate(where).deselectByVisibleText(text.toString());
     }
 }

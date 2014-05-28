@@ -12,34 +12,16 @@ public enum ElementPredicates implements Predicate<Element> {
             return input != null && input.isDisplayed();
         }
     },
-    NOT_DISPLAYED {
-        @Override
-        public boolean test(Element input) {
-            return input == null || !input.isDisplayed();
-        }
-    },
     ENABLED {
         @Override
         public boolean test(Element input) {
             return input != null && input.isEnabled();
         }
     },
-    NOT_ENABLED {
-        @Override
-        public boolean test(Element input) {
-            return input != null && !input.isEnabled();
-        }
-    },
     SELECTED {
         @Override
         public boolean test(Element input) {
             return input != null && input.isSelected();
-        }
-    },
-    NOT_SELECTED {
-        @Override
-        public boolean test(Element input) {
-            return input != null && !input.isSelected();
         }
     },
 }

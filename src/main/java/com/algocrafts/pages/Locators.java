@@ -25,7 +25,7 @@ public class Locators<Where extends Searchable<Where>, What>
         return new Locators<>((Where where) -> where.findElements(selector));
     }
 
-    public static <Where extends Searchable<Where>> Locators<Where, Element> tryElement(Supplier<By> selector) {
+    public static <Where extends Searchable<Where>> Locators<Where, Element> trying(Supplier<By> selector) {
         return new Locators<>((Where where) -> where.findElement(selector.get()));
     }
 

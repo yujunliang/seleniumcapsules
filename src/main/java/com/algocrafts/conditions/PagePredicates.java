@@ -6,7 +6,6 @@ import com.algocrafts.pages.AbstractPage;
 import java.util.function.Predicate;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
-import static com.algocrafts.conditions.ElementPredicates.NOT_DISPLAYED;
 import static com.algocrafts.conditions.StringEquals.*;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.pages.Locators.element;
@@ -40,8 +39,8 @@ public enum PagePredicates implements Predicate<AbstractPage> {
                     .and(MANNING)
     ),
     CALENDAR_NOT_DISPLAYED(
-            Locators.<AbstractPage>tryElement(UI_DATEPICKER_DIV)
-                    .and(NOT_DISPLAYED)
+            Locators.<AbstractPage>trying(UI_DATEPICKER_DIV)
+                    .and(DISPLAYED.negate())
     );
     private final Predicate<AbstractPage> predicate;
 

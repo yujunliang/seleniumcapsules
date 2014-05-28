@@ -28,7 +28,7 @@ public enum CalendarVoidLocator implements Locator<AbstractPage, Void> {
     ),
     CLOSE_BUTTON(
             Locators.<AbstractPage>element(UI_DATEPICKER_DIV)
-                    .and(Locators.tryElement(UI_DATEPICKER_CLOSE))
+                    .and(Locators.trying(UI_DATEPICKER_CLOSE))
     );
 
     private Locator<AbstractPage, Element> locator;

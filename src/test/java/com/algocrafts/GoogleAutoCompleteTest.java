@@ -26,7 +26,7 @@ import java.io.File;
 
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.pages.Locators.elements;
-import static com.algocrafts.pages.Locators.tryElement;
+import static com.algocrafts.pages.Locators.trying;
 import static com.algocrafts.selectors.Name.Q;
 import static com.algocrafts.selectors.TagName.SPAN;
 import static com.algocrafts.selectors.Xpath.ORACLE_AUTOCOMPLETE;
@@ -47,7 +47,7 @@ public class GoogleAutoCompleteTest {
 
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
-    public void autoCompeleteUsingSelenium() {
+    public void autoCompeleteUsingSelenium() throws InterruptedException {
         FirefoxBinary binary = new FirefoxBinary(new File("src/main/resources/Firefox/Contents/MacOS/firefox-bin"));
         FirefoxProfile profile = new FirefoxProfile(new File("src/main/resources/Firefox/Profiles/default"));
         WebDriver webDriver = new FirefoxDriver(binary, profile);
@@ -57,8 +57,8 @@ public class GoogleAutoCompleteTest {
         for (char c : "oracle".toCharArray()) {
             q.sendKeys(String.valueOf(c));
             try {
-                WebElement oracle = webDriver.findElement(
-                        By.xpath("//table[contains(concat(' ', @class, ' '), 'gssb_c')]/descendant::span[text()='oracle']"));
+                Thread.sleep(50);
+                WebElement oracle = webDriver.findElement( ORACLE_AUTOCOMPLETE.get());
                 oracle.click();
             } catch (NoSuchElementException e) {
                 log.debug("This is OK", e);
@@ -71,13 +71,13 @@ public class GoogleAutoCompleteTest {
      */
     @Test
     public void autoCompleteUsingXpath() {
-        googlePage.autocomplete(Q, "oracle", tryElement(ORACLE_AUTOCOMPLETE));
+        googlePage.autocomplete(Q, "oracle", trying(ORACLE_AUTOCOMPLETE));
     }
 
     @Test
     public void autoCompleteUsingLocator() {
         googlePage.autocomplete(Q, "oracle",
-                Locators.<AbstractPage>tryElement(() -> className("gssb_c"))
+                Locators.<AbstractPage>trying(() -> className("gssb_c"))
                         .and(elements(SPAN))
                         .and(new FirstMatch<>(TEXT.and(new IsStringEqual("oracle")))));
     }

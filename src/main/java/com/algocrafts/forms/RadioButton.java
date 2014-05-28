@@ -2,8 +2,7 @@ package com.algocrafts.forms;
 
 
 import com.algocrafts.conditions.IsStringEqual;
-import com.algocrafts.converters.Filter;
-import com.algocrafts.converters.FirstItem;
+import com.algocrafts.converters.FirstMatch;
 import com.algocrafts.pages.Element;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
@@ -19,19 +18,18 @@ import static com.algocrafts.pages.Locators.elements;
 
 class RadioButton<Where extends Searchable<Where>> {
 
-    private final Where page;
+    private final Where where;
     private final Locator<Where, Stream<Element>> radioButtonGroup;
 
-    public RadioButton(Where page, Supplier<By> method) {
-        this.page = page;
-        this.radioButtonGroup = elements(method);
+    public RadioButton(Where where, Supplier<By> selector) {
+        this.where = where;
+        this.radioButtonGroup = elements(selector);
     }
 
     public void setValue(Object value) {
         radioButtonGroup
-                .and(new Filter<>(DISPLAYED.and(VALUE.and(new IsStringEqual(value)))))
-                .and(new FirstItem<>())
+                .and(new FirstMatch<>(DISPLAYED.and(VALUE.and(new IsStringEqual(value)))))
                 .and(CLICK_IF_NOT_NULL)
-                .locate(page);
+                .locate(where);
     }
 }

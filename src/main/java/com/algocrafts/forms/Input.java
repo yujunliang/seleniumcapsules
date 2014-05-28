@@ -25,14 +25,14 @@ class Input<Where extends Searchable<Where>> {
         this.where = where;
     }
 
-    public void put(Supplier<By> method, final Object value) {
+    public void put(Supplier<By> selector, final Object value) {
         String string = value.toString();
-        log.info("setting input[{}]=[{}]", method, string);
+        log.info("setting input[{}]=[{}]", selector, string);
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
             retry.attempt(() -> {
                 log.info("{}", retry);
-                Element element = Locators.<Where>tryElement(method).locate(where);
+                Element element = Locators.<Where>trying(selector).locate(where);
                 element.clear();
                 element.sendKeys(string);
                 if (VALUE.locate(element).equals(string)) {
@@ -42,22 +42,22 @@ class Input<Where extends Searchable<Where>> {
 
             });
         } catch (Exception e) {
-            log.info("Failed to set text {} to {}", string, method);
+            log.info("Failed to set text {} to {}", string, selector);
         }
     }
 
-    public void autocomplete(Supplier<By> selector, Object value, Locator<Where, Element> condition) {
+    public void autocomplete(Supplier<By> selector, Object value, Locator<Where, Element> locator) {
         Element apply = Locators.<Where>element(selector).locate(where);
         apply.clear();
         for (char c : value.toString().toCharArray()) {
             apply.sendKeys(String.valueOf(c));
-            Element apply1 = condition.locate(where);
+            Element apply1 = locator.locate(where);
             if (apply1 != null) {
                 apply1.click();
                 return;
             }
         }
-        Element element = where.until(condition);
+        Element element = where.until(locator);
         if (element != null) {
             element.click();
         }
