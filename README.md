@@ -11,13 +11,6 @@ http://seleniumcapsules.blogspot.com/
 Do you like this test?
 
     @Test
-    public void autoCompleteUsingXpath() {
-        googlePage.autocomplete(Q, "oracle", trying(ORACLE_AUTOCOMPLETE));
-    }
-
-Or do you like this test?
-
-    @Test
     public void autoCompeleteUsingSelenium() throws InterruptedException {
         FirefoxBinary binary = new FirefoxBinary(new File("src/main/resources/Firefox/Contents/MacOS/firefox-bin"));
         FirefoxProfile profile = new FirefoxProfile(new File("src/main/resources/Firefox/Profiles/default"));
@@ -36,6 +29,13 @@ Or do you like this test?
                 log.debug("This is OK", e);
             }
         }
+    }
+
+Or do you like this test?
+
+    @Test
+    public void autoCompleteUsingXpath() {
+        googlePage.autocomplete(Q, "oracle", trying(ORACLE_AUTOCOMPLETE));
     }
 
 That's the difference Selenium Capsules made, more tests to illustrate the cleanness of the code,
