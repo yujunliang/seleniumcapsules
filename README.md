@@ -1,6 +1,8 @@
 seleniumcapsules
 ================
 
+Selenium Capsules - Encapsulating Selenium
+
 Wrapper of Selenium WebDriver API with Functional Programming feature from Java 8.
 
 
