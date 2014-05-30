@@ -64,6 +64,28 @@ public class BookStoreShoppingTest {
         assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
     }
 
+    @Test
+    public void invalidCardInfoNormalWay() {
+
+        BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA), IS_COPYRIGHTED);
+        listPage.open();
+        listPage.link(ACTIVE_MQ_IN_ACTION).click();
+
+        BookDetailsPage bookPage = new BookDetailsPage(listPage);
+        bookPage.until(IS_COPYRIGHTED);
+        bookPage.secondAddToCart().click();
+
+        ShoppingCartPage cartPage = new ShoppingCartPage(bookPage);
+        cartPage.setQuantity(2);
+        cartPage.setBillingAddress(billingAddress);
+        cartPage.setCreditCard(creditCard);
+        cartPage.setOtherInformation(otherInformation);
+        cartPage.continues();
+
+        assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
+    }
+
+
     @Before
     public void setup() {
         homePage.open();

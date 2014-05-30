@@ -109,7 +109,7 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
     }
 
     /**
-     * Find the images  using the same image file.
+     * Find the images using the same image file.
      *
      * @param fileName
      * @return the images  using the same image file.

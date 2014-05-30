@@ -90,13 +90,47 @@ That's the difference Selenium Capsules made, more tests to illustrate the clean
         assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
     }
     
+    
 3. DatePicker,
+
 
     @Test
     public void pickADate() {
         jQueryDatePickerPage.pick(APRIL, 1, 2012);
         assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
     }
+    
+4. Lambda Expression,
+
+
+    public Element locate(AbstractPage page) {
+        return Locators.<AbstractPage>element(MAIN_NAV)
+                .and(element(() -> linkText(headText))).locate(page);
+    }
+    
+5. Stream API,
+
+
+       /**
+        * Find the images using the same image file.
+        *
+        * @param fileName
+        * @return the images  using the same image file.
+        */
+       default public Stream<Element> images(String fileName) {
+           return until(Locators.<Where>elements(IMG)
+                           .and(new Filter<>(DISPLAYED.and(SRC.and(new StringContains(fileName)))))
+           );
+       }
+       
+6. Default method in interface,
+      
+        
+         default public Stream<Element> findElements(Supplier<By> by) {
+             return findElements(by.get()).stream().map(Element::new);
+         }
+          
+
 
 Clean, Agile, Simple and Elegant.
 
