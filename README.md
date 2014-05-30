@@ -42,6 +42,7 @@ That's the difference Selenium Capsules made, more tests to illustrate the clean
 
 1. With anonymous inerclass,
 
+
     @Test
     public void invalidCardInfo() {
 
@@ -67,7 +68,8 @@ That's the difference Selenium Capsules made, more tests to illustrate the clean
 
 2. With inner class,
 
-   @Test
+
+    @Test
     public void invalidCardInfoNormalWay() {
 
         BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA), IS_COPYRIGHTED);
