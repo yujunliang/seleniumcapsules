@@ -6,9 +6,8 @@ Selenium Capsules - Encapsulating Selenium
 Wrapper of Selenium WebDriver API with Functional Programming feature from Java 8.
 
 
-http://seleniumcapsules.blogspot.com/
-
 Do you like this test?
+
 
     @Test
     public void autoCompeleteUsingSelenium() throws InterruptedException {
@@ -32,6 +31,7 @@ Do you like this test?
     }
 
 Or do you like this test?
+  
     
     @Test
     public void autoCompleteUsingXpath() {
@@ -96,6 +96,7 @@ That's the difference Selenium Capsules made, more tests to illustrate the clean
 3. DatePicker
  
  
+ 
     @Test
     public void pickADate() {
         jQueryDatePickerPage.pick(APRIL, 1, 2012);
@@ -105,6 +106,7 @@ That's the difference Selenium Capsules made, more tests to illustrate the clean
 4. Lambda Expression,
 
 
+
     public Element locate(AbstractPage page) {
         return Locators.<AbstractPage>element(MAIN_NAV)
                 .and(element(() -> linkText(headText))).locate(page);
@@ -112,6 +114,7 @@ That's the difference Selenium Capsules made, more tests to illustrate the clean
     
 5. Functional and Stream API, default method in interface,
               
+     
      
           default public Stream<Element> images(String fileName) {
               return until(Locators.<Where>elements(IMG)
@@ -125,4 +128,6 @@ That's the difference Selenium Capsules made, more tests to illustrate the clean
               
 
 Clean, Agile, Simple and Elegant.
+
+http://seleniumcapsules.blogspot.com/
 
