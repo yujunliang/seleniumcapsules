@@ -66,7 +66,7 @@ That's the difference Selenium Capsules made, more tests to illustrate the clean
             assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
         }
 
-2. With inner class,
+2. Without inner class,
 
     
         @Test
