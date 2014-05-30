@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:bookstore/properties/page.properties</value>
+            </list>
+        </property>
+    </bean>
+    <bean id="databaseProperties" class="com.algocrafts.algorithm.PropertyDefinition"/>
+
+    <bean id="retry" scope="prototype" class="com.algocrafts.algorithm.Retry">
+        <constructor-arg value="#{databaseProperties.count}"/>
+        <constructor-arg value="#{databaseProperties.interval}"/>
+        <constructor-arg value="#{databaseProperties.timeUnit}"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="billingAddress" class="com.bookstore.domain.Address">
+        <constructor-arg value="1111 Mountain Dr"/>
+        <constructor-arg value="14052014"/>
+        <constructor-arg value="Edison"/>
+        <constructor-arg value="08820"/>
+        <constructor-arg value="#{T(com.bookstore.domain.UnitedStates).New_Jersey}"/>
+        <constructor-arg value="#{T(com.bookstore.domain.Countries).United_States}"/>
+        <constructor-arg value="Sanjay"/>
+        <constructor-arg value="Rao"/>
+    </bean>
+
+    <bean id="masterCard" class="com.bookstore.domain.CreditCard">
+        <constructor-arg value="MasterCard"/>
+        <constructor-arg value="4111-1111-1111-1111"/>
+        <constructor-arg value="123"/>
+        <constructor-arg value="#{T(java.time.Month).DECEMBER}"/>
+        <constructor-arg value="2018"/>
+    </bean>
+
+    <bean id="otherInformation" class="com.bookstore.domain.OtherInformation">
+        <constructor-arg value="sanjay.rao@hotmail.com"/>
+        <constructor-arg value="false"/>
+        <constructor-arg value="true"/>
+        <constructor-arg value="#{T(com.bookstore.domain.MailingOptions).Weekly_Newsletter}"/>
+        <constructor-arg value="My Comments - Selenium In Action."/>
+    </bean>
+
+    <bean id="errorMessages" class="com.bookstore.domain.ErrorMessages">
+        <constructor-arg>
+            <list>
+                <value>Credit card number does not match selected card type</value>
+                <value>You don't seem to have supplied your billing Phone.</value>
+                <value>You don't seem to have supplied your billing Phone.</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+</beans>

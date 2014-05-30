@@ -1,7 +1,5 @@
 .idea
 target
-test
+src/main/java/com/orgsync
 *.iml
-src/main/java/com/bookstore/
 src/main/resources/Firefox/
-src/main/resources/bookstore/
