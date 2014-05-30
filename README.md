@@ -43,74 +43,67 @@ That's the difference Selenium Capsules made, more tests to illustrate the clean
 
 1. With anonymous inerclass,
 
-
-    @Test
-    public void invalidCardInfo() {
-
-        BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA), IS_COPYRIGHTED) {{
-            open();
-            link(ACTIVE_MQ_IN_ACTION).click();
-        }};
-        BookDetailsPage bookPage = new BookDetailsPage(listPage) {{
-            until(IS_COPYRIGHTED);
-            secondAddToCart().click();
-        }};
-
-        ShoppingCartPage cartPage = new ShoppingCartPage(bookPage) {{
-            setQuantity(2);
-            setBillingAddress(billingAddress);
-            setCreditCard(creditCard);
-            setOtherInformation(otherInformation);
-            continues();
-        }};
-
-        assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
-    }
+        @Test
+        public void invalidCardInfo() {
+    
+            BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA), IS_COPYRIGHTED) {{
+                open();
+                link(ACTIVE_MQ_IN_ACTION).click();
+            }};
+            BookDetailsPage bookPage = new BookDetailsPage(listPage) {{
+                until(IS_COPYRIGHTED);
+                secondAddToCart().click();
+            }};
+    
+            ShoppingCartPage cartPage = new ShoppingCartPage(bookPage) {{
+                setQuantity(2);
+                setBillingAddress(billingAddress);
+                setCreditCard(creditCard);
+                setOtherInformation(otherInformation);
+                continues();
+            }};
+    
+            assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
+        }
 
 2. Without inner class,
-
- 
     
-    @Test
-    public void invalidCardInfoNormalWay() {
-
-        BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA), IS_COPYRIGHTED);
-        listPage.open();
-        listPage.link(ACTIVE_MQ_IN_ACTION).click();
-
-        BookDetailsPage bookPage = new BookDetailsPage(listPage);
-        bookPage.until(IS_COPYRIGHTED);
-        bookPage.secondAddToCart().click();
-
-        ShoppingCartPage cartPage = new ShoppingCartPage(bookPage);
-        cartPage.setQuantity(2);
-        cartPage.setBillingAddress(billingAddress);
-        cartPage.setCreditCard(creditCard);
-        cartPage.setOtherInformation(otherInformation);
-        cartPage.continues();
-
-        assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
-    }
+        @Test
+        public void invalidCardInfoNormalWay() {
+    
+            BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA), IS_COPYRIGHTED);
+            listPage.open();
+            listPage.link(ACTIVE_MQ_IN_ACTION).click();
+    
+            BookDetailsPage bookPage = new BookDetailsPage(listPage);
+            bookPage.until(IS_COPYRIGHTED);
+            bookPage.secondAddToCart().click();
+    
+            ShoppingCartPage cartPage = new ShoppingCartPage(bookPage);
+            cartPage.setQuantity(2);
+            cartPage.setBillingAddress(billingAddress);
+            cartPage.setCreditCard(creditCard);
+            cartPage.setOtherInformation(otherInformation);
+            cartPage.continues();
+    
+            assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
+        }
 
     
 3. DatePicker
- 
- 
- 
-    @Test
-    public void pickADate() {
-        jQueryDatePickerPage.pick(APRIL, 1, 2012);
-        assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
-    }
+  
+        @Test
+        public void pickADate() {
+            jQueryDatePickerPage.pick(APRIL, 1, 2012);
+            assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
+        }
         
 4. Lambda Expression,
 
-
-
-    public Element locate(AbstractPage page) {
-        return Locators.<AbstractPage>element(MAIN_NAV)
-                .and(element(() -> linkText(headText))).locate(page);
-    }
+        public Element locate(AbstractPage page) {
+            return Locators.<AbstractPage>element(MAIN_NAV)
+                    .and(element(() -> linkText(headText))).locate(page);
+        }
     
 5. Functional and Stream API, default method in interface,
               
