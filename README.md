@@ -40,6 +40,8 @@ Or do you like this test?
 
 That's the difference Selenium Capsules made, more tests to illustrate the cleanness of the code,
 
+1. With anonymous inerclass,
+
     @Test
     public void invalidCardInfo() {
 
@@ -63,6 +65,30 @@ That's the difference Selenium Capsules made, more tests to illustrate the clean
         assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
     }
 
+2. With inner class,
+
+   @Test
+    public void invalidCardInfoNormalWay() {
+
+        BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA), IS_COPYRIGHTED);
+        listPage.open();
+        listPage.link(ACTIVE_MQ_IN_ACTION).click();
+
+        BookDetailsPage bookPage = new BookDetailsPage(listPage);
+        bookPage.until(IS_COPYRIGHTED);
+        bookPage.secondAddToCart().click();
+
+        ShoppingCartPage cartPage = new ShoppingCartPage(bookPage);
+        cartPage.setQuantity(2);
+        cartPage.setBillingAddress(billingAddress);
+        cartPage.setCreditCard(creditCard);
+        cartPage.setOtherInformation(otherInformation);
+        cartPage.continues();
+
+        assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
+    }
+    
+3. DatePicker,
 
     @Test
     public void pickADate() {
