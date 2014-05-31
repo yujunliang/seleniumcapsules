@@ -22,6 +22,12 @@ class Input<Where extends Searchable<Where>> implements Supplier<String> {
     private final Where where;
     private final Supplier<By> selector;
 
+    /**
+     * Constructor of the input field.
+     *
+     * @param where
+     * @param selector
+     */
     Input(Where where, Supplier<By> selector) {
         this.where = where;
         this.selector = selector;
