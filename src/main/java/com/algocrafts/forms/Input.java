@@ -25,6 +25,16 @@ class Input<Where extends Searchable<Where>> {
         this.where = where;
     }
 
+    /**
+     * the value of input field, for example, "good" will be return
+     * <p>
+     * String value = page.get(() -> By.name("status"))
+     * <p>
+     * <input name="status" value="good"/>
+     *
+     * @param selector
+     * @return the value of the input by the given selector
+     */
     public String get(Supplier<By> selector) {
         log.info("reading input[{}]]", selector);
         final Retry retry = new Retry(5, 1, SECONDS);
@@ -40,6 +50,17 @@ class Input<Where extends Searchable<Where>> {
         return null;
     }
 
+    /**
+     * set the value of input field, for example,
+     * <p>
+     * after,
+     * page.set(() -> By.name("status"), "good");
+     * <p>
+     * it will be,
+     * <input name="status" value="good"/>
+     *
+     * @param selector
+     */
     public void put(Supplier<By> selector, final Object value) {
         String string = value.toString();
         log.info("setting input[{}]=[{}]", selector, string);
@@ -61,6 +82,16 @@ class Input<Where extends Searchable<Where>> {
         }
     }
 
+    /**
+     * Test the autocomplete function for the input by given selector, click the element
+     * on the suggestion list which has the same value of value parameter.
+     *
+     * @see http://seleniumcapsules.blogspot.com/2014/05/by-xpath.html
+     *
+     * @param selector
+     * @param value
+     * @param locator
+     */
     public void autocomplete(Supplier<By> selector, Object value, Locator<Where, Element> locator) {
         Element apply = Locators.<Where>element(selector).locate(where);
         apply.clear();
