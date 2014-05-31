@@ -15,14 +15,16 @@ import static com.algocrafts.converters.GetText.VALUE;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.slf4j.LoggerFactory.getLogger;
 
-class Input<Where extends Searchable<Where>> {
+class Input<Where extends Searchable<Where>> implements Supplier<String> {
 
     public static final Logger log = getLogger(Input.class);
 
     private final Where where;
+    private final Supplier<By> selector;
 
-    Input(Where where) {
+    Input(Where where, Supplier<By> selector) {
         this.where = where;
+        this.selector = selector;
     }
 
     /**
@@ -32,10 +34,9 @@ class Input<Where extends Searchable<Where>> {
      * <p>
      * <input name="status" value="good"/>
      *
-     * @param selector
-     * @return the value of the input by the given selector
+     * @return the value of the input
      */
-    public String get(Supplier<By> selector) {
+    public String get() {
         log.info("reading input[{}]]", selector);
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
@@ -58,10 +59,8 @@ class Input<Where extends Searchable<Where>> {
      * <p>
      * it will be,
      * <input name="status" value="good"/>
-     *
-     * @param selector
      */
-    public void put(Supplier<By> selector, final Object value) {
+    public void put(final Object value) {
         String string = value.toString();
         log.info("setting input[{}]=[{}]", selector, string);
         final Retry retry = new Retry(5, 1, SECONDS);
@@ -86,13 +85,11 @@ class Input<Where extends Searchable<Where>> {
      * Test the autocomplete function for the input by given selector, click the element
      * on the suggestion list which has the same value of value parameter.
      *
-     * @see http://seleniumcapsules.blogspot.com/2014/05/by-xpath.html
-     *
-     * @param selector
      * @param value
      * @param locator
+     * @see http://seleniumcapsules.blogspot.com/2014/05/by-xpath.html
      */
-    public void autocomplete(Supplier<By> selector, Object value, Locator<Where, Element> locator) {
+    public void autocomplete(Object value, Locator<Where, Element> locator) {
         Element apply = Locators.<Where>element(selector).locate(where);
         apply.clear();
         for (char c : value.toString().toCharArray()) {

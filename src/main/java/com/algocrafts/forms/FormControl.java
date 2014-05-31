@@ -51,7 +51,7 @@ public interface FormControl<Where extends Searchable<Where>> {
      */
     @SuppressWarnings("unchecked")
     default public String get(Supplier<By> selector) {
-        return new Input<>((Where) this).get(selector);
+        return new Input<>((Where) this, selector).get();
     }
 
     /**
@@ -62,7 +62,7 @@ public interface FormControl<Where extends Searchable<Where>> {
      */
     @SuppressWarnings("unchecked")
     default public void put(Supplier<By> selector, Object value) {
-        new Input<>((Where) this).put(selector, value);
+        new Input<>((Where) this, selector).put(value);
     }
 
     /**
@@ -74,7 +74,7 @@ public interface FormControl<Where extends Searchable<Where>> {
      */
     @SuppressWarnings("unchecked")
     default public void autocomplete(Supplier<By> selector, Object value, Locator<Where, Element> locator) {
-        new Input<>((Where) this).autocomplete(selector, value, locator);
+        new Input<>((Where) this, selector).autocomplete(value, locator);
     }
 
 }
