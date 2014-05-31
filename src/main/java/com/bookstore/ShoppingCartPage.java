@@ -1,8 +1,8 @@
 package com.bookstore;
 
 
-import com.algocrafts.pages.Locators;
 import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Locators;
 import com.algocrafts.selectors.Xpath;
 import com.bookstore.domain.Address;
 import com.bookstore.domain.CreditCard;
@@ -13,14 +13,14 @@ import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.pages.Locators.elements;
 import static com.algocrafts.selectors.CssSelector.CONTINUE;
 import static com.algocrafts.selectors.CssSelector.UPDATE;
-import static com.algocrafts.selectors.Name.MAILING_OPTION;
 import static com.algocrafts.selectors.TagName.LI;
-import static com.bookstore.BookStoreId.*;
+import static com.bookstore.BookStoreId.ERROR_MESSAGES;
 
 public class ShoppingCartPage extends AbstractPage {
 
     private final BillingAddressForm billingAddressForm = new BillingAddressForm(this);
     private final CreditCardForm creditCardForm = new CreditCardForm(this);
+    private final OtherInformationForm otherInformationForm = new OtherInformationForm(this);
 
     public ShoppingCartPage(AbstractPage page) {
         super(page);
@@ -44,11 +44,7 @@ public class ShoppingCartPage extends AbstractPage {
     }
 
     public void setOtherInformation(OtherInformation info) {
-        put(BILLING_EMAIL___, info.emailAddress);
-        put(COMMENTS________, info.comments);
-        check(RATINGS_______, info.askRating);
-        check(CONFIRM_EMAIL_, info.confirmEmail);
-        radio(MAILING_OPTION, info.mailingOptions);
+        otherInformationForm.setOtherInformation(info);
     }
 
     public void continues() {

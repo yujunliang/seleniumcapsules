@@ -1,5 +1,6 @@
 package com.bookstore;
 
+import com.algocrafts.forms.AbstractForm;
 import com.algocrafts.pages.AbstractPage;
 import com.bookstore.domain.Address;
 import com.algocrafts.domain.Countries;
@@ -7,7 +8,7 @@ import com.algocrafts.domain.UnitedStates;
 
 import static com.bookstore.BookStoreId.*;
 
-public class BillingAddressForm extends AbstractPage {
+public class BillingAddressForm extends AbstractForm {
     public BillingAddressForm(AbstractPage page) {
         super(page);
     }

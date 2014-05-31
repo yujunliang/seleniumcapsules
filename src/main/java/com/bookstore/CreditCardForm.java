@@ -1,12 +1,13 @@
 package com.bookstore;
 
 
+import com.algocrafts.forms.AbstractForm;
 import com.algocrafts.pages.AbstractPage;
 import com.bookstore.domain.CreditCard;
 
 import static com.bookstore.BookStoreId.*;
 
-public class CreditCardForm extends AbstractPage{
+public class CreditCardForm extends AbstractForm {
 
     public CreditCardForm(AbstractPage page) {
         super(page);
