@@ -17,6 +17,11 @@ class Selection<Where extends Searchable<Where>> {
     private final Where where;
     private final Locator<Where, Select> locator;
 
+    /**
+     * Constructor of the Select, It is a wrapper for the Select from Selenium UI.
+     * @param where
+     * @param locator
+     */
     Selection(Where where, Locator<Where, Select> locator) {
         this.where = where;
         this.locator = locator;

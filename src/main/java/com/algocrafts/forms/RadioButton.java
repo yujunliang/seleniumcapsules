@@ -21,6 +21,12 @@ class RadioButton<Where extends Searchable<Where>> {
     private final Where where;
     private final Locator<Where, Stream<Element>> radioButtonGroup;
 
+    /**
+     * Constructor this radio button.
+     *
+     * @param where
+     * @param selector
+     */
     public RadioButton(Where where, Supplier<By> selector) {
         this.where = where;
         this.radioButtonGroup = elements(selector);
