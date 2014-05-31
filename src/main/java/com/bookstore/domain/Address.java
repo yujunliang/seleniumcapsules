@@ -1,5 +1,8 @@
 package com.bookstore.domain;
 
+import com.algocrafts.domain.Countries;
+import com.algocrafts.domain.UnitedStates;
+
 public class Address {
     public final String firstName;
     public final String lastName;

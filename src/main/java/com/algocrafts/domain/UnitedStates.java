@@ -1,6 +1,7 @@
-package com.bookstore.domain;
+package com.algocrafts.domain;
 
-import static com.algocrafts.converters.EnumToString.REPLACE_UNDERSCORE;
+import static com.algocrafts.converters.StringConverter.REPLACE_UNDERSCORE;
+import static com.algocrafts.converters.StringConverter.RESTORE_UNDERSCORE;
 
 public enum UnitedStates {
     Alabama("AL"),
@@ -62,6 +63,11 @@ public enum UnitedStates {
 
     @Override
     public String toString() {
-        return REPLACE_UNDERSCORE.locate(this);
+        return REPLACE_UNDERSCORE.locate(this.name());
     }
+
+    public static UnitedStates fromString(String string) {
+        return valueOf(RESTORE_UNDERSCORE.locate(string));
+    }
+
 }

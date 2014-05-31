@@ -45,7 +45,17 @@ public interface FormControl<Where extends Searchable<Where>> {
     }
 
     /**
-     * Enter text into an input filed.
+     * Read value from an input field.
+     *
+     * @param selector
+     */
+    @SuppressWarnings("unchecked")
+    default public String get(Supplier<By> selector) {
+        return new Input<>((Where) this).get(selector);
+    }
+
+    /**
+     * Enter text into an input field.
      *
      * @param selector
      * @param value

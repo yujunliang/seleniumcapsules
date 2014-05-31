@@ -10,8 +10,8 @@
         <constructor-arg value="14052014"/>
         <constructor-arg value="Edison"/>
         <constructor-arg value="08820"/>
-        <constructor-arg value="#{T(com.bookstore.domain.UnitedStates).New_Jersey}"/>
-        <constructor-arg value="#{T(com.bookstore.domain.Countries).United_States}"/>
+        <constructor-arg value="#{T(com.algocrafts.domain.UnitedStates).New_Jersey}"/>
+        <constructor-arg value="#{T(com.algocrafts.domain.Countries).United_States}"/>
         <constructor-arg value="Sanjay"/>
         <constructor-arg value="Rao"/>
     </bean>
