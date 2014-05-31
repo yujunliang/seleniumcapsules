@@ -1,5 +1,7 @@
 package com.algocrafts;
 
+import com.algocrafts.clickables.Url;
+import com.algocrafts.selenium.Browser;
 import com.jquery.JQueryDatePickerPage;
 import org.junit.After;
 import org.junit.Before;
@@ -9,6 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.EnumSet;
+
+import static com.algocrafts.pages.Browsers.CHROME;
+import static com.algocrafts.pages.Browsers.FIREFOX;
+import static com.algocrafts.pages.Browsers.SAFARI;
 import static java.time.Month.APRIL;
 import static org.junit.Assert.assertEquals;
 
@@ -28,6 +35,17 @@ public class JQueryDatePickerTest {
     public void pickADate() {
         jQueryDatePickerPage.pick(APRIL, 1, 2012);
         assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
+    }
+
+
+    @Test
+    public void testBrowers() {
+        for (Browser browser : EnumSet.of(CHROME, FIREFOX, SAFARI)) {
+            jQueryDatePickerPage = new JQueryDatePickerPage(browser, new Url(browser, "http://jqueryui.com/datepicker/"));
+            jQueryDatePickerPage.open();
+            jQueryDatePickerPage.pick(APRIL, 1, 2012);
+            assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
+        }
     }
 
     @After

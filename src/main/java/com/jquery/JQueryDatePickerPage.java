@@ -6,6 +6,7 @@ import com.algocrafts.calendar.DatePicker;
 import com.algocrafts.pages.Locators;
 import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.pages.Browsers;
+import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Clickable;
 
 import static com.algocrafts.conditions.PagePredicates.REACHED_CALENDAR_PAGE;
@@ -17,7 +18,7 @@ import static com.jquery.CalendarVoidLocator.*;
 
 public class JQueryDatePickerPage extends AbstractPage {
 
-    public JQueryDatePickerPage(Browsers browser, Clickable clickable) {
+    public JQueryDatePickerPage(Browser browser, Clickable clickable) {
         super(browser, clickable, REACHED_CALENDAR_PAGE);
     }
 
