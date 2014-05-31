@@ -5,12 +5,18 @@
 
     <import resource="properties.xml"/>
 
+    <bean id="browser" class="com.algocrafts.pages.Browsers" factory-method="valueOf">
+        <constructor-arg value="${browser}"/>
+    </bean>
+
+
     <bean id="entryUrl" class="com.algocrafts.clickables.Url">
+        <constructor-arg ref="browser"/>
         <constructor-arg value="${entry.url}"/>
     </bean>
 
     <bean id="manningPage" class="com.bookstore.BookStoreHomePage">
-        <constructor-arg value="${browser}"/>
+        <constructor-arg ref="browser"/>
         <constructor-arg ref="entryUrl"/>
     </bean>
 

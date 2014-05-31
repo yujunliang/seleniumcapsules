@@ -1,22 +1,20 @@
 package com.algocrafts.clickables;
 
-import com.algocrafts.pages.Browsers;
+import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Clickable;
 import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-
-public class Url implements Clickable {
+public class Url<T extends Browser> implements Clickable {
 
     private static final Logger log = getLogger(Url.class);
 
-    @Value("${browser}")
-    private Browsers browser;
+    private T browser;
     private String url;
 
-    public Url(String url) {
+    public Url(T browser, String url) {
+        this.browser = browser;
         this.url = url;
     }
 

@@ -42,6 +42,10 @@ public class SelfPopulatingCache<K, V> {
         return value;
     }
 
+    public void remove(K key) {
+        cache.remove(key);
+    }
+
     public Collection<V> values() {
         return cache.values();
     }

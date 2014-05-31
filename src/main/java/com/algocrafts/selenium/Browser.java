@@ -1,5 +1,6 @@
 package com.algocrafts.selenium;
 
+import com.algocrafts.objectcache.SelfPopulatingCache;
 import com.algocrafts.pages.Browsers;
 import com.algocrafts.pages.Element;
 import org.openqa.selenium.By;
@@ -21,7 +22,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebDriver {
 
-    public static final ThreadLocal<? super WebDriver> store = new ThreadLocal<>();
+    public static final SelfPopulatingCache<WebDriverSupplier<?>, ? extends WebDriver> store = SelfPopulatingCache.create((WebDriverSupplier<?> supplier) -> supplier.init());
 
     public static final Logger logger = getLogger(Browsers.class);
 
@@ -54,12 +55,7 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
 
     @SuppressWarnings("unchecked")
     default public T get() {
-        T webDriver = (T) store.get();
-        if (webDriver == null) {
-            webDriver = getSupplier().get();
-            store.set(webDriver);
-        }
-        return webDriver;
+        return (T) store.valueOf(this.getSupplier());
     }
 
     default public Stream<Element> findElements(Supplier<By> by) {
@@ -160,7 +156,7 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
     @Override
     @SuppressWarnings("unchecked")
     default public void quit() {
-        ((T) store.get()).quit();
-        store.remove();
+        store.valueOf(this.getSupplier()).quit();
+        store.remove(this.getSupplier());
     }
 }

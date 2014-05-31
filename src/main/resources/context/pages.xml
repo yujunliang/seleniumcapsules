@@ -5,7 +5,12 @@
 
     <import resource="properties.xml"/>
 
+    <bean id="browser" class="com.algocrafts.pages.Browsers" factory-method="valueOf">
+        <constructor-arg value="${browser}"/>
+    </bean>
+
     <bean id="entryUrl" class="com.algocrafts.clickables.Url">
+        <constructor-arg ref="browser"/>
         <constructor-arg value="${entry.url}"/>
     </bean>
 
@@ -20,15 +25,17 @@
     <bean id="allMenuLocator" class="com.orgsync.AllMenuLocatorForOrgSync"/>
 
     <bean id="jQueryDatePickerPage" class="com.jquery.JQueryDatePickerPage">
-        <constructor-arg value="${browser}"/>
+        <constructor-arg ref="browser"/>
         <constructor-arg ref="jQueryUrl"/>
     </bean>
 
     <bean id="jQueryUrl" class="com.algocrafts.clickables.Url">
+        <constructor-arg ref="browser"/>
         <constructor-arg value="${jquery.url}"/>
     </bean>
 
     <bean id="googleUrl" class="com.algocrafts.clickables.Url">
+        <constructor-arg ref="browser"/>
         <constructor-arg value="${google.com}"/>
     </bean>
 
