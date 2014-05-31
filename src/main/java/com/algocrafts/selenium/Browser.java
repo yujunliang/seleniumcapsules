@@ -22,15 +22,21 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebDriver {
 
-    public static final SelfPopulatingCache<WebDriverSupplier<?>, ? extends WebDriver> store = SelfPopulatingCache.create((WebDriverSupplier<?> supplier) -> supplier.init());
-
-    public static final Logger logger = getLogger(Browsers.class);
-
     WebDriverSupplier<T> getSupplier();
 
     @Override
     default public T init() {
         return getSupplier().init();
+    }
+
+    @Override
+    default public File takeScreenShot(WebDriverSupplier<T> driver) {
+        return driver.takeScreenShot(this);
+    }
+
+    @SuppressWarnings("unchecked")
+    default public T get() {
+        return (T) store.valueOf(this.getSupplier());
     }
 
     default public void save(String title) {
@@ -47,15 +53,6 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
                 e1.printStackTrace();
             }
         }
-    }
-
-    default public File takeScreenShot(WebDriverSupplier<T> driver) {
-        return driver.takeScreenShot(this);
-    }
-
-    @SuppressWarnings("unchecked")
-    default public T get() {
-        return (T) store.valueOf(this.getSupplier());
     }
 
     default public Stream<Element> findElements(Supplier<By> by) {
@@ -154,9 +151,13 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     default public void quit() {
         store.valueOf(this.getSupplier()).quit();
         store.remove(this.getSupplier());
     }
+
+    public static final SelfPopulatingCache<WebDriverSupplier<?>, ? extends WebDriver> store = SelfPopulatingCache.create((WebDriverSupplier<?> supplier) -> supplier.init());
+
+    public static final Logger logger = getLogger(Browsers.class);
+
 }

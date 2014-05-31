@@ -10,7 +10,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -28,10 +27,9 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
 
     private final Predicate<AbstractPage> condition;
 
-    @Value("${quit.browser}")
     private boolean close;
 
-    private final Browser browser;
+    private final Browser<?> browser;
 
     private final Clickable clickable;
 
@@ -47,13 +45,11 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
         this(page.browser, clickable, condition, page.close);
     }
 
-    public AbstractPage(Browser browser, Clickable clickable, Predicate<AbstractPage> condition) {
-        this.browser = browser;
-        this.clickable = clickable;
-        this.condition = condition;
+    public AbstractPage(Browser<?> browser, Clickable clickable, Predicate<AbstractPage> condition) {
+        this(browser, clickable, condition, false);
     }
 
-    public AbstractPage(Browser browser, Clickable clickable, Predicate<AbstractPage> condition, boolean close) {
+    public AbstractPage(Browser<?> browser, Clickable clickable, Predicate<AbstractPage> condition, boolean close) {
         this.browser = browser;
         this.clickable = clickable;
         this.condition = condition;
@@ -67,6 +63,11 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
                 until(condition);
             }
         }
+    }
+
+    @Override
+    public final Stream<Element> findElements(Supplier<By> by) {
+        return browser.findElements(by);
     }
 
     @Override
@@ -98,12 +99,6 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
     @Override
     public final Element untilFound(final By by) {
         return until((AbstractPage page) -> browser.findElement(by));
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public final Stream<Element> findElements(Supplier<By> by) {
-        return browser.findElements(by);
     }
 
     public final void accept() {

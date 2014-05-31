@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -24,7 +25,10 @@ import static org.junit.Assert.assertEquals;
 public class JQueryDatePickerTest {
 
     @Autowired
-    JQueryDatePickerPage jQueryDatePickerPage;
+    private JQueryDatePickerPage jQueryDatePickerPage;
+
+    @Value("${jquery.url}")
+    private String url;
 
     @Before
     public void setup() {
@@ -37,11 +41,10 @@ public class JQueryDatePickerTest {
         assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
     }
 
-
     @Test
-    public void testBrowers() {
+    public void testDifferentBrowsers() {
         for (Browser browser : EnumSet.of(CHROME, FIREFOX, SAFARI)) {
-            jQueryDatePickerPage = new JQueryDatePickerPage(browser, new Url(browser, "http://jqueryui.com/datepicker/"));
+            jQueryDatePickerPage = new JQueryDatePickerPage(browser, new Url<>(browser, url));
             jQueryDatePickerPage.open();
             jQueryDatePickerPage.pick(APRIL, 1, 2012);
             assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
