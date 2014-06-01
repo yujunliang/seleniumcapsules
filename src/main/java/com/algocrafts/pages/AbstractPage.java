@@ -110,7 +110,7 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
 
     public String getTitle() {
         try {
-            return Locators.<AbstractPage>trying(PAGE_TITLE).and(TEXT).locate(this);
+            return Locators.<AbstractPage>tryElement(PAGE_TITLE).and(TEXT).locate(this);
         } catch (Exception e) {
             return "";
         }

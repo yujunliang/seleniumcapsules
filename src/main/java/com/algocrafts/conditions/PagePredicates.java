@@ -39,7 +39,7 @@ public enum PagePredicates implements Predicate<AbstractPage> {
                     .and(MANNING)
     ),
     CALENDAR_NOT_DISPLAYED(
-            Locators.<AbstractPage>trying(UI_DATEPICKER_DIV)
+            Locators.<AbstractPage>tryElement(UI_DATEPICKER_DIV)
                     .and(DISPLAYED.negate())
     );
     private final Predicate<AbstractPage> predicate;

@@ -48,7 +48,7 @@ class Input<Where extends Searchable<Where>> implements Supplier<String> {
         try {
             retry.attempt(() -> {
                 log.info("{}", retry);
-                Element element = Locators.<Where>trying(selector).locate(where);
+                Element element = Locators.<Where>tryElement(selector).locate(where);
                 return VALUE.locate(element);
             });
         } catch (Exception e) {
@@ -73,7 +73,7 @@ class Input<Where extends Searchable<Where>> implements Supplier<String> {
         try {
             retry.attempt(() -> {
                 log.info("{}", retry);
-                Element element = Locators.<Where>trying(selector).locate(where);
+                Element element = Locators.<Where>tryElement(selector).locate(where);
                 element.clear();
                 element.sendKeys(string);
                 if (VALUE.locate(element).equals(string)) {

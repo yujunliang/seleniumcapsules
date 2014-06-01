@@ -26,7 +26,7 @@ import java.io.File;
 
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.pages.Locators.elements;
-import static com.algocrafts.pages.Locators.trying;
+import static com.algocrafts.pages.Locators.tryElement;
 import static com.algocrafts.selectors.Name.Q;
 import static com.algocrafts.selectors.TagName.SPAN;
 import static com.algocrafts.selectors.Xpath.ORACLE_AUTOCOMPLETE;
@@ -72,13 +72,13 @@ public class GoogleAutoCompleteTest {
      */
     @Test
     public void autoCompleteUsingXpath() {
-        googlePage.autocomplete(Q, "oracle", trying(ORACLE_AUTOCOMPLETE));
+        googlePage.autocomplete(Q, "oracle", tryElement(ORACLE_AUTOCOMPLETE));
     }
 
     @Test
     public void autoCompleteUsingLocator() {
         googlePage.autocomplete(Q, "oracle",
-                Locators.<AbstractPage>trying(() -> className("gssb_c"))
+                Locators.<AbstractPage>tryElement(() -> className("gssb_c"))
                         .and(elements(SPAN))
                         .and(new FirstMatch<>(TEXT.and(new IsStringEqual("oracle")))));
     }
