@@ -46,7 +46,9 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
      * @return A stream of all {@link Element}s, or an empty stream if nothing matches.
      * @see org.openqa.selenium.By
      */
-    Stream<Element> findElements(Supplier<By> by);
+    default public Stream<Element> findElements(Supplier<By> by) {
+        return findElements(by.get()).stream().map(Element::new);
+    }
 
     /**
      * Find the first button meeting the By method.

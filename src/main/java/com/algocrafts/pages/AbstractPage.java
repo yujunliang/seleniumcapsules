@@ -13,8 +13,6 @@ import org.slf4j.Logger;
 
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.PageFunctions.THE_PAGE_TITLE;
@@ -63,11 +61,6 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
                 until(condition);
             }
         }
-    }
-
-    @Override
-    public final Stream<Element> findElements(Supplier<By> by) {
-        return browser.findElements(by);
     }
 
     @Override

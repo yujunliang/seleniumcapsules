@@ -72,11 +72,6 @@ public class Element implements Searchable<Element>, WebElement, Locatable {
         return element.getText();
     }
 
-    @Override
-    public Stream<Element> findElements(Supplier<By> by) {
-        return findElements(by.get()).stream().map(Element::new);
-    }
-
     @Deprecated
     @Override
     public List<WebElement> findElements(By by) {

@@ -35,7 +35,7 @@ public class AbstractForm implements Searchable<AbstractForm>, FormControl<Abstr
 
     @Override
     public List<WebElement> findElements(By by) {
-        return locator.locate(page).findElements(by).stream().map(Element::new).collect(toList());
+        return locator.locate(page).findElements(() -> by).collect(toList());
     }
 
     @Override
@@ -48,8 +48,4 @@ public class AbstractForm implements Searchable<AbstractForm>, FormControl<Abstr
         return locator.locate(page).untilFound(by);
     }
 
-    @Override
-    public Stream<Element> findElements(Supplier<By> by) {
-        return locator.locate(page).findElements(by).map(Element::new);
-    }
 }

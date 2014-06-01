@@ -14,8 +14,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 import static org.apache.commons.io.FileUtils.copyFile;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -53,10 +51,6 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
                 e1.printStackTrace();
             }
         }
-    }
-
-    default public Stream<Element> findElements(Supplier<By> by) {
-        return findElements(by.get()).stream().map(Element::new);
     }
 
     default public void accept() {
