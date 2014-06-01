@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-public interface Waitable<Where> {
+public interface ExplicitWait<Where> {
 
     /**
      * Save the screenshot if possible.

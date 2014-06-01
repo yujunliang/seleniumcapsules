@@ -22,7 +22,7 @@ import static com.algocrafts.pages.Locators.element;
 import static com.algocrafts.selectors.TagName.IMG;
 
 
-public interface Searchable<Where extends Searchable<Where>> extends SearchContext, Waitable<Where> {
+public interface Searchable<Where extends Searchable<Where>> extends SearchContext, ExplicitWait<Where> {
 
     /**
      * Find the first element or throw NoSuchElementException
