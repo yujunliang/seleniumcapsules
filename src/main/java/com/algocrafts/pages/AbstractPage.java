@@ -7,7 +7,6 @@ import com.algocrafts.selenium.Clickable;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 
@@ -69,29 +68,14 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
     }
 
     /**
-     * Find the first element or return null if nothing found.
-     *
-     * @param by selector
-     * @return the first element or return null if nothing found.
-     */
-    @Override
-    public final Element findElement(By by) {
-        try {
-            return browser.findElement(by);
-        } catch (NoSuchElementException e) {
-            return null;
-        }
-    }
-
-    /**
      * Find the first element or throw NoSuchElementException
      *
      * @param by selector
      * @return the first element or throw NoSuchElementException
      */
     @Override
-    public final Element untilFound(final By by) {
-        return until((AbstractPage page) -> browser.findElement(by));
+    public final Element findElement(final By by) {
+        return browser.findElement(by);
     }
 
     public final void accept() {

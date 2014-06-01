@@ -83,10 +83,12 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
 
     @Override
     default public Element findElement(By by) {
-        logger.info("Seeking [{}]", by);
-        WebElement element = get().findElement(by);
-        logger.info("Found [{}]", element);
-        return new Element(element);
+        return new ElementFinder(by).locate(get());
+    }
+
+    @Override
+    default public List<WebElement> findElements(By by) {
+        return new ElementsFinder(by).locate(get());
     }
 
     @Override
@@ -102,11 +104,6 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
     @Override
     default public String getTitle() {
         return get().getTitle();
-    }
-
-    @Override
-    default public List<WebElement> findElements(By by) {
-        return get().findElements(by);
     }
 
     @Override

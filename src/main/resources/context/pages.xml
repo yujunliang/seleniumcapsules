@@ -40,7 +40,7 @@
     </bean>
 
     <bean id="googlePage" class="com.google.GooglePage">
-        <constructor-arg ref="firefox"/>
+        <constructor-arg ref="browser"/>
         <constructor-arg ref="googleUrl"/>
     </bean>
 </beans>

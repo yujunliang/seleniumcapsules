@@ -10,6 +10,7 @@ import com.algocrafts.converters.StreamToList;
 import com.algocrafts.pages.Element;
 import com.algocrafts.pages.Locators;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.SearchContext;
 
 import java.util.function.Supplier;
@@ -24,20 +25,37 @@ import static com.algocrafts.selectors.TagName.IMG;
 public interface Searchable<Where extends Searchable<Where>> extends SearchContext, Waitable<Where> {
 
     /**
+     * Find the first element or throw NoSuchElementException
+     *
+     * @param by selector
+     * @return the first element or throw NoSuchElementException
+     */
+    @Override
+    Element findElement(By by);
+
+    /**
      * Find the first element or return null if nothing found.
      *
      * @param by selector
      * @return the first element or return null if nothing found.
      */
-    Element findElement(By by);
+    default public Element tryElement(By by) {
+        try {
+            return new Element(findElement(by));
+        } catch (NoSuchElementException e) {
+            return null;
+        }
+    }
 
     /**
-     * Find the first element or throw TimeoutException
+     * Find the first element or throw NoSuchElementException
      *
      * @param by selector
-     * @return the first element or throw TimeoutException
+     * @return the first element or throw NoSuchElementException
      */
-    Element untilFound(By by);
+    default public Element untilFound(final By by) {
+        return until((Where page) -> new Element(findElement(by)));
+    }
 
     /**
      * Find all elements within the area using the given search method.

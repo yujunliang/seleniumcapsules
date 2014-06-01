@@ -1,5 +1,7 @@
 package com.algocrafts.pages;
 
+import com.algocrafts.selenium.ElementFinder;
+import com.algocrafts.selenium.ElementsFinder;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -10,8 +12,6 @@ import org.openqa.selenium.internal.Locatable;
 import org.slf4j.Logger;
 
 import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -75,7 +75,13 @@ public class Element implements Searchable<Element>, WebElement, Locatable {
     @Deprecated
     @Override
     public List<WebElement> findElements(By by) {
-        return element.findElements(by);
+        return new ElementsFinder(by).locate(element);
+    }
+
+    @Deprecated
+    @Override
+    public Element findElement(By by) {
+        return new ElementFinder(by).locate(element);
     }
 
     @Override
@@ -98,22 +104,6 @@ public class Element implements Searchable<Element>, WebElement, Locatable {
     }
 
     @Override
-    public Element findElement(By by) {
-        try {
-            logger.info("Seeking [{}]", by);
-            return getElement(by);
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    @Override
-    public Element untilFound(final By by) {
-        logger.info("Seeking [{}]", by);
-        return until((Element element) -> getElement(by));
-    }
-
-    @Override
     public void save() {
         logger.info("Saving " + element + "[" + this + "]");
     }
@@ -130,11 +120,4 @@ public class Element implements Searchable<Element>, WebElement, Locatable {
                 element.getAttribute("value") : tagName.equals("img") ?
                 element.getAttribute("src") : element.getText();
     }
-
-    private Element getElement(By by) {
-        Element nested = new Element(element.findElement(by));
-        logger.info("Found [{}]", nested);
-        return nested;
-    }
-
 }

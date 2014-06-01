@@ -8,10 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
-
-import static java.util.stream.Collectors.toList;
 
 public class AbstractForm implements Searchable<AbstractForm>, FormControl<AbstractForm> {
 
@@ -35,17 +31,12 @@ public class AbstractForm implements Searchable<AbstractForm>, FormControl<Abstr
 
     @Override
     public List<WebElement> findElements(By by) {
-        return locator.locate(page).findElements(() -> by).collect(toList());
+        return locator.locate(page).findElements(by);
     }
 
     @Override
     public Element findElement(By by) {
         return locator.locate(page).findElement(by);
-    }
-
-    @Override
-    public Element untilFound(By by) {
-        return locator.locate(page).untilFound(by);
     }
 
 }

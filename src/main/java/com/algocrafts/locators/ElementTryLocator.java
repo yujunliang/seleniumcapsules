@@ -12,6 +12,6 @@ public class ElementTryLocator<Where extends Searchable<Where>>
 
     public ElementTryLocator(Supplier<By> selector) {
         super((Where where) ->
-                where.findElement(selector.get()));
+                where.tryElement(selector.get()));
     }
 }
