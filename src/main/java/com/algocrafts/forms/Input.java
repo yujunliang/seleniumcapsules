@@ -15,7 +15,7 @@ import static com.algocrafts.converters.GetText.VALUE;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.slf4j.LoggerFactory.getLogger;
 
-class Input<Where extends Searchable<Where>> implements Supplier<String> {
+public class Input<Where extends Searchable<Where>> implements Supplier<String> {
 
     public static final Logger log = getLogger(Input.class);
 

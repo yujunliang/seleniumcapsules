@@ -1,9 +1,16 @@
 package com.bookstore.domain;
 
 
+import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Locators;
+
 import java.util.List;
 import java.util.stream.Stream;
 
+import static com.algocrafts.converters.GetText.TEXT;
+import static com.algocrafts.pages.Locators.elements;
+import static com.algocrafts.selectors.TagName.LI;
+import static com.bookstore.BookStoreId.ERROR_MESSAGES;
 import static com.google.common.collect.Lists.newArrayList;
 
 public class ErrorMessages {
@@ -16,6 +23,11 @@ public class ErrorMessages {
 
     public ErrorMessages(Stream<String> errorMessages) {
         this(newArrayList(errorMessages.iterator()));
+    }
+
+    public ErrorMessages(AbstractPage page) {
+        this(Locators.<AbstractPage>element(ERROR_MESSAGES)
+                .and(elements(LI)).locate(page).map(TEXT));
     }
 
     @Override

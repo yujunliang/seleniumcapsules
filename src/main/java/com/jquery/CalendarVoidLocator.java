@@ -2,11 +2,10 @@ package com.jquery;
 
 
 import com.algocrafts.converters.FrameLocator;
-import com.algocrafts.converters.OptionalElement;
 import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.pages.Element;
-import com.algocrafts.selenium.Locator;
 import com.algocrafts.pages.Locators;
+import com.algocrafts.selenium.Locator;
 
 import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
 import static com.algocrafts.pages.Locators.element;
@@ -29,7 +28,7 @@ public enum CalendarVoidLocator implements Locator<AbstractPage, Void> {
     ),
     CLOSE_BUTTON(
             Locators.<AbstractPage>element(UI_DATEPICKER_DIV)
-                    .and(Locators.tryElement(UI_DATEPICKER_CLOSE)).and(new OptionalElement())
+                    .and(Locators.tryElement(UI_DATEPICKER_CLOSE))
     );
 
     private Locator<AbstractPage, Element> locator;

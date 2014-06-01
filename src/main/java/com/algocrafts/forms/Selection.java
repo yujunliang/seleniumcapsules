@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-class Selection<Where extends Searchable<Where>> {
+public class Selection<Where extends Searchable<Where>> {
 
     private static final Logger log = getLogger(Selection.class);
 

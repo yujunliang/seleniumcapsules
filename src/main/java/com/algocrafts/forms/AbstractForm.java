@@ -9,17 +9,12 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class AbstractForm implements Searchable<AbstractForm>, FormControl<AbstractForm> {
+public class AbstractForm implements Searchable<Element>, FormControl<Element> {
 
     private final AbstractPage page;
-    private final Locator<AbstractPage, AbstractForm> locator;
+    private final Locator<AbstractPage, Element> locator;
 
-    public AbstractForm(AbstractPage page) {
-        this.page = page;
-        this.locator = (AbstractPage p) -> this;
-    }
-
-    public AbstractForm(AbstractPage page, Locator<AbstractPage, AbstractForm> locator) {
+    public AbstractForm(AbstractPage page, Locator<AbstractPage, Element> locator) {
         this.page = page;
         this.locator = locator;
     }

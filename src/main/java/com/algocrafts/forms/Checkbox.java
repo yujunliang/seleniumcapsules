@@ -14,7 +14,7 @@ import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
 import static com.algocrafts.converters.GetText.CHECKED;
 import static com.algocrafts.pages.Locators.element;
 
-class Checkbox<Where extends Searchable<Where>> implements Clickable {
+public class Checkbox<Where extends Searchable<Where>> implements Clickable {
 
     private final Where where;
     private final Locator<Where, Element> locator;

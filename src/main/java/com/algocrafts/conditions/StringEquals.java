@@ -17,7 +17,7 @@ public enum StringEquals implements Predicate<String> {
 
     @Override
     public boolean test(String element) {
-        return element.equals(text);
+        return text.equals(element);
     }
 
 }

@@ -2,19 +2,14 @@ package com.bookstore;
 
 
 import com.algocrafts.pages.AbstractPage;
-import com.algocrafts.pages.Locators;
 import com.algocrafts.selectors.Xpath;
 import com.bookstore.domain.Address;
 import com.bookstore.domain.CreditCard;
 import com.bookstore.domain.ErrorMessages;
 import com.bookstore.domain.OtherInformation;
 
-import static com.algocrafts.converters.GetText.TEXT;
-import static com.algocrafts.pages.Locators.elements;
 import static com.algocrafts.selectors.CssSelector.CONTINUE;
 import static com.algocrafts.selectors.CssSelector.UPDATE;
-import static com.algocrafts.selectors.TagName.LI;
-import static com.bookstore.BookStoreId.ERROR_MESSAGES;
 
 public class ShoppingCartPage extends AbstractPage {
 
@@ -38,6 +33,10 @@ public class ShoppingCartPage extends AbstractPage {
         creditCardForm.setCreditCard(card);
     }
 
+    public CreditCard getCreditCard() {
+        return creditCardForm.getCreditCard();
+    }
+
     public void setQuantity(int quantity) {
         put(Xpath.QUANTITY, quantity);
         button(UPDATE).click();
@@ -47,12 +46,15 @@ public class ShoppingCartPage extends AbstractPage {
         otherInformationForm.setOtherInformation(info);
     }
 
+    public OtherInformation getOtherInformation() {
+        return otherInformationForm.getOtherInformation();
+    }
+
     public void continues() {
         button(CONTINUE).click();
     }
 
     public ErrorMessages getErrorMessages() {
-        return new ErrorMessages(Locators.<AbstractPage>element(ERROR_MESSAGES)
-                .and(elements(LI)).locate(this).map(TEXT));
+         return new ErrorMessages(this);
     }
 }

@@ -12,6 +12,16 @@ import java.util.function.Supplier;
 public interface FormControl<Where extends Searchable<Where>> {
 
     /**
+     * Check if the  checkbox is checked by the given selector.
+     *
+     * @param selector
+     */
+    @SuppressWarnings("unchecked")
+    default public boolean isChecked(Supplier<By> selector) {
+        return new Checkbox<>((Where) this, selector).isChecked();
+    }
+
+    /**
      * Set checkbox to the given value.
      *
      * @param selector
@@ -20,6 +30,16 @@ public interface FormControl<Where extends Searchable<Where>> {
     @SuppressWarnings("unchecked")
     default public void check(Supplier<By> selector, boolean value) {
         new Checkbox<>((Where) this, selector).setValue(value);
+    }
+
+    /**
+     * Read the value of the radio by given option.
+     *
+     * @param selector
+     */
+    @SuppressWarnings("unchecked")
+    default public String radio(Supplier<By> selector) {
+        return new RadioButton<>((Where) this, selector).get();
     }
 
     /**
