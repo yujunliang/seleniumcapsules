@@ -76,9 +76,11 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
     }
 
     default public void mouseOver(Element element) {
-        Actions builder = new Actions(get());
-        Actions hoverOverRegistrar = builder.moveToElement(element);
-        hoverOverRegistrar.perform();
+        new Actions(get()).moveToElement(element).perform();
+    }
+
+    default public void dragAndDrop(Element from, Element to) {
+        new Actions(get()).dragAndDrop(from, to).perform();
     }
 
     @Override

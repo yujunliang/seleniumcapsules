@@ -7,6 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.interactions.Actions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
@@ -49,6 +50,11 @@ public class JQueryDatePickerTest {
             jQueryDatePickerPage.pick(APRIL, 1, 2012);
             assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
         }
+    }
+
+    @Test
+    public void testDragAndDrop() {
+        new Actions(CHROME);
     }
 
     @After

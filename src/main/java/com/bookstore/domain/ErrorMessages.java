@@ -11,7 +11,7 @@ import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.pages.Locators.elements;
 import static com.algocrafts.selectors.TagName.LI;
 import static com.bookstore.BookStoreId.ERROR_MESSAGES;
-import static com.google.common.collect.Lists.newArrayList;
+import static java.util.stream.Collectors.toList;
 
 public class ErrorMessages {
 
@@ -22,7 +22,7 @@ public class ErrorMessages {
     }
 
     public ErrorMessages(Stream<String> errorMessages) {
-        this(newArrayList(errorMessages.iterator()));
+        this(errorMessages.collect(toList()));
     }
 
     public ErrorMessages(AbstractPage page) {

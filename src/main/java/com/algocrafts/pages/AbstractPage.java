@@ -108,6 +108,10 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
         browser.mouseOver(element);
     }
 
+    public final void dragAndDrop(Element from, Element to) {
+        browser.dragAndDrop(from, to);
+    }
+
     public String getTitle() {
         try {
             return Locators.<AbstractPage>tryElement(PAGE_TITLE).and(TEXT).locate(this);
