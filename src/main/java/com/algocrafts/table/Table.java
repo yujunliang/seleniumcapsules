@@ -31,7 +31,11 @@ public class Table<T> {
     }
 
     public Stream<T> getRows() {
-        return locator.and(elements(TR)).locate(page).map(Locators.<Element>elements(TD).and(mapper));
+        return locator.and(elements(TR))
+                .locate(page)
+                .filter(e -> Locators.<Element>tryElement(TD).locate(e) != null)
+                .map(elements(TD))
+                .map(mapper);
     }
 
 }
