@@ -39,9 +39,9 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
      * @param by selector
      * @return the first element or return null if nothing found.
      */
-    default public Element tryElement(By by) {
+    default public Element tryElement(Supplier<By> by) {
         try {
-            return new Element(findElement(by));
+            return new Element(findElement(by.get()));
         } catch (NoSuchElementException e) {
             return null;
         }
@@ -53,8 +53,8 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
      * @param by selector
      * @return the first element or throw NoSuchElementException
      */
-    default public Element untilFound(final By by) {
-        return until((Where page) -> new Element(findElement(by)));
+    default public Element untilFound(Supplier<By> by) {
+        return until((Where page) -> new Element(findElement(by.get())));
     }
 
     /**
@@ -69,11 +69,11 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
     }
 
     /**
-     * Find the first button meeting the By method.
+     * Find the first button meeting the By selector.
      * method to find the button.
      *
-     * @param by selector
-     * @return
+     * @param by selector                       ˜
+     * @return the first button meeting the By selector.
      */
     default public Clickable button(Supplier<By> by) {
         return button(by, 0);
@@ -84,8 +84,8 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
      * method to find the button.
      *
      * @param by    selector
-     * @param index
-     * @return
+     * @param index given index
+     * @return the button by index in the list
      */
     @SuppressWarnings("unchecked")
     default public Clickable button(Supplier<By> by, int index) {
@@ -97,8 +97,8 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
     /**
      * If the button can't be found using the previous two methods, use this.
      *
-     * @param locator
-     * @return
+     * @param locator locator
+     * @return button by the locator
      */
     @SuppressWarnings("unchecked")
     default public Clickable button(Locator<Where, Element> locator) {
@@ -108,8 +108,8 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
     /**
      * The first image using the image file.
      *
-     * @param fileName
-     * @return
+     * @param fileName file name
+     * @return first image using the image file.
      */
     default public Element image(String fileName) {
         return new FirstItem<Element>().locate(images(fileName));
@@ -118,9 +118,9 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
     /**
      * The image at the given index using the same image file.
      *
-     * @param fileName
-     * @param index
-     * @return
+     * @param fileName file name
+     * @param index    index
+     * @return image at the given index using the same image file.
      */
     default public Element image(String fileName, int index) {
         return new StreamToList<Element>()
@@ -131,7 +131,7 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
     /**
      * Find the images using the same image file.
      *
-     * @param fileName
+     * @param fileName file name
      * @return the images  using the same image file.
      */
     default public Stream<Element> images(String fileName) {
@@ -143,8 +143,8 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
     /**
      * Find the link using the selector.
      *
-     * @param selector
-     * @return
+     * @param selector selector
+     * @return the link using the selector.
      */
     @SuppressWarnings("unchecked")
     default public Clickable link(Supplier<By> selector) {

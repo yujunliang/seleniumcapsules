@@ -1,12 +1,14 @@
 package com.algocrafts;
 
 import com.algocrafts.clickables.Url;
+import com.algocrafts.pages.Element;
 import com.algocrafts.selenium.Browser;
 import com.jquery.JQueryDatePickerPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -50,11 +52,6 @@ public class JQueryDatePickerTest {
             jQueryDatePickerPage.pick(APRIL, 1, 2012);
             assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
         }
-    }
-
-    @Test
-    public void testDragAndDrop() {
-        new Actions(CHROME);
     }
 
     @After

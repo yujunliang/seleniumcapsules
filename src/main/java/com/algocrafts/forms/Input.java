@@ -25,8 +25,8 @@ public class Input<Where extends Searchable<Where>> implements Supplier<String> 
     /**
      * Constructor of the input field.
      *
-     * @param where
-     * @param selector
+     * @param where    where
+     * @param selector selector
      */
     Input(Where where, Supplier<By> selector) {
         this.where = where;
@@ -36,9 +36,9 @@ public class Input<Where extends Searchable<Where>> implements Supplier<String> 
     /**
      * the value of input field, for example, "good" will be return
      * <p>
-     * String value = page.get(() -> By.name("status"))
+     * String value = page.get(() -&gt; By.name("status"))
      * <p>
-     * <input name="status" value="good"/>
+     * &lt;input name="status" value="good"/&gt;
      *
      * @return the value of the input
      */
@@ -61,11 +61,14 @@ public class Input<Where extends Searchable<Where>> implements Supplier<String> 
      * set the value of input field, for example,
      * <p>
      * after,
-     * page.set(() -> By.name("status"), "good");
+     * page.set(() -&gt; By.name("status"), "good");
      * <p>
      * it will be,
-     * <input name="status" value="good"/>
+     * &lt;input name="status" value="good"/&gt;
+     *
+     * @param value the value to set
      */
+
     public void put(final Object value) {
         String string = value.toString();
         log.info("setting input[{}]=[{}]", selector, string);
@@ -90,10 +93,11 @@ public class Input<Where extends Searchable<Where>> implements Supplier<String> 
     /**
      * Test the autocomplete function for the input by given selector, click the element
      * on the suggestion list which has the same value of value parameter.
+     * <p>
+     * Please refer "http://seleniumcapsules.blogspot.com/2014/05/by-xpath.html"
      *
-     * @param value
-     * @param locator
-     * @see http://seleniumcapsules.blogspot.com/2014/05/by-xpath.html
+     * @param value   value
+     * @param locator locator
      */
     public void autocomplete(Object value, Locator<Where, Element> locator) {
         Element apply = Locators.<Where>element(selector).locate(where);

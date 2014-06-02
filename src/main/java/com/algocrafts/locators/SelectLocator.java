@@ -23,7 +23,7 @@ public class SelectLocator<Where extends Searchable<Where>>
 
     public SelectLocator(Supplier<By> selector) {
         super((Where where) -> {
-            final Element element = where.untilFound(selector.get());
+            final Element element = where.untilFound(selector);
             try {
                 element.until(new ElementsLocator<Element>(OPTION).and(new HasElements<>()));
                 return new Select(element);

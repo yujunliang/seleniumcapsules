@@ -5,6 +5,9 @@ import com.algocrafts.browsers.*;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.WebDriverSupplier;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Keyboard;
+import org.openqa.selenium.interactions.Mouse;
 
 public enum Browsers implements Browser {
 

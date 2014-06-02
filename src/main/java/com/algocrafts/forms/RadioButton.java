@@ -28,14 +28,17 @@ public class RadioButton<Where extends Searchable<Where>> {
     /**
      * Constructor this radio button.
      *
-     * @param where
-     * @param selector
+     * @param where    where
+     * @param selector selector
      */
     public RadioButton(Where where, Supplier<By> selector) {
         this.where = where;
         this.radioButtonGroup = elements(selector);
     }
 
+    /**
+     * @param value value to set
+     */
     public void setValue(Object value) {
         radioButtonGroup
                 .and(new FirstMatch<>(DISPLAYED.and(VALUE.and(new IsStringEqual(value)))))
@@ -43,6 +46,9 @@ public class RadioButton<Where extends Searchable<Where>> {
                 .locate(where);
     }
 
+    /**
+     * @return the value of the select radio
+     */
     public String get() {
         return radioButtonGroup
                 .and(new FirstMatch<>(DISPLAYED.and(CHECKED.and(TRUE))))

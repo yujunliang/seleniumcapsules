@@ -7,6 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.HasInputDevices;
+import org.openqa.selenium.interactions.Keyboard;
+import org.openqa.selenium.interactions.Mouse;
 import org.slf4j.Logger;
 
 import java.io.File;
@@ -18,7 +21,7 @@ import java.util.Set;
 import static org.apache.commons.io.FileUtils.copyFile;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebDriver {
+public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebDriver, HasInputDevices {
 
     WebDriverSupplier<T> getSupplier();
 
@@ -79,8 +82,8 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
         new Actions(get()).moveToElement(element).perform();
     }
 
-    default public void dragAndDrop(Element from, Element to) {
-        new Actions(get()).dragAndDrop(from, to).perform();
+    default public void dragAndDrop(By from, By to) {
+        new Actions(get()).dragAndDrop(findElement(from), findElement(to)).perform();
     }
 
     @Override
@@ -152,5 +155,17 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
     public static final SelfPopulatingCache<WebDriverSupplier<?>, ? extends WebDriver> store = SelfPopulatingCache.create((WebDriverSupplier<?> supplier) -> supplier.init());
 
     public static final Logger logger = getLogger(Browsers.class);
+
+    @Override
+    default public Keyboard getKeyboard() {
+        HasInputDevices t = (HasInputDevices) get();
+        return t.getKeyboard();
+    }
+
+    @Override
+    default public Mouse getMouse() {
+        HasInputDevices t = (HasInputDevices) get();
+        return t.getMouse();
+    }
 
 }

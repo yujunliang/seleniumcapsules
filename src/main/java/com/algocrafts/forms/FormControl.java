@@ -12,9 +12,10 @@ import java.util.function.Supplier;
 public interface FormControl<Where extends Searchable<Where>> {
 
     /**
-     * Check if the  checkbox is checked by the given selector.
+     * Check if the checkbox is checked by the given selector.
      *
-     * @param selector
+     * @param selector selector
+     * @return true if it is checked.
      */
     @SuppressWarnings("unchecked")
     default public boolean isChecked(Supplier<By> selector) {
@@ -24,8 +25,8 @@ public interface FormControl<Where extends Searchable<Where>> {
     /**
      * Set checkbox to the given value.
      *
-     * @param selector
-     * @param value
+     * @param selector selector
+     * @param value    value
      */
     @SuppressWarnings("unchecked")
     default public void check(Supplier<By> selector, boolean value) {
@@ -35,7 +36,8 @@ public interface FormControl<Where extends Searchable<Where>> {
     /**
      * Read the value of the radio by given option.
      *
-     * @param selector
+     * @param selector selector
+     * @return the value of selected radio.
      */
     @SuppressWarnings("unchecked")
     default public String radio(Supplier<By> selector) {
@@ -45,8 +47,8 @@ public interface FormControl<Where extends Searchable<Where>> {
     /**
      * Choose the radio by given option.
      *
-     * @param selector
-     * @param option
+     * @param selector selector
+     * @param option   option
      */
     @SuppressWarnings("unchecked")
     default public void radio(Supplier<By> selector, Object option) {
@@ -56,8 +58,8 @@ public interface FormControl<Where extends Searchable<Where>> {
     /**
      * Select the dropdown by given value.
      *
-     * @param selector
-     * @param value
+     * @param selector selector
+     * @param value    value
      */
     @SuppressWarnings("unchecked")
     default public void select(Supplier<By> selector, Object value) {
@@ -67,7 +69,8 @@ public interface FormControl<Where extends Searchable<Where>> {
     /**
      * Read value from an input field.
      *
-     * @param selector
+     * @param selector selector
+     * @return its value.
      */
     @SuppressWarnings("unchecked")
     default public String get(Supplier<By> selector) {
@@ -77,8 +80,8 @@ public interface FormControl<Where extends Searchable<Where>> {
     /**
      * Enter text into an input field.
      *
-     * @param selector
-     * @param value
+     * @param selector selector
+     * @param value    value
      */
     @SuppressWarnings("unchecked")
     default public void put(Supplier<By> selector, Object value) {
@@ -88,9 +91,9 @@ public interface FormControl<Where extends Searchable<Where>> {
     /**
      * Autocomplete for text field and return the first found suggestion match the whole word.
      *
-     * @param selector
-     * @param value
-     * @param locator
+     * @param selector selector
+     * @param value    value
+     * @param locator  locator
      */
     @SuppressWarnings("unchecked")
     default public void autocomplete(Supplier<By> selector, Object value, Locator<Where, Element> locator) {

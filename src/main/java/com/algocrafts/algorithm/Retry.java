@@ -12,9 +12,9 @@ public class Retry {
     /**
      * Construct a retry instance.
      *
-     * @param count
-     * @param interval
-     * @param unit
+     * @param count    count
+     * @param interval interval
+     * @param unit     unit
      */
     public Retry(int count, int interval, TimeUnit unit) {
         this.count = count;

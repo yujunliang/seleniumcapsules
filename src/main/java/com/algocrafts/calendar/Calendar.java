@@ -21,13 +21,13 @@ public class Calendar {
      * Constructor of the Calendar, an active page and locators
      * of the trigger element and other calendar control buttons.
      *
-     * @param page
-     * @param trigger
-     * @param currentYear
-     * @param currentMonth
-     * @param previousMonth
-     * @param nextMonth
-     * @param dayLocator
+     * @param page          page
+     * @param trigger       locator to trigger the display of the calendar
+     * @param currentYear   current year
+     * @param currentMonth  current month
+     * @param previousMonth previous month
+     * @param nextMonth     next month
+     * @param dayLocator    day
      */
     public Calendar(AbstractPage page,
                     Locator<AbstractPage, Void> trigger,
@@ -55,7 +55,7 @@ public class Calendar {
     /**
      * Read the current year from the calendar.
      *
-     * @return
+     * @return current year
      */
     public int currentYear() {
         return currentYear.locate(page);
@@ -64,7 +64,7 @@ public class Calendar {
     /**
      * Read the current month from the calendar.
      *
-     * @return
+     * @return current month
      */
     public int currentMonth() {
         return currentMonth.locate(page);
@@ -87,7 +87,7 @@ public class Calendar {
     /**
      * Pick the day from the calendar.
      *
-     * @param day
+     * @param day day
      */
     public void pickDay(int day) {
         dayLocator.forDay(day).locate(page);
@@ -97,7 +97,7 @@ public class Calendar {
      * Some calendar allows user to select a year from a dropdown(select) or
      * enter a value from an input field. This method is to cater that function.
      *
-     * @param year
+     * @param year year
      */
     public void enterYear(int year) {
         YEAR_FLIPPER.flip(this, year);
@@ -107,7 +107,7 @@ public class Calendar {
      * Some calendar allows user to select a month from a dropdown(select) or
      * enter a value from an input field. This method is to cater that function.
      *
-     * @param month
+     * @param month month
      */
     public void enterMonth(Enum month) {
         MONTH_FLIPPER.flip(this, month.ordinal());

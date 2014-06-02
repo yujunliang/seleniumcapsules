@@ -13,9 +13,9 @@ public class DatePicker {
     private final Calendar calendar;
 
     /**
-     * Constuctor of the DatePicker which taking a Calendar interface.
+     * Constructor of the DatePicker which taking a Calendar interface.
      *
-     * @param calendar
+     * @param calendar calendar
      */
     public DatePicker(Calendar calendar) {
         this.calendar = calendar;
@@ -26,9 +26,9 @@ public class DatePicker {
      * for example,
      * datePicker.pick(Month.JULY, 31, 1999)
      *
-     * @param month, it need to be defined as an enum to make the code cleaner.
-     * @param day,   an integer representing the day appearing on the calendar
-     * @param year,  an ineger representing the year appearing on the calendar
+     * @param month it need to be defined as an enum to make the code cleaner.
+     * @param day   an integer representing the day appearing on the calendar
+     * @param year  an ineger representing the year appearing on the calendar
      */
     public void pick(Enum month, int day, int year) {
         calendar.show();

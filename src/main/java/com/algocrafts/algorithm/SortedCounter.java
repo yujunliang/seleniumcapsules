@@ -20,8 +20,8 @@ public class SortedCounter<T> {
 
     public SortedCounter(Comparator<T> secondComparator) {
         sortedCounter = TreeMultimap.create(
-            (count1, count2) -> count2.compareTo(count1),
-            secondComparator);
+                (count1, count2) -> count2.compareTo(count1),
+                secondComparator);
     }
 
     public Collection<T> collect() {
@@ -39,7 +39,8 @@ public class SortedCounter<T> {
 
     /**
      * Remove the first key and return it.
-     * @return
+     *
+     * @return the removed element
      * @throws java.util.NoSuchElementException if there is no value present
      */
     public T removeFirst() {

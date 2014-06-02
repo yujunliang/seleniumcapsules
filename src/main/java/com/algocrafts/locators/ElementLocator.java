@@ -11,6 +11,6 @@ public class ElementLocator<Where extends Searchable<Where>>
         extends Locators<Where, Element> {
 
     public ElementLocator(Supplier<By> selector) {
-        super((Where where) -> where.untilFound(selector.get()));
+        super((Where where) -> where.untilFound(selector));
     }
 }
