@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.PageFunctions.THE_PAGE_TITLE;
@@ -30,6 +31,7 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
 
     private final Clickable clickable;
 
+
     public AbstractPage(AbstractPage page) {
         this(page.browser, null, null, page.close);
     }
@@ -40,6 +42,10 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
 
     public AbstractPage(AbstractPage page, Clickable clickable, Predicate<AbstractPage> condition) {
         this(page.browser, clickable, condition, page.close);
+    }
+
+    public AbstractPage(Browser<?> browser) {
+        this(browser, null, null, false);
     }
 
     public AbstractPage(Browser<?> browser, Clickable clickable, Predicate<AbstractPage> condition) {
@@ -108,8 +114,8 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
         browser.mouseOver(element);
     }
 
-    public final void dragAndDrop(Element from, Element to) {
-        browser.dragAndDrop(from, to);
+    public final void dragAndDrop(Supplier<By> from, Supplier<By> to) {
+        browser.dragAndDrop(from.get(), to.get());
     }
 
     public String getTitle() {
