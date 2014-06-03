@@ -16,7 +16,7 @@ public class Table<T> {
 
     private final AbstractPage page;
     private final Locator<AbstractPage, Element> locator;
-    private Locator<Stream<Element>, T> mapper;
+    private final Locator<Stream<Element>, T> mapper;
 
     public Table(AbstractPage page,
                  Locator<AbstractPage, Element> locator,
@@ -37,5 +37,5 @@ public class Table<T> {
                 .map(elements(TD))
                 .map(mapper);
     }
-
 }
+
