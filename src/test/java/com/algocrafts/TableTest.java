@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.stream.Stream;
 
 import static com.algocrafts.converters.GetText.TEXT;
+import static com.algocrafts.converters.StringToInt.PARSE_INT;
 import static com.algocrafts.pages.Locators.element;
 import static com.algocrafts.selectors.Id.MAIN;
 import static com.algocrafts.selectors.TagName.TABLE;
@@ -28,9 +29,9 @@ public class TableTest {
         Locator<AbstractPage, Element> locator = Locators.<AbstractPage>element(MAIN).and(element(TABLE));
         Locator<Stream<Element>, Person> mapper = (stream) -> {
             Iterator<String> iterator = stream.map(TEXT).iterator();
-            return new Person(iterator.next(), iterator.next(), iterator.next());
+            return new Person(iterator.next(), iterator.next(), PARSE_INT.locate(iterator.next()));
         };
-        Table<Person> table = new Table<>(page, locator, mapper);
+        Table<Person, AbstractPage> table = new Table<>(page, locator, mapper);
         table.getHeader().forEach(e -> System.out.print(e + "|"));
         System.out.println();
         table.getRows().forEach(
@@ -41,9 +42,9 @@ public class TableTest {
     class Person {
         private final String firstName;
         private final String lastName;
-        private final String points;
+        private final int points;
 
-        Person(String firstName, String lastName, String points) {
+        Person(String firstName, String lastName, int points) {
 
             this.firstName = firstName;
             this.lastName = lastName;

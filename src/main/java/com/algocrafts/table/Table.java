@@ -1,10 +1,10 @@
 package com.algocrafts.table;
 
 
-import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.pages.Element;
 import com.algocrafts.pages.Locators;
 import com.algocrafts.selenium.Locator;
+import com.algocrafts.selenium.Searchable;
 
 import java.util.stream.Stream;
 
@@ -12,27 +12,27 @@ import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.pages.Locators.elements;
 import static com.algocrafts.selectors.TagName.*;
 
-public class Table<T> {
+public class Table<T, Where extends Searchable<Where>> {
 
-    private final AbstractPage page;
-    private final Locator<AbstractPage, Element> locator;
+    private final Where where;
+    private final Locator<Where, Element> locator;
     private final Locator<Stream<Element>, T> mapper;
 
-    public Table(AbstractPage page,
-                 Locator<AbstractPage, Element> locator,
+    public Table(Where where,
+                 Locator<Where, Element> locator,
                  Locator<Stream<Element>, T> mapper) {
-        this.page = page;
+        this.where = where;
         this.locator = locator;
         this.mapper = mapper;
     }
 
     public Stream<String> getHeader() {
-        return locator.and(elements(TH)).locate(page).map(TEXT);
+        return locator.and(elements(TH)).locate(where).map(TEXT);
     }
 
     public Stream<T> getRows() {
         return locator.and(elements(TR))
-                .locate(page)
+                .locate(where)
                 .filter(e -> Locators.<Element>tryElement(TD).locate(e) != null)
                 .map(elements(TD))
                 .map(mapper);
