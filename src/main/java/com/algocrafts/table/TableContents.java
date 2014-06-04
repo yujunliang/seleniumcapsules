@@ -1,0 +1,40 @@
+package com.algocrafts.table;
+
+
+import java.util.Set;
+
+public class TableContents<T> {
+
+    private final Set<String> headers;
+    private final Set<T> rows;
+    private SetDiff<?> diff;
+
+    public TableContents(Set<String> headers, Set<T> rows) {
+        this.headers = headers;
+        this.rows = rows;
+    }
+
+    @Override
+    public boolean equals(Object a) {
+        if (a instanceof TableContents) {
+            TableContents<T> actual = (TableContents) a;
+
+            if (!headers.equals(actual.headers)) {
+                diff = new SetDiff<>("headers are different,", headers, actual.headers);
+                return false;
+            } else {
+                if (!this.rows.equals(actual.rows)) {
+                    diff = new SetDiff<>("rows are different,", this.rows, actual.rows);
+                    return false;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return diff.toString();
+    }
+}

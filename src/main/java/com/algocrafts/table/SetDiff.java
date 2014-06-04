@@ -1,0 +1,35 @@
+package com.algocrafts.table;
+
+
+import java.util.Set;
+
+import static com.google.common.collect.Sets.newHashSet;
+
+public class SetDiff<T> {
+
+    private String diff;
+    private final Set<T> expected;
+    private final Set<T> actual;
+
+    public SetDiff(String info, Set<T> expected, Set<T> actual) {
+        this.diff = info;
+        this.expected = expected;
+        this.actual = actual;
+    }
+
+    @Override
+    public String toString() {
+        Set<T> onlyInExpected = newHashSet(expected);
+        onlyInExpected.removeAll(actual);
+        actual.removeAll(expected);
+
+        if (actual.size() > 0) {
+            diff += "only in actual, \n" + actual + "\n";
+        }
+        if (onlyInExpected.size() > 0) {
+            diff += "only in expected, \n" + onlyInExpected + "\n";
+        }
+        return diff;
+    }
+}
+

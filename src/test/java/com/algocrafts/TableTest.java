@@ -8,6 +8,10 @@ import com.algocrafts.pages.Locators;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.table.Table;
+import com.algocrafts.table.TableContents;
+import com.algocrafts.table.TableSpecification;
+import com.google.common.collect.Sets;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Iterator;
@@ -18,8 +22,16 @@ import static com.algocrafts.converters.StringToInt.PARSE_INT;
 import static com.algocrafts.pages.Locators.element;
 import static com.algocrafts.selectors.Id.MAIN;
 import static com.algocrafts.selectors.TagName.TABLE;
+import static com.google.common.collect.Sets.newHashSet;
+import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 
 public class TableTest {
+
+    private TableContents<Person> expected = new TableContents<>(
+            newHashSet("Firstname", "Lastname", "Points"),
+            Sets.<Person>newHashSet(new Person("Jill", "Smith", 50))
+    );
 
     @Test
     public void testReadFromTable() {
@@ -32,11 +44,12 @@ public class TableTest {
             return new Person(iterator.next(), iterator.next(), PARSE_INT.locate(iterator.next()));
         };
         Table<Person, AbstractPage> table = new Table<>(page, locator, mapper);
-        table.getHeader().forEach(e -> System.out.print(e + "|"));
-        System.out.println();
-        table.getRows().forEach(
-                System.out::println
-        );
+
+        assertTrue(expected, expected.equals(table.getContents()));
+    }
+
+    private void assertTrue(Object diff, boolean pass) {
+        Assert.assertTrue(diff.toString(), pass);
     }
 
     class Person {
@@ -45,7 +58,6 @@ public class TableTest {
         private final int points;
 
         Person(String firstName, String lastName, int points) {
-
             this.firstName = firstName;
             this.lastName = lastName;
             this.points = points;
@@ -54,6 +66,16 @@ public class TableTest {
         @Override
         public String toString() {
             return firstName + "|" + lastName + "|" + points;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            return reflectionEquals(this, other);
+        }
+
+        @Override
+        public int hashCode() {
+            return reflectionHashCode(this);
         }
     }
 
