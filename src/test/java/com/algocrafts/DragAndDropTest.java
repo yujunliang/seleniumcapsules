@@ -24,7 +24,6 @@ public class DragAndDropTest {
     @Test
     public void testDragAndDrop() {
         for (Browser browser : EnumSet.of(Browsers.FIREFOX, Browsers.CHROME, Browsers.SAFARI)) {
-            browser = Browsers.FIREFOX;
             browser.get("http://www.w3schools.com/html/html5_draganddrop.asp");
             browser.dragAndDrop(id("drag1"), id("div2"));
         }

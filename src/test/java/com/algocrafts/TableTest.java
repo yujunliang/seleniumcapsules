@@ -29,10 +29,12 @@ public class TableTest {
 
     private TableContents<Person> expected = new TableContents<>(
             newHashSet("Firstname", "Lastname", "Points"),
-            Sets.<Person>newHashSet(new Person("Jill","Smith",50)
-                    , new Person("Adam","Johnson",67)
-                    , new Person("John","Doe",80)
-                    , new Person("Eve","Jackson",94))
+            Sets.<Person>newHashSet(
+                    new Person("Jill", "Smith", 50)
+                    , new Person("Adam", "Johnson", 67)
+                    , new Person("John", "Doe", 80)
+                    , new Person("Eve", "Jackson", 94)
+            )
     );
 
     @Test

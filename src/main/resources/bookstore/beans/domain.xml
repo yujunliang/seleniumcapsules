@@ -37,7 +37,6 @@
             <list>
                 <value>Credit card number does not match selected card type</value>
                 <value>You don't seem to have supplied your billing Phone.</value>
-                <value>You don't seem to have supplied your billing Phone.</value>
             </list>
         </constructor-arg>
     </bean>

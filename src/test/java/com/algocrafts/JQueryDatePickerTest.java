@@ -1,15 +1,12 @@
 package com.algocrafts;
 
 import com.algocrafts.clickables.Url;
-import com.algocrafts.pages.Element;
 import com.algocrafts.selenium.Browser;
 import com.jquery.JQueryDatePickerPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.By;
-import org.openqa.selenium.interactions.Actions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
@@ -17,9 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.EnumSet;
 
-import static com.algocrafts.pages.Browsers.CHROME;
-import static com.algocrafts.pages.Browsers.FIREFOX;
-import static com.algocrafts.pages.Browsers.SAFARI;
+import static com.algocrafts.pages.Browsers.*;
 import static java.time.Month.APRIL;
 import static org.junit.Assert.assertEquals;
 
