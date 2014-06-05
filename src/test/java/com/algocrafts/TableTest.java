@@ -9,7 +9,6 @@ import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.table.Table;
 import com.algocrafts.table.TableContents;
-import com.algocrafts.table.TableSpecification;
 import com.google.common.collect.Sets;
 import org.junit.Assert;
 import org.junit.Test;
@@ -30,12 +29,15 @@ public class TableTest {
 
     private TableContents<Person> expected = new TableContents<>(
             newHashSet("Firstname", "Lastname", "Points"),
-            Sets.<Person>newHashSet(new Person("Jill", "Smith", 50))
+            Sets.<Person>newHashSet(new Person("Jill","Smith",50)
+                    , new Person("Adam","Johnson",67)
+                    , new Person("John","Doe",80)
+                    , new Person("Eve","Jackson",94))
     );
 
     @Test
     public void testReadFromTable() {
-        Browser browser = Browsers.FIREFOX;
+        Browser browser = Browsers.CHROME;
         browser.get("http://www.w3schools.com/html/html_tables.asp");
         AbstractPage page = new AbstractPage(browser);
         Locator<AbstractPage, Element> locator = Locators.<AbstractPage>element(MAIN).and(element(TABLE));
@@ -65,7 +67,7 @@ public class TableTest {
 
         @Override
         public String toString() {
-            return firstName + "|" + lastName + "|" + points;
+            return "new Person(\"" + firstName + "\",\"" + lastName + "\"," + points + ")\n";
         }
 
         @Override

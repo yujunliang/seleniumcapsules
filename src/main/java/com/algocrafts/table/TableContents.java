@@ -35,6 +35,10 @@ public class TableContents<T> {
 
     @Override
     public String toString() {
-        return diff.toString();
+        if (diff != null) {
+            return diff.toString();
+        } else {
+            return null;
+        }
     }
 }

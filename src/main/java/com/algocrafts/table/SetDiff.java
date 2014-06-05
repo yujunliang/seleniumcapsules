@@ -19,6 +19,9 @@ public class SetDiff<T> {
 
     @Override
     public String toString() {
+        if (actual.size() > 0) {
+            diff += "\nactual results,\n" + actual + "\n";
+        }
         Set<T> onlyInExpected = newHashSet(expected);
         onlyInExpected.removeAll(actual);
         actual.removeAll(expected);
