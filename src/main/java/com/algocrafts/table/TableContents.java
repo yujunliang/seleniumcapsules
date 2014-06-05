@@ -15,9 +15,9 @@ public class TableContents<T> {
     }
 
     @Override
-    public boolean equals(Object a) {
-        if (a instanceof TableContents) {
-            TableContents<T> actual = (TableContents) a;
+    public boolean equals(Object other) {
+        if (other instanceof TableContents) {
+            TableContents<T> actual = (TableContents) other;
 
             if (!headers.equals(actual.headers)) {
                 diff = new SetDiff<>("headers are different,", headers, actual.headers);
@@ -29,8 +29,10 @@ public class TableContents<T> {
                 }
                 return true;
             }
+        } else {
+            diff = new SetDiff<>("not a TableContents,", headers, null);
+            return false;
         }
-        return false;
     }
 
     @Override
