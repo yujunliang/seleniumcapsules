@@ -1,6 +1,8 @@
 package com.algocrafts.table;
 
 
+import com.algocrafts.domain.SetDiff;
+
 import java.util.Set;
 
 public class TableContents<T> {

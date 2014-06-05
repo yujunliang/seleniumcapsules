@@ -1,4 +1,4 @@
-package com.algocrafts.table;
+package com.algocrafts.domain;
 
 
 import java.util.Set;
