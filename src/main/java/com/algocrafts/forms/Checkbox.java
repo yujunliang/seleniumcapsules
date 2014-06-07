@@ -1,7 +1,6 @@
 package com.algocrafts.forms;
 
 
-import com.algocrafts.selenium.Clickable;
 import com.algocrafts.pages.Element;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
@@ -10,11 +9,10 @@ import org.openqa.selenium.By;
 import java.util.function.Supplier;
 
 import static com.algocrafts.conditions.StringEquals.TRUE;
-import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
 import static com.algocrafts.converters.GetText.CHECKED;
 import static com.algocrafts.pages.Locators.element;
 
-public class Checkbox<Where extends Searchable<Where>> implements Clickable {
+public class Checkbox<Where extends Searchable<Where>>  {
 
     private final Where where;
     private final Locator<Where, Element> locator;
@@ -32,7 +30,7 @@ public class Checkbox<Where extends Searchable<Where>> implements Clickable {
         }
     }
 
-    public void check() {
+    private void check() {
         Element apply = locator.locate(where);
         if (apply != null) {
             if (!apply.isSelected()) {
@@ -41,7 +39,7 @@ public class Checkbox<Where extends Searchable<Where>> implements Clickable {
         }
     }
 
-    public void uncheck() {
+    private void uncheck() {
         Element apply = locator.locate(where);
         if (apply != null) {
             if (apply.isSelected()) {
@@ -52,17 +50,5 @@ public class Checkbox<Where extends Searchable<Where>> implements Clickable {
 
     public boolean isChecked() {
         return locator.and(CHECKED).and(TRUE).test(where);
-    }
-
-    public boolean isNotChecked() {
-        return !isChecked();
-    }
-
-    /**
-     * This method toggle the value of the checkbox
-     */
-    @Override
-    public void click() {
-        locator.and(CLICK_IF_NOT_NULL).locate(where);
     }
 }

@@ -3,7 +3,6 @@ package com.algocrafts.forms;
 
 import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.converters.FirstMatch;
-import com.algocrafts.converters.GetText;
 import com.algocrafts.pages.Element;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
@@ -18,7 +17,6 @@ import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
 import static com.algocrafts.converters.GetText.CHECKED;
 import static com.algocrafts.converters.GetText.VALUE;
 import static com.algocrafts.pages.Locators.elements;
-import static java.util.function.Predicate.isEqual;
 
 public class RadioButton<Where extends Searchable<Where>> {
 
@@ -52,7 +50,8 @@ public class RadioButton<Where extends Searchable<Where>> {
     public String get() {
         return radioButtonGroup
                 .and(new FirstMatch<>(DISPLAYED.and(CHECKED.and(TRUE))))
-                .and(GetText.VALUE)
+                .and(VALUE)
                 .locate(where);
     }
 }
+

@@ -12,6 +12,8 @@ public class ElementsLocator<Where extends Searchable<Where>>
         extends Locators<Where, Stream<Element>> {
 
     public ElementsLocator(Supplier<By> selector) {
-        super((Where where) -> where.findElements(() -> selector.get()));
+        super((Where where)
+                        -> where.findElements(selector)
+        );
     }
 }

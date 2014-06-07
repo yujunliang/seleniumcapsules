@@ -10,7 +10,8 @@ public enum MailingOptions {
     Keep_Me("Keep me on the lists I'm already on.");
 
     private final String string;
-    MailingOptions(String string) {
+
+    private MailingOptions(String string) {
         this.string = string;
     }
 
@@ -19,3 +20,4 @@ public enum MailingOptions {
         return string;
     }
 }
+

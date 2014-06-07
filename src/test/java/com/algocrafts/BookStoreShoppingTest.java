@@ -1,18 +1,17 @@
 package com.algocrafts;
 
 
+import com.algocrafts.selectors.Name;
 import com.bookstore.BookDetailsPage;
 import com.bookstore.BookListPage;
 import com.bookstore.BookStoreHomePage;
 import com.bookstore.ShoppingCartPage;
-import com.bookstore.domain.Address;
-import com.bookstore.domain.CreditCard;
-import com.bookstore.domain.ErrorMessages;
-import com.bookstore.domain.OtherInformation;
+import com.bookstore.domain.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -81,6 +80,8 @@ public class BookStoreShoppingTest {
         cartPage.setCreditCard(creditCard);
         cartPage.setOtherInformation(otherInformation);
         cartPage.continues();
+
+        cartPage.radio(() -> By.name("customFieldDS.customfield_ROW0_value"), "No promotional mailers. I will still receive updates on my MEAPs and other books.");
 
         assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
     }
