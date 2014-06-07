@@ -12,42 +12,37 @@ import static com.algocrafts.conditions.StringEquals.TRUE;
 import static com.algocrafts.converters.GetText.CHECKED;
 import static com.algocrafts.pages.Locators.element;
 
-public class Checkbox<Where extends Searchable<Where>>  {
+public class Checkbox<Where extends Searchable<Where>> {
 
     private final Where where;
     private final Locator<Where, Element> locator;
 
+    /**
+     * Constructor of the checkbox.
+     *
+     * @param where    the place the checkbox can be found
+     * @param selector the selector that leads to the checkbox
+     */
     Checkbox(final Where where, Supplier<By> selector) {
         this.where = where;
         this.locator = element(selector);
     }
 
+    /**
+     * Change the checkbox according to the value parameter
+     *
+     * @param value true or false
+     */
     public void setValue(boolean value) {
-        if (value) {
-            check();
-        } else {
-            uncheck();
+        Element checkbox = locator.locate(where);
+        if (checkbox != null && checkbox.isSelected() != value) {
+            checkbox.click();
         }
     }
 
-    private void check() {
-        Element apply = locator.locate(where);
-        if (apply != null) {
-            if (!apply.isSelected()) {
-                apply.click();
-            }
-        }
-    }
-
-    private void uncheck() {
-        Element apply = locator.locate(where);
-        if (apply != null) {
-            if (apply.isSelected()) {
-                apply.click();
-            }
-        }
-    }
-
+    /**
+     * @return whether the checkbox is checked or not
+     */
     public boolean isChecked() {
         return locator.and(CHECKED).and(TRUE).test(where);
     }
