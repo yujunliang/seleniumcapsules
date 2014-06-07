@@ -15,6 +15,9 @@ import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 
 public enum CalendarIntegerLocator implements Locator<AbstractPage, Integer> {
 
+    /**
+     * Locate the integer value representing current year on a calendar
+     */
     CURRENT_YEAR(
             Locators.<AbstractPage>element(UI_DATEPICKER_DIV)
                     .and(element(UI_DATEPICKER_HEADER))
@@ -22,6 +25,10 @@ public enum CalendarIntegerLocator implements Locator<AbstractPage, Integer> {
                     .and(TEXT)
                     .and(PARSE_INT)
     ),
+
+    /**
+     * Locate the integer value representing current year on a calendar
+     */
     CURRENT_MONTH(
             Locators.<AbstractPage>element(UI_DATEPICKER_DIV)
                     .and(element(UI_DATEPICKER_MONTH))
@@ -30,7 +37,7 @@ public enum CalendarIntegerLocator implements Locator<AbstractPage, Integer> {
                     .and(ORDINAL)
     );
 
-    private Locator<AbstractPage, Integer> locator;
+    private final Locator<AbstractPage, Integer> locator;
 
     private CalendarIntegerLocator(Locator<AbstractPage, Integer> locator) {
         this.locator = locator;

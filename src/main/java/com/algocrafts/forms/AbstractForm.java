@@ -9,6 +9,11 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
+/**
+ * This class is need when there are multiple forms on the same page and there are fields with the same
+ * name appears in multiple forms. To locate the particular element using name, we need to use this AbstractForm
+ * to encapsulate each form.
+ */
 public class AbstractForm implements Searchable<Element>, FormControl<Element> {
 
     private final AbstractPage page;

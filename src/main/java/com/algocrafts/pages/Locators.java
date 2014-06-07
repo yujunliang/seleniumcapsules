@@ -7,7 +7,6 @@ import com.algocrafts.locators.SelectLocator;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.Select;
 
 import java.util.function.Supplier;
 import java.util.stream.Stream;

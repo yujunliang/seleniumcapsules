@@ -2,7 +2,6 @@ package com.algocrafts;
 
 
 import com.algocrafts.pages.AbstractPage;
-import com.orgsync.AllMenuLocatorForOrgSync;
 import com.orgsync.OrgSyncHomePage;
 import org.junit.After;
 import org.junit.Before;
@@ -24,8 +23,6 @@ public class HomePageTest {
     @Autowired
     private OrgSyncHomePage homePage;
 
-    @Autowired
-    private AllMenuLocatorForOrgSync allMenuLocatorForOrgSync;
 
     @Before
     public void setup() {
