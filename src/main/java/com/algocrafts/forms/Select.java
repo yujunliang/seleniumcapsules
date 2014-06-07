@@ -1,28 +1,27 @@
 package com.algocrafts.forms;
 
+import com.algocrafts.locators.SelectLocator;
 import com.algocrafts.pages.Element;
-import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
-import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 
 import java.util.stream.Stream;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class Selection<Where extends Searchable<Where>> {
+public class Select<Where extends Searchable<Where>> {
 
-    private static final Logger log = getLogger(Selection.class);
+    private static final Logger log = getLogger(Select.class);
 
     private final Where where;
-    private final Locator<Where, Select> locator;
+    private final SelectLocator<Where> locator;
 
     /**
      * Constructor of the Select, It is a wrapper for the Select from Selenium UI.
      * @param where
      * @param locator
      */
-    Selection(Where where, Locator<Where, Select> locator) {
+    public Select(Where where, SelectLocator<Where> locator) {
         this.where = where;
         this.locator = locator;
     }

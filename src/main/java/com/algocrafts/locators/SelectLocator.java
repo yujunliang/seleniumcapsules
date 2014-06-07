@@ -25,7 +25,7 @@ public class SelectLocator<Where extends Searchable<Where>>
         super((Where where) -> {
             final Element element = where.untilFound(selector);
             try {
-                element.until(new ElementsLocator<Element>(OPTION).and(new HasElements<>()));
+                element.until(Locators.<Element>elements(OPTION).and(new HasElements<>()));
                 return new Select(element);
             } catch (NoSuchElementException e) {
                 element.click();

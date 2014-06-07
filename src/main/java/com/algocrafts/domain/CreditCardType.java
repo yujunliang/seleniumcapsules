@@ -19,5 +19,4 @@ public enum CreditCardType {
     public static CreditCardType fromString(String string) {
         return valueOf(RESTORE_UNDERSCORE.locate(string));
     }
-
 }

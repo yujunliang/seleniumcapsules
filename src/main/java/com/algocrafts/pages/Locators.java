@@ -27,8 +27,8 @@ public class Locators<Where extends Searchable<Where>, What>
         return new ElementTryLocator<>(selector);
     }
 
-    public static <Where extends Searchable<Where>> Locators<Where, Select> select(Supplier<By> selector) {
-        return new SelectLocator<>(selector);
+    public static SelectLocator select(Supplier<By> selector) {
+        return new SelectLocator(selector);
     }
 
     private final Locator<Where, What> locator;
