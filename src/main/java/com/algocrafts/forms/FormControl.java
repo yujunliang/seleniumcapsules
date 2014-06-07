@@ -40,7 +40,7 @@ public interface FormControl<Where extends Searchable<Where>> {
      * @return the value of selected radio.
      */
     @SuppressWarnings("unchecked")
-    default public String radio(Supplier<By> selector) {
+    default public String getRadio(Supplier<By> selector) {
         return new RadioButton<>((Where) this, selector).get();
     }
 
@@ -51,7 +51,7 @@ public interface FormControl<Where extends Searchable<Where>> {
      * @param option   option
      */
     @SuppressWarnings("unchecked")
-    default public void radio(Supplier<By> selector, Object option) {
+    default public void setRadio(Supplier<By> selector, Object option) {
         new RadioButton<>((Where) this, selector).setValue(option);
     }
 

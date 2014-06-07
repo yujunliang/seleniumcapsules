@@ -22,7 +22,7 @@ public class OtherInformationForm extends AbstractPage {
         put(COMMENTS________, info.comments);
         check(CONFIRM_EMAIL_, info.confirmEmail);
         check(RATINGS_______, info.askRating);
-        radio(MAILING_OPTION, info.mailingOptions);
+        setRadio(MAILING_OPTION, info.mailingOptions);
     }
 
     public OtherInformation getOtherInformation() {

@@ -3,9 +3,7 @@ package com.algocrafts.selenium;
 import com.algocrafts.objectcache.SelfPopulatingCache;
 import com.algocrafts.pages.Browsers;
 import com.algocrafts.pages.Element;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
@@ -21,7 +19,8 @@ import java.util.Set;
 import static org.apache.commons.io.FileUtils.copyFile;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebDriver, HasInputDevices {
+public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>,
+        WebDriver, HasInputDevices, JavascriptExecutor, HasCapabilities {
 
     WebDriverSupplier<T> getSupplier();
 
@@ -166,6 +165,24 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>, WebD
     default public Mouse getMouse() {
         HasInputDevices t = (HasInputDevices) get();
         return t.getMouse();
+    }
+
+    @Override
+    default public Capabilities getCapabilities() {
+        HasCapabilities hasCapabilities = (HasCapabilities) get();
+        return hasCapabilities.getCapabilities();
+    }
+
+    @Override
+    default public Object executeScript(String script, Object... args) {
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) get();
+        return javascriptExecutor.executeScript(script, args);
+    }
+
+    @Override
+    default public Object executeAsyncScript(String script, Object... args) {
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) get();
+        return javascriptExecutor.executeAsyncScript(script, args);
     }
 
 }
