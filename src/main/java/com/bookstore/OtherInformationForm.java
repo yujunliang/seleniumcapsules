@@ -6,7 +6,10 @@ import com.bookstore.domain.MailingOptions;
 import com.bookstore.domain.OtherInformation;
 
 import static com.algocrafts.selectors.Name.MAILING_OPTION;
-import static com.bookstore.BookStoreId.*;
+import static com.bookstore.BookStoreId.BILLING_EMAIL___;
+import static com.bookstore.BookStoreId.COMMENTS________;
+import static com.bookstore.BookStoreName.CONFIRM_EMAIL_;
+import static com.bookstore.BookStoreName.RATINGS_______;
 
 public class OtherInformationForm extends AbstractPage {
 
@@ -17,8 +20,8 @@ public class OtherInformationForm extends AbstractPage {
     public void setOtherInformation(OtherInformation info) {
         put(BILLING_EMAIL___, info.emailAddress);
         put(COMMENTS________, info.comments);
-        check(RATINGS_______, info.askRating);
         check(CONFIRM_EMAIL_, info.confirmEmail);
+        check(RATINGS_______, info.askRating);
         radio(MAILING_OPTION, info.mailingOptions);
     }
 

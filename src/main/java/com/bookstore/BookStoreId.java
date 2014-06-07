@@ -24,8 +24,6 @@ public enum BookStoreId implements Supplier<By> {
     CARD_EXP_MONTH____("card-exp-month"),
     CARD_EXP_YEAR_____("card-exp-year"),
 
-    RATINGS_______("ratings"),
-    CONFIRM_EMAIL_("confirm-email"),
     COMMENTS________("comments"),
     ERROR_MESSAGES("ys_errorMessages"),
 
