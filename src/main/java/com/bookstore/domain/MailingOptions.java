@@ -2,6 +2,7 @@ package com.bookstore.domain;
 
 
 import java.util.Map;
+import java.util.function.Function;
 
 import static com.google.common.collect.Maps.newHashMap;
 import static java.util.stream.Stream.of;
@@ -13,6 +14,8 @@ public enum MailingOptions {
     Both("Both"),
     No_Promotional_Mailers("No promotional mailers. I will still receive updates on my MEAPs and other books."),
     Keep_Me("Keep me on the lists I'm already on.");
+
+    public static final Function<String, MailingOptions> CONVERTER = (s) -> from(s);
 
     private final String string;
 

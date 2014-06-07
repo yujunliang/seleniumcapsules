@@ -20,5 +20,8 @@ public class RadioTest {
 
         assertEquals(No_Promotional_Mailers, fromString(page.getRadio(MAILING_OPTION)));
         assertEquals(No_Promotional_Mailers, from(page.getRadio(MAILING_OPTION)));
+        assertEquals(No_Promotional_Mailers, page.getRadio(MAILING_OPTION, (s) -> from(s)));
+        assertEquals(No_Promotional_Mailers, page.getRadio(MAILING_OPTION, CONVERTER));
+
     }
 }

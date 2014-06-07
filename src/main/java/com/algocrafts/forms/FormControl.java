@@ -6,6 +6,7 @@ import com.algocrafts.pages.Locators;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 
@@ -42,6 +43,17 @@ public interface FormControl<Where extends Searchable<Where>> {
     @SuppressWarnings("unchecked")
     default public String getRadio(Supplier<By> selector) {
         return new RadioButton<>((Where) this, selector).get();
+    }
+
+    /**
+     * Read the value of the radio by given option.
+     *
+     * @param selector selector
+     * @return the value of selected radio.
+     */
+    @SuppressWarnings("unchecked")
+    default public <T extends Enum> T getRadio(Supplier<By> selector, Function<String, T> converter) {
+        return converter.apply(getRadio(selector));
     }
 
     /**
