@@ -2,10 +2,10 @@ package com.algocrafts.conditions;
 
 import java.util.function.Predicate;
 
-public class IsStringEqual implements Predicate<String> {
+public class Equals implements Predicate<String> {
     private final String string;
 
-    public IsStringEqual(Object o) {
+    public Equals(Object o) {
         this.string = o.toString();
     }
 

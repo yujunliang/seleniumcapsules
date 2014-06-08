@@ -7,7 +7,7 @@ import com.algocrafts.selenium.Element;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Locator;
 
-import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
+import static com.algocrafts.converters.ElementFunctions.CLICK;
 import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.ClassName.*;
 import static com.algocrafts.selectors.Id.DATE_PICKER;
@@ -39,6 +39,6 @@ public enum CalendarVoidLocator implements Locator<AbstractPage, Void> {
 
     @Override
     public Void locate(AbstractPage page) {
-        return locator.and(CLICK_IF_NOT_NULL).locate(page);
+        return locator.and(CLICK).locate(page);
     }
 }

@@ -1,6 +1,6 @@
 package com.algocrafts.pages;
 
-import com.algocrafts.conditions.IsStringEqual;
+import com.algocrafts.conditions.Equals;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Clickable;
 
@@ -15,7 +15,7 @@ public class Page extends AbstractPage {
     }
 
     public Page(Page page, Clickable clickable, String title) {
-        this(page, clickable, THE_PAGE_TITLE.and(new IsStringEqual(title)));
+        this(page, clickable, THE_PAGE_TITLE.and(new Equals(title)));
     }
 
     public Page(Page page, Clickable clickable, Predicate<AbstractPage> condition) {

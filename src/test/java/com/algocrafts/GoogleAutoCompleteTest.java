@@ -1,6 +1,6 @@
 package com.algocrafts;
 
-import com.algocrafts.conditions.IsStringEqual;
+import com.algocrafts.conditions.Equals;
 import com.algocrafts.converters.FirstMatch;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.AbstractPage;
@@ -80,7 +80,7 @@ public class GoogleAutoCompleteTest {
         googlePage.autocomplete(Q, "oracle",
                 Locators.<AbstractPage>tryElement(() -> className("gssb_c"))
                         .and(elements(SPAN))
-                        .and(new FirstMatch<>(TEXT.and(new IsStringEqual("oracle")))));
+                        .and(new FirstMatch<>(TEXT.and(new Equals("oracle")))));
     }
 
     @After

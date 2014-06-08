@@ -5,7 +5,7 @@ import com.algocrafts.selenium.Locator;
 
 public enum ElementFunctions implements Locator<Element, Void> {
 
-    CLICK_IF_NOT_NULL {
+    CLICK {
         @Override
         public Void locate(Element input) {
             if (input != null) {

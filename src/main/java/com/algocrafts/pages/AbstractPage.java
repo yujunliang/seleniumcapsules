@@ -1,6 +1,6 @@
 package com.algocrafts.pages;
 
-import com.algocrafts.conditions.IsStringEqual;
+import com.algocrafts.conditions.Equals;
 import com.algocrafts.forms.FormControl;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.*;
@@ -35,7 +35,7 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
     }
 
     public AbstractPage(AbstractPage page, Clickable clickable, String title) {
-        this(page.browser, clickable, THE_PAGE_TITLE.and(new IsStringEqual(title)), page.close);
+        this(page.browser, clickable, THE_PAGE_TITLE.and(new Equals(title)), page.close);
     }
 
     public AbstractPage(AbstractPage page, Clickable clickable, Predicate<AbstractPage> condition) {

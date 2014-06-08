@@ -2,7 +2,7 @@ package com.algocrafts.forms;
 
 
 import com.algocrafts.algorithm.Retry;
-import com.algocrafts.conditions.IsStringEqual;
+import com.algocrafts.conditions.Equals;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.Locator;
@@ -75,7 +75,7 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
                 Element element = locate();
                 element.clear();
                 element.sendKeys(string);
-                if (VALUE.and(new IsStringEqual(string)).test(element)) {
+                if (VALUE.and(new Equals(string)).test(element)) {
                     retry.off();
                 }
                 return null;
@@ -112,5 +112,4 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
             suggestion.click();
         }
     }
-
 }
