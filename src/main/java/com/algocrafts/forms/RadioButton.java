@@ -4,7 +4,7 @@ package com.algocrafts.forms;
 import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.converters.FirstMatch;
 import com.algocrafts.pages.Element;
-import com.algocrafts.selenium.Locator;
+import com.algocrafts.pages.Locating;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 
@@ -18,10 +18,7 @@ import static com.algocrafts.converters.GetText.CHECKED;
 import static com.algocrafts.converters.GetText.VALUE;
 import static com.algocrafts.pages.Locators.elements;
 
-public class RadioButton<Where extends Searchable<Where>> {
-
-    private final Where where;
-    private final Locator<Where, Stream<Element>> radioButtonGroup;
+public class RadioButton<Where extends Searchable<Where>> extends Locating<Where, Stream<Element>> {
 
     /**
      * Constructor this radio button.
@@ -30,28 +27,25 @@ public class RadioButton<Where extends Searchable<Where>> {
      * @param selector selector
      */
     public RadioButton(Where where, Supplier<By> selector) {
-        this.where = where;
-        this.radioButtonGroup = elements(selector);
+        super(where, elements(selector));
     }
 
     /**
      * @param value value to set
      */
     public void setValue(Object value) {
-        radioButtonGroup
-                .and(new FirstMatch<>(DISPLAYED.and(VALUE.and(new IsStringEqual(value)))))
+        new FirstMatch<>(DISPLAYED.and(VALUE.and(new IsStringEqual(value))))
                 .and(CLICK_IF_NOT_NULL)
-                .locate(where);
+                .locate(get());
     }
 
     /**
      * @return the value of the select radio
      */
-    public String get() {
-        return radioButtonGroup
-                .and(new FirstMatch<>(DISPLAYED.and(CHECKED.and(TRUE))))
+    public String getValue() {
+        return new FirstMatch<>(DISPLAYED.and(CHECKED.and(TRUE)))
                 .and(VALUE)
-                .locate(where);
+                .locate(get());
     }
 }
 

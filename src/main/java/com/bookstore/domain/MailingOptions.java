@@ -15,8 +15,6 @@ public enum MailingOptions {
     No_Promotional_Mailers("No promotional mailers. I will still receive updates on my MEAPs and other books."),
     Keep_Me("Keep me on the lists I'm already on.");
 
-    public static final Function<String, MailingOptions> CONVERTER = (s) -> from(s);
-
     private final String string;
 
     private MailingOptions(String string) {
@@ -29,10 +27,22 @@ public enum MailingOptions {
         return string;
     }
 
+    /**
+     * This method filtering the enum constants using the string and return the first one.
+     *
+     * @param string the string value
+     * @return enum with the string value
+     */
     public static MailingOptions fromString(String string) {
         return of(values()).filter((o) -> string.equals(o.string)).findFirst().get();
     }
 
+    /**
+     * This method look up the enum constant in the map.
+     *
+     * @param string
+     * @return
+     */
     public static MailingOptions from(String string) {
         return MapHolder.map.get(string);
     }

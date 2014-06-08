@@ -45,7 +45,7 @@ public interface ExplicitWait<Where> {
      */
     default public <What> What until(int duration, TimeUnit timeUnit, Locator<Where, What> locator) throws NoSuchElementException {
         try {
-            return getFluentWait(duration, timeUnit).until((Where where) -> locator.locate(where));
+            return getFluentWait(duration, timeUnit).until(locator::locate);
         } catch (TimeoutException e) {
             save();
             throw new NoSuchElementException("Nothing found by " + locator, e);
@@ -60,7 +60,7 @@ public interface ExplicitWait<Where> {
      */
     default public void until(int duration, TimeUnit timeUnit, Predicate<Where> predicate) throws TimeoutException {
         try {
-            getFluentWait(duration, timeUnit).until((Where where) -> predicate.test(where));
+            getFluentWait(duration, timeUnit).until(predicate::test);
         } catch (TimeoutException e) {
             save();
             throw e;

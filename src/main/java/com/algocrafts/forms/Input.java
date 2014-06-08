@@ -3,6 +3,7 @@ package com.algocrafts.forms;
 
 import com.algocrafts.algorithm.Retry;
 import com.algocrafts.pages.Element;
+import com.algocrafts.pages.Locating;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.pages.Locators;
 import com.algocrafts.selenium.Searchable;
@@ -15,12 +16,9 @@ import static com.algocrafts.converters.GetText.VALUE;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class Input<Where extends Searchable<Where>> implements Supplier<String> {
+public class Input<Where extends Searchable<Where>> extends Locating<Where, Element> {
 
     public static final Logger log = getLogger(Input.class);
-
-    private final Where where;
-    private final Supplier<By> selector;
 
     /**
      * Constructor of the input field.
@@ -28,9 +26,8 @@ public class Input<Where extends Searchable<Where>> implements Supplier<String> 
      * @param where    where
      * @param selector selector
      */
-    Input(Where where, Supplier<By> selector) {
-        this.where = where;
-        this.selector = selector;
+    public Input(Where where, Supplier<By> selector) {
+       super(where, Locators.<Where>tryElement(selector));
     }
 
     /**
@@ -42,17 +39,16 @@ public class Input<Where extends Searchable<Where>> implements Supplier<String> 
      *
      * @return the value of the input
      */
-    public String get() {
-        log.info("reading input[{}]]", selector);
+    public String getValue() {
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
             retry.attempt(() -> {
                 log.info("{}", retry);
-                Element element = Locators.<Where>tryElement(selector).locate(where);
+                Element element = get();
                 return VALUE.locate(element);
             });
         } catch (Exception e) {
-            log.info("Failed to read text from {}", selector);
+            log.info("Failed to read text", e);
         }
         return null;
     }
@@ -71,12 +67,11 @@ public class Input<Where extends Searchable<Where>> implements Supplier<String> 
 
     public void put(final Object value) {
         String string = value.toString();
-        log.info("setting input[{}]=[{}]", selector, string);
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
             retry.attempt(() -> {
                 log.info("{}", retry);
-                Element element = Locators.<Where>tryElement(selector).locate(where);
+                Element element = get();
                 element.clear();
                 element.sendKeys(string);
                 if (VALUE.locate(element).equals(string)) {
@@ -86,7 +81,7 @@ public class Input<Where extends Searchable<Where>> implements Supplier<String> 
 
             });
         } catch (Exception e) {
-            log.info("Failed to set text {} to {}", string, selector);
+            log.info("Failed to set text {}", string);
         }
     }
 
@@ -100,7 +95,7 @@ public class Input<Where extends Searchable<Where>> implements Supplier<String> 
      * @param locator locator
      */
     public void autocomplete(Object value, Locator<Where, Element> locator) {
-        Element apply = Locators.<Where>element(selector).locate(where);
+        Element apply = get();
         apply.clear();
         for (char c : value.toString().toCharArray()) {
             apply.sendKeys(String.valueOf(c));

@@ -42,7 +42,7 @@ public interface FormControl<Where extends Searchable<Where>> {
      */
     @SuppressWarnings("unchecked")
     default public String getRadio(Supplier<By> selector) {
-        return new RadioButton<>((Where) this, selector).get();
+        return new RadioButton<>((Where) this, selector).getValue();
     }
 
     /**
@@ -86,7 +86,7 @@ public interface FormControl<Where extends Searchable<Where>> {
      */
     @SuppressWarnings("unchecked")
     default public String get(Supplier<By> selector) {
-        return new Input<>((Where) this, selector).get();
+        return new Input<>((Where) this, selector).getValue();
     }
 
     /**

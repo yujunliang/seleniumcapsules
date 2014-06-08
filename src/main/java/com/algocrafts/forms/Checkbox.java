@@ -2,7 +2,7 @@ package com.algocrafts.forms;
 
 
 import com.algocrafts.pages.Element;
-import com.algocrafts.selenium.Locator;
+import com.algocrafts.pages.Locating;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 
@@ -12,10 +12,7 @@ import static com.algocrafts.conditions.StringEquals.TRUE;
 import static com.algocrafts.converters.GetText.CHECKED;
 import static com.algocrafts.pages.Locators.element;
 
-public class Checkbox<Where extends Searchable<Where>> {
-
-    private final Where where;
-    private final Locator<Where, Element> locator;
+public class Checkbox<Where extends Searchable<Where>> extends Locating<Where, Element> {
 
     /**
      * Constructor of the checkbox.
@@ -24,8 +21,7 @@ public class Checkbox<Where extends Searchable<Where>> {
      * @param selector the selector that leads to the checkbox
      */
     Checkbox(final Where where, Supplier<By> selector) {
-        this.where = where;
-        this.locator = element(selector);
+        super(where, element(selector));
     }
 
     /**
@@ -34,7 +30,7 @@ public class Checkbox<Where extends Searchable<Where>> {
      * @param value true or false
      */
     public void setValue(boolean value) {
-        Element checkbox = locator.locate(where);
+        Element checkbox = get();
         if (checkbox != null && checkbox.isSelected() != value) {
             checkbox.click();
         }
@@ -44,6 +40,6 @@ public class Checkbox<Where extends Searchable<Where>> {
      * @return whether the checkbox is checked or not
      */
     public boolean isChecked() {
-        return locator.and(CHECKED).and(TRUE).test(where);
+        return CHECKED.and(TRUE).test(get());
     }
 }
