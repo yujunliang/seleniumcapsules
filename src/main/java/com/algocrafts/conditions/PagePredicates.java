@@ -1,6 +1,6 @@
 package com.algocrafts.conditions;
 
-import com.algocrafts.selenium.Locators;
+import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.AbstractPage;
 
 import java.util.function.Predicate;
@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.conditions.StringEquals.*;
 import static com.algocrafts.converters.GetText.TEXT;
-import static com.algocrafts.selenium.Locators.element;
+import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.Id.CONTENT;
 import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 import static com.algocrafts.selectors.TagName.*;

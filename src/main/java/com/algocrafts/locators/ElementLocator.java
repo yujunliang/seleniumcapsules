@@ -1,7 +1,6 @@
 package com.algocrafts.locators;
 
 import com.algocrafts.selenium.Element;
-import com.algocrafts.selenium.Locators;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 

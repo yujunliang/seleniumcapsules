@@ -1,9 +1,8 @@
-package com.algocrafts.selenium;
+package com.algocrafts.locators;
 
-import com.algocrafts.locators.ElementLocator;
-import com.algocrafts.locators.ElementTryLocator;
-import com.algocrafts.locators.ElementsLocator;
-import com.algocrafts.locators.SelectLocator;
+import com.algocrafts.selenium.Element;
+import com.algocrafts.selenium.Locator;
+import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 
 import java.util.function.Supplier;

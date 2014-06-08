@@ -2,7 +2,7 @@ package com.algocrafts;
 
 import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.converters.FirstMatch;
-import com.algocrafts.selenium.Locators;
+import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.AbstractPage;
 import com.google.GooglePage;
 import org.junit.After;
@@ -25,8 +25,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.io.File;
 
 import static com.algocrafts.converters.GetText.TEXT;
-import static com.algocrafts.selenium.Locators.elements;
-import static com.algocrafts.selenium.Locators.tryElement;
+import static com.algocrafts.locators.Locators.elements;
+import static com.algocrafts.locators.Locators.tryElement;
 import static com.algocrafts.selectors.Name.Q;
 import static com.algocrafts.selectors.TagName.SPAN;
 import static com.algocrafts.selectors.Xpath.ORACLE_AUTOCOMPLETE;

@@ -7,6 +7,7 @@ import com.algocrafts.converters.ElementAtIndex;
 import com.algocrafts.converters.Filter;
 import com.algocrafts.converters.FirstItem;
 import com.algocrafts.converters.StreamToList;
+import com.algocrafts.locators.Locators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.SearchContext;
@@ -16,7 +17,7 @@ import java.util.stream.Stream;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.converters.GetText.SRC;
-import static com.algocrafts.selenium.Locators.element;
+import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.TagName.IMG;
 
 

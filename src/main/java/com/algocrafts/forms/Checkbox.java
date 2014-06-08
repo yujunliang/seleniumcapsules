@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 
 import static com.algocrafts.conditions.StringEquals.TRUE;
 import static com.algocrafts.converters.GetText.CHECKED;
-import static com.algocrafts.selenium.Locators.element;
+import static com.algocrafts.locators.Locators.element;
 
 public class Checkbox<Where extends Searchable<Where>> extends Locating<Where, Element> {
 

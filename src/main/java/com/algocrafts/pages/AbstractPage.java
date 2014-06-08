@@ -2,6 +2,7 @@ package com.algocrafts.pages;
 
 import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.forms.FormControl;
+import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

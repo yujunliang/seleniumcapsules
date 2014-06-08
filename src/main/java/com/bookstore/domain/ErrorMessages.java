@@ -2,13 +2,13 @@ package com.bookstore.domain;
 
 
 import com.algocrafts.pages.AbstractPage;
-import com.algocrafts.selenium.Locators;
+import com.algocrafts.locators.Locators;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 import static com.algocrafts.converters.GetText.TEXT;
-import static com.algocrafts.selenium.Locators.elements;
+import static com.algocrafts.locators.Locators.elements;
 import static com.algocrafts.selectors.TagName.LI;
 import static com.bookstore.BookStoreId.ERROR_MESSAGES;
 import static java.util.stream.Collectors.toList;

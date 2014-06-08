@@ -16,7 +16,7 @@ import static com.algocrafts.conditions.StringEquals.TRUE;
 import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
 import static com.algocrafts.converters.GetText.CHECKED;
 import static com.algocrafts.converters.GetText.VALUE;
-import static com.algocrafts.selenium.Locators.elements;
+import static com.algocrafts.locators.Locators.elements;
 
 public class RadioButton<Where extends Searchable<Where>> extends Locating<Where, Stream<Element>> {
 

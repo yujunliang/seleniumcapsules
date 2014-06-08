@@ -1,9 +1,6 @@
 package com.algocrafts.selenium;
 
 
-import com.algocrafts.selenium.Locator;
-import com.algocrafts.selenium.Searchable;
-
 public class Locating<Where extends Searchable<Where>, What>  {
 
     protected final Where where;

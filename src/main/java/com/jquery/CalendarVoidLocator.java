@@ -4,11 +4,11 @@ package com.jquery;
 import com.algocrafts.converters.FrameLocator;
 import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.selenium.Element;
-import com.algocrafts.selenium.Locators;
+import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Locator;
 
 import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
-import static com.algocrafts.selenium.Locators.element;
+import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.ClassName.*;
 import static com.algocrafts.selectors.Id.DATE_PICKER;
 import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;

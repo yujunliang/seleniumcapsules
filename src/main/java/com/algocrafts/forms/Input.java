@@ -6,7 +6,7 @@ import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.Locator;
-import com.algocrafts.selenium.Locators;
+import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
