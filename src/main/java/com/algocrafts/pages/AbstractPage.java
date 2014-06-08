@@ -3,11 +3,13 @@ package com.algocrafts.pages;
 import com.algocrafts.conditions.Equals;
 import com.algocrafts.forms.FormControl;
 import com.algocrafts.locators.Locators;
+import com.algocrafts.selectors.Name;
 import com.algocrafts.selenium.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 
+import java.io.File;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -143,5 +145,4 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
     public final void get(String url) {
         browser.get(url);
     }
-
 }

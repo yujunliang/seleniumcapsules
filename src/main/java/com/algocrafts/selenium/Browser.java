@@ -6,11 +6,46 @@ import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.interactions.Mouse;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import static org.apache.commons.io.FileUtils.copyFile;
+
 public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>,
         WebDriver, HasInputDevices, JavascriptExecutor, HasCapabilities {
+
+    WebDriverSupplier<T> getSupplier();
+
+    @Override
+    default public T init() {
+        return getSupplier().init();
+    }
+
+    @Override
+    default public File takeScreenShot(WebDriverSupplier<T> driver) {
+        return driver.takeScreenShot(this);
+    }
+
+    default public void save(String title) {
+        logger.info("Saving screenshot [title={}]", title);
+        File scrFile = null;
+        try {
+            scrFile = this.getSupplier().takeScreenShot(this);
+            copyFile(scrFile, new File("target/screenshots/" + title + new Date().getTime() + ".png"));
+            scrFile.delete();
+        } catch (UnhandledAlertException e) {
+            logger.info("Failed to copy screenshot.", e);
+        } catch (IOException e) {
+            try {
+                copyFile(scrFile, new File("target/screenshots/" + new Date().getTime() + ".png"));
+            } catch (IOException e1) {
+                logger.info("Failed to copy screenshot.", e1);
+            }
+        }
+    }
 
     default public void accept() {
         try {

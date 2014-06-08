@@ -28,7 +28,7 @@ import static org.openqa.selenium.OutputType.FILE;
  */
 public class FirefoxOnWindows implements Browser<FirefoxDriver>, WebDriverSupplier<FirefoxDriver> {
 
-    public FirefoxDriver get() {
+    public FirefoxDriver init() {
         FirefoxBinary binary = new FirefoxBinary(new File("src/main/resources/Firefox/firefox.exe"));
         FirefoxProfile profile = new FirefoxProfile(new File("src/main/resources/Firefox/Profiles/default"));
         return new FirefoxDriver(binary, profile);
@@ -38,4 +38,10 @@ public class FirefoxOnWindows implements Browser<FirefoxDriver>, WebDriverSuppli
     public File takeScreenShot(WebDriverSupplier<FirefoxDriver> driver) {
         return driver.get().getScreenshotAs(FILE);
     }
+
+    @Override
+    public WebDriverSupplier<FirefoxDriver> getSupplier() {
+        return this;
+    }
+
 }

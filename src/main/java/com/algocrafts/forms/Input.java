@@ -11,6 +11,7 @@ import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 
+import java.io.File;
 import java.util.function.Supplier;
 
 import static com.algocrafts.converters.GetText.VALUE;
@@ -110,6 +111,21 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
         suggestion = where.until(locator);
         if (suggestion != null) {
             suggestion.click();
+        }
+    }
+
+    public void putFile(File file) {
+        final Retry retry = new Retry(5, 1, SECONDS);
+        try {
+            retry.attempt(() -> {
+                log.info("{}", retry);
+                Element element = locate();
+                element.sendKeys(file.getAbsolutePath());
+                return null;
+
+            });
+        } catch (Exception e) {
+            log.info("Failed to set file {}", file);
         }
     }
 }
