@@ -38,10 +38,4 @@ public class FirefoxOnWindows implements Browser<FirefoxDriver>, WebDriverSuppli
     public File takeScreenShot(WebDriverSupplier<FirefoxDriver> driver) {
         return driver.get().getScreenshotAs(FILE);
     }
-
-    @Override
-    public WebDriverSupplier<FirefoxDriver> getSupplier() {
-        return this;
-    }
-
 }
