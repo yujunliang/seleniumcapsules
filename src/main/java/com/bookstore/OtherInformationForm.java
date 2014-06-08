@@ -6,10 +6,10 @@ import com.bookstore.domain.MailingOptions;
 import com.bookstore.domain.OtherInformation;
 
 import static com.algocrafts.selectors.Name.MAILING_OPTION;
-import static com.bookstore.BookStoreId.BILLING_EMAIL___;
-import static com.bookstore.BookStoreId.COMMENTS________;
-import static com.bookstore.BookStoreName.CONFIRM_EMAIL_;
-import static com.bookstore.BookStoreName.RATINGS_______;
+import static com.bookstore.BookStoreId.BILLING_EMAIL;
+import static com.bookstore.BookStoreId.COMMENTS;
+import static com.bookstore.BookStoreName.CONFIRM_EMAIL;
+import static com.bookstore.BookStoreName.RATINGS;
 
 public class OtherInformationForm extends AbstractPage {
 
@@ -18,20 +18,21 @@ public class OtherInformationForm extends AbstractPage {
     }
 
     public void setOtherInformation(OtherInformation info) {
-        put(BILLING_EMAIL___, info.emailAddress);
-        put(COMMENTS________, info.comments);
-        check(CONFIRM_EMAIL_, info.confirmEmail);
-        check(RATINGS_______, info.askRating);
+        put(BILLING_EMAIL, info.emailAddress);
+        put(COMMENTS, info.comments);
+        check(CONFIRM_EMAIL, info.confirmEmail);
+        check(RATINGS, info.askRating);
         setRadio(MAILING_OPTION, info.mailingOptions);
     }
 
     public OtherInformation getOtherInformation() {
         return new OtherInformation(
-                get(BILLING_EMAIL___),
-                isChecked(CONFIRM_EMAIL_),
-                isChecked(RATINGS_______),
-                MailingOptions.valueOf(get(MAILING_OPTION)),
-                get(COMMENTS________));
+                get(BILLING_EMAIL),
+                isChecked(CONFIRM_EMAIL),
+                isChecked(RATINGS),
+                get(MAILING_OPTION, MailingOptions::from),
+                get(COMMENTS)
+        );
     }
 
 }

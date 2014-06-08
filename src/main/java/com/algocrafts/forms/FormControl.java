@@ -85,6 +85,17 @@ public interface FormControl<Where extends Searchable<Where>> {
      * @return its value.
      */
     @SuppressWarnings("unchecked")
+    default public <T> T get(Supplier<By> selector, Function<String, T> converter) {
+        return converter.apply(new Input<>((Where) this, selector).getValue());
+    }
+
+    /**
+     * Read value from an input field.
+     *
+     * @param selector selector
+     * @return its value.
+     */
+    @SuppressWarnings("unchecked")
     default public String get(Supplier<By> selector) {
         return new Input<>((Where) this, selector).getValue();
     }

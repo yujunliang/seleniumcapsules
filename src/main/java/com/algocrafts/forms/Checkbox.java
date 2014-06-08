@@ -20,7 +20,7 @@ public class Checkbox<Where extends Searchable<Where>> extends Locating<Where, E
      * @param where    the place the checkbox can be found
      * @param selector the selector that leads to the checkbox
      */
-    Checkbox(final Where where, Supplier<By> selector) {
+    public Checkbox(final Where where, Supplier<By> selector) {
         super(where, element(selector));
     }
 

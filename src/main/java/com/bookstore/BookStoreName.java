@@ -8,10 +8,8 @@ import static org.openqa.selenium.By.id;
 
 public enum BookStoreName implements Supplier<By> {
 
-
-    RATINGS_______("miscDS.ratingsEnabled_CKBOX"),
-    CONFIRM_EMAIL_("miscDS.sendConfirmEmail_CKBOX"),
-    ;
+    RATINGS("miscDS.ratingsEnabled_CKBOX"),
+    CONFIRM_EMAIL("miscDS.sendConfirmEmail_CKBOX");
 
     private final By by;
 

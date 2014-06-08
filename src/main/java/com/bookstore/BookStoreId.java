@@ -16,15 +16,15 @@ public enum BookStoreId implements Supplier<By> {
     BILLING_STATE_____("billing-state"),
     BILLING_COUNTRY___("billing-country"),
     BILLING_ZIP_______("billing-zip"),
-    BILLING_EMAIL___("billing-email"),
+    BILLING_EMAIL("billing-email"),
 
-    CARD_TYPE_________("card-type"),
-    CARD_NUMBER_______("card-number"),
-    CARD_CVV__________("card-cvv"),
-    CARD_EXP_MONTH____("card-exp-month"),
-    CARD_EXP_YEAR_____("card-exp-year"),
+    CARD_TYPE("card-type"),
+    CARD_NUMBER("card-number"),
+    CARD_CVV("card-cvv"),
+    CARD_EXP_MONTH("card-exp-month"),
+    CARD_EXP_YEAR("card-exp-year"),
 
-    COMMENTS________("comments"),
+    COMMENTS("comments"),
     ERROR_MESSAGES("ys_errorMessages"),
 
     SHOPPING_CART("ys_cart"),

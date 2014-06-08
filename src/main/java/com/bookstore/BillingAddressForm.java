@@ -29,8 +29,8 @@ public class BillingAddressForm extends AbstractPage {
                 get(BILLING_ADDRESS2__),
                 get(BILLING_CITY______),
                 get(BILLING_ZIP_______),
-                UnitedStates.fromString(get(BILLING_STATE_____)),
-                Countries.fromString(get(BILLING_COUNTRY___)),
+                get(BILLING_STATE_____, UnitedStates::fromString),
+                get(BILLING_COUNTRY___, Countries::fromString),
                 get(BILLING_FIRST_NAME),
                 get(BILLING_LAST_NAME_));
     }
