@@ -1,7 +1,6 @@
 package com.algocrafts;
 
 
-import com.algocrafts.pages.Browsers;
 import com.algocrafts.selenium.Browser;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -15,15 +14,16 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.io.File;
-import java.util.EnumSet;
 
+import static com.algocrafts.pages.Browsers.*;
+import static java.util.EnumSet.of;
 import static org.openqa.selenium.By.id;
 
 public class DragAndDropTest {
 
     @Test
     public void testDragAndDrop() {
-        for (Browser browser : EnumSet.of(Browsers.FIREFOX, Browsers.CHROME, Browsers.SAFARI)) {
+        for (Browser browser : of(FIREFOX, CHROME, SAFARI)) {
             browser.get("http://www.w3schools.com/html/html5_draganddrop.asp");
             browser.dragAndDrop(id("drag1"), id("div2"));
         }
