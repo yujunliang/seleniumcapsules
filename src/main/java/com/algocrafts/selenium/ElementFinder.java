@@ -1,6 +1,5 @@
 package com.algocrafts.selenium;
 
-import com.algocrafts.pages.Element;
 import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;

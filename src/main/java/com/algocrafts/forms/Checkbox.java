@@ -1,8 +1,8 @@
 package com.algocrafts.forms;
 
 
-import com.algocrafts.pages.Element;
-import com.algocrafts.pages.Locating;
+import com.algocrafts.selenium.Element;
+import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 
@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 
 import static com.algocrafts.conditions.StringEquals.TRUE;
 import static com.algocrafts.converters.GetText.CHECKED;
-import static com.algocrafts.pages.Locators.element;
+import static com.algocrafts.selenium.Locators.element;
 
 public class Checkbox<Where extends Searchable<Where>> extends Locating<Where, Element> {
 

@@ -4,7 +4,7 @@ package com.jquery;
 import com.algocrafts.calendar.Calendar;
 import com.algocrafts.calendar.DatePicker;
 import com.algocrafts.pages.AbstractPage;
-import com.algocrafts.pages.Locators;
+import com.algocrafts.selenium.Locators;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Clickable;
 

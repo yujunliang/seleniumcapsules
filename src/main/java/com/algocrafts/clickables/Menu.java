@@ -2,7 +2,7 @@ package com.algocrafts.clickables;
 
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.pages.AbstractPage;
-import com.algocrafts.pages.Element;
+import com.algocrafts.selenium.Element;
 
 public class Menu extends Button<AbstractPage> {
 

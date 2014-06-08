@@ -3,10 +3,10 @@ package com.algocrafts.forms;
 
 import com.algocrafts.algorithm.Retry;
 import com.algocrafts.conditions.IsStringEqual;
-import com.algocrafts.pages.Element;
-import com.algocrafts.pages.Locating;
+import com.algocrafts.selenium.Element;
+import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.Locator;
-import com.algocrafts.pages.Locators;
+import com.algocrafts.selenium.Locators;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;

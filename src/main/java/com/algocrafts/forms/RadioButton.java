@@ -3,8 +3,8 @@ package com.algocrafts.forms;
 
 import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.converters.FirstMatch;
-import com.algocrafts.pages.Element;
-import com.algocrafts.pages.Locating;
+import com.algocrafts.selenium.Element;
+import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 
@@ -16,7 +16,7 @@ import static com.algocrafts.conditions.StringEquals.TRUE;
 import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
 import static com.algocrafts.converters.GetText.CHECKED;
 import static com.algocrafts.converters.GetText.VALUE;
-import static com.algocrafts.pages.Locators.elements;
+import static com.algocrafts.selenium.Locators.elements;
 
 public class RadioButton<Where extends Searchable<Where>> extends Locating<Where, Stream<Element>> {
 

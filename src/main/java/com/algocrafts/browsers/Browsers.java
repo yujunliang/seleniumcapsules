@@ -1,4 +1,4 @@
-package com.algocrafts.pages;
+package com.algocrafts.browsers;
 
 
 import com.algocrafts.browsers.*;

@@ -1,6 +1,6 @@
 package com.algocrafts.converters;
 
-import com.algocrafts.pages.Element;
+import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
 
 public enum ElementFunctions implements Locator<Element, Void> {

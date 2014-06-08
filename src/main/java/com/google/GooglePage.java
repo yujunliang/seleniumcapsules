@@ -1,6 +1,6 @@
 package com.google;
 
-import com.algocrafts.pages.Locators;
+import com.algocrafts.selenium.Locators;
 import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Clickable;

@@ -1,9 +1,9 @@
 package com.algocrafts.table;
 
 
-import com.algocrafts.pages.Element;
-import com.algocrafts.pages.Locating;
-import com.algocrafts.pages.Locators;
+import com.algocrafts.selenium.Element;
+import com.algocrafts.selenium.Locating;
+import com.algocrafts.selenium.Locators;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
 
@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.algocrafts.converters.GetText.TEXT;
-import static com.algocrafts.pages.Locators.elements;
+import static com.algocrafts.selenium.Locators.elements;
 import static com.algocrafts.selectors.TagName.*;
 import static java.util.stream.Collectors.toSet;
 

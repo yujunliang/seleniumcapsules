@@ -2,18 +2,15 @@ package com.jquery;
 
 import com.algocrafts.calendar.DayLocatorFactory;
 import com.algocrafts.conditions.IsStringEqual;
-import com.algocrafts.converters.Filter;
-import com.algocrafts.converters.FirstItem;
 import com.algocrafts.converters.FirstMatch;
-import com.algocrafts.pages.Locators;
+import com.algocrafts.selenium.Locators;
 import com.algocrafts.pages.AbstractPage;
-import com.algocrafts.pages.Element;
 import com.algocrafts.selenium.Locator;
 
 import static com.algocrafts.converters.ElementFunctions.CLICK_IF_NOT_NULL;
 import static com.algocrafts.converters.GetText.TEXT;
-import static com.algocrafts.pages.Locators.element;
-import static com.algocrafts.pages.Locators.elements;
+import static com.algocrafts.selenium.Locators.element;
+import static com.algocrafts.selenium.Locators.elements;
 import static com.algocrafts.selectors.ClassName.UI_DATEPICKER_CALENDAR;
 import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 import static com.algocrafts.selectors.TagName.TD;

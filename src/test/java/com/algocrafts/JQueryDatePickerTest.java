@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.EnumSet;
 
-import static com.algocrafts.pages.Browsers.*;
+import static com.algocrafts.browsers.Browsers.*;
 import static java.time.Month.APRIL;
 import static org.junit.Assert.assertEquals;
 

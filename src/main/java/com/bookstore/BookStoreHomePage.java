@@ -1,7 +1,7 @@
 package com.bookstore;
 
 
-import com.algocrafts.pages.Browsers;
+import com.algocrafts.browsers.Browsers;
 import com.algocrafts.selenium.Clickable;
 import com.algocrafts.pages.AbstractPage;
 

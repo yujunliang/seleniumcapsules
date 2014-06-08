@@ -1,7 +1,7 @@
 package com.algocrafts;
 
 
-import com.algocrafts.pages.Browsers;
+import com.algocrafts.browsers.Browsers;
 import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Browser;
 import com.bookstore.domain.MailingOptions;

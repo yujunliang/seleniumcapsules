@@ -1,8 +1,7 @@
 package com.algocrafts.pages;
 
+import com.algocrafts.browsers.Browsers;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class BrowsersTest {
 

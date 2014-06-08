@@ -1,7 +1,7 @@
 package com.jquery;
 
 
-import com.algocrafts.pages.Locators;
+import com.algocrafts.selenium.Locators;
 import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.selenium.Locator;
 
@@ -9,7 +9,7 @@ import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.Ordinal.ORDINAL;
 import static com.algocrafts.converters.StringToInt.PARSE_INT;
 import static com.algocrafts.converters.StringToMonth.TO_MONTH;
-import static com.algocrafts.pages.Locators.element;
+import static com.algocrafts.selenium.Locators.element;
 import static com.algocrafts.selectors.ClassName.*;
 import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 

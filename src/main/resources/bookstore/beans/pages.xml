@@ -5,7 +5,7 @@
 
     <import resource="properties.xml"/>
 
-    <bean id="browser" class="com.algocrafts.pages.Browsers" factory-method="valueOf">
+    <bean id="browser" class="com.algocrafts.browsers.Browsers" factory-method="valueOf">
         <constructor-arg value="${browser}"/>
     </bean>
 

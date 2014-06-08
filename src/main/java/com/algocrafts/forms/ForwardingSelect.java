@@ -1,8 +1,8 @@
 package com.algocrafts.forms;
 
 import com.algocrafts.locators.SelectLocator;
-import com.algocrafts.pages.Element;
-import com.algocrafts.pages.Locating;
+import com.algocrafts.selenium.Element;
+import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;

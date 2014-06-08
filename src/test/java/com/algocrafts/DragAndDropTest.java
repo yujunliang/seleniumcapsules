@@ -15,7 +15,7 @@ import org.openqa.selenium.safari.SafariDriver;
 
 import java.io.File;
 
-import static com.algocrafts.pages.Browsers.*;
+import static com.algocrafts.browsers.Browsers.*;
 import static java.util.EnumSet.of;
 import static org.openqa.selenium.By.id;
 

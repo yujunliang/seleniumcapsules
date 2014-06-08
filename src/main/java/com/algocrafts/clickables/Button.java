@@ -1,7 +1,7 @@
 package com.algocrafts.clickables;
 
 
-import com.algocrafts.pages.Element;
+import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
 

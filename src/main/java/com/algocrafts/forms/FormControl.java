@@ -1,8 +1,8 @@
 package com.algocrafts.forms;
 
-import com.algocrafts.pages.Element;
+import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
-import com.algocrafts.pages.Locators;
+import com.algocrafts.selenium.Locators;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 

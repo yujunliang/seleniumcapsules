@@ -1,9 +1,12 @@
 package com.algocrafts;
 
 
+import com.algocrafts.browsers.Browsers;
 import com.algocrafts.pages.*;
 import com.algocrafts.selenium.Browser;
+import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
+import com.algocrafts.selenium.Locators;
 import com.algocrafts.table.Table;
 import com.algocrafts.table.TableContents;
 import com.google.common.collect.Sets;
@@ -15,7 +18,7 @@ import java.util.stream.Stream;
 
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.StringToInt.PARSE_INT;
-import static com.algocrafts.pages.Locators.element;
+import static com.algocrafts.selenium.Locators.element;
 import static com.algocrafts.selectors.Id.MAIN;
 import static com.algocrafts.selectors.TagName.TABLE;
 import static com.google.common.collect.Sets.newHashSet;

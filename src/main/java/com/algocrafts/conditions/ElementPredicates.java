@@ -1,6 +1,6 @@
 package com.algocrafts.conditions;
 
-import com.algocrafts.pages.Element;
+import com.algocrafts.selenium.Element;
 
 import java.util.function.Predicate;
 
