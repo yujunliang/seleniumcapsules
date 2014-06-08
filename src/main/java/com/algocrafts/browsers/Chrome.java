@@ -11,7 +11,7 @@ import static org.openqa.selenium.OutputType.FILE;
 public class Chrome implements WebDriverSupplier<ChromeDriver> {
 
     @Override
-    public ChromeDriver init() {
+    public ChromeDriver get() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
         return new ChromeDriver();
     }

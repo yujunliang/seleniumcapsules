@@ -12,7 +12,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public class ElementsFinder implements Locator<SearchContext, List<WebElement>>{
     public static final Logger logger = getLogger(ElementsFinder.class);
-    private By by;
+    private final By by;
 
     public ElementsFinder(By by) {
         this.by = by;
