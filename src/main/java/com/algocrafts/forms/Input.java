@@ -2,6 +2,7 @@ package com.algocrafts.forms;
 
 
 import com.algocrafts.algorithm.Retry;
+import com.algocrafts.conditions.IsStringEqual;
 import com.algocrafts.pages.Element;
 import com.algocrafts.pages.Locating;
 import com.algocrafts.selenium.Locator;
@@ -27,7 +28,7 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
      * @param selector selector
      */
     public Input(Where where, Supplier<By> selector) {
-       super(where, Locators.<Where>tryElement(selector));
+        super(where, Locators.<Where>tryElement(selector));
     }
 
     /**
@@ -74,7 +75,7 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
                 Element element = get();
                 element.clear();
                 element.sendKeys(string);
-                if (VALUE.locate(element).equals(string)) {
+                if (VALUE.and(new IsStringEqual(string)).test(element)) {
                     retry.off();
                 }
                 return null;
@@ -99,9 +100,9 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
         apply.clear();
         for (char c : value.toString().toCharArray()) {
             apply.sendKeys(String.valueOf(c));
-            Element apply1 = locator.locate(where);
-            if (apply1 != null) {
-                apply1.click();
+            Element found = locator.locate(where);
+            if (found != null) {
+                found.click();
                 return;
             }
         }

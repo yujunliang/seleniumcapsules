@@ -17,6 +17,7 @@ public class TableContents<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean equals(Object other) {
         if (other instanceof TableContents) {
             TableContents<T> actual = (TableContents) other;
@@ -39,10 +40,6 @@ public class TableContents<T> {
 
     @Override
     public String toString() {
-        if (diff != null) {
-            return diff.toString();
-        } else {
-            return null;
-        }
+        return diff.toString();
     }
 }

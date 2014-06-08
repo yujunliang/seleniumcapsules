@@ -2,6 +2,7 @@ package com.algocrafts.table;
 
 
 import com.algocrafts.pages.Element;
+import com.algocrafts.pages.Locating;
 import com.algocrafts.pages.Locators;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
@@ -14,27 +15,24 @@ import static com.algocrafts.pages.Locators.elements;
 import static com.algocrafts.selectors.TagName.*;
 import static java.util.stream.Collectors.toSet;
 
-public class Table<T, Where extends Searchable<Where>> {
+public class Table<T, Where extends Searchable<Where>> extends Locating<Where, Element> {
 
-    private final Where where;
-    private final Locator<Where, Element> locator;
+
     private final Locator<Stream<Element>, T> mapper;
 
     public Table(Where where,
                  Locator<Where, Element> locator,
                  Locator<Stream<Element>, T> mapper) {
-        this.where = where;
-        this.locator = locator;
+        super(where, locator);
         this.mapper = mapper;
     }
 
     public Stream<String> getHeader() {
-        return locator.and(elements(TH)).locate(where).map(TEXT);
+        return Locators.<Element>elements(TH).locate(get()).map(TEXT);
     }
 
     public Stream<T> getRows() {
-        return locator.and(elements(TR))
-                .locate(where)
+        return Locators.<Element>elements(TR).locate(get())
                 .filter(e -> Locators.<Element>tryElement(TD).locate(e) != null)
                 .map(elements(TD))
                 .map(mapper);

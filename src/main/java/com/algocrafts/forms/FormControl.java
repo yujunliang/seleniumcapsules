@@ -79,9 +79,10 @@ public interface FormControl<Where extends Searchable<Where>> {
     }
 
     /**
-     * Read value from an input field.
+     * Read value from an input field, convert to other type by converter.
      *
-     * @param selector selector
+     * @param selector  selector
+     * @param converter the converter convert the string to other types, usually enum.
      * @return its value.
      */
     @SuppressWarnings("unchecked")
