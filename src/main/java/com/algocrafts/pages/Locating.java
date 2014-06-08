@@ -4,9 +4,7 @@ package com.algocrafts.pages;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
 
-import java.util.function.Supplier;
-
-public class Locating<Where extends Searchable<Where>, What> implements Supplier<What> {
+public class Locating<Where extends Searchable<Where>, What>  {
 
     protected final Where where;
     protected final Locator<Where, What> locator;
@@ -22,7 +20,7 @@ public class Locating<Where extends Searchable<Where>, What> implements Supplier
         this.locator = locator;
     }
 
-    public What get() {
+    public What locate() {
         return locator.locate(where);
     }
 }

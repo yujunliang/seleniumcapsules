@@ -28,11 +28,11 @@ public class Table<T, Where extends Searchable<Where>> extends Locating<Where, E
     }
 
     public Stream<String> getHeader() {
-        return Locators.<Element>elements(TH).locate(get()).map(TEXT);
+        return Locators.<Element>elements(TH).locate(locate()).map(TEXT);
     }
 
     public Stream<T> getRows() {
-        return Locators.<Element>elements(TR).locate(get())
+        return Locators.<Element>elements(TR).locate(locate())
                 .filter(e -> Locators.<Element>tryElement(TD).locate(e) != null)
                 .map(elements(TD))
                 .map(mapper);

@@ -28,12 +28,12 @@ public class AbstractForm extends Locating<AbstractPage, Element> implements Sea
 
     @Override
     public List<WebElement> findElements(By by) {
-        return get().findElements(by);
+        return locate().findElements(by);
     }
 
     @Override
     public Element findElement(By by) {
-        return get().findElement(by);
+        return locate().findElement(by);
     }
 
 }

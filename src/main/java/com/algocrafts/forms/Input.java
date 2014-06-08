@@ -45,7 +45,7 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
         try {
             retry.attempt(() -> {
                 log.info("{}", retry);
-                Element element = get();
+                Element element = locate();
                 return VALUE.locate(element);
             });
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
         try {
             retry.attempt(() -> {
                 log.info("{}", retry);
-                Element element = get();
+                Element element = locate();
                 element.clear();
                 element.sendKeys(string);
                 if (VALUE.and(new IsStringEqual(string)).test(element)) {
@@ -96,7 +96,7 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
      * @param locator locator
      */
     public void autocomplete(Object value, Locator<Where, Element> locator) {
-        Element apply = get();
+        Element apply = locate();
         apply.clear();
         for (char c : value.toString().toCharArray()) {
             apply.sendKeys(String.valueOf(c));

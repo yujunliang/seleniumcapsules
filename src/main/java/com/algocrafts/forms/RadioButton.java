@@ -36,7 +36,7 @@ public class RadioButton<Where extends Searchable<Where>> extends Locating<Where
     public void setValue(Object value) {
         new FirstMatch<>(DISPLAYED.and(VALUE.and(new IsStringEqual(value))))
                 .and(CLICK_IF_NOT_NULL)
-                .locate(get());
+                .locate(locate());
     }
 
     /**
@@ -45,7 +45,7 @@ public class RadioButton<Where extends Searchable<Where>> extends Locating<Where
     public String getValue() {
         return new FirstMatch<>(DISPLAYED.and(CHECKED.and(TRUE)))
                 .and(VALUE)
-                .locate(get());
+                .locate(locate());
     }
 }
 

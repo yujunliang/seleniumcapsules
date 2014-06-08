@@ -26,46 +26,46 @@ public class ForwardingSelect<Where extends Searchable<Where>> extends Locating<
 
     public void selectByVisibleText(Object text) {
         log.info("selecting select[" + locator + "] using [" + text + "]");
-        get().selectByVisibleText(text.toString());
+        locate().selectByVisibleText(text.toString());
     }
 
     public boolean isMultiple() {
-        return get().isMultiple();
+        return locate().isMultiple();
     }
 
     public Stream<Element> getOptions() {
-        return get().getOptions().stream().map(Element::new);
+        return locate().getOptions().stream().map(Element::new);
     }
 
     public Stream<Element> getAllSelectedOptions() {
-        return get().getAllSelectedOptions().stream().map(Element::new);
+        return locate().getAllSelectedOptions().stream().map(Element::new);
     }
 
     public Element getFirstSelectedOption() {
-        return new Element(get().getFirstSelectedOption());
+        return new Element(locate().getFirstSelectedOption());
     }
 
     public void selectByIndex(int index) {
-        get().selectByIndex(index);
+        locate().selectByIndex(index);
     }
 
     public void selectByValue(Object value) {
-        get().selectByValue(value.toString());
+        locate().selectByValue(value.toString());
     }
 
     public void deselectAll() {
-        get().deselectAll();
+        locate().deselectAll();
     }
 
     public void deselectByValue(Object value) {
-        get().deselectByValue(value.toString());
+        locate().deselectByValue(value.toString());
     }
 
     public void deselectByIndex(int index) {
-        get().deselectByIndex(index);
+        locate().deselectByIndex(index);
     }
 
     public void deselectByVisibleText(Object text) {
-        get().deselectByVisibleText(text.toString());
+        locate().deselectByVisibleText(text.toString());
     }
 }
