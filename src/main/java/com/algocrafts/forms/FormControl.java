@@ -75,7 +75,7 @@ public interface FormControl<Where extends Searchable<Where>> {
      */
     @SuppressWarnings("unchecked")
     default public void select(Supplier<By> selector, Object value) {
-        new Select<>((Where) this, Locators.<Where>select(selector)).selectByVisibleText(value);
+        new ForwardingSelect<>((Where) this, Locators.<Where>select(selector)).selectByVisibleText(value);
     }
 
     /**

@@ -4,22 +4,23 @@ import com.algocrafts.locators.SelectLocator;
 import com.algocrafts.pages.Element;
 import com.algocrafts.pages.Locating;
 import com.algocrafts.selenium.Searchable;
+import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 
 import java.util.stream.Stream;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class Select<Where extends Searchable<Where>> extends Locating<Where, org.openqa.selenium.support.ui.Select> {
+public class ForwardingSelect<Where extends Searchable<Where>> extends Locating<Where, Select> {
 
-    private static final Logger log = getLogger(Select.class);
+    private static final Logger log = getLogger(ForwardingSelect.class);
 
     /**
      * Constructor of the Select, It is a wrapper for the Select from Selenium UI.
      * @param where
      * @param locator
      */
-    public Select(Where where, SelectLocator<Where> locator) {
+    public ForwardingSelect(Where where, SelectLocator<Where> locator) {
         super(where, locator);
     }
 
@@ -31,7 +32,6 @@ public class Select<Where extends Searchable<Where>> extends Locating<Where, org
     public boolean isMultiple() {
         return get().isMultiple();
     }
-
 
     public Stream<Element> getOptions() {
         return get().getOptions().stream().map(Element::new);
