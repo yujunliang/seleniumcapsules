@@ -11,7 +11,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public interface FormControl<Where extends Searchable<Where>> {
+public interface FormControl<Where extends Searchable<Where>> extends Searchable<Where> {
 
     /**
      * Check if the checkbox is checked by the given selector.
@@ -113,9 +113,12 @@ public interface FormControl<Where extends Searchable<Where>> {
         new Input<>((Where) this, selector).put(value);
     }
 
-    default public void upload(Supplier<By> selector, File filePath) {
+    @SuppressWarnings("unchecked")
+    default public void upload(Supplier<By> selector, Supplier<By> submit, File filePath) {
         new Input<>((Where) this, selector).putFile(filePath);
+        button(submit).click();
     }
+
     /**
      * Autocomplete for text field and return the first found suggestion match the whole word.
      *
