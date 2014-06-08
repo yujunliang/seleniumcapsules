@@ -6,10 +6,7 @@ import com.bookstore.domain.MailingOptions;
 import com.bookstore.domain.OtherInformation;
 
 import static com.algocrafts.selectors.Name.MAILING_OPTION;
-import static com.bookstore.BookStoreId.BILLING_EMAIL;
-import static com.bookstore.BookStoreId.COMMENTS;
-import static com.bookstore.BookStoreName.CONFIRM_EMAIL;
-import static com.bookstore.BookStoreName.RATINGS;
+import static com.bookstore.BookStoreId.*;
 
 public class OtherInformationForm extends AbstractPage {
 
