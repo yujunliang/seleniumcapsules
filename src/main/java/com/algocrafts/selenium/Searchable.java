@@ -48,7 +48,7 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
     }
 
     /**
-     * Find the first element or throw NoSuchElementException
+     * Find the first element until timeout then throw NoSuchElementException
      *
      * @param by selector
      * @return the first element or throw NoSuchElementException

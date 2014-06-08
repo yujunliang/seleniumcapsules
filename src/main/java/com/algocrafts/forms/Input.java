@@ -87,8 +87,8 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
     }
 
     /**
-     * Test the autocomplete function for the input by given selector, click the element
-     * on the suggestion list which has the same value of value parameter.
+     * Test the autocomplete function for the input by given value, click the element
+     * on the suggestion list which matches value parameter.
      * <p>
      * Please refer "http://seleniumcapsules.blogspot.com/2014/05/by-xpath.html"
      *
@@ -96,19 +96,20 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
      * @param locator locator
      */
     public void autocomplete(Object value, Locator<Where, Element> locator) {
-        Element apply = locate();
-        apply.clear();
+        Element element = locate();
+        element.clear();
+        Element suggestion;
         for (char c : value.toString().toCharArray()) {
-            apply.sendKeys(String.valueOf(c));
-            Element found = locator.locate(where);
-            if (found != null) {
-                found.click();
+            element.sendKeys(String.valueOf(c));
+            suggestion = locator.locate(where);
+            if (suggestion != null) {
+                suggestion.click();
                 return;
             }
         }
-        Element element = where.until(locator);
-        if (element != null) {
-            element.click();
+        suggestion = where.until(locator);
+        if (suggestion != null) {
+            suggestion.click();
         }
     }
 
