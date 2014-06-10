@@ -40,7 +40,7 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
      */
     default public Element tryElement(Supplier<By> by) {
         try {
-            return new Element(findElement(by.get()));
+            return findElement(by.get());
         } catch (NoSuchElementException e) {
             return null;
         }
@@ -53,7 +53,7 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
      * @return the first element or throw NoSuchElementException
      */
     default public Element untilFound(Supplier<By> by) {
-        return until((Where page) -> new Element(findElement(by.get())));
+        return until((Where page) -> findElement(by.get()));
     }
 
     /**

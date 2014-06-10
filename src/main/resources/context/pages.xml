@@ -43,4 +43,13 @@
         <constructor-arg ref="browser"/>
         <constructor-arg ref="googleUrl"/>
     </bean>
+
+    <bean id="uploadUrl" class="com.algocrafts.clickables.Url">
+        <constructor-arg ref="browser"/>
+        <constructor-arg value="${upload.url}"/>
+    </bean>
+
+    <bean id="uploadFile" class="java.io.File">
+        <constructor-arg value="${upload.file}"/>
+    </bean>
 </beans>

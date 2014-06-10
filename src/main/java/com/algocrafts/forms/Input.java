@@ -45,7 +45,6 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
             retry.attempt(() -> {
-                log.info("{}", retry);
                 Element element = locate();
                 return VALUE.locate(element);
             });
@@ -72,7 +71,6 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
             retry.attempt(() -> {
-                log.info("{}", retry);
                 Element element = locate();
                 element.clear();
                 element.sendKeys(string);
@@ -118,11 +116,9 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
             retry.attempt(() -> {
-                log.info("{}", retry);
                 Element element = locate();
                 element.sendKeys(file.getAbsolutePath());
                 return null;
-
             });
         } catch (Exception e) {
             log.info("Failed to set file {}", file);

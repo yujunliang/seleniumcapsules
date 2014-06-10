@@ -45,6 +45,10 @@ public class ForwardingSelect<Where extends Searchable<Where>> extends Locating<
         return new Element(locate().getFirstSelectedOption());
     }
 
+    public void selectByEnumOrdinal(Enum index) {
+        locate().selectByIndex(index.ordinal());
+    }
+
     public void selectByIndex(int index) {
         locate().selectByIndex(index);
     }
@@ -59,6 +63,10 @@ public class ForwardingSelect<Where extends Searchable<Where>> extends Locating<
 
     public void deselectByValue(Object value) {
         locate().deselectByValue(value.toString());
+    }
+
+    public void deselectByEnumOrdinal(Enum index) {
+        locate().deselectByIndex(index.ordinal());
     }
 
     public void deselectByIndex(int index) {
