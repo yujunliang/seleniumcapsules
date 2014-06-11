@@ -5,6 +5,7 @@ import com.algocrafts.converters.FirstMatch;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.AbstractPage;
 import com.google.GooglePage;
+import com.google.common.base.Function;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,16 +14,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.io.File;
 
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.locators.Locators.elements;
@@ -48,22 +46,30 @@ public class GoogleAutoCompleteTest {
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void autoCompeleteUsingSelenium() throws InterruptedException {
-        FirefoxBinary binary = new FirefoxBinary(new File("src/main/resources/Firefox/Contents/MacOS/firefox-bin"));
-        FirefoxProfile profile = new FirefoxProfile(new File("src/main/resources/Firefox/Profiles/default"));
-        WebDriver webDriver = new FirefoxDriver(binary, profile);
+        WebDriver webDriver = new FirefoxDriver();
         webDriver.get("http://google.com");
         WebElement q = webDriver.findElement(By.name("q"));
         q.clear();
+        WebElement oracle = null;
         for (char c : "oracle".toCharArray()) {
             q.sendKeys(String.valueOf(c));
-            Thread.sleep(50);
             try {
-                WebElement oracle = webDriver.findElement(
+                oracle = webDriver.findElement(
                         By.xpath("//table[contains(@class, 'gssb_c')]/descendant::span[text()='oracle']"));
                 oracle.click();
             } catch (NoSuchElementException e) {
                 log.debug("This is OK", e);
             }
+        }
+        if (oracle == null) {
+            oracle = new WebDriverWait(webDriver, 1).until(new Function<WebDriver, WebElement>() {
+                @Override
+                public WebElement apply(WebDriver webDriver) {
+                    return webDriver.findElement(
+                            By.xpath("//table[contains(@class, 'gssb_c')]/descendant::span[text()='oracle']"));
+                }
+            });
+            oracle.click();
         }
     }
 
