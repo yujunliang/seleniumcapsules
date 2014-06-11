@@ -8,8 +8,6 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
 
-import static org.openqa.selenium.OutputType.FILE;
-
 /**
  * This class is not one of the enum constants enum Browsers. It is used to demonstrate how to implement the Browser
  * interface thus used as the constructor parameter for AbstractPage. It is declared as a bean in spring context file,
@@ -32,11 +30,6 @@ public class FirefoxOnWindows implements Browser<FirefoxDriver>, WebDriverSuppli
         FirefoxBinary binary = new FirefoxBinary(new File("src/main/resources/Firefox/firefox.exe"));
         FirefoxProfile profile = new FirefoxProfile(new File("src/main/resources/Firefox/Profiles/default"));
         return new FirefoxDriver(binary, profile);
-    }
-
-    @Override
-    public File takeScreenShot(WebDriverSupplier<FirefoxDriver> driver) {
-        return driver.get().getScreenshotAs(FILE);
     }
 
     @Override

@@ -13,8 +13,4 @@ public class Safari implements WebDriverSupplier<SafariDriver> {
         return new SafariDriver();
     }
 
-    @Override
-    public File takeScreenShot(WebDriverSupplier<SafariDriver> webDriver) {
-        return webDriver.get().getScreenshotAs(FILE);
-    }
 }

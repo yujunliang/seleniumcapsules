@@ -19,8 +19,6 @@ public interface WebDriverSupplier<T extends WebDriver> extends Supplier<T>{
 
     T init();
 
-    File takeScreenShot(WebDriverSupplier<T> driver);
-
     @SuppressWarnings("unchecked")
     default public T get() {
         return (T) store.valueOf(this);

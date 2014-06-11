@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.apache.commons.io.FileUtils.copyFile;
+import static org.openqa.selenium.OutputType.FILE;
 
 public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>,
         WebDriver, HasInputDevices, JavascriptExecutor, HasCapabilities {
@@ -24,26 +25,27 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>,
         return getSupplier().init();
     }
 
-    @Override
-    default public File takeScreenShot(WebDriverSupplier<T> driver) {
-        return driver.takeScreenShot(this);
-    }
-
     default public void save(String title) {
-        logger.info("Saving screenshot [title={}]", title);
-        File scrFile = null;
-        try {
-            scrFile = this.getSupplier().takeScreenShot(this);
-            copyFile(scrFile, new File("target/screenshots/" + title + new Date().getTime() + ".png"));
-            scrFile.delete();
-        } catch (UnhandledAlertException e) {
-            logger.info("Failed to copy screenshot.", e);
-        } catch (IOException e) {
+        T webDriver = get();
+        if (webDriver instanceof TakesScreenshot) {
+            logger.info("Saving screenshot [title={}]", title);
+            File scrFile = null;
             try {
-                copyFile(scrFile, new File("target/screenshots/" + new Date().getTime() + ".png"));
-            } catch (IOException e1) {
-                logger.info("Failed to copy screenshot.", e1);
+                TakesScreenshot camera = (TakesScreenshot) webDriver;
+                scrFile = camera.getScreenshotAs(FILE);
+                copyFile(scrFile, new File("target/screenshots/" + title + new Date().getTime() + ".png"));
+                scrFile.delete();
+            } catch (UnhandledAlertException e) {
+                logger.info("Failed to copy screenshot.", e);
+            } catch (IOException e) {
+                try {
+                    copyFile(scrFile, new File("target/screenshots/" + new Date().getTime() + ".png"));
+                } catch (IOException e1) {
+                    logger.info("Failed to copy screenshot.", e1);
+                }
             }
+        } else {
+            logger.info("Taking screenshot is not supported");
         }
     }
 
