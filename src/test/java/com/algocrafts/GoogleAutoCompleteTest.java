@@ -49,6 +49,7 @@ public class GoogleAutoCompleteTest {
         WebDriver webDriver = new FirefoxDriver();
         webDriver.get("http://google.com");
         WebElement q = webDriver.findElement(By.name("q"));
+
         q.clear();
         WebElement oracle = null;
         for (char c : "oracle".toCharArray()) {
