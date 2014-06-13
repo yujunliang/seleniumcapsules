@@ -1,5 +1,6 @@
 package com.algocrafts.selenium;
 
+import com.algocrafts.pages.Page;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.HasInputDevices;
@@ -177,4 +178,8 @@ public interface Browser<T extends WebDriver> extends WebDriverSupplier<T>,
         return javascriptExecutor.executeAsyncScript(script, args);
     }
 
+    default Page load(String s) {
+        this.get(s);
+        return new Page(this);
+    }
 }

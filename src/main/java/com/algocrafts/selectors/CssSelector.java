@@ -14,6 +14,7 @@ public enum CssSelector implements Supplier<By> {
 
     UPDATE("input[value='Update']"),
     CONTINUE("input[value='Continue']"),
+    NEED_CONIRM("input[value='Need Confirm']"),
     SUBMIT("input[type='Submit']");
 
     private final By by;

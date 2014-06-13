@@ -1,12 +1,11 @@
 package com.algocrafts;
 
 
-import com.algocrafts.browsers.Browsers;
-import com.algocrafts.pages.*;
-import com.algocrafts.selenium.Browser;
+import com.algocrafts.locators.Locators;
+import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
-import com.algocrafts.locators.Locators;
 import com.algocrafts.table.Table;
 import com.algocrafts.table.TableContents;
 import com.google.common.collect.Sets;
@@ -16,6 +15,7 @@ import org.junit.Test;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
+import static com.algocrafts.browsers.Browsers.CHROME;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.StringToInt.PARSE_INT;
 import static com.algocrafts.locators.Locators.element;
@@ -39,9 +39,7 @@ public class TableTest {
 
     @Test
     public void testReadFromTable() {
-        Browser browser = Browsers.CHROME;
-        browser.get("http://www.w3schools.com/html/html_tables.asp");
-        Page page = new Page(browser);
+        Page page =CHROME.load("http://www.w3schools.com/html/html_tables.asp");
         Locator<AbstractPage, Element> locator = Locators.<AbstractPage>element(MAIN).and(element(TABLE));
         Locator<Stream<Element>, Person> mapper = (stream) -> {
             Iterator<String> iterator = stream.map(TEXT).iterator();
