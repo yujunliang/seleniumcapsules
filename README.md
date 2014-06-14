@@ -43,9 +43,12 @@ Do you like this test?
 Or do you like this test?
   
     
+    /**
+     * This is a clean test using page framework.  it has the same function as the test above.  :)
+     */
     @Test
     public void autoCompleteUsingXpath() {
-        googlePage.autocomplete(Q, "oracle", trying(ORACLE_AUTOCOMPLETE));
+        googlePage.autocomplete(Q, "oracle", tryElement(ORACLE_AUTOCOMPLETE));
     }
 
 
