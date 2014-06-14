@@ -9,6 +9,7 @@ import java.util.function.Supplier;
  */
 public enum Name implements Supplier<By> {
 
+    FILTER_EVENT("filter-events"),
     FILE("file"),
     Q("q"),
     MAILING_OPTION("customFieldDS.customfield_ROW0_value"),

@@ -1,5 +1,7 @@
 package com.algocrafts.selenium;
 
+import java.util.function.Predicate;
+
 public class Locating<Where extends Searchable<Where>, What> {
 
     protected final Where where;
@@ -19,4 +21,13 @@ public class Locating<Where extends Searchable<Where>, What> {
     public What locate() {
         return locator.locate(where);
     }
+
+    public <T> T then(Locator<What, T> locator) {
+        return this.locator.and(locator).locate(where);
+    }
+
+    public boolean then(Predicate<What> predicate) {
+        return this.locator.and(predicate).test(where);
+    }
+
 }

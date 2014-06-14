@@ -12,10 +12,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.EnumSet;
-
 import static com.algocrafts.browsers.Browsers.*;
 import static java.time.Month.APRIL;
+import static java.util.EnumSet.of;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -41,7 +40,7 @@ public class JQueryDatePickerTest {
 
     @Test
     public void testDifferentBrowsers() {
-        for (Browser browser : EnumSet.of(CHROME, FIREFOX, SAFARI)) {
+        for (Browser browser : of(CHROME, FIREFOX, SAFARI)) {
             jQueryDatePickerPage = new JQueryDatePickerPage(browser, new Url<>(browser, url));
             jQueryDatePickerPage.open();
             jQueryDatePickerPage.pick(APRIL, 1, 2012);

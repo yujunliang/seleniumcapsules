@@ -44,10 +44,7 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
     public String getValue() {
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
-            retry.attempt(() -> {
-                Element element = locate();
-                return VALUE.locate(element);
-            });
+            retry.attempt(() -> then(VALUE));
         } catch (Exception e) {
             log.info("Failed to read text", e);
         }

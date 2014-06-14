@@ -30,16 +30,18 @@ public class Checkbox<Where extends Searchable<Where>> extends Locating<Where, E
      * @param value true or false
      */
     public void setValue(boolean value) {
-        Element checkbox = locate();
-        if (checkbox != null && checkbox.isSelected() != value) {
-            checkbox.click();
-        }
+        then((Element checkbox) -> {
+            if (checkbox != null && checkbox.isSelected() != value) {
+                checkbox.click();
+            }
+            return null;
+        });
     }
 
     /**
      * @return whether the checkbox is checked or not
      */
     public boolean isChecked() {
-        return CHECKED.and(TRUE).test(locate());
+        return then(CHECKED.and(TRUE));
     }
 }

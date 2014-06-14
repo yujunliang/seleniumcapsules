@@ -12,6 +12,10 @@ import static org.openqa.selenium.By.linkText;
  */
 public enum LinkText implements Supplier<By> {
 
+    DISCOVER_MORE_EVENT("Discover More Events"),
+    CANADA("CANADA"),
+    ALL_CANADA("All Canada"),
+    CHANGE_LOCATION("change location"),
     ACTIVE_MQ_IN_ACTION("ActiveMQ in Action"),
     JAVA("Java");
 
