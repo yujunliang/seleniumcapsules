@@ -9,11 +9,11 @@ import com.algocrafts.selenium.Browser;
 
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.locators.Locators.element;
+import static com.algocrafts.selectors.ClassName.TOOLS_LOCATION;
 import static com.algocrafts.selectors.LinkText.CHANGE_LOCATION;
 import static com.algocrafts.selectors.LinkText.DISCOVER_MORE_EVENT;
 import static com.algocrafts.selectors.TagName.A;
 import static com.algocrafts.selectors.TagName.STRONG;
-import static org.openqa.selenium.By.className;
 
 public class TicketflyPage extends AbstractPage {
 
@@ -32,7 +32,7 @@ public class TicketflyPage extends AbstractPage {
     }
 
     public String currentLocation() {
-        return Locators.<AbstractPage>element(() -> className("tools-location"))
+        return Locators.<AbstractPage>element(TOOLS_LOCATION)
                 .and(element(A))
                 .and(element(STRONG))
                 .and(TEXT).locate(this);

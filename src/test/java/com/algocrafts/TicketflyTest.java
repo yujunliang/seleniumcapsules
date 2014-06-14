@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static com.algocrafts.browsers.Browsers.CHROME;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.locators.Locators.element;
+import static com.algocrafts.selectors.ClassName.TOOLS_LOCATION;
 import static com.algocrafts.selectors.LinkText.*;
 import static com.algocrafts.selectors.Name.FILTER_EVENT;
 import static com.algocrafts.selectors.TagName.A;
@@ -69,7 +70,7 @@ public class TicketflyTest {
         browser.link(CANADA).click();
         browser.link(ALL_CANADA).click();
 
-        assertEquals("Canada", Locators.<AbstractPage>element(() -> className("tools-location"))
+        assertEquals("Canada",  Locators.<AbstractPage>element(TOOLS_LOCATION)
                 .and(element(A))
                 .and(element(STRONG))
                 .and(TEXT).locate(new Page(browser)));

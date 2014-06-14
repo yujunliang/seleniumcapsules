@@ -13,6 +13,7 @@ import static org.openqa.selenium.By.className;
 public enum ClassName implements Supplier<By> {
 
     SF_JS_ENABLED("sf-js-enabled"),
+    TOOLS_LOCATION("tools-location"),
 
     UI_DATEPICKER_CALENDAR("ui-datepicker-calendar"),
     UI_DATEPICKER_NEXT("ui-datepicker-next"),

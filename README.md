@@ -9,24 +9,34 @@ Wrapper of Selenium WebDriver API with Functional Programming feature from Java 
 Do you like this test?
 
 
+    //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void autoCompeleteUsingSelenium() throws InterruptedException {
-        FirefoxBinary binary = new FirefoxBinary(new File("src/main/resources/Firefox/Contents/MacOS/firefox-bin"));
-        FirefoxProfile profile = new FirefoxProfile(new File("src/main/resources/Firefox/Profiles/default"));
-        WebDriver webDriver = new FirefoxDriver(binary, profile);
+        WebDriver webDriver = new FirefoxDriver();
         webDriver.get("http://google.com");
         WebElement q = webDriver.findElement(By.name("q"));
+
         q.clear();
+        WebElement oracle = null;
         for (char c : "oracle".toCharArray()) {
             q.sendKeys(String.valueOf(c));
-            Thread.sleep(50);
             try {
-                WebElement oracle = webDriver.findElement(
+                oracle = webDriver.findElement(
                         By.xpath("//table[contains(@class, 'gssb_c')]/descendant::span[text()='oracle']"));
                 oracle.click();
             } catch (NoSuchElementException e) {
                 log.debug("This is OK", e);
             }
+        }
+        if (oracle == null) {
+            oracle = new WebDriverWait(webDriver, 1).until(new Function<WebDriver, WebElement>() {
+                @Override
+                public WebElement apply(WebDriver webDriver) {
+                    return webDriver.findElement(
+                            By.xpath("//table[contains(@class, 'gssb_c')]/descendant::span[text()='oracle']"));
+                }
+            });
+            oracle.click();
         }
     }
 
