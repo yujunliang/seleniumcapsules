@@ -1,6 +1,5 @@
 package com.algocrafts.selenium;
 
-import com.algocrafts.pages.Page;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.HasInputDevices;
 import org.openqa.selenium.interactions.Keyboard;
@@ -9,10 +8,16 @@ import org.openqa.selenium.interactions.Mouse;
 import java.util.List;
 import java.util.Set;
 
-public interface Browser<T extends WebDriver> extends Actionable<T>,  Searchable<Browser<T>>,
+public interface Browser<T extends WebDriver> extends Actionable<T>, Searchable<Browser<T>>,
         HasInputDevices, JavascriptExecutor, HasCapabilities {
 
     WebDriverSupplier<T> getSupplier();
+
+
+    default Browser<T> load(String url) {
+        this.get(url);
+        return this;
+    }
 
     @Override
     default public void save() {
@@ -120,10 +125,5 @@ public interface Browser<T extends WebDriver> extends Actionable<T>,  Searchable
     default public Object executeAsyncScript(String script, Object... args) {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) get();
         return javascriptExecutor.executeAsyncScript(script, args);
-    }
-
-    default Page load(String url) {
-        this.get(url);
-        return new Page(this);
     }
 }

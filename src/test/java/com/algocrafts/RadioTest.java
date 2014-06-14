@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class RadioTest {
     @Test
     public void testRadio() {
-        Page page = CHROME.load("http://localhost:63342/seleniumcapsules/html/radio.html");
+        Page page = new Page(CHROME.load("http://localhost:63342/seleniumcapsules/html/radio.html"));
         page.setRadio(MAILING_OPTION, No_Promotional_Mailers);
 
         assertEquals(No_Promotional_Mailers, fromString(page.getRadio(MAILING_OPTION)));

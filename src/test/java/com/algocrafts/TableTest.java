@@ -39,7 +39,7 @@ public class TableTest {
 
     @Test
     public void testReadFromTable() {
-        Page page =CHROME.load("http://www.w3schools.com/html/html_tables.asp");
+        Page page = new Page(CHROME.load("http://www.w3schools.com/html/html_tables.asp"));
         Locator<AbstractPage, Element> locator = Locators.<AbstractPage>element(MAIN).and(element(TABLE));
         Locator<Stream<Element>, Person> mapper = (stream) -> {
             Iterator<String> iterator = stream.map(TEXT).iterator();

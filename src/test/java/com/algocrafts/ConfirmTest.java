@@ -1,7 +1,7 @@
 package com.algocrafts;
 
 
-import com.algocrafts.pages.Page;
+import com.algocrafts.selenium.Browser;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,9 +23,10 @@ public class ConfirmTest {
 
     @Test
     public void clickConfirm() {
-        Page page = CHROME.load("http://localhost:63342/seleniumcapsules/html/upload.html");
-        page.button(NEED_CONIRM).click();
-        page.accept();
+        Browser browser = CHROME;
+        browser.load("http://localhost:63342/seleniumcapsules/html/upload.html");
+        browser.button(NEED_CONIRM).click();
+        browser.accept();
     }
 
 }

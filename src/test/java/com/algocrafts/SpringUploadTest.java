@@ -2,7 +2,6 @@ package com.algocrafts;
 
 
 import com.algocrafts.clickables.Url;
-import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.pages.Page;
 import org.junit.After;
 import org.junit.Before;
@@ -31,7 +30,7 @@ public class SpringUploadTest {
 
     @Before
     public void openPage() {
-        uploadPage = uploadUrl.open();
+        uploadPage = new Page(uploadUrl.load());
     }
 
     @Test

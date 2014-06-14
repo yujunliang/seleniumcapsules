@@ -18,23 +18,17 @@ import static org.openqa.selenium.By.linkText;
 public class TicketflyTest {
 
     @Test
-    public void changeLocationUsingBrowser() {
-        Browser browser = CHROME;
-        browser.get("http://www.ticketfly.com");
-        browser.link(CHANGE_LOCATION).click();
-        browser.link(CANADA).click();
-        browser.link(ALL_CANADA).click();
-    }
-
-    @Test
-    public void changeLocation() {
-        TicketflyHomePage page = new TicketflyHomePage(CHROME);
-        page.open();
-        page.changeLocation(CANADA, ALL_CANADA);
-    }
-
-    @Test
     public void changeLocationUsingSelenium() {
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
+        WebDriver webDriver = new ChromeDriver();
+        webDriver.get("http://www.ticketfly.com");
+        webDriver.findElement(linkText("change location")).click();
+        webDriver.findElement(linkText("CANADA")).click();
+        webDriver.findElement(linkText("All Canada")).click();
+    }
+
+    @Test
+    public void changeLocationUsingSeleniumWithExplicitWait() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
         WebDriver webDriver = new ChromeDriver();
         webDriver.get("http://www.ticketfly.com");
@@ -54,6 +48,23 @@ public class TicketflyTest {
             }
         });
         allCanada.click();
+    }
+
+
+    @Test
+    public void changeLocationUsingBrowser() {
+        Browser browser = CHROME;
+        browser.get("http://www.ticketfly.com");
+        browser.link(CHANGE_LOCATION).click();
+        browser.link(CANADA).click();
+        browser.link(ALL_CANADA).click();
+    }
+
+    @Test
+    public void changeLocation() {
+        TicketflyHomePage page = new TicketflyHomePage(CHROME);
+        page.open();
+        page.changeLocation(CANADA, ALL_CANADA);
     }
 
 

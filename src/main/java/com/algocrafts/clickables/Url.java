@@ -1,6 +1,5 @@
 package com.algocrafts.clickables;
 
-import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Clickable;
 import org.slf4j.Logger;
@@ -25,8 +24,8 @@ public class Url<T extends Browser> implements Clickable {
         browser.save(url);
     }
 
-    public Page open() {
+    public Browser<?> load() {
         click();
-        return new Page(browser);
+        return browser;
     }
 }
