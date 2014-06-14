@@ -105,7 +105,7 @@ That's the difference Selenium Capsules made, more tests to illustrate the clean
                     .and(element(() -> linkText(headText))).locate(page);
         }
     
-5. Functional and Stream API, default method in interface,
+5. Functional and Stream API, default method in interface and method references.
               
      
      
