@@ -7,7 +7,7 @@ import java.util.function.Supplier;
 import static org.openqa.selenium.By.id;
 
 /**
- * This enum has elements with ById from Selenium By API.
+ * This enum is a Supplier of ById from Selenium By API.
  */
 public enum Id implements Supplier<By> {
 

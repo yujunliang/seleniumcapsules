@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import static org.openqa.selenium.By.linkText;
 
 /**
- * This enum has elements with ByLinkText from Selenium By API.
+ * This enum is a Supplier of ByLinkText from Selenium By API.
  */
 public enum LinkText implements Supplier<By> {
 

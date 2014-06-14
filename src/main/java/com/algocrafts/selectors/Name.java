@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import java.util.function.Supplier;
 
 /**
- * This enum has elements with ByName from Selenium By API.
+ * This enum is a Supplier of ByName from Selenium By API.
  */
 public enum Name implements Supplier<By> {
 

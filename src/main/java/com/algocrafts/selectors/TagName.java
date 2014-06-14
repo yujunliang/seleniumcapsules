@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import static org.openqa.selenium.By.tagName;
 
 /**
- * This enum has elements with ByTagName from Selenium By API.
+ * This enum is the Supplier of ByTagName from Selenium By API.
  */
 public enum TagName implements Supplier<By> {
     A("a"),

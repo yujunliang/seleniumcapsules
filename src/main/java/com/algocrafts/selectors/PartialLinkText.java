@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import static org.openqa.selenium.By.partialLinkText;
 
 /**
- * This enum has elements with ByPartialLinkText from Selenium By API.
+ * This enum is a Supplier of  ByPartialLinkText from Selenium By API.
  */
 public enum PartialLinkText implements Supplier<By> {
 

@@ -26,6 +26,9 @@ import static org.openqa.selenium.By.*;
 
 public class TicketflyTest {
 
+    /**
+     * This test will fail.
+     */
     @Test
     public void changeLocationUsingSelenium() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
@@ -34,7 +37,11 @@ public class TicketflyTest {
         webDriver.findElement(linkText("change location")).click();
         webDriver.findElement(linkText("CANADA")).click();
         webDriver.findElement(linkText("All Canada")).click();
-        assertEquals("Canada", webDriver.findElement(By.className("tools-location")).findElement(By.tagName("a")).findElement(By.tagName("strong")).getText());
+        assertEquals("Canada", webDriver
+                .findElement(By.className("tools-location"))
+                .findElement(By.tagName("a"))
+                .findElement(By.tagName("strong"))
+                .getText());
     }
 
     @Test
@@ -58,7 +65,11 @@ public class TicketflyTest {
             }
         });
         allCanada.click();
-        assertEquals("Canada", webDriver.findElement(By.className("tools-location")).findElement(By.tagName("a")).findElement(By.tagName("strong")).getText());
+        assertEquals("Canada", webDriver
+                .findElement(By.className("tools-location"))
+                .findElement(By.tagName("a"))
+                .findElement(By.tagName("strong"))
+                .getText());
     }
 
 
@@ -70,7 +81,7 @@ public class TicketflyTest {
         browser.link(CANADA).click();
         browser.link(ALL_CANADA).click();
 
-        assertEquals("Canada",  Locators.<AbstractPage>element(TOOLS_LOCATION)
+        assertEquals("Canada", Locators.<AbstractPage>element(TOOLS_LOCATION)
                 .and(element(A))
                 .and(element(STRONG))
                 .and(TEXT).locate(new Page(browser)));
@@ -85,6 +96,14 @@ public class TicketflyTest {
         assertEquals("Canada", page.currentLocation());
     }
 
+    @Test
+    public void discoverMoreEventUsingSelenium() {
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
+        WebDriver webDriver = new ChromeDriver();
+        webDriver.get("http://www.ticketfly.com");
+        webDriver.findElement(linkText("Discover More Events")).click();
+        webDriver.findElement(id("filter-events3")).click();
+    }
 
     @Test
     public void discoverMoreEvent() {
@@ -103,12 +122,4 @@ public class TicketflyTest {
         }};
     }
 
-    @Test
-    public void discoverMoreEventUsingSelenium() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(linkText("Discover More Events")).click();
-        webDriver.findElement(id("filter-events3")).click();
-    }
 }

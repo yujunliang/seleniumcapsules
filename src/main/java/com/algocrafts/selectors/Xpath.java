@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 import static org.openqa.selenium.By.xpath;
 
 /**
- * This enum has elements with ByXpath from Selenium By API.
+ * This enum is a Supplier ByXpath from Selenium By API.
  */
 public enum Xpath implements Supplier<By> {
     PARENT(".."),
