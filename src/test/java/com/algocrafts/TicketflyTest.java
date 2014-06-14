@@ -1,19 +1,27 @@
 package com.algocrafts;
 
+import com.algocrafts.locators.Locators;
+import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Browser;
 import com.google.common.base.Function;
-import com.ticketfly.TicketflyHomePage;
+import com.ticketfly.TicketflyPage;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.algocrafts.browsers.Browsers.CHROME;
+import static com.algocrafts.converters.GetText.TEXT;
+import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.LinkText.*;
 import static com.algocrafts.selectors.Name.FILTER_EVENT;
-import static org.openqa.selenium.By.id;
-import static org.openqa.selenium.By.linkText;
+import static com.algocrafts.selectors.TagName.A;
+import static com.algocrafts.selectors.TagName.STRONG;
+import static org.junit.Assert.assertEquals;
+import static org.openqa.selenium.By.*;
 
 public class TicketflyTest {
 
@@ -25,6 +33,7 @@ public class TicketflyTest {
         webDriver.findElement(linkText("change location")).click();
         webDriver.findElement(linkText("CANADA")).click();
         webDriver.findElement(linkText("All Canada")).click();
+        assertEquals("Canada", webDriver.findElement(By.className("tools-location")).findElement(By.tagName("a")).findElement(By.tagName("strong")).getText());
     }
 
     @Test
@@ -48,6 +57,7 @@ public class TicketflyTest {
             }
         });
         allCanada.click();
+        assertEquals("Canada", webDriver.findElement(By.className("tools-location")).findElement(By.tagName("a")).findElement(By.tagName("strong")).getText());
     }
 
 
@@ -58,19 +68,26 @@ public class TicketflyTest {
         browser.link(CHANGE_LOCATION).click();
         browser.link(CANADA).click();
         browser.link(ALL_CANADA).click();
+
+        assertEquals("Canada", Locators.<AbstractPage>element(() -> className("tools-location"))
+                .and(element(A))
+                .and(element(STRONG))
+                .and(TEXT).locate(new Page(browser)));
     }
 
     @Test
     public void changeLocation() {
-        TicketflyHomePage page = new TicketflyHomePage(CHROME);
+        TicketflyPage page = new TicketflyPage(CHROME);
         page.open();
         page.changeLocation(CANADA, ALL_CANADA);
+
+        assertEquals("Canada", page.currentLocation());
     }
 
 
     @Test
     public void discoverMoreEvent() {
-        TicketflyHomePage page = new TicketflyHomePage(CHROME);
+        TicketflyPage page = new TicketflyPage(CHROME);
         page.open();
         page.discoverMoreEvent();
         page.setRadio(FILTER_EVENT, "Just Announced");
@@ -78,7 +95,7 @@ public class TicketflyTest {
 
     @Test
     public void discoverMoreEventAnonymousClass() {
-        new TicketflyHomePage(CHROME) {{
+        new TicketflyPage(CHROME) {{
             open();
             discoverMoreEvent();
             setRadio(FILTER_EVENT, "Just Announced");

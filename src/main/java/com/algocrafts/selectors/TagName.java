@@ -23,6 +23,7 @@ public enum TagName implements Supplier<By> {
     LI("li"),
     OPTION("option"),
     SPAN("span"),
+    STRONG("strong"),
     TABLE("table"),
     TD("td"),
     TR("tr"),
