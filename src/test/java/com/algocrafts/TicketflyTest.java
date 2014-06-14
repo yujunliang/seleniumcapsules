@@ -92,7 +92,6 @@ public class TicketflyTest {
         TicketflyPage page = new TicketflyPage(CHROME);
         page.open();
         page.changeLocation(CANADA, ALL_CANADA);
-
         assertEquals("Canada", page.currentLocation());
     }
 

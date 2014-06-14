@@ -35,6 +35,7 @@ public class TicketflyPage extends AbstractPage {
         return Locators.<AbstractPage>element(TOOLS_LOCATION)
                 .and(element(A))
                 .and(element(STRONG))
-                .and(TEXT).locate(this);
+                .and(TEXT)
+                .locate(this);
     }
 }
