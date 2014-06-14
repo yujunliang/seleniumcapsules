@@ -2,13 +2,10 @@ package com.ticketfly;
 
 
 import com.algocrafts.clickables.Url;
-import com.algocrafts.converters.GetText;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.AbstractPage;
-import com.algocrafts.pages.Page;
 import com.algocrafts.selectors.LinkText;
 import com.algocrafts.selenium.Browser;
-import org.openqa.selenium.By;
 
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.locators.Locators.element;
@@ -17,7 +14,6 @@ import static com.algocrafts.selectors.LinkText.DISCOVER_MORE_EVENT;
 import static com.algocrafts.selectors.TagName.A;
 import static com.algocrafts.selectors.TagName.STRONG;
 import static org.openqa.selenium.By.className;
-import static org.openqa.selenium.By.tagName;
 
 public class TicketflyPage extends AbstractPage {
 
