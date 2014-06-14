@@ -22,11 +22,11 @@ public class Locating<Where extends Searchable<Where>, What> {
         return locator.locate(where);
     }
 
-    public <T> T then(Locator<What, T> locator) {
+    public <T> T locate(Locator<What, T> locator) {
         return this.locator.and(locator).locate(where);
     }
 
-    public boolean then(Predicate<What> predicate) {
+    public boolean test(Predicate<What> predicate) {
         return this.locator.and(predicate).test(where);
     }
 

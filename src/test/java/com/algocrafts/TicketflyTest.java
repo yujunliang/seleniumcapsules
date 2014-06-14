@@ -2,7 +2,6 @@ package com.algocrafts;
 
 import com.algocrafts.forms.RadioButton;
 import com.algocrafts.pages.AbstractPage;
-import com.algocrafts.selectors.Name;
 import com.ticketfly.TicketflyHomePage;
 import org.junit.Test;
 

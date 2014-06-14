@@ -37,14 +37,14 @@ public class RadioButton<Where extends Searchable<Where>> extends Locating<Where
      * @param value value to set
      */
     public void setValue(Object value) {
-        then(new FirstMatch<>(DISPLAYED.and(Locators.<Element>element(PARENT).and(TEXT).and(new StringContains(value.toString())))).and(CLICK));
+        locate(new FirstMatch<>(DISPLAYED.and(Locators.<Element>element(PARENT).and(TEXT).and(new StringContains(value.toString())))).and(CLICK));
     }
 
     /**
      * @return the value of the select radio
      */
     public String getValue() {
-        return then(new FirstMatch<>(DISPLAYED.and(CHECKED.and(TRUE))).and(element(PARENT)).and(TEXT));
+        return locate(new FirstMatch<>(DISPLAYED.and(CHECKED.and(TRUE))).and(element(PARENT)).and(TEXT));
     }
 }
 
