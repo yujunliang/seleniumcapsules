@@ -97,7 +97,7 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
      * If the button can't be found using the previous two methods, use this.
      *
      * @param locator locator
-     * @return button by the locator
+     * @return button found by the locator
      */
     @SuppressWarnings("unchecked")
     default public Clickable button(Locator<Where, Element> locator) {
@@ -108,7 +108,7 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
      * The first image using the image file.
      *
      * @param fileName file name
-     * @return first image using the image file.
+     * @return first image found by using the image file.
      */
     default public Element image(String fileName) {
         return new FirstItem<Element>().locate(images(fileName));
@@ -131,7 +131,7 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
      * Find the images using the same image file.
      *
      * @param fileName file name
-     * @return the images  using the same image file.
+     * @return the images  found by using the same image file.
      */
     default public Stream<Element> images(String fileName) {
         return until(Locators.<Where>elements(IMG)
@@ -143,7 +143,7 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
      * Find the link using the selector.
      *
      * @param selector selector
-     * @return the link using the selector.
+     * @return the link found by using the selector.
      */
     @SuppressWarnings("unchecked")
     default public Clickable link(Supplier<By> selector) {

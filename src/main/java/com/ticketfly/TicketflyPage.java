@@ -14,17 +14,16 @@ import static com.algocrafts.selectors.LinkText.CHANGE_LOCATION;
 import static com.algocrafts.selectors.LinkText.DISCOVER_MORE_EVENT;
 import static com.algocrafts.selectors.TagName.A;
 import static com.algocrafts.selectors.TagName.STRONG;
+import static java.util.stream.Stream.of;
 
 public class TicketflyPage extends AbstractPage {
 
     public TicketflyPage(Browser<?> browser) {
-        super(browser, new Url<>(browser, "http://www.ticketfly.com"), null);
+        super(browser, new Url<>(browser, "http://www.ticketfly.com"));
     }
 
     public void changeLocation(LinkText first, LinkText second) {
-        link(CHANGE_LOCATION).click();
-        link(first).click();
-        link(second).click();
+        of(CHANGE_LOCATION, first, second).forEach(linkText -> link(linkText).click());
     }
 
     public void discoverMoreEvent() {
@@ -39,3 +38,4 @@ public class TicketflyPage extends AbstractPage {
                 .locate(this);
     }
 }
+

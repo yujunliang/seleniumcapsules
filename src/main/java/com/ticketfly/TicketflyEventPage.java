@@ -8,7 +8,4 @@ public class TicketflyEventPage extends AbstractPage {
     public TicketflyEventPage(AbstractPage page) {
         super(page);
     }
-
-
-
 }

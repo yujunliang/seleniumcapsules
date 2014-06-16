@@ -78,7 +78,7 @@ public class GoogleAutoCompleteTest {
      * This is a clean test using page framework.  it has the same function as the test above.  :)
      */
     @Test
-    public void autoCompleteUsingXpath() {
+    public void autoCompleteUsingSeleniumCapsules() {
         googlePage.autocomplete(Q, "oracle", tryElement(ORACLE_AUTOCOMPLETE));
     }
 

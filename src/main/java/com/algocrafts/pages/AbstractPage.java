@@ -45,6 +45,10 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
         this(browser, null, null, false);
     }
 
+    public AbstractPage(Browser<?> browser, Clickable clickable) {
+        this(browser, clickable, null, false);
+    }
+
     public AbstractPage(Browser<?> browser, Clickable clickable, Predicate<AbstractPage> condition) {
         this(browser, clickable, condition, false);
     }

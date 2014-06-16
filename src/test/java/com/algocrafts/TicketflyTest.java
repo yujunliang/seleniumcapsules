@@ -7,7 +7,6 @@ import com.algocrafts.selenium.Browser;
 import com.google.common.base.Function;
 import com.ticketfly.TicketflyPage;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,12 +37,13 @@ public class TicketflyTest {
         webDriver.findElement(linkText("CANADA")).click();
         webDriver.findElement(linkText("All Canada")).click();
         assertEquals("Canada", webDriver
-                .findElement(By.className("tools-location"))
-                .findElement(By.tagName("a"))
-                .findElement(By.tagName("strong"))
+                .findElement(className("tools-location"))
+                .findElement(tagName("a"))
+                .findElement(tagName("strong"))
                 .getText());
     }
 
+    //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void changeLocationUsingSeleniumWithExplicitWait() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
@@ -66,13 +66,34 @@ public class TicketflyTest {
         });
         allCanada.click();
         assertEquals("Canada", webDriver
-                .findElement(By.className("tools-location"))
-                .findElement(By.tagName("a"))
-                .findElement(By.tagName("strong"))
+                .findElement(className("tools-location"))
+                .findElement(tagName("a"))
+                .findElement(tagName("strong"))
                 .getText());
     }
 
+    //This is an ugly test not using page framework, it has the same function as the test below. :(
+    @Test
+    public void changeLocationUsingSeleniumWithExplicitWaitLambda() {
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
+        WebDriver webDriver = new ChromeDriver();
+        webDriver.get("http://www.ticketfly.com");
+        webDriver.findElement(linkText("change location")).click();
+        WebDriverWait wait = new WebDriverWait(webDriver, 5);
+        WebElement canada = wait.until((WebDriver o) -> webDriver.findElement(linkText("CANADA")));
+        canada.click();
+        WebElement allCanada = wait.until((WebDriver o) -> webDriver.findElement(linkText("All Canada")));
+        allCanada.click();
+        assertEquals("Canada", webDriver
+                .findElement(className("tools-location"))
+                .findElement(tagName("a"))
+                .findElement(tagName("strong"))
+                .getText());
+    }
 
+    /**
+     * This is a clean test using page framework. It has the same function as the test above.  :)
+     */
     @Test
     public void changeLocationUsingBrowser() {
         Browser browser = CHROME;
@@ -84,15 +105,31 @@ public class TicketflyTest {
         assertEquals("Canada", Locators.<AbstractPage>element(TOOLS_LOCATION)
                 .and(element(A))
                 .and(element(STRONG))
-                .and(TEXT).locate(new Page(browser)));
+                .and(TEXT)
+                .locate(new Page(browser)));
     }
 
+    /**
+     * This is a cleaner test using page framework. It has the same function as the test above. :)
+     */
     @Test
     public void changeLocation() {
         TicketflyPage page = new TicketflyPage(CHROME);
         page.open();
         page.changeLocation(CANADA, ALL_CANADA);
         assertEquals("Canada", page.currentLocation());
+    }
+
+    /**
+     * This is a cleaner test using page framework. It has the same function as the test above. :)
+     */
+    @Test
+    public void changeLocationAnonymous() {
+        new TicketflyPage(CHROME) {{
+            open();
+            changeLocation(CANADA, ALL_CANADA);
+            assertEquals("Canada", currentLocation());
+        }};
     }
 
     @Test
