@@ -10,12 +10,12 @@ public enum BookStoreId implements Supplier<By> {
 
     BILLING_FIRST_NAME("billing-first-name"),
     BILLING_LAST_NAME_("billing-last-name"),
-    BILLING_ADDRESS1__("billing-address1"),
-    BILLING_ADDRESS2__("billing-address2"),
-    BILLING_CITY______("billing-city"),
-    BILLING_STATE_____("billing-state"),
-    BILLING_COUNTRY___("billing-country"),
-    BILLING_ZIP_______("billing-zip"),
+    BILLING_ADDRESS1("billing-address1"),
+    BILLING_ADDRESS2("billing-address2"),
+    BILLING_CITY("billing-city"),
+    BILLING_STATE("billing-state"),
+    BILLING_COUNTRY("billing-country"),
+    BILLING_ZIP("billing-zip"),
     BILLING_EMAIL("billing-email"),
 
     CARD_TYPE("card-type"),
