@@ -6,7 +6,7 @@ So that I can achieve a business goal
 Scenario: scenario description
 Given I am on jQuery Calendar page using <browser>
 When I pick <month>, <day>, <year> from a datepicker
-Then result is <date>
+Then datepicker result is <date>
 And I close browser
 
 Examples:

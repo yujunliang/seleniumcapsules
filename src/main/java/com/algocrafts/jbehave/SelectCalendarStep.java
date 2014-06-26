@@ -2,10 +2,7 @@ package com.algocrafts.jbehave;
 
 import com.algocrafts.browsers.Browsers;
 import com.algocrafts.clickables.Url;
-import com.algocrafts.converters.StringToMonth;
-import com.algocrafts.selectors.LinkText;
 import com.jquery.JQueryDatePickerPage;
-import com.ticketfly.TicketflyPage;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
@@ -14,6 +11,7 @@ import static com.algocrafts.converters.StringToMonth.TO_MONTH;
 import static org.junit.Assert.assertEquals;
 
 public class SelectCalendarStep {
+
 
     JQueryDatePickerPage page;
 
@@ -25,12 +23,12 @@ public class SelectCalendarStep {
     }
 
     @When("I pick <month>, <day>, <year> from a datepicker")
-    public void changeLocation(String month, int day, int year) {
+    public void pick(String month, int day, int year) {
         page.pick(TO_MONTH.locate(month), day, year);
     }
 
-    @Then("result is <date>")
-    public void verifyLocation(String date) {
+    @Then("datepicker result is <date>")
+    public void verify(String date) {
         assertEquals(date, page.getDate());
     }
 
