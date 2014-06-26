@@ -115,7 +115,7 @@ public interface FormControl<Where extends Searchable<Where>> extends Searchable
 
     @SuppressWarnings("unchecked")
     default public void upload(Supplier<By> selector, Supplier<By> submit, File filePath) {
-        new Input<>((Where) this, selector).putFile(filePath);
+        new FileInput<>((Where) this, selector).put(filePath);
         button(submit).click();
     }
 

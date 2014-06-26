@@ -108,17 +108,4 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
             suggestion.click();
         }
     }
-
-    public void putFile(File file) {
-        final Retry retry = new Retry(5, 1, SECONDS);
-        try {
-            retry.attempt(() -> {
-                Element element = locate();
-                element.sendKeys(file.getAbsolutePath());
-                return null;
-            });
-        } catch (Exception e) {
-            log.info("Failed to set file {}", file);
-        }
-    }
 }
