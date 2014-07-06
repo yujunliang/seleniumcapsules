@@ -15,7 +15,7 @@ public interface ExplicitWait<Where> {
     /**
      * Save the screenshot if possible.
      */
-    void save();
+    void onTimeout();
 
     /**
      * @param locator locator
@@ -45,9 +45,9 @@ public interface ExplicitWait<Where> {
      */
     default public <What> What until(int duration, TimeUnit timeUnit, Locator<Where, What> locator) throws NoSuchElementException {
         try {
-            return getFluentWait(duration, timeUnit).until(locator::locate);
+            return explicitWait(duration, timeUnit).until(locator::locate);
         } catch (TimeoutException e) {
-            save();
+            onTimeout();
             throw new NoSuchElementException("Nothing found by " + locator, e);
         }
     }
@@ -60,9 +60,9 @@ public interface ExplicitWait<Where> {
      */
     default public void until(int duration, TimeUnit timeUnit, Predicate<Where> predicate) throws TimeoutException {
         try {
-            getFluentWait(duration, timeUnit).until(predicate::test);
+            explicitWait(duration, timeUnit).until(predicate::test);
         } catch (TimeoutException e) {
-            save();
+            onTimeout();
             throw e;
         }
     }
@@ -73,7 +73,7 @@ public interface ExplicitWait<Where> {
      * @return the FluentWait instance
      */
     @SuppressWarnings("unchecked")
-    default public FluentWait<Where> getFluentWait(int duration, TimeUnit timeUnit) {
+    default public FluentWait<Where> explicitWait(int duration, TimeUnit timeUnit) {
         return new FluentWait<>((Where) this)
                 .withTimeout(duration, timeUnit)
                 .pollingEvery(5, MILLISECONDS)

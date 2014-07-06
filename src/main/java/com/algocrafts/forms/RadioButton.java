@@ -13,6 +13,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
+import static com.algocrafts.conditions.ElementPredicates.NOT_NULL;
 import static com.algocrafts.conditions.StringEquals.TRUE;
 import static com.algocrafts.converters.ElementFunctions.CLICK;
 import static com.algocrafts.converters.GetText.CHECKED;
@@ -37,14 +38,14 @@ public class RadioButton<Where extends Searchable<Where>> extends Locating<Where
      * @param value value to set
      */
     public void setValue(Object value) {
-        locate(new FirstMatch<>(DISPLAYED.and(Locators.<Element>element(PARENT).and(TEXT).and(new StringContains(value.toString())))).and(CLICK));
+        locate(new FirstMatch<>(NOT_NULL.and(DISPLAYED).and(Locators.<Element>element(PARENT).and(TEXT).and(new StringContains(value.toString())))).and(CLICK));
     }
 
     /**
      * @return the value of the select radio
      */
     public String getValue() {
-        return locate(new FirstMatch<>(DISPLAYED.and(CHECKED.and(TRUE))).and(element(PARENT)).and(TEXT));
+        return locate(new FirstMatch<>(NOT_NULL.and(DISPLAYED).and(CHECKED.and(TRUE))).and(element(PARENT)).and(TEXT));
     }
 }
 

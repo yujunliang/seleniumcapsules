@@ -28,7 +28,7 @@ public class SelectLocator<Where extends Searchable<Where>>
                 return new Select(element);
             } catch (NoSuchElementException e) {
                 element.click();
-                where.save();
+                where.onTimeout();
                 log.error("Timeout waiting for the option list to populate.", e);
                 throw e;
             }

@@ -22,8 +22,8 @@ public class AbstractForm extends Locating<AbstractPage, Element> implements Sea
     }
 
     @Override
-    public void save() {
-        where.save();
+    public void onTimeout() {
+        where.onTimeout();
     }
 
     @Override

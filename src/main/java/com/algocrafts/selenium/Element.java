@@ -101,7 +101,7 @@ public class Element implements Searchable<Element>, WebElement, Locatable {
     }
 
     @Override
-    public void save() {
+    public void onTimeout() {
         logger.info("Saving " + element + "[" + this + "]");
     }
 

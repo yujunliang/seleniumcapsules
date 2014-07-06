@@ -16,6 +16,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
+import static com.algocrafts.conditions.ElementPredicates.NOT_NULL;
 import static com.algocrafts.converters.GetText.SRC;
 import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.TagName.IMG;
@@ -135,7 +136,7 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
      */
     default public Stream<Element> images(String fileName) {
         return until(Locators.<Where>elements(IMG)
-                        .and(new Filter<>(DISPLAYED.and(SRC.and(new StringContains(fileName)))))
+                        .and(new Filter<>(NOT_NULL.and(DISPLAYED).and(SRC.and(new StringContains(fileName)))))
         );
     }
 

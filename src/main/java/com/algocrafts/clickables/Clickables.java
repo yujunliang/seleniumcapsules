@@ -23,9 +23,9 @@ public class Clickables<Where extends Searchable<Where>> implements Clickable {
     public void click() {
         Element apply = locator.locate(where);
         log.info("clicking [" + apply + "]");
-        where.save();
+        where.onTimeout();
         apply.click();
-        where.save();
+        where.onTimeout();
     }
 
     @Override

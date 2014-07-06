@@ -85,6 +85,13 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
         return browser.findElement(by);
     }
 
+    @Override
+    public final void onTimeout() {
+        if (logger.isDebugEnabled()) {
+            browser.save(this.getTitle());
+        }
+    }
+
     public final void accept() {
         browser.accept();
     }
@@ -135,12 +142,6 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
     public final AbstractPage defaultContent() {
         browser.defaultContent();
         return this;
-    }
-
-    public final void save() {
-        if (logger.isDebugEnabled()) {
-            browser.save(this.getTitle());
-        }
     }
 
     public final void get(String url) {

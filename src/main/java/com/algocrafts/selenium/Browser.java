@@ -20,7 +20,7 @@ public interface Browser<T extends WebDriver> extends Actionable<T>, Searchable<
     }
 
     @Override
-    default public void save() {
+    default public void onTimeout() {
         if (logger.isDebugEnabled()) {
             save(this.getTitle());
         }
