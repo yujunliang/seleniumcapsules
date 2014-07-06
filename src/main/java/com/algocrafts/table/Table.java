@@ -1,16 +1,15 @@
 package com.algocrafts.table;
 
 
-import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
+import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.Searchable;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static com.algocrafts.conditions.ElementPredicates.NOT_NULL;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.locators.Locators.elements;
 import static com.algocrafts.selectors.TagName.*;
@@ -33,8 +32,8 @@ public class Table<T, Where extends Searchable<Where>> extends Locating<Where, E
     }
 
     public Stream<T> getRows() {
-        return locate(elements(TR)).
-                filter(Locators.<Element>tryElement(TD).and(NOT_NULL))
+        return locate(elements(TR))
+                .filter(e -> Locators.<Element>tryElement(TD).locate(e) != null)
                 .map(elements(TD))
                 .map(mapper);
     }
