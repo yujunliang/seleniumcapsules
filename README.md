@@ -52,7 +52,10 @@ Or do you like this test?
     }
 
 
-That's the difference Selenium Capsules made, more tests to illustrate the cleanness of the code,
+That's the difference Selenium Capsules made, and you can see how it works here,
+https://github.com/yujunliang/seleniumcapsules/blob/master/src/test/java/com/algocrafts/GoogleAutoCompleteTest.java
+
+more tests to illustrate the cleanness of the code,
 
 1. With anonymous inerclass,
 
