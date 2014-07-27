@@ -7,6 +7,7 @@ import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 
 import java.io.File;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
@@ -127,7 +128,7 @@ public interface FormControl<Where extends Searchable<Where>> extends Searchable
      * @param locator  locator
      */
     @SuppressWarnings("unchecked")
-    default public void autocomplete(Supplier<By> selector, Object value, Locator<Where, Element> locator) {
+    default public void autocomplete(Supplier<By> selector, Object value, Locator<Where, Optional<Element>> locator) {
         new Input<>((Where) this, selector).autocomplete(value, locator);
     }
 

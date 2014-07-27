@@ -9,6 +9,7 @@ import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.conditions.ElementPredicates.NOT_NULL;
 import static com.algocrafts.conditions.StringEquals.*;
 import static com.algocrafts.converters.GetText.TEXT;
+import static com.algocrafts.converters.OptionalGetter.GET;
 import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.Id.CONTENT;
 import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
@@ -40,7 +41,8 @@ public enum PagePredicates implements Predicate<AbstractPage> {
                     .and(MANNING)
     ),
     CALENDAR_NOT_DISPLAYED(
-            Locators.<AbstractPage>tryElement(UI_DATEPICKER_DIV)
+            Locators.<AbstractPage>optional(UI_DATEPICKER_DIV)
+                    .and(GET)
                     .and(NOT_NULL.and(DISPLAYED.negate()))
     );
     private final Predicate<AbstractPage> predicate;

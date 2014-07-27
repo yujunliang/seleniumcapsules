@@ -13,6 +13,7 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import static com.algocrafts.converters.GetText.TEXT;
+import static com.algocrafts.converters.OptionalGetter.GET;
 import static com.algocrafts.converters.PageFunctions.THE_PAGE_TITLE;
 import static com.algocrafts.selectors.ClassName.PAGE_TITLE;
 import static org.slf4j.LoggerFactory.getLogger;
@@ -128,7 +129,7 @@ public class AbstractPage implements Searchable<AbstractPage>, FormControl<Abstr
 
     public String getTitle() {
         try {
-            return Locators.<AbstractPage>tryElement(PAGE_TITLE).and(TEXT).locate(this);
+            return Locators.<AbstractPage>optional(PAGE_TITLE).and(GET).and(TEXT).locate(this);
         } catch (Exception e) {
             return "";
         }

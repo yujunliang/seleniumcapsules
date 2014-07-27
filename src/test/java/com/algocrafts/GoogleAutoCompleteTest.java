@@ -23,8 +23,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static com.algocrafts.converters.GetText.TEXT;
+import static com.algocrafts.converters.OptionalGetter.GET;
 import static com.algocrafts.locators.Locators.elements;
-import static com.algocrafts.locators.Locators.tryElement;
+import static com.algocrafts.locators.Locators.optional;
 import static com.algocrafts.selectors.Name.Q;
 import static com.algocrafts.selectors.TagName.SPAN;
 import static com.algocrafts.selectors.Xpath.ORACLE_AUTOCOMPLETE;
@@ -42,6 +43,8 @@ public class GoogleAutoCompleteTest {
     public void setup() {
         googlePage.open();
     }
+
+
 
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
@@ -79,13 +82,14 @@ public class GoogleAutoCompleteTest {
      */
     @Test
     public void autoCompleteUsingSeleniumCapsules() {
-        googlePage.autocomplete(Q, "oracle", tryElement(ORACLE_AUTOCOMPLETE));
+        googlePage.autocomplete(Q, "oracle", optional(ORACLE_AUTOCOMPLETE));
     }
 
     @Test
     public void autoCompleteUsingLocator() {
         googlePage.autocomplete(Q, "oracle",
-                Locators.<AbstractPage>tryElement(() -> className("gssb_c"))
+                Locators.<AbstractPage>optional(() -> className("gssb_c"))
+                        .and(GET)
                         .and(elements(SPAN))
                         .and(new FirstMatch<>(TEXT.and(new Equals("oracle")))));
     }

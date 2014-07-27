@@ -3,22 +3,23 @@ package com.algocrafts.forms;
 
 import com.algocrafts.algorithm.Retry;
 import com.algocrafts.conditions.Equals;
+import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.Locator;
-import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Searchable;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 
-import java.io.File;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import static com.algocrafts.converters.GetText.VALUE;
+import static com.algocrafts.converters.OptionalGetter.GET;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class Input<Where extends Searchable<Where>> extends Locating<Where, Element> {
+public class Input<Where extends Searchable<Where>> extends Locating<Where, Optional<Element>> {
 
     public static final Logger log = getLogger(Input.class);
 
@@ -29,7 +30,7 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
      * @param selector selector
      */
     public Input(Where where, Supplier<By> selector) {
-        super(where, Locators.<Where>tryElement(selector));
+        super(where, Locators.<Where>optional(selector));
     }
 
     /**
@@ -44,7 +45,7 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
     public String getValue() {
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
-            retry.attempt(() -> locate(VALUE));
+            retry.attempt(() -> locate(GET.and(VALUE)));
         } catch (Exception e) {
             log.info("Failed to read text", e);
         }
@@ -68,7 +69,7 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
             retry.attempt(() -> {
-                Element element = locate();
+                Element element = locate(GET);
                 element.clear();
                 element.sendKeys(string);
                 if (VALUE.and(new Equals(string)).test(element)) {
@@ -91,21 +92,21 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Elem
      * @param value   value
      * @param locator locator
      */
-    public void autocomplete(Object value, Locator<Where, Element> locator) {
-        Element element = locate();
+    public void autocomplete(Object value, Locator<Where, Optional<Element>> locator) {
+        Element element = locate(GET);
         element.clear();
-        Element suggestion;
+        Optional<Element> suggestion;
         for (char c : value.toString().toCharArray()) {
             element.sendKeys(String.valueOf(c));
             suggestion = locator.locate(where);
-            if (suggestion != null) {
-                suggestion.click();
+            if (suggestion.isPresent()) {
+                suggestion.get().click();
                 return;
             }
         }
         suggestion = where.until(locator);
-        if (suggestion != null) {
-            suggestion.click();
+        if (suggestion.isPresent()) {
+            suggestion.get().click();
         }
     }
 }

@@ -12,6 +12,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.SearchContext;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -34,16 +35,16 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
     Element findElement(By by);
 
     /**
-     * Find the first element or return null if nothing found.
+     * Find the first element or return empty Optional if nothing found.
      *
      * @param by selector
-     * @return the first element or return null if nothing found.
+     * @return the first element or return empty Optional if nothing found.
      */
-    default public Element tryElement(Supplier<By> by) {
+    default public Optional<Element> optionalElement(Supplier<By> by) {
         try {
-            return findElement(by.get());
+            return  Optional.of(findElement(by.get()));
         } catch (NoSuchElementException e) {
-            return null;
+            return Optional.empty();
         }
     }
 
@@ -111,7 +112,7 @@ public interface Searchable<Where extends Searchable<Where>> extends SearchConte
      * @param fileName file name
      * @return first image found by using the image file.
      */
-    default public Element image(String fileName) {
+    default public Optional<Element> image(String fileName) {
         return new FirstItem<Element>().locate(images(fileName));
     }
 

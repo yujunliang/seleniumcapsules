@@ -33,7 +33,7 @@ public class Table<T, Where extends Searchable<Where>> extends Locating<Where, E
 
     public Stream<T> getRows() {
         return locate(elements(TR))
-                .filter(e -> Locators.<Element>tryElement(TD).locate(e) != null)
+                .filter(e -> Locators.<Element>optional(TD).locate(e) != null)
                 .map(elements(TD))
                 .map(mapper);
     }
