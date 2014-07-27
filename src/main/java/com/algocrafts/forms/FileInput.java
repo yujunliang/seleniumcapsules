@@ -27,7 +27,7 @@ public class FileInput<Where extends Searchable<Where>> extends Locating<Where, 
      * @param selector selector
      */
     public FileInput(Where where, Supplier<By> selector) {
-        super(where, Locators.<Where>optional(selector));
+        super(where, Locators.<Where>optionalElement(selector));
     }
 
     public void put(java.io.File file) {

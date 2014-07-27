@@ -20,7 +20,7 @@ public class Locators<Where extends Searchable<Where>, What>
         return new ElementsLocator<>(selector);
     }
 
-    public static <Where extends Searchable<Where>> Locators<Where, Optional<Element>> optional(Supplier<By> selector) {
+    public static <Where extends Searchable<Where>> Locators<Where, Optional<Element>> optionalElement(Supplier<By> selector) {
         return new OptionalElementLocator<>(selector);
     }
 

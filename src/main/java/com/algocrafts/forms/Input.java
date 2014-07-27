@@ -30,7 +30,7 @@ public class Input<Where extends Searchable<Where>> extends Locating<Where, Opti
      * @param selector selector
      */
     public Input(Where where, Supplier<By> selector) {
-        super(where, Locators.<Where>optional(selector));
+        super(where, Locators.<Where>optionalElement(selector));
     }
 
     /**

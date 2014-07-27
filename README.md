@@ -48,7 +48,7 @@ Or do you like this test?
      */
     @Test
     public void autoCompleteUsingXpath() {
-        googlePage.autocomplete(Q, "oracle", tryElement(ORACLE_AUTOCOMPLETE));
+        googlePage.autocomplete(Q, "oracle", optionalElement(ORACLE_AUTOCOMPLETE));
     }
 
 
