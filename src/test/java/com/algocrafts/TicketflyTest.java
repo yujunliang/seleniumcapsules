@@ -1,7 +1,6 @@
 package com.algocrafts;
 
 import com.algocrafts.locators.Locators;
-import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Browser;
 import com.google.common.base.Function;
@@ -102,7 +101,7 @@ public class TicketflyTest {
         browser.link(CANADA).click();
         browser.link(ALL_CANADA).click();
 
-        assertEquals("Canada", Locators.<AbstractPage>element(TOOLS_LOCATION)
+        assertEquals("Canada", Locators.<Page>element(TOOLS_LOCATION)
                 .and(element(A))
                 .and(element(STRONG))
                 .and(TEXT)

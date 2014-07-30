@@ -1,7 +1,7 @@
 package com.algocrafts.calendar;
 
 
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Locator;
 
 import static com.algocrafts.calendar.FlippingButton.MONTH_FLIPPER;
@@ -9,12 +9,12 @@ import static com.algocrafts.calendar.FlippingButton.YEAR_FLIPPER;
 
 public class Calendar {
 
-    private final AbstractPage page;
-    private final Locator<AbstractPage, Void> trigger;
-    private final Locator<AbstractPage, Integer> currentYear;
-    private final Locator<AbstractPage, Integer> currentMonth;
-    private final Locator<AbstractPage, Void> previousMonth;
-    private final Locator<AbstractPage, Void> nextMonth;
+    private final Page page;
+    private final Locator<Page, Void> trigger;
+    private final Locator<Page, Integer> currentYear;
+    private final Locator<Page, Integer> currentMonth;
+    private final Locator<Page, Void> previousMonth;
+    private final Locator<Page, Void> nextMonth;
     private final DayLocatorFactory dayLocator;
 
     /**
@@ -29,12 +29,12 @@ public class Calendar {
      * @param nextMonth     next month
      * @param dayLocator    day
      */
-    public Calendar(AbstractPage page,
-                    Locator<AbstractPage, Void> trigger,
-                    Locator<AbstractPage, Integer> currentYear,
-                    Locator<AbstractPage, Integer> currentMonth,
-                    Locator<AbstractPage, Void> previousMonth,
-                    Locator<AbstractPage, Void> nextMonth,
+    public Calendar(Page page,
+                    Locator<Page, Void> trigger,
+                    Locator<Page, Integer> currentYear,
+                    Locator<Page, Integer> currentMonth,
+                    Locator<Page, Void> previousMonth,
+                    Locator<Page, Void> nextMonth,
                     DayLocatorFactory dayLocator) {
         this.page = page;
         this.trigger = trigger;

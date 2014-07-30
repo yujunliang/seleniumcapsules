@@ -2,13 +2,13 @@ package com.bookstore;
 
 
 import com.algocrafts.clickables.ImageButton;
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Clickable;
 
 
-public class BookDetailsPage extends AbstractPage {
+public class BookDetailsPage extends Page {
 
-    public BookDetailsPage(AbstractPage page) {
+    public BookDetailsPage(Page page) {
         super(page);
     }
 

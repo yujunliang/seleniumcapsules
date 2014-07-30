@@ -3,7 +3,7 @@ package com.algocrafts;
 import com.algocrafts.conditions.Equals;
 import com.algocrafts.converters.FirstMatch;
 import com.algocrafts.locators.Locators;
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.google.GooglePage;
 import com.google.common.base.Function;
 import org.junit.After;
@@ -97,7 +97,7 @@ public class GoogleAutoCompleteTest {
     @Test
     public void autoCompleteUsingLocator() {
         googlePage.autocomplete(Q, "oracle",
-                Locators.<AbstractPage>optionalElement(() -> className("gssb_c"))
+                Locators.<Page>optionalElement(() -> className("gssb_c"))
                         .and(GET)
                         .and(elements(SPAN))
                         .and(new FirstMatch<>(TEXT.and(new Equals("oracle")))));

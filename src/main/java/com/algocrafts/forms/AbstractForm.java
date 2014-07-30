@@ -1,6 +1,6 @@
 package com.algocrafts.forms;
 
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.Locator;
@@ -15,9 +15,9 @@ import java.util.List;
  * name appears in multiple forms. To locate the particular element using name, we need to use this AbstractForm
  * to encapsulate each form.
  */
-public class AbstractForm extends Locating<AbstractPage, Element> implements Searchable<Element>, FormControl<Element> {
+public class AbstractForm extends Locating<Page, Element> implements Searchable<Element>, FormControl<Element> {
 
-    public AbstractForm(AbstractPage page, Locator<AbstractPage, Element> locator) {
+    public AbstractForm(Page page, Locator<Page, Element> locator) {
         super(page, locator);
     }
 

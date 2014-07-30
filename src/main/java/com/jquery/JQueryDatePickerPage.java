@@ -3,7 +3,7 @@ package com.jquery;
 
 import com.algocrafts.calendar.Calendar;
 import com.algocrafts.calendar.DatePicker;
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Clickable;
@@ -15,7 +15,7 @@ import static com.jquery.CalendarIntegerLocator.CURRENT_MONTH;
 import static com.jquery.CalendarIntegerLocator.CURRENT_YEAR;
 import static com.jquery.CalendarVoidLocator.*;
 
-public class JQueryDatePickerPage extends AbstractPage {
+public class JQueryDatePickerPage extends Page {
 
     public JQueryDatePickerPage(Browser browser, Clickable clickable) {
         super(browser, clickable, REACHED_CALENDAR_PAGE);
@@ -30,7 +30,7 @@ public class JQueryDatePickerPage extends AbstractPage {
     }
 
     public String getDate() {
-        return Locators.<AbstractPage>element(DATE_PICKER)
+        return Locators.<Page>element(DATE_PICKER)
                 .and(VALUE)
                 .locate(this);
     }

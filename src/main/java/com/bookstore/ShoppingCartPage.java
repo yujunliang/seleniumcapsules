@@ -1,7 +1,7 @@
 package com.bookstore;
 
 
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.selectors.Xpath;
 import com.bookstore.domain.Address;
 import com.bookstore.domain.CreditCard;
@@ -11,13 +11,13 @@ import com.bookstore.domain.OtherInformation;
 import static com.algocrafts.selectors.CssSelector.CONTINUE;
 import static com.algocrafts.selectors.CssSelector.UPDATE;
 
-public class ShoppingCartPage extends AbstractPage {
+public class ShoppingCartPage extends Page {
 
     private final BillingAddressForm billingAddressForm = new BillingAddressForm(this);
     private final CreditCardForm creditCardForm = new CreditCardForm(this);
     private final OtherInformationForm otherInformationForm = new OtherInformationForm(this);
 
-    public ShoppingCartPage(AbstractPage page) {
+    public ShoppingCartPage(Page page) {
         super(page);
     }
 

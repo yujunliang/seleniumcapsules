@@ -2,7 +2,7 @@ package com.jquery;
 
 
 import com.algocrafts.locators.Locators;
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Locator;
 
 import static com.algocrafts.converters.GetText.TEXT;
@@ -13,13 +13,13 @@ import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.ClassName.*;
 import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 
-public enum CalendarIntegerLocator implements Locator<AbstractPage, Integer> {
+public enum CalendarIntegerLocator implements Locator<Page, Integer> {
 
     /**
      * Locate the integer value representing current year on a calendar
      */
     CURRENT_YEAR(
-            Locators.<AbstractPage>element(UI_DATEPICKER_DIV)
+            Locators.<Page>element(UI_DATEPICKER_DIV)
                     .and(element(UI_DATEPICKER_HEADER))
                     .and(element(UI_DATEPICKER_YEAR))
                     .and(TEXT)
@@ -30,21 +30,21 @@ public enum CalendarIntegerLocator implements Locator<AbstractPage, Integer> {
      * Locate the integer value representing current year on a calendar
      */
     CURRENT_MONTH(
-            Locators.<AbstractPage>element(UI_DATEPICKER_DIV)
+            Locators.<Page>element(UI_DATEPICKER_DIV)
                     .and(element(UI_DATEPICKER_MONTH))
                     .and(TEXT)
                     .and(TO_MONTH)
                     .and(ORDINAL)
     );
 
-    private final Locator<AbstractPage, Integer> locator;
+    private final Locator<Page, Integer> locator;
 
-    private CalendarIntegerLocator(Locator<AbstractPage, Integer> locator) {
+    private CalendarIntegerLocator(Locator<Page, Integer> locator) {
         this.locator = locator;
     }
 
     @Override
-    public Integer locate(AbstractPage page) {
+    public Integer locate(Page page) {
         return locator.locate(page);
     }
 }

@@ -1,7 +1,7 @@
 package com.bookstore.domain;
 
 
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.locators.Locators;
 
 import java.util.List;
@@ -25,8 +25,8 @@ public class ErrorMessages {
         this(errorMessages.collect(toList()));
     }
 
-    public ErrorMessages(AbstractPage page) {
-        this(Locators.<AbstractPage>element(ERROR_MESSAGES)
+    public ErrorMessages(Page page) {
+        this(Locators.<Page>element(ERROR_MESSAGES)
                 .and(elements(LI)).locate(page).map(TEXT));
     }
 

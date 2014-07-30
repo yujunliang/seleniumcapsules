@@ -1,9 +1,9 @@
 package com.algocrafts.converters;
 
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Locator;
 
-public class FrameLocator implements Locator<AbstractPage, AbstractPage> {
+public class FrameLocator implements Locator<Page, Page> {
 
     private final int index;
 
@@ -12,7 +12,7 @@ public class FrameLocator implements Locator<AbstractPage, AbstractPage> {
     }
 
     @Override
-    public AbstractPage locate(AbstractPage page) {
+    public Page locate(Page page) {
         return page.frame(index);
     }
 

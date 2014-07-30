@@ -2,7 +2,6 @@ package com.algocrafts;
 
 
 import com.algocrafts.locators.Locators;
-import com.algocrafts.pages.AbstractPage;
 import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
@@ -40,12 +39,12 @@ public class TableTest {
     @Test
     public void testReadFromTable() {
         Page page = new Page(CHROME.load("http://www.w3schools.com/html/html_tables.asp"));
-        Locator<AbstractPage, Element> locator = Locators.<AbstractPage>element(MAIN).and(element(TABLE));
+        Locator<Page, Element> locator = Locators.<Page>element(MAIN).and(element(TABLE));
         Locator<Stream<Element>, Person> mapper = (stream) -> {
             Iterator<String> iterator = stream.map(TEXT).iterator();
             return new Person(iterator.next(), iterator.next(), PARSE_INT.locate(iterator.next()));
         };
-        Table<Person, AbstractPage> table = new Table<>(page, locator, mapper);
+        Table<Person, Page> table = new Table<>(page, locator, mapper);
 
         assertTrue(expected, expected.equals(table.getContents()));
     }

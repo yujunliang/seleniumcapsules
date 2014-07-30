@@ -1,9 +1,9 @@
 package com.algocrafts.calendar;
 
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Locator;
 
 public interface DayLocatorFactory {
 
-    Locator<AbstractPage, Void> forDay(int day);
+    Locator<Page, Void> forDay(int day);
 }

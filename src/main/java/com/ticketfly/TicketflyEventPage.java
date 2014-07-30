@@ -1,11 +1,11 @@
 package com.ticketfly;
 
 
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 
-public class TicketflyEventPage extends AbstractPage {
+public class TicketflyEventPage extends Page {
 
-    public TicketflyEventPage(AbstractPage page) {
+    public TicketflyEventPage(Page page) {
         super(page);
     }
 }

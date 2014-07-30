@@ -2,13 +2,13 @@ package com.bookstore;
 
 import com.algocrafts.domain.Countries;
 import com.algocrafts.domain.UnitedStates;
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.bookstore.domain.Address;
 
 import static com.bookstore.BookStoreId.*;
 
-public class BillingAddressForm extends AbstractPage {
-    public BillingAddressForm(AbstractPage page) {
+public class BillingAddressForm extends Page {
+    public BillingAddressForm(Page page) {
         super(page);
     }
 

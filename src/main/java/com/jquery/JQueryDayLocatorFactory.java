@@ -4,7 +4,7 @@ import com.algocrafts.calendar.DayLocatorFactory;
 import com.algocrafts.conditions.Equals;
 import com.algocrafts.converters.FirstMatch;
 import com.algocrafts.locators.Locators;
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Locator;
 
 import static com.algocrafts.converters.ElementFunctions.CLICK;
@@ -18,9 +18,9 @@ import static com.algocrafts.selectors.TagName.TD;
 
 public class JQueryDayLocatorFactory implements DayLocatorFactory {
 
-    public Locator<AbstractPage, Void> forDay(int day) {
+    public Locator<Page, Void> forDay(int day) {
         return new JQueryDayLocator(
-                Locators.<AbstractPage>element(UI_DATEPICKER_DIV)
+                Locators.<Page>element(UI_DATEPICKER_DIV)
                         .and(element(UI_DATEPICKER_CALENDAR))
                         .and(elements(TD))
                         .and(new FirstMatch<>(TEXT.and(new Equals(day))))

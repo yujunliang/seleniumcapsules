@@ -2,7 +2,7 @@ package com.bookstore;
 
 
 import com.algocrafts.domain.CreditCardType;
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.bookstore.domain.CreditCard;
 
 import java.time.Month;
@@ -10,9 +10,9 @@ import java.time.Month;
 import static com.algocrafts.converters.StringToInt.PARSE_INT;
 import static com.bookstore.BookStoreId.*;
 
-public class CreditCardForm extends AbstractPage {
+public class CreditCardForm extends Page {
 
-    public CreditCardForm(AbstractPage page) {
+    public CreditCardForm(Page page) {
         super(page);
     }
 

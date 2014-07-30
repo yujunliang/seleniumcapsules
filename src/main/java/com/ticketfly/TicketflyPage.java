@@ -3,7 +3,7 @@ package com.ticketfly;
 
 import com.algocrafts.clickables.Url;
 import com.algocrafts.locators.Locators;
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.algocrafts.selectors.LinkText;
 import com.algocrafts.selenium.Browser;
 
@@ -16,7 +16,7 @@ import static com.algocrafts.selectors.TagName.A;
 import static com.algocrafts.selectors.TagName.STRONG;
 import static java.util.stream.Stream.of;
 
-public class TicketflyPage extends AbstractPage {
+public class TicketflyPage extends Page {
 
     public TicketflyPage(Browser<?> browser) {
         super(browser, new Url<>(browser, "http://www.ticketfly.com"));
@@ -31,7 +31,7 @@ public class TicketflyPage extends AbstractPage {
     }
 
     public String currentLocation() {
-        return Locators.<AbstractPage>element(TOOLS_LOCATION)
+        return Locators.<Page>element(TOOLS_LOCATION)
                 .and(element(A))
                 .and(element(STRONG))
                 .and(TEXT)

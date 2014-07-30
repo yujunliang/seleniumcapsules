@@ -1,16 +1,16 @@
 package com.bookstore;
 
 
-import com.algocrafts.pages.AbstractPage;
+import com.algocrafts.pages.Page;
 import com.bookstore.domain.MailingOptions;
 import com.bookstore.domain.OtherInformation;
 
 import static com.algocrafts.selectors.Name.MAILING_OPTION;
 import static com.bookstore.BookStoreId.*;
 
-public class OtherInformationForm extends AbstractPage {
+public class OtherInformationForm extends Page {
 
-    public OtherInformationForm(AbstractPage page) {
+    public OtherInformationForm(Page page) {
         super(page);
     }
 
