@@ -136,6 +136,13 @@ more tests to illustrate the cleanness of the code,
                return findElements(by.get()).stream().map(Element::new);
           }
               
+6. Autocomplete example furtuer simplified,
+
+        @Test
+        public void autoCompleteUsingSeleniumCapsules1() {
+            googlePage.autocomplete("oracle");
+        }
+
 
 Clean, Agile, Simple and Elegant.
 
