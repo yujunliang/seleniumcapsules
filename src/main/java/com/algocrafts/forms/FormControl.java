@@ -3,7 +3,7 @@ package com.algocrafts.forms;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.locators.Locators;
-import com.algocrafts.selenium.Searchable;
+import com.algocrafts.selenium.SearchScope;
 import org.openqa.selenium.By;
 
 import java.io.File;
@@ -12,7 +12,7 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 
 
-public interface FormControl<Where extends Searchable<Where>> extends Searchable<Where> {
+public interface FormControl<Where extends SearchScope<Where>> extends SearchScope<Where> {
 
     /**
      * Check if the checkbox is checked by the given selector.

@@ -14,6 +14,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -90,7 +91,8 @@ public class GoogleAutoCompleteTest {
      */
     @Test
     public void autoCompleteUsingSeleniumCapsules1() {
-        googlePage.autocomplete("oracle");
+        WebDriver webdriver = new FirefoxDriver();
+        webdriver.get("http://www.google.com");
     }
 
 

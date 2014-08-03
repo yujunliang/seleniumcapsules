@@ -18,7 +18,7 @@ import static com.algocrafts.converters.PageFunctions.THE_PAGE_TITLE;
 import static com.algocrafts.selectors.ClassName.PAGE_TITLE;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class Page implements Searchable<Page>, FormControl<Page> {
+public class Page implements SearchScope<Page>, FormControl<Page> {
 
     public static final Logger logger = getLogger(Page.class);
 

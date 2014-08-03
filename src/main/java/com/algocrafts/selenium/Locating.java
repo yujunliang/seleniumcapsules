@@ -2,7 +2,7 @@ package com.algocrafts.selenium;
 
 import java.util.function.Predicate;
 
-public class Locating<Where extends Searchable<Where>, What> {
+public class Locating<Where extends SearchScope<Where>, What> {
 
     protected final Where where;
     protected final Locator<Where, What> locator;

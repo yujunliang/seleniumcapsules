@@ -7,7 +7,7 @@ import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.Locator;
-import com.algocrafts.selenium.Searchable;
+import com.algocrafts.selenium.SearchScope;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 
@@ -19,7 +19,7 @@ import static com.algocrafts.converters.OptionalGetter.GET;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class Input<Where extends Searchable<Where>> extends Locating<Where, Optional<Element>> {
+public class Input<Where extends SearchScope<Where>> extends Locating<Where, Optional<Element>> {
 
     public static final Logger log = getLogger(Input.class);
 

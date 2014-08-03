@@ -5,7 +5,7 @@ import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Locator;
-import com.algocrafts.selenium.Searchable;
+import com.algocrafts.selenium.SearchScope;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -15,7 +15,7 @@ import static com.algocrafts.locators.Locators.elements;
 import static com.algocrafts.selectors.TagName.*;
 import static java.util.stream.Collectors.toSet;
 
-public class Table<T, Where extends Searchable<Where>> extends Locating<Where, Element> {
+public class Table<T, Where extends SearchScope<Where>> extends Locating<Where, Element> {
 
 
     private final Locator<Stream<Element>, T> mapper;

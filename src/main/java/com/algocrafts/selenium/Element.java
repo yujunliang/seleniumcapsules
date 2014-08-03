@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class Element implements Searchable<Element>, WebElement, Locatable {
+public class Element implements SearchScope<Element>, WebElement, Locatable {
 
     private static final Logger logger = getLogger(Element.class);
 

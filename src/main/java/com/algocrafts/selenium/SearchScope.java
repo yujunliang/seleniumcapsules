@@ -23,7 +23,7 @@ import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.TagName.IMG;
 
 
-public interface Searchable<Where extends Searchable<Where>> extends SearchContext, ExplicitWait<Where> {
+public interface SearchScope<Where extends SearchScope<Where>> extends SearchContext, ExplicitWait<Where> {
 
     /**
      * Find the first element or throw NoSuchElementException

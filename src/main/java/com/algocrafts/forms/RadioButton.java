@@ -3,11 +3,10 @@ package com.algocrafts.forms;
 
 import com.algocrafts.conditions.StringContains;
 import com.algocrafts.converters.FirstMatch;
-import com.algocrafts.converters.OptionalGetter;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
-import com.algocrafts.selenium.Searchable;
+import com.algocrafts.selenium.SearchScope;
 import org.openqa.selenium.By;
 
 import java.util.function.Supplier;
@@ -24,7 +23,7 @@ import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.locators.Locators.elements;
 import static com.algocrafts.selectors.Xpath.PARENT;
 
-public class RadioButton<Where extends Searchable<Where>> extends Locating<Where, Stream<Element>> {
+public class RadioButton<Where extends SearchScope<Where>> extends Locating<Where, Stream<Element>> {
 
     /**
      * Constructor this radio button.

@@ -3,7 +3,7 @@ package com.algocrafts.forms;
 import com.algocrafts.locators.SelectLocator;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
-import com.algocrafts.selenium.Searchable;
+import com.algocrafts.selenium.SearchScope;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 
@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class ForwardingSelect<Where extends Searchable<Where>> extends Locating<Where, Select> {
+public class ForwardingSelect<Where extends SearchScope<Where>> extends Locating<Where, Select> {
 
     private static final Logger log = getLogger(ForwardingSelect.class);
 

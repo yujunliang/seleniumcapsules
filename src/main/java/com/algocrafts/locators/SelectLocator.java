@@ -2,7 +2,7 @@ package com.algocrafts.locators;
 
 import com.algocrafts.conditions.HasElements;
 import com.algocrafts.selenium.Element;
-import com.algocrafts.selenium.Searchable;
+import com.algocrafts.selenium.SearchScope;
 import org.openqa.selenium.By;
 
 import org.openqa.selenium.NoSuchElementException;
@@ -15,7 +15,7 @@ import static com.algocrafts.selectors.TagName.OPTION;
 import static org.slf4j.LoggerFactory.getLogger;
 
 
-public class SelectLocator<Where extends Searchable<Where>>
+public class SelectLocator<Where extends SearchScope<Where>>
         extends Locators<Where, Select> {
 
     private static final Logger log = getLogger(SelectLocator.class);
