@@ -13,12 +13,6 @@ public interface Browser<T extends WebDriver> extends Actionable<T>, SearchScope
 
     WebDriverSupplier<T> getSupplier();
 
-
-    default Browser<T> load(String url) {
-        this.get(url);
-        return this;
-    }
-
     @Override
     default public void onTimeout() {
         if (logger.isDebugEnabled()) {

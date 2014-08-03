@@ -24,7 +24,7 @@ public class ConfirmTest {
     @Test
     public void clickConfirm() {
         Browser browser = CHROME;
-        browser.load("http://localhost:63342/seleniumcapsules/html/upload.html");
+        browser.get("http://localhost:63342/seleniumcapsules/html/upload.html");
         browser.button(NEED_CONIRM).click();
         browser.accept();
     }
