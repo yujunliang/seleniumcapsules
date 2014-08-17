@@ -113,8 +113,8 @@ public class Element implements SearchScope<Element>, WebElement, Locatable {
     @Override
     public String toString() {
         String tagName = element.getTagName();
-        return tagName.equals("input") ?
+        return "[Element: " + (tagName.equals("input") ?
                 element.getAttribute("value") : tagName.equals("img") ?
-                element.getAttribute("src") : element.getText();
+                element.getAttribute("src") : element.getText()) + "] wrapping " + element;
     }
 }
