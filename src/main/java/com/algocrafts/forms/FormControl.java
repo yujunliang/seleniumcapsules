@@ -1,8 +1,9 @@
 package com.algocrafts.forms;
 
+import com.algocrafts.selectors.SupplierConverter;
+import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
-import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.SearchScope;
 import org.openqa.selenium.By;
 
@@ -125,11 +126,24 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      *
      * @param selector selector
      * @param value    value
+     * @param replace  replace
+     */
+    @SuppressWarnings("unchecked")
+    default public void autocomplete(Supplier<By> selector, Object value, SupplierConverter replace) {
+        new Input<>((Where) this, selector).autocomplete(value, replace);
+    }
+
+    /**
+     * Autocomplete for text field and return the first found suggestion match the whole word.
+     *
+     * @param selector selector
+     * @param value    value
      * @param locator  locator
      */
     @SuppressWarnings("unchecked")
     default public void autocomplete(Supplier<By> selector, Object value, Locator<Where, Optional<Element>> locator) {
         new Input<>((Where) this, selector).autocomplete(value, locator);
     }
+
 
 }

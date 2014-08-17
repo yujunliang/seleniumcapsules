@@ -1,6 +1,4 @@
 .idea
 target
-src/main/java/com/orgsync
 *.iml
 src/main/resources/Firefox/
-src/test/java/com/algocrafts/OrgSyncHomePageTest.java

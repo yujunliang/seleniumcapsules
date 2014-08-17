@@ -8,7 +8,7 @@ import com.algocrafts.selenium.Clickable;
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.conditions.ElementPredicates.NOT_NULL;
 import static com.algocrafts.selectors.Name.Q;
-import static com.algocrafts.selectors.Xpath.ORACLE_AUTOCOMPLETE;
+import static com.algocrafts.selectors.VariableXpath.AUTOCOMPLETE;
 
 public class GooglePage extends Page {
     public GooglePage(Browser browser, Clickable clickable) {
@@ -16,6 +16,6 @@ public class GooglePage extends Page {
     }
 
     public void autocomplete(String input) {
-        autocomplete(Q, input, Locators.optionalElement(ORACLE_AUTOCOMPLETE));
+        autocomplete(Q, input, AUTOCOMPLETE);
     }
 }

@@ -4,6 +4,7 @@ package com.algocrafts.forms;
 import com.algocrafts.algorithm.Retry;
 import com.algocrafts.conditions.Equals;
 import com.algocrafts.locators.Locators;
+import com.algocrafts.selectors.SupplierConverter;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.Locator;
@@ -81,6 +82,19 @@ public class Input<Where extends SearchScope<Where>> extends Locating<Where, Opt
         } catch (Exception e) {
             log.info("Failed to set text {}", string);
         }
+    }
+
+    /**
+     * Test the autocomplete function for the input by given value, click the element
+     * on the suggestion list which matches value parameter.
+     * <p>
+     * Please refer "http://seleniumcapsules.blogspot.com/2014/05/by-xpath.html"
+     *
+     * @param value   value
+     * @param replace replace
+     */
+    public void autocomplete(Object value, SupplierConverter replace) {
+        autocomplete(value, Locators.<Where>optionalElement(replace.of(value)));
     }
 
     /**
