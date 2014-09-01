@@ -9,34 +9,59 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static com.algocrafts.browsers.Browsers.CHROME;
 
 public class BrowserTest {
 
     @Test
-    public void openChrome() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
-        new ChromeDriver();
-        System.out.println("First");
+    public void openEmptyFirefox() {
+        new FirefoxDriver();
     }
 
     @Test
-    public void notOpenChromeUsingSeleniumCapsules() {
+    public void openChromeAndLoadPage() {
         Browser browser = CHROME;
-        System.out.println("Second");
+        browser.get("http://ticketfly.com/careers");
+    }
+
+
+    @Test
+    public void findHowItWorksLinkUsingLinkText() {
+        WebDriver webDriver = new ChromeDriver();
+        webDriver.get("http://ticketfly.com/careers");
+        WebElement element = webDriver.findElement(By.linkText("How It Works"));
+        System.out.println("element=" + element);
+        System.out.println("element.getTagName()=" + element.getTagName());
+        System.out.println("element.getText()=" + element.getText());
     }
 
     @Test
-    public void openChromeUsingSeleniumCapsules() {
-        Browser browser = CHROME;
-        browser.get("http://ticketfly.com");
-        System.out.println("Third");
+    public void findHowItWorksLinkUsingPartialLinkText() {
+        System.setProperty("webdriver.chrome.driver",
+                "src/main/resources/chrome/chromedriver");
+        WebDriver webDriver = new ChromeDriver();
+        webDriver.get("http://ticketfly.com/careers");
+        WebElement element = webDriver.findElement(By.partialLinkText("H"));
+        System.out.println("element=" + element);
+        System.out.println("element.getTagName()=" + element.getTagName());
+        System.out.println("element.getText()=" + element.getText());
     }
+
+    @Test
+    public void findHowItWorksLinkUsingPartialLinkText1() {
+        WebDriver webDriver = new ChromeDriver();
+        webDriver.get("http://ticketfly.com/careers");
+        WebElement element = webDriver.findElement(By.partialLinkText("How It Works"));
+        System.out.println("element=" + element);
+        System.out.println("element.getTagName()=" + element.getTagName());
+        System.out.println("element.getText()=" + element.getText());
+    }
+
 
     @Test
     public void findChangeLocationLinkUsingSelenium() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
         WebDriver webDriver = new ChromeDriver();
         webDriver.get("http://ticketfly.com/events");
         WebElement element = webDriver.findElement(By.linkText("change location"));
@@ -55,12 +80,6 @@ public class BrowserTest {
         System.out.println("element.getClass()=" + element.getClass());
         System.out.println("element.getTagName()=" + element.getTagName());
         System.out.println("element.getText()=" + element.getText());
-    }
-
-    @Test
-    public void openChromeAndClickJavaLinkUsingSeleniumCapsules() {
-        Browser browser = CHROME;
-        browser.get("http://ticketfly.com/events");
     }
 
 

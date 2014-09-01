@@ -12,7 +12,7 @@ import static org.openqa.selenium.By.xpath;
  */
 public enum VariableXpath implements SupplierConverter {
 
-    AUTOCOMPLETE("//table[contains(@class, 'gssb_c')]/descendant::span[text()='$value']");
+    GOOGLE_AUTOCOMPLETE("//table[contains(@class, 'gssb_c')]/descendant::span[text()='$value']");
 
     private final String by;
 

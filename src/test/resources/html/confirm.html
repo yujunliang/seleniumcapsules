@@ -1,0 +1,8 @@
+<script>
+    function areYouHappy() {
+        document.getElementById("response").innerHTML =
+                confirm('Are you happy?') ? "Good!" : "Sorry to hear that";
+    }
+</script>
+<b id="response"></b>
+<input id="button2" type="button" onclick="areYouHappy()" value="Answer A Question"/>
