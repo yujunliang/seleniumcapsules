@@ -37,6 +37,7 @@ public class Calendar {
      * @param previousMonth     previous month
      * @param nextMonth         next month
      * @param dayLocatorFactory day
+     * @param calendarClosed    whether calendar is closed
      */
     public Calendar(Page page,
                     Locator<Page, Void> trigger,

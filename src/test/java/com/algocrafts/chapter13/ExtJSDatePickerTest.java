@@ -12,7 +12,6 @@ import static org.junit.Assert.assertEquals;
 
 public class ExtJSDatePickerTest {
 
-
     private ExtJSDatePickerPage extJSDatePickerPage = new ExtJSDatePickerPage(CHROME);
 
     @Before

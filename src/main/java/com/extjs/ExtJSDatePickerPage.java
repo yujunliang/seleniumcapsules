@@ -16,7 +16,7 @@ import static com.extjs.CalendarClicker.PREVIOUS_MONTH;
 import static com.extjs.CalendarIntegerLocator.DISPLAYED_MONTH;
 import static com.extjs.CalendarIntegerLocator.DISPLAYED_YEAR;
 import static com.extjs.DayLocatorFactorys.EXTJS;
-import static com.extjs.TriggerClicker.TRIGGER;
+import static com.extjs.TriggerHover.TRIGGER;
 
 public class ExtJSDatePickerPage extends Page {
 
