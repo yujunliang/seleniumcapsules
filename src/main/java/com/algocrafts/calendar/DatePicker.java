@@ -1,6 +1,8 @@
 package com.algocrafts.calendar;
 
 
+import java.time.Month;
+
 /**
  * A general purpose DatePicker can be used to pick a given date from
  * the calendar flyout provided by JavaScript framework.
@@ -30,7 +32,7 @@ public class Datepicker {
      * @param day   an integer representing the day appearing on the calendar
      * @param year  an ineger representing the year appearing on the calendar
      */
-    public void pick(Enum month, int day, int year) {
+    public void pick(Month month, int day, int year) {
         calendar.show();
         calendar.pickYear(year);
         calendar.pickMonth(month);

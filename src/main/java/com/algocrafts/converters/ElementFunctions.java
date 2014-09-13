@@ -12,5 +12,4 @@ public enum ElementFunctions implements Locator<Element, Void> {
             return null;
         }
     }
-
 }

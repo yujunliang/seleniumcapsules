@@ -8,7 +8,9 @@ import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Browser;
 
-import static com.algocrafts.conditions.PagePredicates.CALENDAR_NOT_DISPLAYED;
+import java.time.Month;
+
+import static com.algocrafts.conditions.PagePredicates.JQUERY_CALENDAR_NOT_DISPLAYED;
 import static com.algocrafts.conditions.PagePredicates.REACHED_CALENDAR_PAGE;
 import static com.algocrafts.converters.GetText.VALUE;
 import static com.algocrafts.selectors.Id.DATE_PICKER;
@@ -24,10 +26,10 @@ public class JQueryDatePickerPage extends Page {
     }
 
     private final Datepicker datepicker = new Datepicker(
-            new Calendar(this, TRIGGER, DISPLAYED_YEAR, DISPLAYED_MONTH, PREVIOUS_MONTH, NEXT_MONTH, JQUERY_DAY, CALENDAR_NOT_DISPLAYED)
+            new Calendar(this, TRIGGER, DISPLAYED_YEAR, DISPLAYED_MONTH, PREVIOUS_MONTH, NEXT_MONTH, JQUERY_DAY, JQUERY_CALENDAR_NOT_DISPLAYED)
     );
 
-    public void pick(Enum month, int day, int year) {
+    public void pick(Month month, int day, int year) {
         datepicker.pick(month, day, year);
     }
 

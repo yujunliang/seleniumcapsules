@@ -9,7 +9,6 @@ import java.util.function.Predicate;
 
 import static com.algocrafts.calendar.CalendarFlipper.MONTH_FLIPPER;
 import static com.algocrafts.calendar.CalendarFlipper.YEAR_FLIPPER;
-import static com.algocrafts.conditions.PagePredicates.CALENDAR_NOT_DISPLAYED;
 
 public class Calendar {
 

@@ -20,7 +20,7 @@ import static com.algocrafts.selectors.TagName.TD;
 
 public enum DayLocatorFactorys implements DayLocatorFactory {
 
-    EXTJS {
+    EXTJS_DAY_LOCATOR {
         public Locator<Page, Void> forDay(int day) {
             return Locators.<Page>element(EXTJS_CALENDAR)
                     .andThen(elements(TD))

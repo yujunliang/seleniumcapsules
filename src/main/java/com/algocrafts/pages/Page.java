@@ -34,6 +34,15 @@ public class Page implements SearchScope<Page>, FormControl<Page> {
         this(page.browser, null, null, page.close);
     }
 
+    public Page(Page page, boolean close) {
+        this(page.browser);
+        this.close = close;
+    }
+
+    public Page(Page page, Clickable clickable, boolean close) {
+        this(page.browser, clickable, null, close);
+    }
+
     public Page(Page page, Clickable clickable, String title) {
         this(page.browser, clickable, THE_PAGE_TITLE.and(new Equals(title)), page.close);
     }
@@ -48,6 +57,10 @@ public class Page implements SearchScope<Page>, FormControl<Page> {
 
     public Page(Browser<?> browser, Clickable clickable) {
         this(browser, clickable, null, false);
+    }
+
+    public Page(Browser<?> browser, Clickable clickable, boolean close) {
+        this(browser, clickable, null, close);
     }
 
     public Page(Browser<?> browser, Clickable clickable, Predicate<Page> condition) {
