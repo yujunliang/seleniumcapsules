@@ -1,6 +1,5 @@
-package com.algocrafts;
+package com.algocrafts.chapter13;
 
-import com.algocrafts.clickables.Url;
 import com.algocrafts.selenium.Browser;
 import com.jquery.JQueryDatePickerPage;
 import org.junit.After;
@@ -8,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -24,9 +22,6 @@ public class JQueryDatePickerTest {
     @Autowired
     private JQueryDatePickerPage jQueryDatePickerPage;
 
-    @Value("${jquery.url}")
-    private String url;
-
     @Before
     public void setup() {
         jQueryDatePickerPage.open();
@@ -41,7 +36,7 @@ public class JQueryDatePickerTest {
     @Test
     public void testDifferentBrowsers() {
         for (Browser browser : of(CHROME, FIREFOX, SAFARI)) {
-            jQueryDatePickerPage = new JQueryDatePickerPage(browser, new Url<>(browser, url));
+            jQueryDatePickerPage = new JQueryDatePickerPage(browser);
             jQueryDatePickerPage.open();
             jQueryDatePickerPage.pick(APRIL, 1, 2012);
             assertEquals("04/01/2012", jQueryDatePickerPage.getDate());

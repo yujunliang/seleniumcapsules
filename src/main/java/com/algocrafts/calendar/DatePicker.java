@@ -8,7 +8,7 @@ package com.algocrafts.calendar;
  * @author Yujun Liang
  * @since 0.1
  */
-public class DatePicker {
+public class Datepicker {
 
     private final Calendar calendar;
 
@@ -17,7 +17,7 @@ public class DatePicker {
      *
      * @param calendar calendar
      */
-    public DatePicker(Calendar calendar) {
+    public Datepicker(Calendar calendar) {
         this.calendar = calendar;
     }
 
@@ -32,8 +32,8 @@ public class DatePicker {
      */
     public void pick(Enum month, int day, int year) {
         calendar.show();
-        calendar.enterYear(year);
-        calendar.enterMonth(month);
+        calendar.pickYear(year);
+        calendar.pickMonth(month);
         calendar.pickDay(day);
     }
 

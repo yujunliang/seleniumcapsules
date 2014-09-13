@@ -1,4 +1,4 @@
-package com.algocrafts;
+package com.algocrafts.chapter2;
 
 
 import com.algocrafts.selenium.Browser;

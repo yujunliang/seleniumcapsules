@@ -17,6 +17,9 @@ public enum LinkText implements Supplier<By> {
     ALL_CANADA("All Canada"),
     CHANGE_LOCATION("change location"),
     ACTIVE_MQ_IN_ACTION("ActiveMQ in Action"),
+
+    EXTJS_DATEPICKER_TRIGGER("choose a date"),
+
     JAVA("Java");
 
     private final By by;

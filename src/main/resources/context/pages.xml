@@ -26,12 +26,6 @@
 
     <bean id="jQueryDatePickerPage" class="com.jquery.JQueryDatePickerPage">
         <constructor-arg ref="browser"/>
-        <constructor-arg ref="jQueryUrl"/>
-    </bean>
-
-    <bean id="jQueryUrl" class="com.algocrafts.clickables.Url">
-        <constructor-arg ref="browser"/>
-        <constructor-arg value="${jquery.url}"/>
     </bean>
 
     <bean id="googleUrl" class="com.algocrafts.clickables.Url">

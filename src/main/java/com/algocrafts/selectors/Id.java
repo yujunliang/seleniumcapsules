@@ -15,7 +15,15 @@ public enum Id implements Supplier<By> {
     MAIN_NAV("main-nav"),
     UI_DATEPICKER_DIV("ui-datepicker-div"),
     CONTENT("content"),
+    EXTJS_DATEPICKER_TRIGGER("menuitem-1017-textEl"),
+    EXTJS_CALENDAR("datemenu-1014"),
+    EXTJS_CALENDAR_MONTH_YEAR("splitbutton-1020-btnInnerEl"),
+    EXTJS_CALENDAR_PREV_MONTH("datepicker-1015-prevEl"),
+    EXTJS_CALENDAR_NEXT_MONTH("datepicker-1015-nextEl"),
+
     DATE_PICKER("datepicker");
+
+
 
     private final By by;
 

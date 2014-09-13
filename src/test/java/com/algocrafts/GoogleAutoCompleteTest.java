@@ -14,7 +14,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
@@ -100,9 +99,9 @@ public class GoogleAutoCompleteTest {
     public void autoCompleteUsingLocator() {
         googlePage.autocomplete(Q, "oracle",
                 Locators.<Page>optionalElement(() -> className("gssb_c"))
-                        .and(GET)
-                        .and(elements(SPAN))
-                        .and(new FirstMatch<>(TEXT.and(new Equals("oracle")))));
+                        .andThen(GET)
+                        .andThen(elements(SPAN))
+                        .andThen(new FirstMatch<>(TEXT.and(new Equals("oracle")))));
     }
 
     @After

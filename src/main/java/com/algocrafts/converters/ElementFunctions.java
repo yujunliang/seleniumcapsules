@@ -8,9 +8,7 @@ public enum ElementFunctions implements Locator<Element, Void> {
     CLICK {
         @Override
         public Void locate(Element input) {
-            if (input != null) {
-                input.click();
-            }
+            input.click();
             return null;
         }
     }

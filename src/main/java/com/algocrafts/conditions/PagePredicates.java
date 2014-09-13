@@ -2,6 +2,7 @@ package com.algocrafts.conditions;
 
 import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.Page;
+import com.algocrafts.selectors.Id;
 
 import java.util.function.Predicate;
 
@@ -12,6 +13,7 @@ import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.OptionalGetter.GET;
 import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.Id.CONTENT;
+import static com.algocrafts.selectors.Id.EXTJS_CALENDAR;
 import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 import static com.algocrafts.selectors.TagName.*;
 import static com.bookstore.BookStoreId.*;
@@ -19,8 +21,8 @@ import static com.bookstore.BookStoreId.*;
 public enum PagePredicates implements Predicate<Page> {
     REACHED_CALENDAR_PAGE(
             Locators.<Page>element(CONTENT)
-                    .and(element(H1))
-                    .and(TEXT)
+                    .andThen(element(H1))
+                    .andThen(TEXT)
                     .and(DATEPICKER)
     ),
     SHOPPING_CART_DISPLAYED(
@@ -29,20 +31,25 @@ public enum PagePredicates implements Predicate<Page> {
     ),
     YAHOO_COPYRIGHTED(
             Locators.<Page>element(YAHOO_COPYRIGHT)
-                    .and(element(EM))
-                    .and(TEXT)
+                    .andThen(element(EM))
+                    .andThen(TEXT)
                     .and(YAHOO)
     ),
     IS_COPYRIGHTED(
             Locators.<Page>element(FOOTER)
-                    .and(element(P))
-                    .and(element(I))
-                    .and(TEXT)
+                    .andThen(element(P))
+                    .andThen(element(I))
+                    .andThen(TEXT)
                     .and(MANNING)
+    ),
+    EXTJS_CALENDAR_NOT_DISPLAYED(
+            Locators.<Page>optionalElement(EXTJS_CALENDAR)
+                    .andThen(GET)
+                    .and(NOT_NULL.and(DISPLAYED.negate()))
     ),
     CALENDAR_NOT_DISPLAYED(
             Locators.<Page>optionalElement(UI_DATEPICKER_DIV)
-                    .and(GET)
+                    .andThen(GET)
                     .and(NOT_NULL.and(DISPLAYED.negate()))
     );
     private final Predicate<Page> predicate;

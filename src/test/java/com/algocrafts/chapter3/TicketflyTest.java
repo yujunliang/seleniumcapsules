@@ -1,4 +1,4 @@
-package com.algocrafts;
+package com.algocrafts.chapter3;
 
 import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.Page;
@@ -13,8 +13,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 import static com.algocrafts.browsers.Browsers.CHROME;
@@ -26,8 +28,6 @@ import static com.algocrafts.selectors.Name.FILTER_EVENT;
 import static com.algocrafts.selectors.TagName.A;
 import static com.algocrafts.selectors.TagName.STRONG;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.openqa.selenium.By.*;
 
 public class TicketflyTest {
@@ -66,11 +66,42 @@ public void changeLocationUsingSelenium() {
 
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
-    public void changeLocationUsingSeleniumWithExplicitWait() {
+    public void changeLocationUsingSeleniumWithWebDriverWait() {
         WebDriver webDriver = new ChromeDriver();
         webDriver.get("http://www.ticketfly.com");
         webDriver.findElement(linkText("change location")).click();
         WebDriverWait wait = new WebDriverWait(webDriver, 5);
+        Function<WebDriver, WebElement> canadaFinder = new Function<WebDriver, WebElement>() {
+            @Override
+            public WebElement apply(WebDriver webDriver) {
+                return webDriver.findElement(linkText("CANADA"));
+            }
+        };
+        WebElement canada = wait.until(canadaFinder);
+        canada.click();
+        WebElement allCanada = wait.until(new Function<WebDriver, WebElement>() {
+            @Override
+            public WebElement apply(WebDriver webDriver) {
+                return webDriver.findElement(linkText("All Canada"));
+            }
+        });
+        allCanada.click();
+        assertEquals(0, webDriver.findElements(linkText("All Canada")).size());
+        assertEquals("Canada", webDriver
+                .findElement(className("tools-location"))
+                .findElement(tagName("a"))
+                .findElement(tagName("strong"))
+                .getText());
+    }
+
+    //This is an ugly test not using page framework, it has the same function as the test below. :(
+    @Test
+    public void changeLocationUsingSeleniumWithFluentWait() {
+        WebDriver webDriver = new ChromeDriver();
+        webDriver.get("http://www.ticketfly.com");
+        webDriver.findElement(linkText("change location")).click();
+        FluentWait<WebDriver> wait = new FluentWait<WebDriver>(webDriver)
+                .withTimeout( 5, TimeUnit.SECONDS).ignoring(NoSuchElementException.class).pollingEvery(50, TimeUnit.MILLISECONDS);
         WebElement canada = wait.until(new Function<WebDriver, WebElement>() {
             @Override
             public WebElement apply(WebDriver webDriver) {

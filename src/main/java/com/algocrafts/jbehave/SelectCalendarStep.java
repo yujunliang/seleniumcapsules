@@ -18,7 +18,7 @@ public class SelectCalendarStep {
     @Given("I am on jQuery Calendar page using <browser>")
     public void given(String browser) {
         Browsers browser1 = Browsers.valueOf(browser);
-        page = new JQueryDatePickerPage(browser1, new Url<>(browser1, "http://jqueryui.com/datepicker/"));
+        page = new JQueryDatePickerPage(browser1);
         page.open();
     }
 

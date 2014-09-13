@@ -22,6 +22,7 @@ public enum ClassName implements Supplier<By> {
     UI_DATEPICKER_YEAR("ui-datepicker-year"),
     UI_DATEPICKER_HEADER("ui-datepicker-header"),
 
+
     PAGE_TITLE("page-title"),
     UI_DATEPICKER_CLOSE("ui-datepicker-close");
 

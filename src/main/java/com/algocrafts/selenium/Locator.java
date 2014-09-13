@@ -1,9 +1,12 @@
 package com.algocrafts.selenium;
 
 
+import com.algocrafts.locators.Locators;
+
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public interface Locator<Where, What> extends Function<Where, What> {
 
@@ -13,15 +16,13 @@ public interface Locator<Where, What> extends Function<Where, What> {
      * If evaluation of either function throws an exception, it is relayed to
      * the caller of the composed function.
      *
-     * @param <V>   the type of output of the {@code after} function, and of the
-     *              composed function
      * @param after the function to locate after this function is applied
      * @return a composed function that first applies this function and then
      * applies the {@code after} function
      * @throws NullPointerException if after is null
      * @see #compose(Function)
      */
-    default <V> Locator<Where, V> and(Locator<? super What, ? extends V> after) {
+    default <V> Locator<Where, V> andThen(Locator<? super What, ? extends V> after) {
         Objects.requireNonNull(after);
         return (Where t) -> after.locate(locate(t));
     }

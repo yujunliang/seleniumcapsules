@@ -134,9 +134,9 @@ public class OrgSyncHomePageTest {
         public void autoCompleteUsingLocator() {
             googlePage.autocomplete(Q, "oracle",
                     Locators.<Page>optionalElement(() -> className("gssb_c"))
-                            .and(GET)
-                            .and(elements(SPAN))
-                            .and(new FirstMatch<>(TEXT.and(new Equals("ticketfly")))));
+                            .andThen(GET)
+                            .andThen(elements(SPAN))
+                            .andThen(new FirstMatch<>(TEXT.and(new Equals("ticketfly")))));
         }
 
         @After

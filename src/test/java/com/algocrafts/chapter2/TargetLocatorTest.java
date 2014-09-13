@@ -117,7 +117,8 @@ public class TargetLocatorTest {
         webDriver.switchTo().frame(0);
 
         WebElement webElement = webDriver.switchTo().activeElement();
-        System.out.println(webElement.getText().substring(0, 100) + "... ...(The rest omitted)");
+        String text = webElement.getText();
+        System.out.println(text.substring(0, 100) + "... ...("+ (text.length() -100) +" characters omitted)");
     }
 
     @Test

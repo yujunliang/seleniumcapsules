@@ -4,45 +4,83 @@ package com.algocrafts.calendar;
 import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Locator;
 
-import static com.algocrafts.calendar.FlippingButton.MONTH_FLIPPER;
-import static com.algocrafts.calendar.FlippingButton.YEAR_FLIPPER;
+import java.util.Optional;
+import java.util.function.Predicate;
+
+import static com.algocrafts.calendar.CalendarFlipper.MONTH_FLIPPER;
+import static com.algocrafts.calendar.CalendarFlipper.YEAR_FLIPPER;
+import static com.algocrafts.conditions.PagePredicates.CALENDAR_NOT_DISPLAYED;
 
 public class Calendar {
 
     private final Page page;
     private final Locator<Page, Void> trigger;
-    private final Locator<Page, Integer> currentYear;
-    private final Locator<Page, Integer> currentMonth;
+    private final Locator<Page, Integer> displayedYear;
+    private final Locator<Page, Integer> displayedMonth;
     private final Locator<Page, Void> previousMonth;
     private final Locator<Page, Void> nextMonth;
-    private final DayLocatorFactory dayLocator;
+    private final DayLocatorFactory dayLocatorFactory;
+    private final Predicate<Page> calendarClosed;
+    private Optional<Locator<Page, Void>> closeButton = Optional.empty();
+    private Optional<Locator<Page, Void>> previousYear = Optional.empty();
+    private Optional<Locator<Page, Void>> nextYear = Optional.empty();
+
 
     /**
      * Constructor of the Calendar, an active page and locators
      * of the trigger element and other calendar control buttons.
      *
-     * @param page          page
-     * @param trigger       locator to trigger the display of the calendar
-     * @param currentYear   current year
-     * @param currentMonth  current month
-     * @param previousMonth previous month
-     * @param nextMonth     next month
-     * @param dayLocator    day
+     * @param page              page
+     * @param trigger           locator to trigger the display of the calendar
+     * @param displayedYear     displayedValue year
+     * @param displayedMonth    displayedValue month
+     * @param previousMonth     previous month
+     * @param nextMonth         next month
+     * @param dayLocatorFactory day
      */
     public Calendar(Page page,
                     Locator<Page, Void> trigger,
-                    Locator<Page, Integer> currentYear,
-                    Locator<Page, Integer> currentMonth,
+                    Locator<Page, Integer> displayedYear,
+                    Locator<Page, Integer> displayedMonth,
                     Locator<Page, Void> previousMonth,
                     Locator<Page, Void> nextMonth,
-                    DayLocatorFactory dayLocator) {
+                    DayLocatorFactory dayLocatorFactory,
+                    Predicate<Page> calendarClosed) {
         this.page = page;
         this.trigger = trigger;
-        this.currentYear = currentYear;
-        this.currentMonth = currentMonth;
+        this.displayedYear = displayedYear;
+        this.displayedMonth = displayedMonth;
         this.previousMonth = previousMonth;
         this.nextMonth = nextMonth;
-        this.dayLocator = dayLocator;
+        this.dayLocatorFactory = dayLocatorFactory;
+        this.calendarClosed = calendarClosed;
+    }
+
+    /**
+     * Set optional close button
+     *
+     * @param closeButton locator for close button
+     */
+    public void setCloseButton(Locator<Page, Void> closeButton) {
+        this.closeButton = Optional.of(closeButton);
+    }
+
+    /**
+     * Set optional previous year button
+     *
+     * @param previousYear locator for previous year button
+     */
+    public void setPreviousYear(Locator<Page, Void> previousYear) {
+        this.previousYear = Optional.of(previousYear);
+    }
+
+    /**
+     * Set optional next year button
+     *
+     * @param nextYear locator for next year button
+     */
+    public void setNextYear(Locator<Page, Void> nextYear) {
+        this.nextYear = Optional.of(nextYear);
     }
 
     /**
@@ -53,35 +91,21 @@ public class Calendar {
     }
 
     /**
-     * Read the current year from the calendar.
+     * Read the displayedValue year from the calendar.
      *
-     * @return current year
+     * @return displayedValue year
      */
-    public int currentYear() {
-        return currentYear.locate(page);
+    public int displayedYear() {
+        return displayedYear.locate(page);
     }
 
     /**
-     * Read the current month from the calendar.
+     * Read the displayedValue month from the calendar.
      *
-     * @return current month
+     * @return displayedValue month
      */
-    public int currentMonth() {
-        return currentMonth.locate(page);
-    }
-
-    /**
-     * Click the previous month button.
-     */
-    public void previousMonth() {
-        previousMonth.locate(page);
-    }
-
-    /**
-     * Click the next month button.
-     */
-    public void nextMonth() {
-        nextMonth.locate(page);
+    public int displayedMonth() {
+        return displayedMonth.locate(page);
     }
 
     /**
@@ -90,7 +114,11 @@ public class Calendar {
      * @param day day
      */
     public void pickDay(int day) {
-        dayLocator.forDay(day).locate(page);
+        dayLocatorFactory.forDay(day).locate(page);
+        if (closeButton.isPresent()) {
+            closeButton.get().locate(page);
+        }
+        page.until(calendarClosed);
     }
 
     /**
@@ -99,7 +127,7 @@ public class Calendar {
      *
      * @param year year
      */
-    public void enterYear(int year) {
+    public void pickYear(int year) {
         YEAR_FLIPPER.flip(this, year);
     }
 
@@ -109,17 +137,36 @@ public class Calendar {
      *
      * @param month month
      */
-    public void enterMonth(Enum month) {
+    public void pickMonth(Enum month) {
         MONTH_FLIPPER.flip(this, month.ordinal());
+    }
+
+
+    /**
+     * Click the previous month button.
+     */
+    void previousMonth() {
+        previousMonth.locate(page);
+    }
+
+    /**
+     * Click the next month button.
+     */
+    void nextMonth() {
+        nextMonth.locate(page);
     }
 
     /**
      * Clicking previous year button once, or clicking the previous month
      * button 12 times if the next year button is not present on the calendar.
      */
-    public void previousYear() {
-        for (int i = 0; i < 12; i++) {
-            previousMonth();
+    void previousYear() {
+        if (previousYear.isPresent()) {
+            displayedYear.locate(page);
+        } else {
+            for (int i = 0; i < 12; i++) {
+                previousMonth();
+            }
         }
     }
 
@@ -127,9 +174,15 @@ public class Calendar {
      * Clicking next year button once, or clicking the next month button
      * 12 times if the next year button is not present on the calendar.
      */
-    public void nextYear() {
-        for (int i = 0; i < 12; i++) {
-            nextMonth();
+    void nextYear() {
+        if (nextYear.isPresent()) {
+            nextYear.get().locate(page);
+        } else {
+            for (int i = 0; i < 12; i++) {
+                nextMonth();
+            }
         }
+
     }
+
 }
