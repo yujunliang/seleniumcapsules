@@ -24,7 +24,6 @@ public enum Id implements Supplier<By> {
     DATE_PICKER("datepicker");
 
 
-
     private final By by;
 
     private Id(String id) {

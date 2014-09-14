@@ -1,12 +1,9 @@
 package com.algocrafts.selenium;
 
 
-import com.algocrafts.locators.Locators;
-
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 public interface Locator<Where, What> extends Function<Where, What> {
 

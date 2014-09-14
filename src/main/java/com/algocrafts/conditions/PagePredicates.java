@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.conditions.ElementPredicates.NOT_NULL;
+import static com.algocrafts.conditions.OptionalPresents.PRESENTS;
 import static com.algocrafts.conditions.StringEquals.*;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.OptionalGetter.GET;
@@ -19,16 +20,36 @@ import static com.algocrafts.selectors.TagName.*;
 import static com.bookstore.BookStoreId.*;
 
 public enum PagePredicates implements Predicate<Page> {
-
+    REACHED_CALENDAR_PAGE(
+            Locators.<Page>element(CONTENT)
+                    .andThen(element(H1))
+                    .andThen(TEXT)
+                    .and(DATEPICKER)
+    ),
+    SHOPPING_CART_DISPLAYED(
+            Locators.<Page>element(SHOPPING_CART)
+                    .and(NOT_NULL.and(DISPLAYED))
+    ),
+    YAHOO_COPYRIGHTED(
+            Locators.<Page>element(YAHOO_COPYRIGHT)
+                    .andThen(element(EM))
+                    .andThen(TEXT)
+                    .and(YAHOO)
+    ),
+    IS_COPYRIGHTED(
+            Locators.<Page>element(FOOTER)
+                    .andThen(element(P))
+                    .andThen(element(I))
+                    .andThen(TEXT)
+                    .and(MANNING)
+    ),
     EXTJS_CALENDAR_NOT_DISPLAYED(
             Locators.<Page>optionalElement(EXTJS_CALENDAR)
-                    .andThen(GET)
-                    .and(NOT_NULL.and(DISPLAYED.negate()))
-    ),
+                    .and(PRESENTS.negate().or(GET.and(DISPLAYED.negate()))))
+    ,
     JQUERY_CALENDAR_NOT_DISPLAYED(
             Locators.<Page>optionalElement(UI_DATEPICKER_DIV)
-                    .andThen(GET)
-                    .and(NOT_NULL.and(DISPLAYED.negate()))
+                    .and(PRESENTS.negate().or(GET.and(DISPLAYED.negate())))
     );
     private final Predicate<Page> predicate;
 

@@ -1,26 +1,33 @@
 package com.algocrafts.chapter13;
 
+import com.algocrafts.browsers.Browsers;
 import com.algocrafts.selenium.Browser;
 import com.jquery.JQueryDatePickerPage;
+import org.apache.commons.lang.time.StopWatch;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static com.algocrafts.browsers.Browsers.*;
 import static java.time.Month.APRIL;
 import static java.util.EnumSet.of;
 import static org.junit.Assert.assertEquals;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:context/context.xml"})
 public class JQueryDatePickerTest {
 
-    @Autowired
-    private JQueryDatePickerPage jQueryDatePickerPage;
+    private StopWatch stopWatch = new StopWatch();
+    @Before
+    public void startStopWatch() {
+        stopWatch.start();
+    }
+
+    @After
+    public void print() {
+        System.out.println("Taken " + stopWatch);
+    }
+
+    private JQueryDatePickerPage jQueryDatePickerPage
+            = new JQueryDatePickerPage(Browsers.CHROME);
 
     @Before
     public void setup() {
@@ -33,7 +40,6 @@ public class JQueryDatePickerTest {
         assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
     }
 
-    @Test
     public void testDifferentBrowsers() {
         for (Browser browser : of(CHROME, FIREFOX, SAFARI)) {
             jQueryDatePickerPage = new JQueryDatePickerPage(browser);
