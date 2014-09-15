@@ -1,8 +1,8 @@
 package com.extjs;
 
 
-import com.algocrafts.calendar.Calendar;
-import com.algocrafts.calendar.Datepicker;
+import com.algocrafts.datepicker.Calendar;
+import com.algocrafts.datepicker.Datepicker;
 import com.algocrafts.clickables.Url;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.Page;

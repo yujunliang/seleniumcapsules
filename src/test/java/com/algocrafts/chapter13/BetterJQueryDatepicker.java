@@ -30,11 +30,27 @@ public class BetterJQueryDatepicker {
         return  frame.findElement(By.id("datepicker")).getAttribute("value");
     }
 
-    private void pickDay(int day) {
-        List<WebElement> tds = datepicker.findElements(By.tagName("td"));
-        for (WebElement td : tds) {
-            if (td.getText().equals(String.valueOf(day))) {
-                td.click();
+    private void show() {
+        frame = webDriver.switchTo().frame(0);
+        WebElement element = frame.findElement(By.id("datepicker"));
+        element.click();
+    }
+
+    private void pickYear(int yearInt) {
+        datepicker = frame.findElement(By.id("ui-datepicker-div"));
+        String year = datepicker.findElement(By.className("ui-datepicker-year")).getText();
+
+        if (Integer.parseInt(year) < yearInt) {
+            while (Integer.parseInt(year) !=  yearInt) {
+                datepicker.findElement(By.className("ui-datepicker-next")).click();
+                datepicker = frame.findElement(By.id("datepicker"));
+                year = datepicker.findElement(By.className("ui-datepicker-year")).getText();
+            }
+        } else if (Integer.parseInt(year) > yearInt) {
+            while (Integer.parseInt(year) != yearInt) {
+                datepicker.findElement(By.className("ui-datepicker-prev")).click();
+                datepicker = frame.findElement(By.id("ui-datepicker-div"));
+                year = datepicker.findElement(By.className("ui-datepicker-year")).getText();
             }
         }
     }
@@ -56,28 +72,12 @@ public class BetterJQueryDatepicker {
         }
     }
 
-    private void pickYear(int yearInt) {
-        datepicker = frame.findElement(By.id("ui-datepicker-div"));
-        String year = datepicker.findElement(By.className("ui-datepicker-year")).getText();
-
-        if (Integer.parseInt(year) < yearInt) {
-            while (!year.equals(String.valueOf(yearInt))) {
-                datepicker.findElement(By.className("ui-datepicker-next")).click();
-                datepicker = frame.findElement(By.id("datepicker"));
-                year = datepicker.findElement(By.className("ui-datepicker-year")).getText();
-            }
-        } else if (Integer.parseInt(year) > yearInt) {
-            while (!year.equals(String.valueOf(yearInt))) {
-                datepicker.findElement(By.className("ui-datepicker-prev")).click();
-                datepicker = frame.findElement(By.id("ui-datepicker-div"));
-                year = datepicker.findElement(By.className("ui-datepicker-year")).getText();
+    private void pickDay(int day) {
+        List<WebElement> tds = datepicker.findElements(By.tagName("td"));
+        for (WebElement td : tds) {
+            if (td.getText().equals(String.valueOf(day))) {
+                td.click();
             }
         }
-    }
-
-    private void show() {
-        frame = webDriver.switchTo().frame(0);
-        WebElement element = frame.findElement(By.id("datepicker"));
-        element.click();
     }
 }

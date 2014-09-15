@@ -1,4 +1,4 @@
-package com.algocrafts.calendar;
+package com.algocrafts.datepicker;
 
 
 import com.algocrafts.pages.Page;
@@ -7,8 +7,8 @@ import com.algocrafts.selenium.Locator;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import static com.algocrafts.calendar.CalendarFlipper.MONTH_FLIPPER;
-import static com.algocrafts.calendar.CalendarFlipper.YEAR_FLIPPER;
+import static com.algocrafts.datepicker.CalendarFlipper.MONTH_FLIPPER;
+import static com.algocrafts.datepicker.CalendarFlipper.YEAR_FLIPPER;
 
 public class Calendar {
 

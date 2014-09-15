@@ -10,7 +10,7 @@ import java.time.Month;
 import java.util.Date;
 import java.util.List;
 
-public class NaivaDatepicker {
+public class NaiveDatepicker {
 
     public String pickDate(Date date) {
         WebDriver webDriver = new ChromeDriver();
@@ -20,14 +20,14 @@ public class NaivaDatepicker {
         element.click();
         WebElement datepicker = frame.findElement(By.id("ui-datepicker-div"));
         String year = datepicker.findElement(By.className("ui-datepicker-year")).getText();
-        if (Integer.parseInt(year) < date.getYear()) {
-            while (!year.equals(String.valueOf(date.getYear()) + 1900)) {
+        if (Integer.parseInt(year) < date.getYear() + 1900) {
+            while (Integer.parseInt(year) !=  date.getYear() + 1900) {
                 datepicker.findElement(By.className("ui-datepicker-next")).click();
                 datepicker = frame.findElement(By.id("datepicker"));
                 year = datepicker.findElement(By.className("ui-datepicker-year")).getText();
             }
         } else if (Integer.parseInt(year) > date.getYear()) {
-            while (!year.equals(String.valueOf(date.getYear() + 1900))) {
+            while (Integer.parseInt(year) != date.getYear() + 1900) {
                 datepicker.findElement(By.className("ui-datepicker-prev")).click();
                 datepicker = frame.findElement(By.id("ui-datepicker-div"));
                 year = datepicker.findElement(By.className("ui-datepicker-year")).getText();

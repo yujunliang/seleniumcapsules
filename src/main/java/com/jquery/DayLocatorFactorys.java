@@ -1,6 +1,6 @@
 package com.jquery;
 
-import com.algocrafts.calendar.DayLocatorFactory;
+import com.algocrafts.datepicker.DayLocatorFactory;
 import com.algocrafts.conditions.Equals;
 import com.algocrafts.converters.FirstMatch;
 import com.algocrafts.locators.Locators;

@@ -1,4 +1,4 @@
-package com.algocrafts.calendar;
+package com.algocrafts.datepicker;
 
 import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Locator;

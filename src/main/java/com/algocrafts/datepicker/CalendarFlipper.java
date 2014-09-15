@@ -1,4 +1,4 @@
-package com.algocrafts.calendar;
+package com.algocrafts.datepicker;
 
 enum CalendarFlipper {
     YEAR_FLIPPER {

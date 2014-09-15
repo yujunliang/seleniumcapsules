@@ -25,7 +25,7 @@ public class NaiveJQueryDatepickerTest {
         System.out.println("Taken " + stopWatch);
     }
 
-    Date date;
+    private Date date;
 
     @Before
     public void date() throws ParseException {
@@ -34,12 +34,17 @@ public class NaiveJQueryDatepickerTest {
 
     @Test
     public void pickDateUsingNaivaDatepicker() {
-        assertEquals("04/01/2012", new NaivaDatepicker().pickDate(date));
+        assertEquals("04/01/2012", new NaiveDatepicker().pickDate(date));
     }
 
     @Test
     public void pickDateUsingBetterJQueryDatepicker() {
         assertEquals("04/01/2012", new BetterJQueryDatepicker().pickDate(date));
+    }
+
+    @Test
+    public void pickDateUsingMuchBetterJQueryDatepicker() {
+        assertEquals("04/01/2012", new MuchBetterJQueryDatepicker().pickDate(date));
     }
 
 }

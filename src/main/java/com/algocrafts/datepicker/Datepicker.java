@@ -1,6 +1,7 @@
-package com.algocrafts.calendar;
+package com.algocrafts.datepicker;
 
 
+import java.time.LocalDate;
 import java.time.Month;
 
 /**
@@ -33,6 +34,7 @@ public class Datepicker {
      * @param year  an ineger representing the year appearing on the calendar
      */
     public void pick(Month month, int day, int year) {
+        LocalDate.of(year, month.ordinal() + 1, day);
         calendar.show();
         calendar.pickYear(year);
         calendar.pickMonth(month);
