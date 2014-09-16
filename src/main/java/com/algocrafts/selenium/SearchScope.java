@@ -42,7 +42,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      */
     default public Optional<Element> optionalElement(Supplier<By> by) {
         try {
-            return  Optional.of(findElement(by.get()));
+            return Optional.of(findElement(by.get()));
         } catch (NoSuchElementException e) {
             return Optional.empty();
         }
@@ -55,7 +55,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @return the first element or throw NoSuchElementException
      */
     default public Element untilFound(Supplier<By> by) {
-        return until((Where page) -> findElement(by.get()));
+        return until(by);
     }
 
     /**
@@ -136,9 +136,10 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @return the images  found by using the same image file.
      */
     default public Stream<Element> images(String fileName) {
-        return until(Locators.<Where>elements(IMG)
-                        .andThen(new Filter<>(NOT_NULL.and(DISPLAYED).and(SRC.and(new StringContains(fileName)))))
-        );
+        return Locators.<Where>elements(IMG)
+                .andThen(new Filter<Element>(NOT_NULL.and(DISPLAYED)
+                        .and(SRC.and(new StringContains(fileName)))))
+                .locate((Where) this);
     }
 
     /**

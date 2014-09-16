@@ -11,6 +11,7 @@ import static org.openqa.selenium.By.id;
  */
 public enum Id implements Supplier<By> {
 
+    LOCATION("location"),
     MAIN("main"),
     MAIN_NAV("main-nav"),
     UI_DATEPICKER_DIV("ui-datepicker-div"),

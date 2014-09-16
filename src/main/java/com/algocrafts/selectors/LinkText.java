@@ -20,7 +20,8 @@ public enum LinkText implements Supplier<By> {
 
     EXTJS_DATEPICKER_TRIGGER("choose a date"),
 
-    JAVA("Java");
+    JAVA("Java"),
+    ONTARIO("Ontario");
 
     private final By by;
 

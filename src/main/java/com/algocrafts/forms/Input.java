@@ -118,7 +118,7 @@ public class Input<Where extends SearchScope<Where>> extends Locating<Where, Opt
                 return;
             }
         }
-        suggestion = where.until(locator);
+        suggestion = locator.locate(where);
         if (suggestion.isPresent()) {
             suggestion.get().click();
         }

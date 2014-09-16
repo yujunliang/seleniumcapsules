@@ -1,16 +1,18 @@
 package com.algocrafts.selenium;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-public interface ExplicitWait<Where> {
+public interface ExplicitWait<Where extends SearchScope<Where>> {
 
     /**
      * Save the screenshot if possible.
@@ -18,13 +20,12 @@ public interface ExplicitWait<Where> {
     void onTimeout();
 
     /**
-     * @param locator locator
-     * @param <What>  generic parameter
+     * @param by selector
      * @return the element found by using the locator
      * @throws NoSuchElementException not found
      */
-    default public <What> What until(Locator<Where, What> locator) throws NoSuchElementException {
-        return until(30, SECONDS, locator);
+    default public Element until(Supplier<By> by) throws NoSuchElementException {
+        return until(30, SECONDS, by);
     }
 
     /**
@@ -38,17 +39,16 @@ public interface ExplicitWait<Where> {
     /**
      * @param duration timeout duration
      * @param timeUnit unit
-     * @param locator  locator
-     * @param <What>   generic parameter
+     * @param by selector
      * @return the element found by using the locator
      * @throws NoSuchElementException not found
      */
-    default public <What> What until(int duration, TimeUnit timeUnit, Locator<Where, What> locator) throws NoSuchElementException {
+    default public  Element until(int duration, TimeUnit timeUnit, Supplier<By> by) throws NoSuchElementException {
         try {
-            return explicitWait(duration, timeUnit).until(locator::locate);
+            return explicitWait(duration, timeUnit).until((Where where) -> where.findElement(by.get()));
         } catch (TimeoutException e) {
             onTimeout();
-            throw new NoSuchElementException("Nothing found by " + locator, e);
+            throw new NoSuchElementException("Nothing found by " + by, e);
         }
     }
 

@@ -9,11 +9,11 @@ import java.util.function.Supplier;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public interface WebDriverSupplier<T extends WebDriver> extends Supplier<T>{
+public interface WebDriverSupplier<T extends WebDriver> extends Supplier<T> {
 
 
     public static final SelfPopulatingCache<WebDriverSupplier<?>, ? extends WebDriver> store =
-            SelfPopulatingCache. create((WebDriverSupplier<?> supplier) -> supplier.init());
+            SelfPopulatingCache.create((WebDriverSupplier<?> supplier) -> supplier.init());
 
     public static final Logger logger = getLogger(WebDriverSupplier.class);
 
