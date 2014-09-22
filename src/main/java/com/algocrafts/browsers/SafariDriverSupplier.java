@@ -1,9 +1,9 @@
 package com.algocrafts.browsers;
 
-import com.algocrafts.selenium.WebDriverSupplier;
+import com.algocrafts.selenium.CachedWebDriverSupplier;
 import org.openqa.selenium.safari.SafariDriver;
 
-public class Safari implements WebDriverSupplier<SafariDriver> {
+public class SafariDriverSupplier implements CachedWebDriverSupplier<SafariDriver> {
     @Override
     public SafariDriver init() {
         return new SafariDriver();

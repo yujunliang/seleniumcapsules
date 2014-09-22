@@ -27,7 +27,7 @@ public class SelfPopulatingCache<K, V> {
         this.creator = creator;
     }
 
-    public synchronized V valueOf(K key) {
+    public V valueOf(K key) {
         K evict = cachePolicy.evictingKey(cache.size() == maxSize, key);
         if (evict != null) {
             cache.remove(evict);

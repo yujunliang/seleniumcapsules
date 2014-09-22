@@ -23,7 +23,7 @@ import static com.extjs.TriggerHover.TRIGGER;
 public class ExtJSDatePickerPage extends Page {
 
     public ExtJSDatePickerPage(Browser browser) {
-        super(browser, new Url<>(browser, "http://try.sencha.com/extjs/4.0.7/docs/Ext.menu.DatePicker.1/"), true);
+        super(browser, new Url<>(browser, "http://try.sencha.com/extjs/4.0.7/docs/Ext.menu.DatePicker.1/"));
     }
 
     private final Datepicker datepicker = new Datepicker(

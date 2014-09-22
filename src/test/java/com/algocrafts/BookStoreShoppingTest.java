@@ -44,7 +44,7 @@ public class BookStoreShoppingTest {
     @Test
     public void invalidCardInfo() {
 
-        BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA), IS_COPYRIGHTED) {{
+        BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA)) {{
             open();
             link(ACTIVE_MQ_IN_ACTION).click();
         }};
@@ -67,7 +67,7 @@ public class BookStoreShoppingTest {
     @Test
     public void invalidCardInfoNormalWay() {
 
-        BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA), IS_COPYRIGHTED);
+        BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA));
         listPage.open();
         listPage.link(ACTIVE_MQ_IN_ACTION).click();
 

@@ -1,9 +1,6 @@
 package com.algocrafts.selenium;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.internal.Coordinates;
 import org.openqa.selenium.internal.Locatable;
 import org.slf4j.Logger;
@@ -16,7 +13,9 @@ public class Element implements SearchScope<Element>, WebElement, Locatable {
 
     private static final Logger logger = getLogger(Element.class);
 
-    private final WebElement element;
+    private WebElement element;
+    private Browser<?> browser;
+    private By by;
 
     public Element(WebElement element) {
         this.element = element;
@@ -78,7 +77,14 @@ public class Element implements SearchScope<Element>, WebElement, Locatable {
     @Deprecated
     @Override
     public Element findElement(By by) {
-        return new ElementFinder(by).locate(element);
+        Element locate;
+        try {
+            locate = new ElementFinder(by).locate(element);
+        } catch (StaleElementReferenceException e) {
+            this.element = browser.findElement(this.by);
+            return findElement(by);
+        }
+        return locate;
     }
 
     @Override
@@ -116,5 +122,13 @@ public class Element implements SearchScope<Element>, WebElement, Locatable {
         return "[Element: " + (tagName.equals("input") ?
                 element.getAttribute("value") : tagName.equals("img") ?
                 element.getAttribute("src") : element.getText()) + "] wrapping " + element;
+    }
+
+    public void setBrowser(Browser<?> browser) {
+        this.browser = browser;
+    }
+
+    public void setBy(By by) {
+        this.by = by;
     }
 }

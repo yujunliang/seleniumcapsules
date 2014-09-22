@@ -1,6 +1,5 @@
 package com.algocrafts.pages;
 
-import com.algocrafts.conditions.Equals;
 import com.algocrafts.forms.FormControl;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.*;
@@ -9,12 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.OptionalGetter.GET;
-import static com.algocrafts.converters.PageFunctions.THE_PAGE_TITLE;
 import static com.algocrafts.selectors.ClassName.PAGE_TITLE;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -22,64 +19,30 @@ public class Page implements SearchScope<Page>, FormControl<Page> {
 
     public static final Logger logger = getLogger(Page.class);
 
-    private final Predicate<Page> condition;
-
-    private boolean close;
-
     private final Browser<?> browser;
 
     private final Clickable clickable;
 
     public Page(Page page) {
-        this(page.browser, null, null, page.close);
+        this(page.browser, null);
     }
 
-    public Page(Page page, boolean close) {
-        this(page.browser);
-        this.close = close;
-    }
-
-    public Page(Page page, Clickable clickable, boolean close) {
-        this(page.browser, clickable, null, close);
-    }
-
-    public Page(Page page, Clickable clickable, String title) {
-        this(page.browser, clickable, THE_PAGE_TITLE.and(new Equals(title)), page.close);
-    }
-
-    public Page(Page page, Clickable clickable, Predicate<Page> condition) {
-        this(page.browser, clickable, condition, page.close);
+    public Page(Page page, Clickable clickable) {
+        this(page.browser, clickable);
     }
 
     public Page(Browser<?> browser) {
-        this(browser, null, null, false);
+        this(browser, null);
     }
 
     public Page(Browser<?> browser, Clickable clickable) {
-        this(browser, clickable, null, false);
-    }
-
-    public Page(Browser<?> browser, Clickable clickable, boolean close) {
-        this(browser, clickable, null, close);
-    }
-
-    public Page(Browser<?> browser, Clickable clickable, Predicate<Page> condition) {
-        this(browser, clickable, condition, false);
-    }
-
-    public Page(Browser<?> browser, Clickable clickable, Predicate<Page> condition, boolean close) {
         this.browser = browser;
         this.clickable = clickable;
-        this.condition = condition;
-        this.close = close;
     }
 
     public final void open() {
         if (clickable != null) {
             clickable.click();
-            if (condition != null) {
-                until(condition);
-            }
         }
     }
 
@@ -115,7 +78,7 @@ public class Page implements SearchScope<Page>, FormControl<Page> {
     }
 
     public final void close() {
-        if (close) {
+        if (Boolean.getBoolean("close.browser")) {
             browser.close();
             quit();
         }

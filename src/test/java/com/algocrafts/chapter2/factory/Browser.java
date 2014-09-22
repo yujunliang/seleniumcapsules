@@ -1,24 +1,16 @@
-package com.algocrafts.selenium;
+package com.algocrafts.chapter2.factory;
 
+import com.algocrafts.selenium.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.HasInputDevices;
-import org.openqa.selenium.interactions.Keyboard;
-import org.openqa.selenium.interactions.Mouse;
 
 import java.util.List;
 import java.util.Set;
 
-public interface Browser<T extends WebDriver> extends Actionable<T>, SearchScope<Browser<T>>,
+public interface Browser<T extends WebDriver> extends WebDriver, CachedWebDriverSupplier<T>, SearchScope<Browser<T>>,
         HasInputDevices, JavascriptExecutor, HasCapabilities {
 
     CachedWebDriverSupplier<T> getSupplier();
-
-    @Override
-    default public void onTimeout() {
-        if (logger.isDebugEnabled()) {
-            save(this.getTitle());
-        }
-    }
 
     @Override
     default public T init() {
@@ -27,10 +19,7 @@ public interface Browser<T extends WebDriver> extends Actionable<T>, SearchScope
 
     @Override
     default public Element findElement(By by) {
-        Element locate = new ElementFinder(by).locate(get());
-        locate.setBrowser(this);
-        locate.setBy(by);
-        return locate;
+        return new ElementFinder(by).locate(get());
     }
 
     @Override
@@ -94,33 +83,4 @@ public interface Browser<T extends WebDriver> extends Actionable<T>, SearchScope
         store.remove(this);
     }
 
-    @Override
-    default public Keyboard getKeyboard() {
-        HasInputDevices t = (HasInputDevices) get();
-        return t.getKeyboard();
-    }
-
-    @Override
-    default public Mouse getMouse() {
-        HasInputDevices t = (HasInputDevices) get();
-        return t.getMouse();
-    }
-
-    @Override
-    default public Capabilities getCapabilities() {
-        HasCapabilities hasCapabilities = (HasCapabilities) get();
-        return hasCapabilities.getCapabilities();
-    }
-
-    @Override
-    default public Object executeScript(String script, Object... args) {
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) get();
-        return javascriptExecutor.executeScript(script, args);
-    }
-
-    @Override
-    default public Object executeAsyncScript(String script, Object... args) {
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) get();
-        return javascriptExecutor.executeAsyncScript(script, args);
-    }
 }

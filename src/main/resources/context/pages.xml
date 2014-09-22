@@ -20,7 +20,7 @@
         <constructor-arg ref="allMenuLocator"/>
     </bean>
 
-    <bean id="firefox" class="com.algocrafts.browsers.FirefoxOnWindows"/>
+    <bean id="firefox" class="com.algocrafts.browsers.FirefoxDriverSupplierOnWindows"/>
 
     <bean id="allMenuLocator" class="com.orgsync.AllMenuLocatorForOrgSync"/>
 

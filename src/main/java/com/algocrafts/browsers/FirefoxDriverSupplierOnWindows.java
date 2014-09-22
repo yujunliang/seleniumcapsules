@@ -1,7 +1,7 @@
 package com.algocrafts.browsers;
 
 import com.algocrafts.selenium.Browser;
-import com.algocrafts.selenium.WebDriverSupplier;
+import com.algocrafts.selenium.CachedWebDriverSupplier;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -24,7 +24,7 @@ import java.io.File;
  * <p>
  * The other browsers known to enum don't implement Browser interface, they just implement WebDriverSupplier&lt;T&gt;
  */
-public class FirefoxOnWindows implements Browser<FirefoxDriver>, WebDriverSupplier<FirefoxDriver> {
+public class FirefoxDriverSupplierOnWindows implements Browser<FirefoxDriver> {
 
     public FirefoxDriver init() {
         FirefoxBinary binary = new FirefoxBinary(new File("src/main/resources/Firefox/firefox.exe"));
@@ -33,7 +33,7 @@ public class FirefoxOnWindows implements Browser<FirefoxDriver>, WebDriverSuppli
     }
 
     @Override
-    public WebDriverSupplier<FirefoxDriver> getSupplier() {
+    public CachedWebDriverSupplier<FirefoxDriver> getSupplier() {
         return this;
     }
 

@@ -13,6 +13,7 @@ import static org.openqa.selenium.By.xpath;
 public enum Xpath implements Supplier<By> {
     PARENT(".."),
     DIV_CONTAINER_ID("//div[@id='container']"),
+    LOCATION("//div[@class='tools']/descendant::strong"),
     ORACLE_AUTOCOMPLETE("//table[contains(@class, 'gssb_c')]/descendant::span[text()='oracle']"),
     QUANTITY("//div[@id='ys_cartInfo']/descendant::input[@name='cartDS.shoppingcart_ROW0_m_orderItemVector_ROW0_m_quantity']");
 

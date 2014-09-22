@@ -1,6 +1,6 @@
-package com.algocrafts.browsers;
+package com.algocrafts.chapter2.factory;
 
-import com.algocrafts.selenium.WebDriverSupplier;
+import com.algocrafts.selenium.CachedWebDriverSupplier;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import java.io.File;
 
 
-public class HeadlessMacOS implements WebDriverSupplier<FirefoxDriver> {
+public class HeadlessFirefoxDriverSupplierOnLinux implements CachedWebDriverSupplier<FirefoxDriver> {
     @Override
     public FirefoxDriver init() {
         FirefoxBinary binary = new FirefoxBinary(new File("/opt/local/lib/firefox-x11/firefox-bin"));
