@@ -10,8 +10,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.EnumSet;
+import java.util.stream.Stream;
 
 import static com.algocrafts.browsers.Browsers.*;
+import static com.google.common.collect.Lists.newArrayList;
 
 public class BrowserTest {
 
@@ -62,7 +64,7 @@ public class BrowserTest {
 
     @Test
     public void findHowItWorksLinkUsingAllBrowsers() {
-        for (WebDriver webDriver : EnumSet.of(CHROME, FIREFOX, SAFARI)) {
+        for (WebDriver webDriver : newArrayList(CHROME.init(),CHROME.init(), FIREFOX, SAFARI)) {
             webDriver.get("http://ticketfly.com/careers");
             WebElement element = webDriver.findElement(By.linkText("How It Works"));
             System.out.println("element=" + element);

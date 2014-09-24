@@ -22,6 +22,9 @@ public class ElementFinder implements Locator<SearchContext, Element> {
         logger.info("Seeking [{}]", by);
         WebElement element = t.findElement(by);
         logger.info("Found [{}]", element);
-        return new Element(element);
+        Element element1 = new Element(element);
+        element1.setBy(by);
+        element1.setBrowser(t);
+        return element1;
     }
 }

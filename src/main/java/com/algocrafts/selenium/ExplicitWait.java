@@ -24,7 +24,7 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
      * @return the element found by using the locator
      * @throws NoSuchElementException not found
      */
-    default public Element until(Supplier<By> by) throws NoSuchElementException {
+    default Element until(Supplier<By> by) throws NoSuchElementException {
         return until(30, SECONDS, by);
     }
 
@@ -32,18 +32,18 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
      * @param predicate predicate
      * @throws TimeoutException timeout
      */
-    default public void until(Predicate<Where> predicate) throws TimeoutException {
+    default void until(Predicate<Where> predicate) throws TimeoutException {
         until(30, SECONDS, predicate);
     }
 
     /**
      * @param duration timeout duration
      * @param timeUnit unit
-     * @param by selector
+     * @param by       selector
      * @return the element found by using the locator
      * @throws NoSuchElementException not found
      */
-    default public  Element until(int duration, TimeUnit timeUnit, Supplier<By> by) throws NoSuchElementException {
+    default Element until(int duration, TimeUnit timeUnit, Supplier<By> by) throws NoSuchElementException {
         try {
             return explicitWait(duration, timeUnit).until((Where where) -> where.findElement(by.get()));
         } catch (TimeoutException e) {
@@ -58,7 +58,7 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
      * @param predicate predicate
      * @throws TimeoutException timeout
      */
-    default public void until(int duration, TimeUnit timeUnit, Predicate<Where> predicate) throws TimeoutException {
+    default void until(int duration, TimeUnit timeUnit, Predicate<Where> predicate) throws TimeoutException {
         try {
             explicitWait(duration, timeUnit).until(predicate::test);
         } catch (TimeoutException e) {
@@ -73,7 +73,7 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
      * @return the FluentWait instance
      */
     @SuppressWarnings("unchecked")
-    default public FluentWait<Where> explicitWait(int duration, TimeUnit timeUnit) {
+    default FluentWait<Where> explicitWait(int duration, TimeUnit timeUnit) {
         return new FluentWait<>((Where) this)
                 .withTimeout(duration, timeUnit)
                 .pollingEvery(5, MILLISECONDS)

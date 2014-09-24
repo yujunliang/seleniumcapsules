@@ -40,7 +40,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @param by selector
      * @return the first element or return empty Optional if nothing found.
      */
-    default public Optional<Element> optionalElement(Supplier<By> by) {
+    default Optional<Element> optionalElement(Supplier<By> by) {
         try {
             return Optional.of(findElement(by.get()));
         } catch (NoSuchElementException e) {
@@ -54,7 +54,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @param by selector
      * @return the first element or throw NoSuchElementException
      */
-    default public Element untilFound(Supplier<By> by) {
+    default Element untilFound(Supplier<By> by) {
         return until(by);
     }
 
@@ -65,7 +65,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @return A stream of all {@link Element}s, or an empty stream if nothing matches.
      * @see org.openqa.selenium.By
      */
-    default public Stream<Element> findElements(Supplier<By> by) {
+    default Stream<Element> findElements(Supplier<By> by) {
         return findElements(by.get()).stream().map(Element::new);
     }
 
@@ -76,7 +76,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @param by selector                       ˜
      * @return the first button meeting the By selector.
      */
-    default public Clickable button(Supplier<By> by) {
+    default Clickable button(Supplier<By> by) {
         return button(by, 0);
     }
 
@@ -89,7 +89,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @return the button by index in the list
      */
     @SuppressWarnings("unchecked")
-    default public Clickable button(Supplier<By> by, int index) {
+    default Clickable button(Supplier<By> by, int index) {
         return new Button<>((Where) this, Locators.<Where>elements(by)
                 .andThen(new StreamToList<>())
                 .andThen(new ElementAtIndex<>(index)));
@@ -102,7 +102,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @return button found by the locator
      */
     @SuppressWarnings("unchecked")
-    default public Clickable button(Locator<Where, Element> locator) {
+    default Clickable button(Locator<Where, Element> locator) {
         return new Button<>((Where) this, locator);
     }
 
@@ -112,7 +112,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @param fileName file name
      * @return first image found by using the image file.
      */
-    default public Optional<Element> image(String fileName) {
+    default Optional<Element> image(String fileName) {
         return new FirstItem<Element>().locate(images(fileName));
     }
 
@@ -123,7 +123,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @param index    index
      * @return image at the given index using the same image file.
      */
-    default public Element image(String fileName, int index) {
+    default Element image(String fileName, int index) {
         return new StreamToList<Element>()
                 .andThen(new ElementAtIndex<>(index))
                 .locate(images(fileName));
@@ -135,7 +135,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @param fileName file name
      * @return the images  found by using the same image file.
      */
-    default public Stream<Element> images(String fileName) {
+    default Stream<Element> images(String fileName) {
         return Locators.<Where>elements(IMG)
                 .andThen(new Filter<Element>(NOT_NULL.and(DISPLAYED)
                         .and(SRC.and(new StringContains(fileName)))))
@@ -149,7 +149,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @return the link found by using the selector.
      */
     @SuppressWarnings("unchecked")
-    default public Clickable link(Supplier<By> selector) {
+    default Clickable link(Supplier<By> selector) {
         return new Link<>((Where) this, element(selector));
     }
 

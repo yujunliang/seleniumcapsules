@@ -16,7 +16,7 @@ import static org.openqa.selenium.OutputType.FILE;
 
 public interface Actionable<T extends WebDriver> extends WebDriver, CachedWebDriverSupplier<T> {
 
-    default public void accept() {
+    default void accept() {
         try {
             switchTo().alert().accept();
         } catch (Exception e) {
@@ -24,7 +24,7 @@ public interface Actionable<T extends WebDriver> extends WebDriver, CachedWebDri
         }
     }
 
-    default public void cancel() {
+    default void cancel() {
         try {
             switchTo().alert().dismiss();
         } catch (Exception e) {
@@ -32,23 +32,23 @@ public interface Actionable<T extends WebDriver> extends WebDriver, CachedWebDri
         }
     }
 
-    default public void frame(int i) {
+    default void frame(int i) {
         switchTo().frame(i);
     }
 
-    default public void defaultContent() {
+    default void defaultContent() {
         switchTo().defaultContent();
     }
 
-    default public void mouseOver(Element element) {
+    default void mouseOver(Element element) {
         new Actions(get()).moveToElement(element).perform();
     }
 
-    default public void dragAndDrop(By from, By to) {
+    default void dragAndDrop(By from, By to) {
         new Actions(get()).dragAndDrop(findElement(from), findElement(to)).perform();
     }
 
-    default public void save(String title) {
+    default void save(String title) {
         T webDriver = get();
         if (webDriver instanceof TakesScreenshot) {
             logger.info("Saving screenshot [title={}]", title);

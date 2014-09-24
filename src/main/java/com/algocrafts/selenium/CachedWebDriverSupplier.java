@@ -18,7 +18,7 @@ public interface CachedWebDriverSupplier<T extends WebDriver> extends Supplier<T
     T init();
 
     @SuppressWarnings("unchecked")
-    default public T get() {
+    default T get() {
         return (T) store.valueOf(this);
     }
 }

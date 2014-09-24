@@ -14,7 +14,7 @@ public class Element implements SearchScope<Element>, WebElement, Locatable {
     private static final Logger logger = getLogger(Element.class);
 
     private WebElement element;
-    private Browser<?> browser;
+    private SearchContext searchContext;
     private By by;
 
     public Element(WebElement element) {
@@ -81,7 +81,7 @@ public class Element implements SearchScope<Element>, WebElement, Locatable {
         try {
             locate = new ElementFinder(by).locate(element);
         } catch (StaleElementReferenceException e) {
-            this.element = browser.findElement(this.by);
+            this.element = searchContext.findElement(this.by);
             return findElement(by);
         }
         return locate;
@@ -124,8 +124,8 @@ public class Element implements SearchScope<Element>, WebElement, Locatable {
                 element.getAttribute("src") : element.getText()) + "] wrapping " + element;
     }
 
-    public void setBrowser(Browser<?> browser) {
-        this.browser = browser;
+    public void setBrowser(SearchContext searchContext) {
+        this.searchContext = searchContext;
     }
 
     public void setBy(By by) {

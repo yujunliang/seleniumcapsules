@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
 import static org.slf4j.LoggerFactory.getLogger;
 
 
@@ -23,6 +24,6 @@ public class ElementsFinder implements Locator<SearchContext, List<WebElement>>{
         logger.info("Seeking elements [{}]", by);
         List<WebElement> elements = t.findElements(by);
         logger.info("Found [{}]", elements);
-        return elements;
+        return elements.stream().map(Element::new).collect(toList());
     }
 }

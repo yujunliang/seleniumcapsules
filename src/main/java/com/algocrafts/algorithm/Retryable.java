@@ -9,7 +9,7 @@ public interface Retryable<T> {
 
     Logger LOGGER = getLogger(Retryable.class);
 
-    default public T retry(Attemptable<T> task)  {
+    default T retry(Attemptable<T> task) {
         final Retry retry = new Retry(3, 3, SECONDS);
         try {
             return retry.attempt(task);

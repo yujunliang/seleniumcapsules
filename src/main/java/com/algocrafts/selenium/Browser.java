@@ -8,118 +8,117 @@ import org.openqa.selenium.interactions.Mouse;
 import java.util.List;
 import java.util.Set;
 
-public interface Browser<T extends WebDriver> extends Actionable<T>, SearchScope<Browser<T>>,
+public interface Browser<T extends WebDriver> extends Actionable<T>, SearchScope<Browser<T>>, WebDriver,
         HasInputDevices, JavascriptExecutor, HasCapabilities {
 
     CachedWebDriverSupplier<T> getSupplier();
 
     @Override
-    default public void onTimeout() {
+    default void onTimeout() {
         if (logger.isDebugEnabled()) {
             save(this.getTitle());
         }
     }
 
     @Override
-    default public T init() {
+    default T init() {
         return getSupplier().init();
     }
 
+    @Deprecated
     @Override
-    default public Element findElement(By by) {
-        Element locate = new ElementFinder(by).locate(get());
-        locate.setBrowser(this);
-        locate.setBy(by);
-        return locate;
+    default Element findElement(By by) {
+        return new ElementFinder(by).locate(get());
     }
 
+    @Deprecated
     @Override
-    default public List<WebElement> findElements(By by) {
+    default List<WebElement> findElements(By by) {
         return new ElementsFinder(by).locate(get());
     }
 
     @Override
-    default public void get(String url) {
+    default void get(String url) {
         get().get(url);
     }
 
     @Override
-    default public String getCurrentUrl() {
+    default String getCurrentUrl() {
         return get().getCurrentUrl();
     }
 
     @Override
-    default public String getTitle() {
+    default String getTitle() {
         return get().getTitle();
     }
 
     @Override
-    default public String getPageSource() {
+    default String getPageSource() {
         return get().getPageSource();
     }
 
     @Override
-    default public Set<String> getWindowHandles() {
+    default Set<String> getWindowHandles() {
         return get().getWindowHandles();
     }
 
     @Override
-    default public String getWindowHandle() {
+    default String getWindowHandle() {
         return get().getWindowHandle();
     }
 
     @Override
-    default public TargetLocator switchTo() {
+    default TargetLocator switchTo() {
         return get().switchTo();
     }
 
     @Override
-    default public Navigation navigate() {
+    default Navigation navigate() {
         return get().navigate();
     }
 
     @Override
-    default public Options manage() {
+    default Options manage() {
         return get().manage();
     }
 
     @Override
-    default public void close() {
+    default void close() {
         get().close();
     }
 
     @Override
-    default public void quit() {
+    default void quit() {
         store.valueOf(this).quit();
         store.remove(this);
     }
 
     @Override
-    default public Keyboard getKeyboard() {
+    default Keyboard getKeyboard() {
         HasInputDevices t = (HasInputDevices) get();
         return t.getKeyboard();
     }
 
     @Override
-    default public Mouse getMouse() {
+    default Mouse getMouse() {
         HasInputDevices t = (HasInputDevices) get();
         return t.getMouse();
     }
 
     @Override
-    default public Capabilities getCapabilities() {
+    default Capabilities getCapabilities() {
         HasCapabilities hasCapabilities = (HasCapabilities) get();
         return hasCapabilities.getCapabilities();
     }
 
     @Override
-    default public Object executeScript(String script, Object... args) {
+    default Object executeScript(String script, Object... args) {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) get();
         return javascriptExecutor.executeScript(script, args);
     }
 
     @Override
-    default public Object executeAsyncScript(String script, Object... args) {
+    default Object executeAsyncScript(String script, Object... args) {
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) get();
         return javascriptExecutor.executeAsyncScript(script, args);
     }

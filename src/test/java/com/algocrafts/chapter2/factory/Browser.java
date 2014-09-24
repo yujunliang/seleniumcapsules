@@ -17,11 +17,13 @@ public interface Browser<T extends WebDriver> extends WebDriver, CachedWebDriver
         return getSupplier().init();
     }
 
+    @Deprecated
     @Override
     default public Element findElement(By by) {
         return new ElementFinder(by).locate(get());
     }
 
+    @Deprecated
     @Override
     default public List<WebElement> findElements(By by) {
         return new ElementsFinder(by).locate(get());

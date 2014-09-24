@@ -22,7 +22,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @return true if it is checked.
      */
     @SuppressWarnings("unchecked")
-    default public boolean isChecked(Supplier<By> selector) {
+    default boolean isChecked(Supplier<By> selector) {
         return new Checkbox<>((Where) this, selector).isChecked();
     }
 
@@ -33,7 +33,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @param value    value
      */
     @SuppressWarnings("unchecked")
-    default public void check(Supplier<By> selector, boolean value) {
+    default void check(Supplier<By> selector, boolean value) {
         new Checkbox<>((Where) this, selector).setValue(value);
     }
 
@@ -44,7 +44,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @return the value of selected radio.
      */
     @SuppressWarnings("unchecked")
-    default public String getRadio(Supplier<By> selector) {
+    default String getRadio(Supplier<By> selector) {
         return new RadioButton<>((Where) this, selector).getValue();
     }
 
@@ -55,7 +55,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @return the value of selected radio.
      */
     @SuppressWarnings("unchecked")
-    default public <T extends Enum> T getRadio(Supplier<By> selector, Function<String, T> converter) {
+    default <T extends Enum> T getRadio(Supplier<By> selector, Function<String, T> converter) {
         return converter.apply(getRadio(selector));
     }
 
@@ -66,7 +66,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @param option   option
      */
     @SuppressWarnings("unchecked")
-    default public void setRadio(Supplier<By> selector, Object option) {
+    default void setRadio(Supplier<By> selector, Object option) {
         new RadioButton<>((Where) this, selector).setValue(option);
     }
 
@@ -77,7 +77,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @param value    value
      */
     @SuppressWarnings("unchecked")
-    default public void select(Supplier<By> selector, Object value) {
+    default void select(Supplier<By> selector, Object value) {
         new ForwardingSelect<>((Where) this, Locators.<Where>select(selector)).selectByVisibleText(value);
     }
 
@@ -89,7 +89,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @return its value.
      */
     @SuppressWarnings("unchecked")
-    default public <T> T get(Supplier<By> selector, Function<String, T> converter) {
+    default <T> T get(Supplier<By> selector, Function<String, T> converter) {
         return converter.apply(new Input<>((Where) this, selector).getValue());
     }
 
@@ -100,7 +100,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @return its value.
      */
     @SuppressWarnings("unchecked")
-    default public String get(Supplier<By> selector) {
+    default String get(Supplier<By> selector) {
         return new Input<>((Where) this, selector).getValue();
     }
 
@@ -111,12 +111,12 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @param value    value
      */
     @SuppressWarnings("unchecked")
-    default public void put(Supplier<By> selector, Object value) {
+    default void put(Supplier<By> selector, Object value) {
         new Input<>((Where) this, selector).put(value);
     }
 
     @SuppressWarnings("unchecked")
-    default public void upload(Supplier<By> selector, Supplier<By> submit, File filePath) {
+    default void upload(Supplier<By> selector, Supplier<By> submit, File filePath) {
         new FileInput<>((Where) this, selector).put(filePath);
         button(submit).click();
     }
@@ -129,7 +129,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @param replace  replace
      */
     @SuppressWarnings("unchecked")
-    default public void autocomplete(Supplier<By> selector, Object value, SupplierConverter replace) {
+    default void autocomplete(Supplier<By> selector, Object value, SupplierConverter replace) {
         new Input<>((Where) this, selector).autocomplete(value, replace);
     }
 
@@ -141,7 +141,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @param locator  locator
      */
     @SuppressWarnings("unchecked")
-    default public void autocomplete(Supplier<By> selector, Object value, Locator<Where, Optional<Element>> locator) {
+    default void autocomplete(Supplier<By> selector, Object value, Locator<Where, Optional<Element>> locator) {
         new Input<>((Where) this, selector).autocomplete(value, locator);
     }
 
