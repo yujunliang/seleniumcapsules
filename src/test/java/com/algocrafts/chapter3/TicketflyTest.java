@@ -5,7 +5,6 @@ import com.algocrafts.selectors.*;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Element;
 import com.google.common.base.Function;
-import com.ticketfly.TicketflyPage;
 import org.apache.commons.lang.time.StopWatch;
 import org.junit.After;
 import org.junit.Before;
@@ -181,7 +180,7 @@ public class TicketflyTest {
     public void changeLocationAnonymous() {
         new TicketflyPage(CHROME) {{
             open();
-            changeLocation(CANADA, ALL_CANADA);
+            changeLocation(CANADA, ONTARIO);
             assertEquals("Canada", currentLocation());
         }};
     }
@@ -193,23 +192,6 @@ public class TicketflyTest {
         webDriver.get("http://www.ticketfly.com");
         webDriver.findElement(linkText("Discover More Events")).click();
         webDriver.findElement(id("filter-events3")).click();
-    }
-
-    @Test
-    public void discoverMoreEvent() {
-        TicketflyPage page = new TicketflyPage(CHROME);
-        page.open();
-        page.discoverMoreEvent();
-        page.setRadio(FILTER_EVENT, "Just Announced");
-    }
-
-    @Test
-    public void discoverMoreEventAnonymousClass() {
-        new TicketflyPage(CHROME) {{
-            open();
-            discoverMoreEvent();
-            setRadio(FILTER_EVENT, "Just Announced");
-        }};
     }
 
 }
