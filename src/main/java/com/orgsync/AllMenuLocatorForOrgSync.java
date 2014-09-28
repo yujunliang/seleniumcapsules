@@ -32,19 +32,19 @@ public class AllMenuLocatorForOrgSync implements Locator<Page, Stream<Clickable>
 
         Locator<Page, Stream<Element>> MENU_BAR =
                 Locators.<Page>element(MAIN_NAV)
-                        .andThen(element(SF_JS_ENABLED))
-                        .andThen(elements(LI))
-                        .andThen(new Filter<>(NOT_NULL.and(DISPLAYED)));
+                        .and(element(SF_JS_ENABLED))
+                        .and(elements(LI))
+                        .and(new Filter<>(NOT_NULL.and(DISPLAYED)));
 
-        Locator<Element, String> LINK_TEXT = Locators.<Element>element(A).andThen(TEXT);
+        Locator<Element, String> LINK_TEXT = Locators.<Element>element(A).and(TEXT);
         Locator<Element, Optional<Element>> MENU_GROUP = Locators.<Element>optionalElement(UL);
 
         List<Clickable> allMenu = newArrayList();
         MENU_BAR.locate(page).forEach(header -> {
             try {
                 Element menubar = MENU_BAR
-                        .andThen(new FirstMatch<>(TEXT.and(new Equals(LINK_TEXT.locate(header)))))
-                        .andThen(GET)
+                        .and(new FirstMatch<>(TEXT.and(new Equals(LINK_TEXT.locate(header)))))
+                        .and(GET)
                         .locate(page);
 
                 String group = LINK_TEXT.locate(menubar);
@@ -55,7 +55,7 @@ public class AllMenuLocatorForOrgSync implements Locator<Page, Stream<Clickable>
                 if (menuGroup.isPresent()) {
                     menuGroup.get().until(NOT_NULL.and(DISPLAYED));
                     Locators.<Element>elements(LI).locate(menubar).forEach(menu ->
-                                    allMenu.add(new Menu(page, new MouseOverLocator(group, page.mouseOver().andThen(LINK_TEXT).locate(menu))))
+                                    allMenu.add(new Menu(page, new MouseOverLocator(group, page.mouseOver().and(LINK_TEXT).locate(menu))))
                     );
                 }
             } catch (Exception e) {

@@ -13,11 +13,11 @@ import static com.algocrafts.locators.Locators.element;
 public enum CalendarClicker implements Locator<Page, Void> {
     NEXT_MONTH(
             Locators.<Page>element(Id.EXTJS_CALENDAR)
-                    .andThen(element(Id.EXTJS_CALENDAR_NEXT_MONTH))
+                    .and(element(Id.EXTJS_CALENDAR_NEXT_MONTH))
     ),
     PREVIOUS_MONTH(
             Locators.<Page>element(Id.EXTJS_CALENDAR)
-                    .andThen(element(Id.EXTJS_CALENDAR_PREV_MONTH))
+                    .and(element(Id.EXTJS_CALENDAR_PREV_MONTH))
     );
 
     private final Locator<Page, Element> locator;
@@ -28,6 +28,6 @@ public enum CalendarClicker implements Locator<Page, Void> {
 
     @Override
     public Void locate(Page page) {
-        return locator.andThen(CLICK).locate(page);
+        return locator.and(CLICK).locate(page);
     }
 }

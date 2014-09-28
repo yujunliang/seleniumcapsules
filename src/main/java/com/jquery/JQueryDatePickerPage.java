@@ -34,7 +34,7 @@ public class JQueryDatePickerPage extends Page {
 
     public String getDate() {
         return Locators.<Page>element(DATE_PICKER)
-                .andThen(VALUE)
+                .and(VALUE)
                 .locate(this);
     }
 

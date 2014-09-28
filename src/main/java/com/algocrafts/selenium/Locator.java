@@ -27,7 +27,7 @@ public interface Locator<Where, What> extends Function<Where, What> {
      * @throws NullPointerException if after is null
      * @see #compose(Function)
      */
-    default <V> Locator<Where, V> andThen(Locator<? super What, ? extends V> after) {
+    default <V> Locator<Where, V> and(Locator<? super What, ? extends V> after) {
         Objects.requireNonNull(after);
         return (Where t) -> after.locate(locate(t));
     }

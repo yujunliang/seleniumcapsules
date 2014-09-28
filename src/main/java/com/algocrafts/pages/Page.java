@@ -105,7 +105,7 @@ public class Page implements SearchScope<Page>, FormControl<Page> {
 
     public String getTitle() {
         try {
-            return Locators.<Page>optionalElement(PAGE_TITLE).andThen(GET).andThen(TEXT).locate(this);
+            return Locators.<Page>optionalElement(PAGE_TITLE).and(GET).and(TEXT).locate(this);
         } catch (Exception e) {
             return "";
         }

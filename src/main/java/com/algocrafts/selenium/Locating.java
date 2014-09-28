@@ -23,7 +23,7 @@ public class Locating<Where extends SearchScope<Where>, What> {
     }
 
     public <T> T locate(Locator<What, T> locator) {
-        return this.locator.andThen(locator).locate(where);
+        return this.locator.and(locator).locate(where);
     }
 
     public boolean test(Predicate<What> predicate) {

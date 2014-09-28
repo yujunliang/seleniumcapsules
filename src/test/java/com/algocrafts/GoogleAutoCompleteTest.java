@@ -59,9 +59,9 @@ public class GoogleAutoCompleteTest {
     public void autoCompleteUsingLocator() {
         googlePage.autocomplete(Q, "ticketfly",
                 Locators.<Page>optionalElement(() -> className("gssb_c"))
-                        .andThen(GET)
-                        .andThen(elements(SPAN))
-                        .andThen(new FirstMatch<>(TEXT.and(new Equals("ticketfly")))));
+                        .and(GET)
+                        .and(elements(SPAN))
+                        .and(new FirstMatch<>(TEXT.and(new Equals("ticketfly")))));
     }
 
     @After
