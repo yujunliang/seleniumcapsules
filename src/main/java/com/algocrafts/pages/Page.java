@@ -121,7 +121,4 @@ public class Page implements SearchScope<Page>, FormControl<Page> {
         return this;
     }
 
-    public final void get(String url) {
-        browser.get(url);
-    }
 }

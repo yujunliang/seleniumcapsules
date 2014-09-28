@@ -89,8 +89,8 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @return its value.
      */
     @SuppressWarnings("unchecked")
-    default <T> T get(Supplier<By> selector, Function<String, T> converter) {
-        return converter.apply(new Input<>((Where) this, selector).getValue());
+    default <T> T get(Supplier<By> selector, Locator<String, T> converter) {
+        return converter.locate(new Input<>((Where) this, selector).getValue());
     }
 
     /**

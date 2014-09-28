@@ -1,7 +1,10 @@
-package com.algocrafts.chapter3;
+package com.algocrafts.chapter3.inheritance;
+
 
 import com.algocrafts.chapter2.factory.BetterWebDriverFactory;
-import com.algocrafts.selectors.*;
+import com.algocrafts.selectors.Id;
+import com.algocrafts.selectors.LinkText;
+import com.algocrafts.selectors.Xpath;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Element;
 import com.google.common.base.Function;
@@ -13,15 +16,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.stream.Stream;
-
 import static com.algocrafts.browsers.Browsers.CHROME;
-import static com.algocrafts.selectors.LinkText.*;
-import static com.algocrafts.selectors.Name.FILTER_EVENT;
+import static com.algocrafts.selectors.LinkText.CANADA;
+import static com.algocrafts.selectors.LinkText.ONTARIO;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -143,47 +143,9 @@ public class TicketflyTest {
                         element.findElement(linkText("Ontario")));
         ontario.click();
         assertEquals("Ontario", webDriver
-                .findElements(By.tagName("p")).stream().filter((WebElement e) -> e.getAttribute("class").equals("tools-location"))
-                .findFirst().get()
-                .findElement(By.tagName("a"))
-                .findElement(By.tagName("strong"))
-                .getText());
-    }
-
-    //This is an ugly test not using page framework, it has the same function as the test below. :(
-    @Test
-    public void changeLocationUsingExplicitWaitLambda1() {
-        WebDriver webDriver = BetterWebDriverFactory.CHROME.get();
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(linkText("change location")).click();
-        FluentWait<WebDriver> webDriverWait
-                = new FluentWait<WebDriver>(webDriver)
-                .ignoring(NoSuchElementException.class);
-        WebElement location = webDriverWait.until(
-                (WebDriver driver) ->
-                        driver.findElement(By.id("location"))
-
-        );
-
-        FluentWait<WebElement> webElementWait
-                = new FluentWait<>(location)
-                .withTimeout(30, SECONDS)
-                .ignoring(NoSuchElementException.class);
-        WebElement canada = webElementWait.until(
-                (WebElement element) ->
-                        element.findElement(linkText("CANADA")));
-        canada.click();
-        WebElement ontario = webElementWait.until(
-                (WebElement element) ->
-                        element.findElement(linkText("Ontario")));
-        ontario.click();
-        Stream<WebElement> pStream = webDriver.findElements(By.tagName("p")).stream();
-        Stream<WebElement> filteredStream = pStream.filter((WebElement e) -> e.getAttribute("class").equals("tools-location"));
-        WebElement element = filteredStream.findFirst().get();
-        WebElement a = element.findElement(By.tagName("a"));
-        WebElement strong = a.findElement(By.tagName("strong"));
-
-        assertEquals("Ontario", strong
+                .findElement(className("tools-location"))
+                .findElement(tagName("a"))
+                .findElement(tagName("strong"))
                 .getText());
     }
 
@@ -207,7 +169,7 @@ public class TicketflyTest {
      */
     @Test
     public void changeLocation() {
-        TicketflyPage page = new TicketflyPage(CHROME);
+        TicketflyHomePage page = new TicketflyHomePage(CHROME);
         page.open();
         page.changeLocation(CANADA, ONTARIO);
         assertEquals("Ontario", page.currentLocation());
@@ -218,20 +180,22 @@ public class TicketflyTest {
      */
     @Test
     public void changeLocationAnonymous() {
-        new TicketflyPage(CHROME) {{
+        new TicketflyEventPage(CHROME) {{
             open();
             changeLocation(CANADA, ONTARIO);
             assertEquals("Canada", currentLocation());
         }};
     }
 
+    /**
+     * This method has compilation error
+     */
     @Test
-    public void discoverMoreEventUsingSelenium() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(linkText("Discover More Events")).click();
-        webDriver.findElement(id("filter-events3")).click();
+    public void changeLocationOnCareerPage() {
+        TicketflyCareerPage page = new TicketflyCareerPage(CHROME);
+        page.open();
+        page.changeLocation(CANADA, ONTARIO);
+        assertEquals("Ontario", page.currentLocation());
     }
 
 }

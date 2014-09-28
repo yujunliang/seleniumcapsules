@@ -8,6 +8,14 @@ import java.util.function.Predicate;
 public interface Locator<Where, What> extends Function<Where, What> {
 
     /**
+     * locate the result on the search context.
+     *
+     * @param where the search context
+     * @return located result
+     */
+    What locate(Where where);
+
+    /**
      * Returns a composed function that first applies this function to
      * its input, and then applies the {@code after} function to the result.
      * If evaluation of either function throws an exception, it is relayed to
@@ -43,14 +51,6 @@ public interface Locator<Where, What> extends Function<Where, What> {
         Objects.requireNonNull(other);
         return (Where t) -> other.test(locate(t));
     }
-
-    /**
-     * locate the result on the search context.
-     *
-     * @param where the search context
-     * @return located result
-     */
-    What locate(Where where);
 
     /**
      * Applies this function to the given argument by calling

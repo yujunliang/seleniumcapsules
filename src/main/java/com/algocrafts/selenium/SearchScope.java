@@ -11,7 +11,9 @@ import com.algocrafts.locators.Locators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebElement;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -21,6 +23,7 @@ import static com.algocrafts.conditions.ElementPredicates.NOT_NULL;
 import static com.algocrafts.converters.GetText.SRC;
 import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.TagName.IMG;
+import static java.util.stream.Collectors.toList;
 
 
 public interface SearchScope<Where extends SearchScope<Where>> extends SearchContext, ExplicitWait<Where> {
@@ -31,8 +34,17 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @param by selector
      * @return the first element or throw NoSuchElementException
      */
+    @Deprecated
     @Override
-    Element findElement(By by);
+    default Element findElement(By by) {
+        return new Element(by.findElement(this));
+    }
+
+    @Deprecated
+    @Override
+    default List<WebElement> findElements(By by) {
+        return by.findElements(this).stream().map(Element::new).collect(toList());
+    }
 
     /**
      * Find the first element or return empty Optional if nothing found.

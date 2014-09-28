@@ -27,5 +27,5 @@ public enum GetText implements Locator<Element, String> {
         public String locate(Element input) {
             return input.getText();
         }
-    };
+    }
 }

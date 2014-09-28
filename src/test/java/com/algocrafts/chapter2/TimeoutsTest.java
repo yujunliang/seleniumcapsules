@@ -43,7 +43,8 @@ public class TimeoutsTest {
         element.click();
         assertEquals(0, webDriver.findElements(By.linkText("All Canada")).size());
         assertEquals("Canada", webDriver
-                .findElement(By.className("tools-location"))
+                .findElements(By.tagName("p")).stream().filter((WebElement e) -> e.getAttribute("class").equals("tools-location"))
+                .findFirst().get()
                 .findElement(By.tagName("a"))
                 .findElement(By.tagName("strong"))
                 .getText());
