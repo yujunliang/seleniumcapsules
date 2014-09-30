@@ -3,16 +3,18 @@ package com.orgsync;
 
 import com.algocrafts.conditions.Equals;
 import com.algocrafts.converters.FirstMatch;
+import com.algocrafts.locators.ElementLocator;
 import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Element;
-import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Locator;
+import org.openqa.selenium.By;
+
+import java.util.function.Supplier;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.conditions.ElementPredicates.NOT_NULL;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.OptionalGetter.GET;
-import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.locators.Locators.elements;
 import static com.algocrafts.selectors.ClassName.SF_JS_ENABLED;
 import static com.algocrafts.selectors.Id.MAIN_NAV;
@@ -31,14 +33,15 @@ public class MouseOverLocator implements Locator<Page, Element> {
     }
 
     public Element locate(Page page) {
-        return Locators.<Page>element(MAIN_NAV)
-                .and(element(SF_JS_ENABLED))
+        Supplier<By> selector = () -> linkText(menuItem);
+        return new ElementLocator<Page>(MAIN_NAV)
+                .and(new ElementLocator<>(SF_JS_ENABLED))
                 .and(elements(LI))
                 .and(new FirstMatch<>(NOT_NULL.and(DISPLAYED).and(TEXT.and(new Equals(menuGroup)))))
                 .and(GET)
                 .and(page.mouseOver())
-                .and(element(UL))
-                .and(element(() -> linkText(menuItem)))
+                .and(new ElementLocator<>(UL))
+                .and(new ElementLocator<>(selector))
                 .locate(page);
     }
 

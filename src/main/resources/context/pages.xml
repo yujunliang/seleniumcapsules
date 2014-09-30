@@ -15,7 +15,7 @@
     </bean>
 
     <bean id="homePage" class="com.orgsync.OrgSyncHomePage">
-        <constructor-arg ref="firefox"/>
+        <constructor-arg ref="browser"/>
         <constructor-arg ref="entryUrl"/>
         <constructor-arg ref="allMenuLocator"/>
     </bean>

@@ -4,7 +4,7 @@ package com.jquery;
 import com.algocrafts.clickables.Url;
 import com.algocrafts.datepicker.Calendar;
 import com.algocrafts.datepicker.Datepicker;
-import com.algocrafts.locators.Locators;
+import com.algocrafts.locators.ElementLocator;
 import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Browser;
 
@@ -33,7 +33,7 @@ public class JQueryDatePickerPage extends Page {
     }
 
     public String getDate() {
-        return Locators.<Page>element(DATE_PICKER)
+        return new ElementLocator<Page>(DATE_PICKER)
                 .and(VALUE)
                 .locate(this);
     }

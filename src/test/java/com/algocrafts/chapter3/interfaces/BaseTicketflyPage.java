@@ -2,7 +2,9 @@ package com.algocrafts.chapter3.interfaces;
 
 import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Browser;
+import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.SearchScope;
+import org.openqa.selenium.By;
 
 public class BaseTicketflyPage implements SearchScope<Page> {
     private final Browser browser;
@@ -22,4 +24,5 @@ public class BaseTicketflyPage implements SearchScope<Page> {
         browser.save(browser.getTitle());
 
     }
+
 }
