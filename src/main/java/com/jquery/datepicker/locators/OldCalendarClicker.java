@@ -1,4 +1,4 @@
-package com.jquery;
+package com.jquery.datepicker.locators;
 
 
 import com.algocrafts.converters.FrameLocator;

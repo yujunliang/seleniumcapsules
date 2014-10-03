@@ -1,4 +1,4 @@
-package com.orgsync;
+package com.jquery.menu;
 
 
 import com.algocrafts.clickables.Menu;
@@ -8,6 +8,7 @@ import com.algocrafts.converters.FirstMatch;
 import com.algocrafts.locators.ElementLocator;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.Page;
+import com.algocrafts.selectors.ClassName;
 import com.algocrafts.selenium.Clickable;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
@@ -17,23 +18,24 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
-import static com.algocrafts.conditions.ElementPredicates.NOT_NULL;
 import static com.algocrafts.conditions.OptionalPresents.PRESENT;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.OptionalGetter.GET;
 import static com.algocrafts.locators.Locators.elements;
-import static com.algocrafts.selectors.ClassName.SF_JS_ENABLED;
-import static com.algocrafts.selectors.Id.MAIN_NAV;
+import static com.algocrafts.selectors.Id.GLOBAL_NAV;
 import static com.algocrafts.selectors.TagName.*;
 import static com.google.common.collect.Lists.newArrayList;
+import static java.util.stream.Collectors.toList;
 
-public class AllMenuLocatorForOrgSync implements Locator<Page, Stream<Clickable>> {
+public class AllMenuLocatorForJQuery implements Locator<Page, Stream<Clickable>> {
 
     private static final Locator<Page, Stream<Element>> MENU_BAR =
-            new ElementLocator<Page>(MAIN_NAV)
-                    .and(new ElementLocator<>(SF_JS_ENABLED))
+            new ElementLocator<Page>(GLOBAL_NAV)
+                    .and(new ElementLocator<>(ClassName.L_TINYNAL1))
                     .and(elements(LI))
-                    .and(new Filter<>(DISPLAYED.and(Locators.<Element>optionalElement(LI).and(PRESENT))));
+                    .and(new Filter<>(DISPLAYED
+                            .and(Locators.<Element>optionalElement(UL).and(PRESENT.negate())
+                                    .or(Locators.<Element>optionalElement(LI).and(PRESENT)))));
 
     private static final Locator<Element, String> LINK_TEXT =
             new ElementLocator<Element>(A).and(TEXT);
@@ -58,11 +60,9 @@ public class AllMenuLocatorForOrgSync implements Locator<Page, Stream<Clickable>
             page.mouseOver(header);
             Optional<Element> menuGroup = MENU_GROUP.locate(menubar);
             if (menuGroup.isPresent()) {
-                menuGroup.get().until(NOT_NULL.and(DISPLAYED));
-                Locators.<Element>elements(LI).locate(menubar).forEach(menu -> {
-                    System.out.println("menu" + menu);
-                    allMenu.add(new Menu(page, new MouseOverLocator(group, page.mouseOver().and(LINK_TEXT).locate(menu)))) ;
-                } );
+                menuGroup.get().until(DISPLAYED);
+                allMenu.addAll(Locators.<Element>elements(LI).locate(menubar).map(
+                        menu -> new Menu(page, new MouseOverLocator(group, page.mouseOver().and(LINK_TEXT).locate(menu)))).collect(toList()));
 
             }
 

@@ -2,7 +2,7 @@ package com.algocrafts.jbehave;
 
 import com.algocrafts.browsers.Browsers;
 import com.algocrafts.clickables.Url;
-import com.jquery.JQueryDatePickerPage;
+import com.jquery.datepicker.JQueryDatePickerPage;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;

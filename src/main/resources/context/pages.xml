@@ -24,7 +24,20 @@
 
     <bean id="allMenuLocator" class="com.orgsync.AllMenuLocatorForOrgSync"/>
 
-    <bean id="jQueryDatePickerPage" class="com.jquery.JQueryDatePickerPage">
+    <bean id="jQueryUrl" class="com.algocrafts.clickables.Url">
+        <constructor-arg ref="browser"/>
+        <constructor-arg value="${entry.url.jquery}"/>
+    </bean>
+
+    <bean id="jQueryHomePage" class="com.jquery.JQueryHomePage">
+        <constructor-arg ref="browser"/>
+        <constructor-arg ref="jQueryUrl"/>
+        <constructor-arg ref="jQueryMenuLocator"/>
+    </bean>
+
+    <bean id="jQueryMenuLocator" class="com.jquery.menu.AllMenuLocatorForJQuery"/>
+
+    <bean id="jQueryDatePickerPage" class="com.jquery.datepicker.JQueryDatePickerPage">
         <constructor-arg ref="browser"/>
     </bean>
 

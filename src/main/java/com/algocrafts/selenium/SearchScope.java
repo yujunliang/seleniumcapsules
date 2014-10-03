@@ -37,8 +37,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
     @Deprecated
     @Override
     default Element findElement(By by) {
-        WebElement element = by.findElement(this);
-        return element instanceof Element ? (Element) element : new Element(element);
+        return new ElementFinder(by).locate(this);
     }
 
     @Deprecated

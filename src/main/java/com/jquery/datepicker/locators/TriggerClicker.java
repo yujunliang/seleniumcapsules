@@ -1,4 +1,4 @@
-package com.jquery.locators;
+package com.jquery.datepicker.locators;
 
 
 import com.algocrafts.pages.Page;

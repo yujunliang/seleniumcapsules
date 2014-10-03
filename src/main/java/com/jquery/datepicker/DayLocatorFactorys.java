@@ -1,4 +1,4 @@
-package com.jquery;
+package com.jquery.datepicker;
 
 import com.algocrafts.datepicker.DayLocatorFactory;
 import com.algocrafts.conditions.Equals;

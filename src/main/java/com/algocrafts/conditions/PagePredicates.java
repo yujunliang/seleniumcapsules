@@ -2,13 +2,12 @@ package com.algocrafts.conditions;
 
 import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.Page;
-import com.algocrafts.selectors.Id;
 
 import java.util.function.Predicate;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.conditions.ElementPredicates.NOT_NULL;
-import static com.algocrafts.conditions.OptionalPresents.PRESENTS;
+import static com.algocrafts.conditions.OptionalPresents.PRESENT;
 import static com.algocrafts.conditions.StringEquals.*;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.OptionalGetter.GET;
@@ -45,11 +44,11 @@ public enum PagePredicates implements Predicate<Page> {
     ),
     EXTJS_CALENDAR_NOT_DISPLAYED(
             Locators.<Page>optionalElement(EXTJS_CALENDAR)
-                    .and(PRESENTS.negate().or(GET.and(DISPLAYED.negate()))))
+                    .and(PRESENT.negate().or(GET.and(DISPLAYED.negate()))))
     ,
     JQUERY_CALENDAR_NOT_DISPLAYED(
             Locators.<Page>optionalElement(UI_DATEPICKER_DIV)
-                    .and(PRESENTS.negate().or(GET.and(DISPLAYED.negate())))
+                    .and(PRESENT.negate().or(GET.and(DISPLAYED.negate())))
     );
     private final Predicate<Page> predicate;
 

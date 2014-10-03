@@ -2,7 +2,7 @@ package com.algocrafts.chapter13;
 
 import com.algocrafts.browsers.Browsers;
 import com.algocrafts.selenium.Browser;
-import com.jquery.JQueryDatePickerPage;
+import com.jquery.datepicker.JQueryDatePickerPage;
 import org.apache.commons.lang.time.StopWatch;
 import org.junit.After;
 import org.junit.Before;

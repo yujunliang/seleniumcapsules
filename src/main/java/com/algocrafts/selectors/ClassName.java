@@ -12,6 +12,7 @@ import static org.openqa.selenium.By.className;
  */
 public enum ClassName implements Supplier<By> {
 
+    L_TINYNAL1("l_tinynav1"),
     SF_JS_ENABLED("sf-js-enabled"),
     TOOLS_LOCATION("tools-location"),
 

@@ -20,9 +20,9 @@ public class ElementFinder implements Locator<SearchContext, Element> {
     @Override
     public Element locate(SearchContext t) {
         logger.info("Seeking [{}]", by);
-        WebElement element = t.findElement(by);
+        WebElement element = by.findElement(t);
         logger.info("Found [{}]", element);
-        Element element1 = new Element(element);
+        Element element1 = element instanceof Element ? (Element) element : new Element(element);
         element1.setBy(by);
         element1.setBrowser(t);
         return element1;
