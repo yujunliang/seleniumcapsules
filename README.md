@@ -136,7 +136,7 @@ more tests to illustrate the cleanness of the code,
                return findElements(by.get()).stream().map(Element::new);
           }
               
-6. Autocomplete example furtuer simplified,
+6. Autocomplete example further simplified,
 
         @Test
         public void autoCompleteUsingSeleniumCapsules1() {
