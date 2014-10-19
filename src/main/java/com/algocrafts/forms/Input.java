@@ -112,13 +112,13 @@ public class Input<Where extends SearchScope<Where>> extends Locating<Where, Opt
         Optional<Element> suggestion;
         for (char c : value.toString().toCharArray()) {
             element.sendKeys(String.valueOf(c));
-            suggestion = locator.locate(where);
+            suggestion = use(locator);
             if (suggestion.isPresent()) {
                 suggestion.get().click();
                 return;
             }
         }
-        suggestion = locator.locate(where);
+        suggestion = use(locator);
         if (suggestion.isPresent()) {
             suggestion.get().click();
         }

@@ -21,11 +21,9 @@ public class Clickables<Where extends SearchScope<Where>> implements Clickable {
 
     @Override
     public void click() {
-        Element apply = locator.locate(where);
-        log.info("clicking [" + apply + "]");
-        where.onTimeout();
-        apply.click();
-        where.onTimeout();
+        Element menu = locator.locate(where);
+        log.info("clicking [" + menu + "]");
+        menu.click();
     }
 
     @Override

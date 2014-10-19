@@ -156,21 +156,21 @@ public class NaiveJQueryHomePageTest {
                 .filter(DISPLAYED.and(Locators.<Element>optionalElement(UL).and(PRESENT.negate()).or(
                         Locators.<Element>optionalElement(LI).and(PRESENT)))).collect(toList());
         List<Element> menu = new ArrayList<>();
-        elements.forEach(e -> {
-                    Element a = e.untilFound(TagName.A);
-                    System.out.println("Menu Bar[" + a.getText() + "]");
-                    menu.add(a);
-                    browser.mouseOver(e);
-                    Optional<Element> optionalElement = e.optionalElement(UL);
+        elements.forEach(menubarElement -> {
+                    Element link = menubarElement.untilFound(TagName.A);
+                    System.out.println("Menu Bar[" + link.getText() + "]");
+                    menu.add(link);
+                    browser.mouseOver(menubarElement);
+                    Optional<Element> optionalElement = menubarElement.optionalElement(UL);
                     if (optionalElement.isPresent()) {
-                        Stream<Element> elements2 = optionalElement.get()
+                        Stream<Element> meneElements = optionalElement.get()
                                 .findElements(LI)
-                                .map(e3 -> {
-                                    Element a1 = e3.untilFound(TagName.A);
-                                    System.out.println("  |-- Menu[" + a1.getText() + "]");
-                                    return a1;
+                                .map(liElement -> {
+                                    Element menuElement = liElement.untilFound(TagName.A);
+                                    System.out.println("  |-- Menu[" + menuElement.getText() + "]");
+                                    return menuElement;
                                 });
-                        menu.addAll(elements2.collect(toList()));
+                        menu.addAll(meneElements.collect(toList()));
                     }
                 }
         );

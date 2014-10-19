@@ -11,12 +11,15 @@ import java.util.stream.Stream;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class ForwardingSelect<Where extends SearchScope<Where>> extends Locating<Where, Select> {
+public class ForwardingSelect<Where extends SearchScope<Where>>
+        extends Locating<Where, Select> {
 
     private static final Logger log = getLogger(ForwardingSelect.class);
 
     /**
-     * Constructor of the Select, It is a wrapper for the Select from Selenium UI.
+     * Constructor of the Select, It is a wrapper for the Select from
+     * Selenium UI.
+     *
      * @param where
      * @param locator
      */
@@ -25,7 +28,7 @@ public class ForwardingSelect<Where extends SearchScope<Where>> extends Locating
     }
 
     public void selectByVisibleText(Object text) {
-        log.info("selecting select[" + locator + "] using [" + text + "]");
+        log.info("selecting " + this + " using [" + text + "]");
         locate().selectByVisibleText(text.toString());
     }
 

@@ -4,8 +4,8 @@ import java.util.function.Predicate;
 
 public class Locating<Where extends SearchScope<Where>, What> {
 
-    protected final Where where;
-    protected final Locator<Where, What> locator;
+    private final Where where;
+    private final Locator<Where, What> locator;
 
     /**
      * Constructor of the Locating.
@@ -26,8 +26,17 @@ public class Locating<Where extends SearchScope<Where>, What> {
         return this.locator.and(locator).locate(where);
     }
 
+    public <T> T use(Locator<Where, T> locator) {
+        return locator.locate(where);
+    }
+
     public boolean test(Predicate<What> predicate) {
         return this.locator.and(predicate).test(where);
+    }
+
+    @Override
+    public String toString() {
+        return locator.toString();
     }
 
 }

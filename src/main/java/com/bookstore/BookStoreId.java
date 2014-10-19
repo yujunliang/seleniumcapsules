@@ -9,7 +9,7 @@ import static org.openqa.selenium.By.id;
 public enum BookStoreId implements Supplier<By> {
 
     BILLING_FIRST_NAME("billing-first-name"),
-    BILLING_LAST_NAME_("billing-last-name"),
+    BILLING_LAST_NAME("billing-last-name"),
     BILLING_ADDRESS1("billing-address1"),
     BILLING_ADDRESS2("billing-address2"),
     BILLING_CITY("billing-city"),

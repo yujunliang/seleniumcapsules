@@ -112,7 +112,7 @@ public class GoogleAutoCompleteTest {
         Element q = webDriver.untilFound(() -> By.name("q"));
         Locator<Browser<ChromeDriver>, Optional<Element>> locator = new ElementLocator<Browser<ChromeDriver>>(ClassName.SBDD_B)
                 .and(new ElementsLocator<>(TagName.LI))
-                .and(new FirstMatch<>((Element e) -> e.getText().equals("ticketfly")));
+                .and(new FirstMatch<>((e) -> e.getText().equals("ticketfly")));
         autocomplete(q, "ticketfly", webDriver, locator);
     }
 
