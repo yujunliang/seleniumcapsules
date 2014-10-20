@@ -19,9 +19,9 @@ public class OtherInformationForm  {
     public void setOtherInformation(OtherInformation info) {
         page.put(BILLING_EMAIL, info.emailAddress);
         page.put(COMMENTS, info.comments);
-        page.check(CONFIRM_EMAIL, info.confirmEmail);
-        page.check(RATINGS, info.askRating);
-        page.setRadio(MAILING_OPTION, info.mailingOptions);
+        page.setCheckbox(CONFIRM_EMAIL, info.confirmEmail);
+        page.setCheckbox(RATINGS, info.askRating);
+        page.setRadioButton(MAILING_OPTION, info.mailingOptions);
     }
 
     public OtherInformation getOtherInformation() {

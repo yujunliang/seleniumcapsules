@@ -16,7 +16,7 @@ public class DiscoverMoreEventTest {
         TicketflyPage page = new TicketflyPage(CHROME);
         page.open();
         page.discoverMoreEvent();
-        page.setRadio(FILTER_EVENT, "Just Announced");
+        page.setRadioButton(FILTER_EVENT, "Just Announced");
     }
 
     @Test
@@ -24,7 +24,7 @@ public class DiscoverMoreEventTest {
         new TicketflyPage(CHROME) {{
             open();
             discoverMoreEvent();
-            setRadio(FILTER_EVENT, "Just Announced");
+            setRadioButton(FILTER_EVENT, "Just Announced");
         }};
     }
 }

@@ -12,7 +12,8 @@ import static com.algocrafts.conditions.StringEquals.TRUE;
 import static com.algocrafts.converters.GetText.CHECKED;
 import static com.algocrafts.locators.Locators.element;
 
-public class Checkbox<Where extends SearchScope<Where>> extends Locating<Where, Element> {
+public class Checkbox<Where extends SearchScope<Where>>
+        extends Locating<Where, Element> {
 
     /**
      * Constructor of the checkbox.

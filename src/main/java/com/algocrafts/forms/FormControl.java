@@ -33,7 +33,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @param value    value
      */
     @SuppressWarnings("unchecked")
-    default void check(Supplier<By> selector, boolean value) {
+    default void setCheckbox(Supplier<By> selector, boolean value) {
         new Checkbox<>((Where) this, selector).setValue(value);
     }
 
@@ -66,7 +66,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @param option   option
      */
     @SuppressWarnings("unchecked")
-    default void setRadio(Supplier<By> selector, Object option) {
+    default void setRadioButton(Supplier<By> selector, Object option) {
         new RadioButton<>((Where) this, selector).setValue(option);
     }
 

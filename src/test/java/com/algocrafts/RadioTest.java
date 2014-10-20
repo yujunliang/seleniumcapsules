@@ -17,7 +17,7 @@ public class RadioTest {
         Browsers chrome = CHROME;
         chrome.get("http://localhost:63342/seleniumcapsules/html/radio.html");
         Page page = new Page(chrome);
-        page.setRadio(MAILING_OPTION, No_Promotional_Mailers);
+        page.setRadioButton(MAILING_OPTION, No_Promotional_Mailers);
 
         assertEquals(No_Promotional_Mailers, fromString(page.getRadio(MAILING_OPTION)));
         assertEquals(No_Promotional_Mailers, from(page.getRadio(MAILING_OPTION)));
