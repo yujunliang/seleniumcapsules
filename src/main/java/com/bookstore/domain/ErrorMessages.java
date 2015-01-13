@@ -27,7 +27,7 @@ public class ErrorMessages {
 
     public ErrorMessages(Page page) {
         this(Locators.<Page>element(ERROR_MESSAGES)
-                .and(elements(LI)).locate(page).map(TEXT));
+                .andNext(elements(LI)).locate(page).map(TEXT));
     }
 
     @Override

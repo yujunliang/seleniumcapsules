@@ -9,7 +9,7 @@ public enum OptionalGetter implements Locator<Optional<Element>, Element>{
     GET;
 
     @Override
-    public Element locate(Optional<Element> elementOptional) {
-        return elementOptional.get();
+    public Element locate(Optional<Element> element) {
+        return element.get();
     }
 }

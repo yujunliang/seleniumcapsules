@@ -21,11 +21,11 @@ public enum DayLocatorFactorys implements DayLocatorFactory {
     JQUERY_DAY {
         public Locator<Page, Void> forDay(int day) {
             return Locators.<Page>element(UI_DATEPICKER_DIV)
-                    .and(element(UI_DATEPICKER_CALENDAR))
-                    .and(elements(TD))
-                    .and(new FirstMatch<>(TEXT.and(new Equals(day))))
-                    .and(GET)
-                    .and(CLICK);
+                    .andNext(element(UI_DATEPICKER_CALENDAR))
+                    .andNext(elements(TD))
+                    .andNext(new FirstMatch<>(TEXT.and(new Equals(day))))
+                    .andNext(GET)
+                    .andNext(CLICK);
         }
     }
 }

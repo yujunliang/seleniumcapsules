@@ -28,7 +28,7 @@
         <constructor-arg value="sanjay.rao@hotmail.com"/>
         <constructor-arg value="false"/>
         <constructor-arg value="true"/>
-        <constructor-arg value="#{T(com.bookstore.domain.MailingOptions).Weekly_Newsletter}"/>
+        <constructor-arg value="#{T(com.bookstore.domain.MailingOptions).Deal_Of_the_Day}"/>
         <constructor-arg value="My Comments - Selenium In Action."/>
     </bean>
 

@@ -33,16 +33,16 @@ public class AllMenuLocatorForJQuery
 
     private static final Locator<Page, Stream<Element>> MENU_BAR =
             new ElementLocator<Page>(GLOBAL_NAV)
-                    .and(element(ClassName.L_TINYNAL1))
-                    .and(elements(LI))
-                    .and(new Filter<>(DISPLAYED
+                    .andNext(element(ClassName.L_TINYNAL1))
+                    .andNext(elements(LI))
+                    .andNext(new Filter<>(DISPLAYED
                             .and(Locators.<Element>optionalElement(UL)
                                     .and(PRESENT.negate())
                                     .or(Locators.<Element>optionalElement(LI)
                                             .and(PRESENT)))));
 
     private static final Locator<Element, String> LINK_TEXT =
-            new ElementLocator<Element>(A).and(TEXT);
+            new ElementLocator<Element>(A).andNext(TEXT);
     private static final Locator<Element, Optional<Element>> MENU_GROUP =
             Locators.<Element>optionalElement(UL);
 
@@ -53,9 +53,9 @@ public class AllMenuLocatorForJQuery
         MENU_BAR.locate(page).forEach(header -> {
 
             Element menubar = MENU_BAR
-                    .and(new FirstMatch<>(TEXT
+                    .andNext(new FirstMatch<>(TEXT
                             .and(new Equals(LINK_TEXT.locate(header)))))
-                    .and(GET)
+                    .andNext(GET)
                     .locate(page);
 
             String group = LINK_TEXT.locate(menubar);
@@ -66,7 +66,7 @@ public class AllMenuLocatorForJQuery
             if (menuGroup.isPresent()) {
                 menuGroup.get().until(DISPLAYED);
                 allMenu.addAll(Locators.<Element>elements(LI).locate(menubar).map(menu -> {
-                    String menuText = page.mouseOver().and(LINK_TEXT).locate(menu);
+                    String menuText = page.mouseOver().andNext(LINK_TEXT).locate(menu);
                     return new Menu(page, new MouseOverMenuLocator(group, menuText));
                 }).collect(toList()));
 

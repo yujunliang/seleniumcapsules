@@ -16,19 +16,19 @@ import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 public enum CalendarClicker implements Locator<Page, Void> {
     TRIGGER(
             new FrameLocator(0)
-                    .and(element(DATE_PICKER))
+                    .andNext(element(DATE_PICKER))
     ),
     NEXT_MONTH(
             Locators.<Page>element(UI_DATEPICKER_DIV)
-                    .and(element(UI_DATEPICKER_NEXT))
+                    .andNext(element(UI_DATEPICKER_NEXT))
     ),
     PREVIOUS_MONTH(
             Locators.<Page>element(UI_DATEPICKER_DIV)
-                    .and(element(UI_DATEPICKER_PREV))
+                    .andNext(element(UI_DATEPICKER_PREV))
     ),
     CLOSE_BUTTON(
             Locators.<Page>element(UI_DATEPICKER_DIV)
-                    .and(element(UI_DATEPICKER_CLOSE))
+                    .andNext(element(UI_DATEPICKER_CLOSE))
     );
 
     private final Locator<Page, Element> locator;
@@ -39,6 +39,6 @@ public enum CalendarClicker implements Locator<Page, Void> {
 
     @Override
     public Void locate(Page page) {
-        return locator.and(CLICK).locate(page);
+        return locator.andNext(CLICK).locate(page);
     }
 }

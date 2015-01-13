@@ -11,7 +11,7 @@ import static com.algocrafts.selectors.LinkText.EXTJS_DATEPICKER_TRIGGER;
 
 public enum TriggerHover implements Locator<Page, Void> {
     TRIGGER(
-            new FrameLocator(1).and(Locators.<Page>element(EXTJS_DATEPICKER_TRIGGER))
+            new FrameLocator(1).andNext(Locators.<Page>element(EXTJS_DATEPICKER_TRIGGER))
     );
 
     private final Locator<Page, Element> locator;
@@ -22,7 +22,7 @@ public enum TriggerHover implements Locator<Page, Void> {
 
     @Override
     public Void locate(Page page) {
-        locator.and(page.mouseOver()).locate(page);
+        locator.andNext(page.mouseOver()).locate(page);
         return null;
     }
 }

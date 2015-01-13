@@ -21,8 +21,8 @@ import static com.bookstore.BookStoreId.*;
 public enum PagePredicates implements Predicate<Page> {
     REACHED_CALENDAR_PAGE(
             Locators.<Page>element(CONTENT)
-                    .and(element(H1))
-                    .and(TEXT)
+                    .andNext(element(H1))
+                    .andNext(TEXT)
                     .and(DATEPICKER)
     ),
     SHOPPING_CART_DISPLAYED(
@@ -31,15 +31,15 @@ public enum PagePredicates implements Predicate<Page> {
     ),
     YAHOO_COPYRIGHTED(
             Locators.<Page>element(YAHOO_COPYRIGHT)
-                    .and(element(EM))
-                    .and(TEXT)
+                    .andNext(element(EM))
+                    .andNext(TEXT)
                     .and(YAHOO)
     ),
     IS_COPYRIGHTED(
             Locators.<Page>element(FOOTER)
-                    .and(element(P))
-                    .and(element(I))
-                    .and(TEXT)
+                    .andNext(element(P))
+                    .andNext(element(I))
+                    .andNext(TEXT)
                     .and(MANNING)
     ),
     EXTJS_CALENDAR_NOT_DISPLAYED(

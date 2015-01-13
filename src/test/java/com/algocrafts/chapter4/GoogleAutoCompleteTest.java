@@ -15,7 +15,6 @@ import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.SearchScope;
 import com.google.common.base.Function;
-import com.sun.tools.corba.se.idl.constExpr.Equal;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -111,8 +110,8 @@ public class GoogleAutoCompleteTest {
         webDriver.get("http://google.com");
         Element q = webDriver.untilFound(() -> By.name("q"));
         Locator<Browser<ChromeDriver>, Optional<Element>> locator = new ElementLocator<Browser<ChromeDriver>>(ClassName.SBDD_B)
-                .and(new ElementsLocator<>(TagName.LI))
-                .and(new FirstMatch<>((e) -> e.getText().equals("ticketfly")));
+                .andNext(new ElementsLocator<>(TagName.LI))
+                .andNext(new FirstMatch<>((e) -> e.getText().equals("ticketfly")));
         autocomplete(q, "ticketfly", webDriver, locator);
     }
 
@@ -125,7 +124,7 @@ public class GoogleAutoCompleteTest {
         Locator<Element, Stream<Element>> after = new ElementsLocator<>(TagName.LI);
         Predicate<Element> elementPredicate = GetText.TEXT.and(new Equals("ticketfly"));
         Locator<Stream<Element>, Optional<Element>> ticketfly = new FirstMatch<>(elementPredicate);
-        Locator<Browser<ChromeDriver>, Optional<Element>> locator = browserElementLocator.and(after).and(ticketfly);
+        Locator<Browser<ChromeDriver>, Optional<Element>> locator = browserElementLocator.andNext(after).andNext(ticketfly);
         autocomplete(q, "ticketfly", webDriver, locator);
     }
 

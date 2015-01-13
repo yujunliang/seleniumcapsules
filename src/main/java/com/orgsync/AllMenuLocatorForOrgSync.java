@@ -31,12 +31,12 @@ public class AllMenuLocatorForOrgSync implements Locator<Page, Stream<Clickable>
 
     private static final Locator<Page, Stream<Element>> MENU_BAR =
             new ElementLocator<Page>(MAIN_NAV)
-                    .and(new ElementLocator<>(SF_JS_ENABLED))
-                    .and(elements(LI))
-                    .and(new Filter<>(DISPLAYED.and(Locators.<Element>optionalElement(LI).and(PRESENT))));
+                    .andNext(new ElementLocator<>(SF_JS_ENABLED))
+                    .andNext(elements(LI))
+                    .andNext(new Filter<>(DISPLAYED.and(Locators.<Element>optionalElement(LI).and(PRESENT))));
 
     private static final Locator<Element, String> LINK_TEXT =
-            new ElementLocator<Element>(A).and(TEXT);
+            new ElementLocator<Element>(A).andNext(TEXT);
     private static final Locator<Element, Optional<Element>> MENU_GROUP =
             Locators.<Element>optionalElement(UL);
 
@@ -47,8 +47,8 @@ public class AllMenuLocatorForOrgSync implements Locator<Page, Stream<Clickable>
         MENU_BAR.locate(page).forEach(header -> {
 
             Element menubar = MENU_BAR
-                    .and(new FirstMatch<>(TEXT.and(new Equals(LINK_TEXT.locate(header)))))
-                    .and(GET)
+                    .andNext(new FirstMatch<>(TEXT.and(new Equals(LINK_TEXT.locate(header)))))
+                    .andNext(GET)
                     .locate(page);
 
             String group = LINK_TEXT.locate(menubar);
@@ -61,7 +61,7 @@ public class AllMenuLocatorForOrgSync implements Locator<Page, Stream<Clickable>
                 menuGroup.get().until(NOT_NULL.and(DISPLAYED));
                 Locators.<Element>elements(LI).locate(menubar).forEach(menu -> {
                     System.out.println("menu" + menu);
-                    allMenu.add(new Menu(page, new MouseOverLocator(group, page.mouseOver().and(LINK_TEXT).locate(menu)))) ;
+                    allMenu.add(new Menu(page, new MouseOverLocator(group, page.mouseOver().andNext(LINK_TEXT).locate(menu)))) ;
                 } );
 
             }

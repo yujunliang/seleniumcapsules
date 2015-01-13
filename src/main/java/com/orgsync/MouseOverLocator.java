@@ -34,13 +34,13 @@ public class MouseOverLocator implements Locator<Page, Element> {
 
     public Element locate(Page page) {
         return new ElementLocator<Page>(MAIN_NAV)
-                .and(new ElementLocator<>(SF_JS_ENABLED))
-                .and(elements(LI))
-                .and(new FirstMatch<>(NOT_NULL.and(DISPLAYED).and(TEXT.and(new Equals(menuGroup)))))
-                .and(GET)
-                .and(page.mouseOver())
-                .and(new ElementLocator<>(UL))
-                .and(new ElementLocator<>((Supplier<By>) () -> linkText(menuItem)))
+                .andNext(new ElementLocator<>(SF_JS_ENABLED))
+                .andNext(elements(LI))
+                .andNext(new FirstMatch<>(NOT_NULL.and(DISPLAYED).and(TEXT.and(new Equals(menuGroup)))))
+                .andNext(GET)
+                .andNext(page.mouseOver())
+                .andNext(new ElementLocator<>(UL))
+                .andNext(new ElementLocator<>((Supplier<By>) () -> linkText(menuItem)))
                 .locate(page);
     }
 

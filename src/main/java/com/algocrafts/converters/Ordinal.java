@@ -10,5 +10,5 @@ public enum Ordinal implements Locator<Enum, Integer> {
         public Integer locate(Enum input) {
             return input.ordinal();
         }
-    };
+    }
 }

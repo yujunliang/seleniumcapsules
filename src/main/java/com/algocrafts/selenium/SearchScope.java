@@ -103,8 +103,8 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
     @SuppressWarnings("unchecked")
     default Clickable button(Supplier<By> by, int index) {
         return new Button<>((Where) this, Locators.<Where>elements(by)
-                .and(new StreamToList<>())
-                .and(new ElementAtIndex<>(index)));
+                .andNext(new StreamToList<>())
+                .andNext(new ElementAtIndex<>(index)));
     }
 
     /**
@@ -137,7 +137,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      */
     default Element image(String fileName, int index) {
         return new StreamToList<Element>()
-                .and(new ElementAtIndex<>(index))
+                .andNext(new ElementAtIndex<>(index))
                 .locate(images(fileName));
     }
 
@@ -149,7 +149,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      */
     default Stream<Element> images(String fileName) {
         return Locators.<Where>elements(IMG)
-                .and(new Filter<>(NOT_NULL.and(DISPLAYED)
+                .andNext(new Filter<>(NOT_NULL.and(DISPLAYED)
                         .and(SRC.and(new StringContains(fileName)))))
                 .locate((Where) this);
     }

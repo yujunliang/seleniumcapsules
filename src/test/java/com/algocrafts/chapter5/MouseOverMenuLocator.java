@@ -30,14 +30,14 @@ public class MouseOverMenuLocator implements Locator<Page, Element> {
 
     public Element locate(Page page) {
         return Locators.<Page>element(GLOBAL_NAV)
-                .and(element(ClassName.L_TINYNAL1))
-                .and(elements(LI))
-                .and(new FirstMatch<>(DISPLAYED
+                .andNext(element(ClassName.L_TINYNAL1))
+                .andNext(elements(LI))
+                .andNext(new FirstMatch<>(DISPLAYED
                         .and(TEXT.and(new Equals(menuGroup)))))
-                .and(GET)
-                .and(page.mouseOver())
-                .and(element(UL))
-                .and(element(() -> linkText(menuText)))
+                .andNext(GET)
+                .andNext(page.mouseOver())
+                .andNext(element(UL))
+                .andNext(element(() -> linkText(menuText)))
                 .locate(page);
     }
 
