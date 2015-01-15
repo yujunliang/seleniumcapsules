@@ -14,11 +14,24 @@
         <constructor-arg value="${entry.url}"/>
     </bean>
 
+    <bean id="daughertyUrl" class="com.algocrafts.clickables.Url">
+        <constructor-arg ref="browser"/>
+        <constructor-arg value="${daugherty.url}"/>
+    </bean>
+
     <bean id="homePage" class="com.orgsync.OrgSyncHomePage">
         <constructor-arg ref="browser"/>
         <constructor-arg ref="entryUrl"/>
         <constructor-arg ref="allMenuLocator"/>
     </bean>
+
+    <bean id="daughertyHomePage" class="com.daugherty.DaughertyHomePage">
+        <constructor-arg ref="browser"/>
+        <constructor-arg ref="daughertyUrl"/>
+        <constructor-arg ref="daughterMenuLocator"/>
+    </bean>
+
+    <bean id="daughterMenuLocator" class="com.daugherty.AllMenuLocatorForDaugherty"/>
 
     <bean id="firefox" class="com.algocrafts.browsers.FirefoxDriverSupplierOnWindows"/>
 
