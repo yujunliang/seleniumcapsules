@@ -33,9 +33,9 @@ public class OrgSyncHomePageTest {
         homePage.getAllMenu().forEach(menu -> {
             try {
                 logger.info("clicking " + menu);
-              //  menu.click();
-              //  String title =  homePage.getTitle();
-              //  logger.info("clicking " + menu + " and title is \"" + title + "\"");
+                menu.click();
+                String title = homePage.getTitle();
+                logger.info("clicking " + menu + " and title is \"" + title + "\"");
             } catch (Exception e) {
                 logger.info("Error clicking " + menu, e);
             }

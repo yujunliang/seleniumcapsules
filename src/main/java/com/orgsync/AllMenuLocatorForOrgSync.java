@@ -52,7 +52,6 @@ public class AllMenuLocatorForOrgSync implements Locator<Page, Stream<Clickable>
                     .locate(page);
 
             String group = LINK_TEXT.locate(menubar);
-            System.out.println("group" + group);
             allMenu.add(new Menu(page, new MenuGroupLocator(group)));
 
             page.mouseOver(header);
@@ -60,7 +59,6 @@ public class AllMenuLocatorForOrgSync implements Locator<Page, Stream<Clickable>
             if (menuGroup.isPresent()) {
                 menuGroup.get().until(NOT_NULL.and(DISPLAYED));
                 Locators.<Element>elements(LI).locate(menubar).forEach(menu -> {
-                    System.out.println("menu" + menu);
                     allMenu.add(new Menu(page, new MouseOverLocator(group, page.mouseOver().andNext(LINK_TEXT).locate(menu)))) ;
                 } );
 
