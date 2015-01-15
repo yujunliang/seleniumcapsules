@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 public enum StringEquals implements Predicate<String> {
 
     TRUE("true"),
-    YAHOO("Copyright © 2014 Yahoo Inc. All rights reserved."),
-    MANNING("© 2003-2014 Manning Publications Co."),
+    YAHOO("Copyright © 2015 Yahoo Inc. All rights reserved."),
+    MANNING("© 2003-2015 Manning Publications Co."),
     DATEPICKER("Datepicker");
 
     private final String text;
