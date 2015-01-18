@@ -31,12 +31,12 @@ public class AllMenuLocatorForOrgSync implements Locator<Page, Stream<Clickable>
 
     private static final Locator<Page, Stream<Element>> MENU_BAR =
             new ElementLocator<Page>(MAIN_NAV)
-                    .andNext(new ElementLocator<>(SF_JS_ENABLED))
-                    .andNext(elements(LI))
-                    .andNext(new Filter<>(DISPLAYED.and(Locators.<Element>optionalElement(LI).and(PRESENT))));
+                    .andthen(new ElementLocator<>(SF_JS_ENABLED))
+                    .andthen(elements(LI))
+                    .andthen(new Filter<>(DISPLAYED.and(Locators.<Element>optionalElement(LI).and(PRESENT))));
 
     private static final Locator<Element, String> LINK_TEXT =
-            new ElementLocator<Element>(A).andNext(TEXT);
+            new ElementLocator<Element>(A).andthen(TEXT);
     private static final Locator<Element, Optional<Element>> MENU_GROUP =
             Locators.<Element>optionalElement(UL);
 
@@ -47,8 +47,8 @@ public class AllMenuLocatorForOrgSync implements Locator<Page, Stream<Clickable>
         MENU_BAR.locate(page).forEach(header -> {
 
             Element menubar = MENU_BAR
-                    .andNext(new FirstMatch<>(TEXT.and(new Equals(LINK_TEXT.locate(header)))))
-                    .andNext(GET)
+                    .andthen(new FirstMatch<>(TEXT.and(new Equals(LINK_TEXT.locate(header)))))
+                    .andthen(GET)
                     .locate(page);
 
             String group = LINK_TEXT.locate(menubar);
@@ -59,7 +59,7 @@ public class AllMenuLocatorForOrgSync implements Locator<Page, Stream<Clickable>
             if (menuGroup.isPresent()) {
                 menuGroup.get().until(NOT_NULL.and(DISPLAYED));
                 Locators.<Element>elements(LI).locate(menubar).forEach(menu -> {
-                    allMenu.add(new Menu(page, new MouseOverLocator(group, page.mouseOver().andNext(LINK_TEXT).locate(menu)))) ;
+                    allMenu.add(new Menu(page, new MouseOverLocator(group, page.mouseOver().andthen(LINK_TEXT).locate(menu)))) ;
                 } );
 
             }

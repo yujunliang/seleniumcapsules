@@ -36,7 +36,7 @@ public class ExtJSDatePickerPage extends Page {
 
     public String getDate() {
         return Locators.<Page>element(() -> By.id("component-1003"))
-                .andNext(TEXT)
+                .andthen(TEXT)
                 .locate(this);
     }
 

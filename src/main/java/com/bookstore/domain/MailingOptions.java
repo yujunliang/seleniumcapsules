@@ -2,7 +2,6 @@ package com.bookstore.domain;
 
 
 import java.util.Map;
-import java.util.function.Function;
 
 import static com.google.common.collect.Maps.newHashMap;
 import static java.util.stream.Stream.of;
@@ -31,7 +30,7 @@ public enum MailingOptions {
      * This method filtering the enum constants using the string and return the first one.
      *
      * @param string the string value
-     * @return enum with the string value
+     * @return       enum with the string value
      */
     public static MailingOptions fromString(String string) {
         return of(values()).filter((o) -> string.equals(o.string)).findFirst().get();
@@ -40,8 +39,8 @@ public enum MailingOptions {
     /**
      * This method look up the enum constant in the map.
      *
-     * @param string
-     * @return
+     * @param string the string value
+     * @return       enum with the string value
      */
     public static MailingOptions from(String string) {
         return MapHolder.map.get(string);

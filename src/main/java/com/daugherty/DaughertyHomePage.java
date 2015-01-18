@@ -1,6 +1,7 @@
 package com.daugherty;
 
 
+import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Clickable;
@@ -8,6 +9,10 @@ import com.algocrafts.selenium.Locator;
 import org.openqa.selenium.WebDriver;
 
 import java.util.stream.Stream;
+
+import static com.algocrafts.converters.GetText.TEXT;
+import static com.algocrafts.converters.OptionalGetter.GET;
+import static org.openqa.selenium.By.cssSelector;
 
 public class DaughertyHomePage extends Page {
 
@@ -20,5 +25,13 @@ public class DaughertyHomePage extends Page {
 
     public Stream<Clickable> getAllMenu() {
         return allMenuLocator.apply(this);
+    }
+
+    public String getTitle() {
+        try {
+            return Locators.<Page>optionalElement(() -> cssSelector("body > header.page-header > div > h1 > span")).andthen(GET).andthen(TEXT).locate(this);
+        } catch (Exception e) {
+            return "";
+        }
     }
 }

@@ -22,10 +22,10 @@ public enum CalendarIntegerLocator implements Locator<Page, Integer> {
      */
     DISPLAYED_YEAR(
             Locators.<Page>element(EXTJS_CALENDAR)
-                    .andNext(element(EXTJS_CALENDAR_MONTH_YEAR))
-                    .andNext(TEXT)
-                    .andNext(SECOND_HALF)
-                    .andNext(PARSE_INT)
+                    .andthen(element(EXTJS_CALENDAR_MONTH_YEAR))
+                    .andthen(TEXT)
+                    .andthen(SECOND_HALF)
+                    .andthen(PARSE_INT)
     ),
 
     /**
@@ -33,11 +33,11 @@ public enum CalendarIntegerLocator implements Locator<Page, Integer> {
      */
     DISPLAYED_MONTH(
             Locators.<Page>element(EXTJS_CALENDAR)
-                    .andNext(element(EXTJS_CALENDAR_MONTH_YEAR))
-                    .andNext(TEXT)
-                    .andNext(FIRST_HALF)
-                    .andNext(TO_MONTH)
-                    .andNext(ORDINAL)
+                    .andthen(element(EXTJS_CALENDAR_MONTH_YEAR))
+                    .andthen(TEXT)
+                    .andthen(FIRST_HALF)
+                    .andthen(TO_MONTH)
+                    .andthen(ORDINAL)
     );
 
     private final Locator<Page, Integer> locator;

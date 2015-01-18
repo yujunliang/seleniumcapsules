@@ -110,7 +110,7 @@ public class TicketflyTest {
             }
         });
         allCanada.click();
-        assertEquals(0, location.findElements(linkText("Ontario")).size());
+        assertEquals(0, webDriver.findElements(linkText("Ontario")).size());
         assertEquals("Ontario", webDriver
                 .findElement(By.xpath("//div[@class='tools']/descendant::strong")).getText());
     }
@@ -221,7 +221,7 @@ public class TicketflyTest {
         new TicketflyPage(CHROME) {{
             open();
             changeLocation(CANADA, ONTARIO);
-            assertEquals("Canada", currentLocation());
+            assertEquals("Ontario", currentLocation());
         }};
     }
 

@@ -12,7 +12,6 @@ import static org.junit.Assert.assertEquals;
 
 public class SelectCalendarStep {
 
-
     JQueryDatePickerPage page;
 
     @Given("I am on jQuery Calendar page using <browser>")

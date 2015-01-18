@@ -31,13 +31,13 @@ public class MouseOverMenuLocator implements Locator<Page, Element> {
 
     public Element locate(Page page) {
         return new ElementLocator<Page>(GLOBAL_NAV)
-                .andNext(new ElementLocator<>(ClassName.L_TINYNAL1))
-                .andNext(elements(LI))
-                .andNext(new FirstMatch<>(NOT_NULL.and(DISPLAYED).and(TEXT.and(new Equals(menuGroup)))))
-                .andNext(GET)
-                .andNext(page.mouseOver())
-                .andNext(new ElementLocator<>(UL))
-                .andNext(new ElementLocator<>(() -> linkText(menuText)))
+                .andthen(new ElementLocator<>(ClassName.L_TINYNAL1))
+                .andthen(elements(LI))
+                .andthen(new FirstMatch<>(NOT_NULL.and(DISPLAYED).and(TEXT.and(new Equals(menuGroup)))))
+                .andthen(GET)
+                .andthen(page.mouseOver())
+                .andthen(new ElementLocator<>(UL))
+                .andthen(new ElementLocator<>(() -> linkText(menuText)))
                 .locate(page);
     }
 
