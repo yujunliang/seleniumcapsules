@@ -20,9 +20,9 @@ public enum CalendarIntegerLocator implements Locator<Page, Integer> {
      */
     DISPLAYED_YEAR(
             Locators.<Page>element(UI_DATEPICKER_DIV)
-                    .andthen(element(UI_DATEPICKER_YEAR))
-                    .andthen(TEXT)
-                    .andthen(PARSE_INT)
+                    .andThen(element(UI_DATEPICKER_YEAR))
+                    .andThen(TEXT)
+                    .andThen(PARSE_INT)
     ),
 
     /**
@@ -30,10 +30,10 @@ public enum CalendarIntegerLocator implements Locator<Page, Integer> {
      */
     DISPLAYED_MONTH(
             Locators.<Page>element(UI_DATEPICKER_DIV)
-                    .andthen(element(UI_DATEPICKER_MONTH))
-                    .andthen(TEXT)
-                    .andthen(TO_MONTH)
-                    .andthen(ORDINAL)
+                    .andThen(element(UI_DATEPICKER_MONTH))
+                    .andThen(TEXT)
+                    .andThen(TO_MONTH)
+                    .andThen(ORDINAL)
     );
 
     private final Locator<Page, Integer> locator;

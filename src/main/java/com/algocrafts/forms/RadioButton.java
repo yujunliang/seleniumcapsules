@@ -41,9 +41,9 @@ public class RadioButton<Where extends SearchScope<Where>>
     public void setValue(Object value) {
         locate(new FirstMatch<>(DISPLAYED
                 .and(Locators.<Element>element(PARENT)
-                        .andthen(TEXT)
+                        .andThen(TEXT)
                         .and(new StringContains(value.toString()))))
-                .andthen(GET).andthen(CLICK));
+                .andThen(GET).andThen(CLICK));
     }
 
     /**
@@ -52,9 +52,9 @@ public class RadioButton<Where extends SearchScope<Where>>
     public String getValue() {
         return locate(new FirstMatch<>(DISPLAYED
                 .and(CHECKED.and(TRUE)))
-                .andthen(GET)
-                .andthen(element(PARENT))
-                .andthen(TEXT));
+                .andThen(GET)
+                .andThen(element(PARENT))
+                .andThen(TEXT));
     }
 }
 

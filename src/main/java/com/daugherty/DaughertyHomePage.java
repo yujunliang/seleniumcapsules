@@ -29,7 +29,7 @@ public class DaughertyHomePage extends Page {
 
     public String getTitle() {
         try {
-            return Locators.<Page>optionalElement(() -> cssSelector("body > header.page-header > div > h1 > span")).andthen(GET).andthen(TEXT).locate(this);
+            return Locators.<Page>optionalElement(() -> cssSelector("body > header.page-header > div > h1 > span")).andThen(GET).andThen(TEXT).locate(this);
         } catch (Exception e) {
             return "";
         }

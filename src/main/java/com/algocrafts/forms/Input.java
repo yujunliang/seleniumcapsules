@@ -46,7 +46,7 @@ public class Input<Where extends SearchScope<Where>> extends Locating<Where, Opt
     public String getValue() {
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
-            retry.attempt(() -> locate(GET.andthen(VALUE)));
+            retry.attempt(() -> locate(GET.andThen(VALUE)));
         } catch (Exception e) {
             log.info("Failed to read text", e);
         }

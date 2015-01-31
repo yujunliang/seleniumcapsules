@@ -24,7 +24,7 @@ public class MenuGroupLocator implements Locator<Page, Element> {
 
     public Element locate(Page page) {
         return new ElementLocator<Page>(id)
-                .andthen(new ElementLocator<>(() -> linkText(headText))).locate(page);
+                .andThen(new ElementLocator<>(() -> linkText(headText))).locate(page);
     }
 
     @Override

@@ -32,9 +32,9 @@ public class TicketflyPage extends Page {
 
     public String currentLocation() {
         return Locators.<Page>element(TOOLS_LOCATION)
-                .andthen(element(A))
-                .andthen(element(STRONG))
-                .andthen(TEXT)
+                .andThen(element(A))
+                .andThen(element(STRONG))
+                .andThen(TEXT)
                 .locate(this);
     }
 }

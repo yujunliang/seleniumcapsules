@@ -110,8 +110,8 @@ public class GoogleAutoCompleteTest {
         webDriver.get("http://google.com");
         Element q = webDriver.untilFound(() -> By.name("q"));
         Locator<Browser<ChromeDriver>, Optional<Element>> locator = new ElementLocator<Browser<ChromeDriver>>(ClassName.SBDD_B)
-                .andthen(new ElementsLocator<>(TagName.LI))
-                .andthen(new FirstMatch<>((e) -> e.getText().equals("ticketfly")));
+                .andThen(new ElementsLocator<>(TagName.LI))
+                .andThen(new FirstMatch<>((e) -> e.getText().equals("ticketfly")));
         autocomplete(q, "ticketfly", webDriver, locator);
     }
 
@@ -124,7 +124,7 @@ public class GoogleAutoCompleteTest {
         Locator<Element, Stream<Element>> after = new ElementsLocator<>(TagName.LI);
         Predicate<Element> elementPredicate = GetText.TEXT.and(new Equals("ticketfly"));
         Locator<Stream<Element>, Optional<Element>> ticketfly = new FirstMatch<>(elementPredicate);
-        Locator<Browser<ChromeDriver>, Optional<Element>> locator = browserElementLocator.andthen(after).andthen(ticketfly);
+        Locator<Browser<ChromeDriver>, Optional<Element>> locator = browserElementLocator.andThen(after).andThen(ticketfly);
         autocomplete(q, "ticketfly", webDriver, locator);
     }
 

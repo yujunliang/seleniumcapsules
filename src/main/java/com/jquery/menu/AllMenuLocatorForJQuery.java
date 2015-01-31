@@ -33,16 +33,16 @@ public class AllMenuLocatorForJQuery
 
     private static final Locator<Page, Stream<Element>> MENU_BAR =
             new ElementLocator<Page>(GLOBAL_NAV)
-                    .andthen(element(ClassName.L_TINYNAL1))
-                    .andthen(elements(LI))
-                    .andthen(new Filter<>(DISPLAYED
+                    .andThen(element(ClassName.L_TINYNAL1))
+                    .andThen(elements(LI))
+                    .andThen(new Filter<>(DISPLAYED
                             .and(Locators.<Element>optionalElement(UL)
                                     .and(PRESENT.negate())
                                     .or(Locators.<Element>optionalElement(LI)
                                             .and(PRESENT)))));
 
     private static final Locator<Element, String> LINK_TEXT =
-            new ElementLocator<Element>(A).andthen(TEXT);
+            new ElementLocator<Element>(A).andThen(TEXT);
     private static final Locator<Element, Optional<Element>> MENU_GROUP =
             Locators.<Element>optionalElement(UL);
 
@@ -53,9 +53,9 @@ public class AllMenuLocatorForJQuery
         MENU_BAR.locate(page).forEach(header -> {
 
             Element menubar = MENU_BAR
-                    .andthen(new FirstMatch<>(TEXT
+                    .andThen(new FirstMatch<>(TEXT
                             .and(new Equals(LINK_TEXT.locate(header)))))
-                    .andthen(GET)
+                    .andThen(GET)
                     .locate(page);
 
             String group = LINK_TEXT.locate(menubar);
@@ -66,7 +66,7 @@ public class AllMenuLocatorForJQuery
             if (menuGroup.isPresent()) {
                 menuGroup.get().until(DISPLAYED);
                 allMenu.addAll(Locators.<Element>elements(LI).locate(menubar).map(menu -> {
-                    String menuText = page.mouseOver().andthen(LINK_TEXT).locate(menu);
+                    String menuText = page.mouseOver().andThen(LINK_TEXT).locate(menu);
                     return new Menu(page, new MouseOverMenuLocator(group, menuText));
                 }).collect(toList()));
 

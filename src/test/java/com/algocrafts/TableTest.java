@@ -43,7 +43,7 @@ public class TableTest {
         Browsers chrome = CHROME;
         chrome.get("http://www.w3schools.com/html/html_tables.asp");
         Page page = new Page(chrome);
-        Locator<Page, Element> locator = Locators.<Page>element(MAIN).andthen(element(TABLE));
+        Locator<Page, Element> locator = Locators.<Page>element(MAIN).andThen(element(TABLE));
         Locator<Stream<Element>, Person> mapper = (stream) -> {
             Iterator<String> iterator = stream.map(TEXT).iterator();
             return new Person(iterator.next(), iterator.next(), PARSE_INT.locate(iterator.next()));

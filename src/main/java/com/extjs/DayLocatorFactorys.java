@@ -19,10 +19,10 @@ public enum DayLocatorFactorys implements DayLocatorFactory {
     EXTJS_DAY_LOCATOR {
         public Locator<Page, Void> forDay(int day) {
             return Locators.<Page>element(EXTJS_CALENDAR)
-                    .andthen(elements(TD))
-                    .andthen(new FirstMatch<>(TEXT.and(new Equals(day))))
-                    .andthen(GET)
-                    .andthen(CLICK);
+                    .andThen(elements(TD))
+                    .andThen(new FirstMatch<>(TEXT.and(new Equals(day))))
+                    .andThen(GET)
+                    .andThen(CLICK);
         }
     }
 }

@@ -105,7 +105,7 @@ public class Page implements FormControl<Page> {
 
     public String getTitle() {
         try {
-            return Locators.<Page>optionalElement(PAGE_TITLE).andthen(GET).andthen(TEXT).locate(this);
+            return Locators.<Page>optionalElement(PAGE_TITLE).andThen(GET).andThen(TEXT).locate(this);
         } catch (Exception e) {
             return "";
         }

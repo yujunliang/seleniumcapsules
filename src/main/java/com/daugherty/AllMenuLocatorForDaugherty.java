@@ -39,17 +39,17 @@ public class AllMenuLocatorForDaugherty implements Locator<Page, Stream<Clickabl
     private List<Clickable> getClickables(Page page, Supplier<By> id) {
         Locator<Page, Stream<Element>> menubars =
             new ElementLocator<Page>(id)
-                    .andthen(elements(LI))
-                .andthen(new Filter<>(DISPLAYED));
+                    .andThen(elements(LI))
+                .andThen(new Filter<>(DISPLAYED));
 
-        Locator<Element, String> LINK_TEXT = new ElementLocator<Element>(A).andthen(TEXT);
+        Locator<Element, String> LINK_TEXT = new ElementLocator<Element>(A).andThen(TEXT);
 
         List<Clickable> allMenu = newArrayList();
         menubars.apply(page).forEach(header -> {
             try {
                 Element menubar = menubars
-                        .andthen(new FirstMatch<>(TEXT.and(new Equals(LINK_TEXT.locate(header)))))
-                        .andthen(GET)
+                        .andThen(new FirstMatch<>(TEXT.and(new Equals(LINK_TEXT.locate(header)))))
+                        .andThen(GET)
                         .locate(page);
 
                 String group = LINK_TEXT.apply(menubar);
