@@ -3,6 +3,7 @@ package com.jquery.datepicker.locators;
 
 import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.Page;
+import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
 
 import static com.algocrafts.converters.GetText.TEXT;
@@ -29,11 +30,11 @@ public enum CalendarIntegerLocator implements Locator<Page, Integer> {
      * Locate the integer value representing displayed month on a calendar
      */
     DISPLAYED_MONTH(
-            Locators.<Page>element(UI_DATEPICKER_DIV)
-                    .andThen(element(UI_DATEPICKER_MONTH))
-                    .andThen(TEXT)
-                    .andThen(TO_MONTH)
-                    .andThen(ORDINAL)
+            ORDINAL.compose(TO_MONTH)
+                    .compose(TEXT)
+                    .compose(Locators.<Element>element(UI_DATEPICKER_MONTH))
+                    .compose(Locators.<Page>element(UI_DATEPICKER_DIV))
+
     );
 
     private final Locator<Page, Integer> locator;
