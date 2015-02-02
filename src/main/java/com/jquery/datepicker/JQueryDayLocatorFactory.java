@@ -16,7 +16,7 @@ import static com.algocrafts.selectors.ClassName.UI_DATEPICKER_CALENDAR;
 import static com.algocrafts.selectors.Id.UI_DATEPICKER_DIV;
 import static com.algocrafts.selectors.TagName.TD;
 
-public enum DayLocatorFactorys implements DayLocatorFactory {
+public enum JQueryDayLocatorFactory implements DayLocatorFactory {
 
     JQUERY_DAY {
         public Locator<Page, Void> forDay(int day) {

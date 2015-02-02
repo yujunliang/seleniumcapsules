@@ -16,7 +16,7 @@ import static com.algocrafts.selectors.Id.DATE_PICKER;
 import static com.jquery.datepicker.locators.CalendarClicker.*;
 import static com.jquery.datepicker.locators.CalendarIntegerLocator.DISPLAYED_MONTH;
 import static com.jquery.datepicker.locators.CalendarIntegerLocator.DISPLAYED_YEAR;
-import static com.jquery.datepicker.DayLocatorFactorys.JQUERY_DAY;
+import static com.jquery.datepicker.JQueryDayLocatorFactory.JQUERY_DAY;
 
 public class JQueryDatePickerPage extends Page {
 
