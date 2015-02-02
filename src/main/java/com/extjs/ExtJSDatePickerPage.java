@@ -1,9 +1,9 @@
 package com.extjs;
 
 
-import com.algocrafts.datepicker.Calendar;
-import com.algocrafts.datepicker.Datepicker;
 import com.algocrafts.clickables.Url;
+import com.algocrafts.datepicker.CalendarBuilder;
+import com.algocrafts.datepicker.Datepicker;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Browser;
@@ -22,12 +22,21 @@ import static com.extjs.TriggerHover.TRIGGER;
 
 public class ExtJSDatePickerPage extends Page {
 
-    public ExtJSDatePickerPage(Browser browser) {
+    public ExtJSDatePickerPage(Browser<?> browser) {
         super(browser, new Url<>(browser, "http://try.sencha.com/extjs/4.0.7/docs/Ext.menu.DatePicker.1/"));
     }
 
     private final Datepicker datepicker = new Datepicker(
-            new Calendar(this, TRIGGER, DISPLAYED_YEAR, DISPLAYED_MONTH, PREVIOUS_MONTH, NEXT_MONTH, EXTJS_DAY_LOCATOR, EXTJS_CALENDAR_NOT_DISPLAYED)
+            new CalendarBuilder()
+                    .setPage(this)
+                    .setTrigger(TRIGGER)
+                    .setDisplayedYear(DISPLAYED_YEAR)
+                    .setDisplayedMonth(DISPLAYED_MONTH)
+                    .setPreviousMonth(PREVIOUS_MONTH)
+                    .setNextMonth(NEXT_MONTH)
+                    .setDayLocatorFactory(EXTJS_DAY_LOCATOR)
+                    .setCalendarClosed(EXTJS_CALENDAR_NOT_DISPLAYED)
+                    .build()
     );
 
     public void pick(Month month, int day, int year) {

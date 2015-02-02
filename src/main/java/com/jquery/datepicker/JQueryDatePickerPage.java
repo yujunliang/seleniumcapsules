@@ -2,7 +2,6 @@ package com.jquery.datepicker;
 
 
 import com.algocrafts.clickables.Url;
-import com.algocrafts.datepicker.Calendar;
 import com.algocrafts.datepicker.CalendarBuilder;
 import com.algocrafts.datepicker.Datepicker;
 import com.algocrafts.locators.ElementLocator;
@@ -14,10 +13,10 @@ import java.time.Month;
 import static com.algocrafts.conditions.PagePredicates.JQUERY_CALENDAR_NOT_DISPLAYED;
 import static com.algocrafts.converters.GetText.VALUE;
 import static com.algocrafts.selectors.Id.DATE_PICKER;
+import static com.jquery.datepicker.JQueryDayLocatorFactory.JQUERY_DAY;
 import static com.jquery.datepicker.locators.CalendarClicker.*;
 import static com.jquery.datepicker.locators.CalendarIntegerLocator.DISPLAYED_MONTH;
 import static com.jquery.datepicker.locators.CalendarIntegerLocator.DISPLAYED_YEAR;
-import static com.jquery.datepicker.JQueryDayLocatorFactory.JQUERY_DAY;
 
 public class JQueryDatePickerPage extends Page {
 

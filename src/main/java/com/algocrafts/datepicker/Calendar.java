@@ -38,7 +38,7 @@ public class Calendar {
      * @param dayLocatorFactory day
      * @param calendarClosed    whether calendar is closed
      */
-    public Calendar(Page page,
+    Calendar(Page page,
                     Locator<Page, Void> trigger,
                     Locator<Page, Integer> displayedYear,
                     Locator<Page, Integer> displayedMonth,
