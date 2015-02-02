@@ -4,11 +4,7 @@ package com.algocrafts.datepicker;
 import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Locator;
 
-import java.util.Optional;
 import java.util.function.Predicate;
-
-import static com.algocrafts.datepicker.CalendarFlipper.MONTH_FLIPPER;
-import static com.algocrafts.datepicker.CalendarFlipper.YEAR_FLIPPER;
 
 public class CalendarBuilder {
 
@@ -22,49 +18,49 @@ public class CalendarBuilder {
     private Predicate<Page> calendarClosed;
 
 
-    public CalendarBuilder setPage(Page page) {
+    public CalendarBuilder withPage(Page page) {
         this.page = page;
         return this;
     }
 
-    public CalendarBuilder setTrigger(Locator<Page, Void> trigger) {
+    public CalendarBuilder withTrigger(Locator<Page, Void> trigger) {
         this.trigger = trigger;
         return this;
     }
 
-    public CalendarBuilder setDisplayedYear(Locator<Page, Integer> displayedYear) {
+    public CalendarBuilder withDisplayedYear(Locator<Page, Integer> displayedYear) {
         this.displayedYear = displayedYear;
         return this;
     }
 
-    public CalendarBuilder setDisplayedMonth(Locator<Page, Integer> displayedMonth) {
+    public CalendarBuilder withDisplayedMonth(Locator<Page, Integer> displayedMonth) {
         this.displayedMonth = displayedMonth;
         return this;
     }
 
-    public CalendarBuilder setPreviousMonth(Locator<Page, Void> previousMonth) {
+    public CalendarBuilder withPreviousMonth(Locator<Page, Void> previousMonth) {
         this.previousMonth = previousMonth;
         return this;
     }
 
-    public CalendarBuilder setNextMonth(Locator<Page, Void> nextMonth) {
+    public CalendarBuilder withNextMonth(Locator<Page, Void> nextMonth) {
         this.nextMonth = nextMonth;
         return this;
     }
 
-    public CalendarBuilder setDayLocatorFactory(DayLocatorFactory dayLocatorFactory) {
+    public CalendarBuilder withDayLocatorFactory(DayLocatorFactory dayLocatorFactory) {
         this.dayLocatorFactory = dayLocatorFactory;
         return this;
     }
 
-    public CalendarBuilder setCalendarClosed(Predicate<Page> calendarClosed) {
+    public CalendarBuilder withCalendarClosed(Predicate<Page> calendarClosed) {
         this.calendarClosed = calendarClosed;
         return this;
     }
 
     public Calendar build() {
-        return new Calendar(page, trigger,displayedYear,displayedMonth,previousMonth,nextMonth,dayLocatorFactory,calendarClosed);
+        return new Calendar(page, trigger, displayedYear, displayedMonth, previousMonth, nextMonth, dayLocatorFactory, calendarClosed);
     }
 
-    
+
 }

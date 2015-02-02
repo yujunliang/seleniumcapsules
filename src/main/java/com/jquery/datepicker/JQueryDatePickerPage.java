@@ -26,14 +26,14 @@ public class JQueryDatePickerPage extends Page {
 
     private final Datepicker datepicker = new Datepicker(
             new CalendarBuilder()
-                    .setPage(this)
-                    .setTrigger(TRIGGER)
-                    .setDisplayedYear(DISPLAYED_YEAR)
-                    .setDisplayedMonth(DISPLAYED_MONTH)
-                    .setPreviousMonth(PREVIOUS_MONTH)
-                    .setNextMonth(NEXT_MONTH)
-                    .setDayLocatorFactory(JQUERY_DAY)
-                    .setCalendarClosed(JQUERY_CALENDAR_NOT_DISPLAYED)
+                    .withPage(this)
+                    .withTrigger(TRIGGER)
+                    .withDisplayedYear(DISPLAYED_YEAR)
+                    .withDisplayedMonth(DISPLAYED_MONTH)
+                    .withPreviousMonth(PREVIOUS_MONTH)
+                    .withNextMonth(NEXT_MONTH)
+                    .withDayLocatorFactory(JQUERY_DAY)
+                    .withCalendarClosed(JQUERY_CALENDAR_NOT_DISPLAYED)
                     .build()
     );
 
