@@ -140,7 +140,7 @@ public class GoogleAutoCompleteTest {
         for (char c : "ticketfly".toCharArray()) {
             q.sendKeys(String.valueOf(c));
 
-            Optional<Element> optionalElement = webDriver.optionalElement(Xpath.TICKETFLY_AUTOCOMPLETE);
+            Optional<Element> optionalElement = webDriver.optionalElement(Xpath.GOOGLE_AUTOCOMPLETE);
             if (optionalElement.isPresent()) {
                 suggestion = optionalElement.get();
                 suggestion.click();
@@ -148,7 +148,7 @@ public class GoogleAutoCompleteTest {
 
         }
         if (suggestion == null) {
-            suggestion = webDriver.untilFound(Xpath.TICKETFLY_AUTOCOMPLETE);
+            suggestion = webDriver.untilFound(Xpath.GOOGLE_AUTOCOMPLETE);
             suggestion.click();
         }
     }

@@ -14,12 +14,13 @@ public enum Xpath implements Supplier<By> {
     PARENT(".."),
     DIV_CONTAINER_ID("//div[@id='container']"),
     LOCATION("//div[@class='tools']/descendant::strong"),
-    TICKETFLY_AUTOCOMPLETE("//div[contains(@class, 'gssb_c')]/descendant::div[text()='ticket']"),
+    //*[@id="sbse0"]/div[2]
+    GOOGLE_AUTOCOMPLETE("//*[@id='sbse0']/descendant::div"),
     QUANTITY("//div[@id='ys_cartInfo']/descendant::input[@name='cartDS.shoppingcart_ROW0_m_orderItemVector_ROW0_m_quantity']");
 
     private final By by;
 
-    private Xpath(String id) {
+    Xpath(String id) {
         this.by = xpath(id);
     }
 

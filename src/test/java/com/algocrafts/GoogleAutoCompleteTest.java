@@ -1,7 +1,5 @@
 package com.algocrafts;
 
-import com.algocrafts.conditions.Equals;
-import com.algocrafts.converters.FirstMatch;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.Page;
 import com.google.GooglePage;
@@ -9,20 +7,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static com.algocrafts.converters.GetText.TEXT;
-import static com.algocrafts.converters.OptionalGetter.GET;
 import static com.algocrafts.locators.Locators.elements;
-import static com.algocrafts.locators.Locators.optionalElement;
 import static com.algocrafts.selectors.Name.Q;
-import static com.algocrafts.selectors.TagName.SPAN;
-import static com.algocrafts.selectors.Xpath.TICKETFLY_AUTOCOMPLETE;
-import static org.openqa.selenium.By.className;
+import static com.algocrafts.selectors.TagName.DIV;
+import static com.algocrafts.selectors.Xpath.GOOGLE_AUTOCOMPLETE;
+import static org.openqa.selenium.By.id;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:context/context.xml"})
@@ -42,7 +35,7 @@ public class GoogleAutoCompleteTest {
      */
     @Test
     public void autoCompleteUsingSeleniumCapsules() {
-        googlePage.autocomplete(Q, "ticketfly", optionalElement(TICKETFLY_AUTOCOMPLETE));
+        googlePage.autocomplete(Q, "ticketfly", elements(GOOGLE_AUTOCOMPLETE));
     }
 
     /**
@@ -50,18 +43,15 @@ public class GoogleAutoCompleteTest {
      */
     @Test
     public void autoCompleteUsingSeleniumCapsules1() {
-        WebDriver webdriver = new FirefoxDriver();
-        webdriver.get("http://www.google.com");
+        googlePage.autocomplete("ticketfly");
     }
 
 
     @Test
     public void autoCompleteUsingLocator() {
         googlePage.autocomplete(Q, "ticketfly",
-                Locators.<Page>optionalElement(() -> className("gssb_c"))
-                        .andThen(GET)
-                        .andThen(elements(SPAN))
-                        .andThen(new FirstMatch<>(TEXT.and(new Equals("ticketfly")))));
+                Locators.<Page>element(() -> id("sbse0"))
+                        .andThen(elements(DIV)));
     }
 
     @After

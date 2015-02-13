@@ -3,20 +3,25 @@ package com.algocrafts.forms;
 
 import com.algocrafts.algorithm.Retry;
 import com.algocrafts.conditions.Equals;
+import com.algocrafts.conditions.StringContains;
+import com.algocrafts.converters.FirstMatch;
 import com.algocrafts.locators.Locators;
-import com.algocrafts.selectors.SupplierConverter;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.SearchScope;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.slf4j.Logger;
 
 import java.util.Optional;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
+import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.GetText.VALUE;
 import static com.algocrafts.converters.OptionalGetter.GET;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -91,36 +96,28 @@ public class Input<Where extends SearchScope<Where>> extends Locating<Where, Opt
      * Please refer "http://seleniumcapsules.blogspot.com/2014/05/by-xpath.html"
      *
      * @param value   value
-     * @param replace replace
-     */
-    public void autocomplete(Object value, SupplierConverter replace) {
-        autocomplete(value, Locators.<Where>optionalElement(replace.of(value)));
-    }
-
-    /**
-     * Test the autocomplete function for the input by given value, click the element
-     * on the suggestion list which matches value parameter.
-     * <p>
-     * Please refer "http://seleniumcapsules.blogspot.com/2014/05/by-xpath.html"
-     *
-     * @param value   value
      * @param locator locator
      */
-    public void autocomplete(Object value, Locator<Where, Optional<Element>> locator) {
+    public void autocomplete(Object value, Locator<Where, Stream<Element>> locator) {
         Element element = locate(GET);
         element.clear();
-        Optional<Element> suggestion;
         for (char c : value.toString().toCharArray()) {
             element.sendKeys(String.valueOf(c));
-            suggestion = use(locator);
-            if (suggestion.isPresent()) {
-                suggestion.get().click();
-                return;
+            Stream<Element> elements = use(locator);
+            Optional<Element> locate = new FirstMatch<>(TEXT.and(new StringContains(value.toString()))).locate(elements);
+            if (locate.isPresent()) {
+                locate.get().click();
             }
         }
-        suggestion = use(locator);
-        if (suggestion.isPresent()) {
-            suggestion.get().click();
-        }
+        FluentWait<Input<Where>> ignoring = new FluentWait<>(this)
+                .pollingEvery(5, MILLISECONDS)
+                .ignoring(Exception.class);
+        ignoring.until((Input i) -> {
+            Stream<Element> elements = use(locator);
+            Optional<Element> locate = new FirstMatch<>(TEXT.and(new StringContains(value.toString()))).locate(elements);
+            return locate.get();
+        }).click();
+
+
     }
 }
