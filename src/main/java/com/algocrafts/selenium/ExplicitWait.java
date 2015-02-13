@@ -60,7 +60,7 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
      */
     default void until(int duration, TimeUnit timeUnit, Predicate<Where> predicate) throws TimeoutException {
         try {
-            explicitWait(duration, timeUnit).until(predicate::test);
+            explicitWait(duration, timeUnit).until((Where where) -> predicate.test(where));
         } catch (TimeoutException e) {
             onTimeout();
             throw e;

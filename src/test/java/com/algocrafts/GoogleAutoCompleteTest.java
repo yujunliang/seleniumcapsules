@@ -38,20 +38,17 @@ public class GoogleAutoCompleteTest {
         googlePage.autocomplete(Q, "ticketfly", elements(GOOGLE_AUTOCOMPLETE));
     }
 
+    @Test
+    public void autoCompleteUsingLocator() {
+        googlePage.autocomplete(Q, "ticketfly", Locators.<Page>element(() -> id("sbse0")).andThen(elements(DIV)));
+    }
+
     /**
      * This is a cleaner test using page framework.  it has the same function as the test above.  :)
      */
     @Test
     public void autoCompleteUsingSeleniumCapsules1() {
         googlePage.autocomplete("ticketfly");
-    }
-
-
-    @Test
-    public void autoCompleteUsingLocator() {
-        googlePage.autocomplete(Q, "ticketfly",
-                Locators.<Page>element(() -> id("sbse0"))
-                        .andThen(elements(DIV)));
     }
 
     @After
