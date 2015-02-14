@@ -103,21 +103,15 @@ public class Input<Where extends SearchScope<Where>> extends Locating<Where, Opt
         element.clear();
         for (char c : value.toString().toCharArray()) {
             element.sendKeys(String.valueOf(c));
-            Stream<Element> elements = use(locator);
-            Optional<Element> locate = new FirstMatch<>(TEXT.and(new StringContains(value.toString()))).locate(elements);
+            Optional<Element> locate = use(locator.andThen(new FirstMatch<>(TEXT.and(new StringContains(value.toString())))));
             if (locate.isPresent()) {
                 locate.get().click();
             }
         }
-        FluentWait<Input<Where>> ignoring = new FluentWait<>(this)
-                .pollingEvery(5, MILLISECONDS)
-                .ignoring(Exception.class);
-        ignoring.until((Input i) -> {
-            Stream<Element> elements = use(locator);
-            Optional<Element> locate = new FirstMatch<>(TEXT.and(new StringContains(value.toString()))).locate(elements);
-            return locate.get();
-        }).click();
-
+        new FluentWait<>(this).ignoring(Exception.class).until(
+                (Input i) -> use(locator.andThen(new FirstMatch<>(TEXT.and(new StringContains(value.toString()))))).get()
+        ).click();
 
     }
+
 }
