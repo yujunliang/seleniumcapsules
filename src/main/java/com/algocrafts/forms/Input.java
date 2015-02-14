@@ -101,16 +101,15 @@ public class Input<Where extends SearchScope<Where>> extends Locating<Where, Opt
     public void autocomplete(Object value, Locator<Where, Stream<Element>> locator) {
         Element element = locate(GET);
         element.clear();
+        Locator<Where, Optional<Element>> optionalLocator = locator.andThen(new FirstMatch<>(TEXT.and(new StringContains(value.toString()))));
         for (char c : value.toString().toCharArray()) {
             element.sendKeys(String.valueOf(c));
-            Optional<Element> locate = use(locator.andThen(new FirstMatch<>(TEXT.and(new StringContains(value.toString())))));
+            Optional<Element> locate = use(optionalLocator);
             if (locate.isPresent()) {
                 locate.get().click();
             }
         }
-        new FluentWait<>(this).ignoring(Exception.class).until(
-                (Input i) -> use(locator.andThen(new FirstMatch<>(TEXT.and(new StringContains(value.toString()))))).get()
-        ).click();
+        new FluentWait<>(this).ignoring(Exception.class).until((Input i) -> use(optionalLocator).get()).click();
 
     }
 
