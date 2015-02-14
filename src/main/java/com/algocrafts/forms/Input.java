@@ -21,7 +21,6 @@ import java.util.stream.Stream;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.GetText.VALUE;
 import static com.algocrafts.converters.OptionalGetter.GET;
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.slf4j.LoggerFactory.getLogger;
 
