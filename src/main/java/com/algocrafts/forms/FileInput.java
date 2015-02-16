@@ -9,6 +9,7 @@ import com.algocrafts.selenium.SearchScope;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 
+import java.io.File;
 import java.util.Optional;
 import java.util.function.Supplier;
 
@@ -30,7 +31,7 @@ public class FileInput<Where extends SearchScope<Where>> extends Locating<Where,
         super(where, Locators.<Where>optionalElement(selector));
     }
 
-    public void put(java.io.File file) {
+    public void put(File file) {
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
             retry.attempt(() -> {
