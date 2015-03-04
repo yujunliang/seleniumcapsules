@@ -1,13 +1,14 @@
 package com.algocrafts.pages;
 
 import com.algocrafts.browsers.Browsers;
+import com.algocrafts.selenium.Browser;
 import org.junit.Test;
 
 public class BrowsersTest {
 
     @Test
     public void testGetSupplier() throws Exception {
-        Browsers firefox = Browsers.FIREFOX;
+        Browser firefox = Browsers.FIREFOX;
          firefox = Browsers.CHROME;
         firefox = Browsers.HEADLESS_LINUX;
         firefox = Browsers.SAFARI;

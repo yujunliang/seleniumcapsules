@@ -78,7 +78,7 @@ public class Page implements FormControl<Page> {
     }
 
     public final void close() {
-        if (Boolean.getBoolean("close.browser")) {
+        if (!Boolean.getBoolean("keep.browser.open")) {
             browser.close();
             quit();
         }

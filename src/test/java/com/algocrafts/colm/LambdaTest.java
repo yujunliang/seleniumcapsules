@@ -1,6 +1,9 @@
 package com.algocrafts.colm;
 
 
+import com.algocrafts.browsers.Browsers;
+import com.algocrafts.selenium.Browser;
+import com.algocrafts.selenium.Element;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -43,6 +46,35 @@ public class LambdaTest {
 
     }
 
+
+    @Test
+    public void testForColmUsingCapsules() {
+        Browser driver = Browsers.FIREFOX;
+
+        final String LATE_LOADING_TEXT = "Hello World!";
+        driver.get("http://the-internet.herokuapp.com/dynamic_loading/2");
+        Element element = driver.until( () -> By.id("start")).until(() -> By.tagName("button"));
+        element.click();
+
+// returns a boolean
+        driver.until( (Object d) -> driver.findElement(By.id("finish")).findElement(By.tagName("h4")).getText().equals(LATE_LOADING_TEXT));
+
+// lambda doesn't work
+        (new WebDriverWait(driver, 10)).until((WebDriver d) -> d.findElement(By.id("finish")).findElement(By.tagName("h4")).getText().equals(LATE_LOADING_TEXT));
+
+// returns a webelement
+        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<WebElement>() {
+            @Override
+            public WebElement apply(WebDriver d) {
+                return d.findElement(By.id("finish")).findElement(By.tagName("h4"));
+            }
+        });
+
+// lambda is ok
+        (new WebDriverWait(driver, 10)).until((WebDriver d) -> d.findElement(By.id("finish")).findElement(By.tagName("h4")));
+
+
+    }
 
 }
 
