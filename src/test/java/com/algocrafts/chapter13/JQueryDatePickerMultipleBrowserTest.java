@@ -1,6 +1,5 @@
 package com.algocrafts.chapter13;
 
-import com.algocrafts.browsers.Browsers;
 import com.algocrafts.selenium.Browser;
 import com.jquery.datepicker.JQueryDatePickerPage;
 import org.apache.commons.lang.time.StopWatch;
@@ -13,7 +12,7 @@ import static java.time.Month.APRIL;
 import static java.util.EnumSet.of;
 import static org.junit.Assert.assertEquals;
 
-public class JQueryDatePickerTest {
+public class JQueryDatePickerMultipleBrowserTest {
 
     private StopWatch stopWatch = new StopWatch();
 
@@ -27,22 +26,15 @@ public class JQueryDatePickerTest {
         System.out.println("Taken " + stopWatch);
     }
 
-    private JQueryDatePickerPage jQueryDatePickerPage
-            = new JQueryDatePickerPage(Browsers.CHROME);
-
-    @Before
-    public void setup() {
-        jQueryDatePickerPage.open();
-    }
-
     @Test
-    public void pickADate() {
-        jQueryDatePickerPage.pick(APRIL, 1, 2012);
-        assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
+    public void testDifferentBrowsers() {
+        for (Browser browser : of(CHROME, FIREFOX, SAFARI)) {
+            JQueryDatePickerPage jQueryDatePickerPage = new JQueryDatePickerPage(browser);
+            jQueryDatePickerPage.open();
+            jQueryDatePickerPage.pick(APRIL, 1, 2012);
+            assertEquals("04/01/2012", jQueryDatePickerPage.getDate());
+            browser.quit();
+        }
     }
 
-    @After
-    public void close() {
-        jQueryDatePickerPage.close();
-    }
 }

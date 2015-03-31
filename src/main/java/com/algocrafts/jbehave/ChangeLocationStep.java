@@ -27,5 +27,6 @@ public class ChangeLocationStep {
     @Then("the default location is $location")
     public void verifyLocation(String location) {
         assertEquals(location, page.currentLocation());
+        page.close();
     }
 }
