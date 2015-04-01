@@ -22,7 +22,7 @@ public enum CalendarClicker implements Locator<Page, Void> {
 
     private final Locator<Page, Element> locator;
 
-    private CalendarClicker(Locator<Page, Element> locator) {
+    CalendarClicker(Locator<Page, Element> locator) {
         this.locator = locator;
     }
 

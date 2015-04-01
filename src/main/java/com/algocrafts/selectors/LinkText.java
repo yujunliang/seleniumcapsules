@@ -25,7 +25,7 @@ public enum LinkText implements Supplier<By> {
 
     private final By by;
 
-    private LinkText(String id) {
+    LinkText(String id) {
         this.by = linkText(id);
     }
 

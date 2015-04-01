@@ -11,7 +11,7 @@ public enum StringEquals implements Predicate<String> {
 
     private final String text;
 
-    private StringEquals(String text) {
+    StringEquals(String text) {
         this.text = text;
     }
 

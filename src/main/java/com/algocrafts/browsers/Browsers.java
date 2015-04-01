@@ -14,7 +14,7 @@ public enum Browsers implements Browser {
     SAFARI(new SafariDriverSupplier()),
     INTERNET_EXPLORER(new InternetExplorerDriverSupplier());
 
-    private Browsers(CachedWebDriverSupplier<? extends WebDriver> driverDecorator) {
+    Browsers(CachedWebDriverSupplier<? extends WebDriver> driverDecorator) {
         this.webDriverSupplier = driverDecorator;
     }
 

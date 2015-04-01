@@ -30,7 +30,7 @@ public enum ClassName implements Supplier<By> {
 
     private final By by;
 
-    private ClassName(String id) {
+    ClassName(String id) {
         this.by = className(id);
     }
 

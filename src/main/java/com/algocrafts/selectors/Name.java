@@ -17,7 +17,7 @@ public enum Name implements Supplier<By> {
 
     private final By by;
 
-    private Name(String id) {
+    Name(String id) {
         this.by = By.name(id);
     }
 

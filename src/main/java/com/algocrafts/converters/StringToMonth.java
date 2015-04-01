@@ -20,7 +20,7 @@ public enum StringToMonth implements Locator<String, Month> {
 
     private static final SelfPopulatingCache<String, Month> maps = new SelfPopulatingCache<>(48, new OneKeyLFUPolicy<>(), MONTH_MAPPER);
 
-    static enum MonthMapper implements Creator<String, Month> {
+    enum MonthMapper implements Creator<String, Month> {
         MONTH_MAPPER;
 
         @Override

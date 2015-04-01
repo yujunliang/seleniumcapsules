@@ -19,7 +19,7 @@ public enum CssSelector implements Supplier<By> {
 
     private final By by;
 
-    private CssSelector(String id) {
+    CssSelector(String id) {
         this.by = cssSelector(id);
     }
 

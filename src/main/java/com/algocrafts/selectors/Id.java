@@ -29,7 +29,7 @@ public enum Id implements Supplier<By> {
 
     private final By by;
 
-    private Id(String id) {
+    Id(String id) {
         this.by = id(id);
     }
 

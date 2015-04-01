@@ -39,7 +39,7 @@ public enum CalendarIntegerLocator implements Locator<Page, Integer> {
 
     private final Locator<Page, Integer> locator;
 
-    private CalendarIntegerLocator(Locator<Page, Integer> locator) {
+    CalendarIntegerLocator(Locator<Page, Integer> locator) {
         this.locator = locator;
     }
 

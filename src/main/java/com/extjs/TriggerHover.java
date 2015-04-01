@@ -16,7 +16,7 @@ public enum TriggerHover implements Locator<Page, Void> {
 
     private final Locator<Page, Element> locator;
 
-    private TriggerHover(Locator<Page, Element> locator) {
+    TriggerHover(Locator<Page, Element> locator) {
         this.locator = locator;
     }
 

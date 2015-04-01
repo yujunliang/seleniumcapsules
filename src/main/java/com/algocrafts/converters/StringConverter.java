@@ -28,5 +28,5 @@ public enum StringConverter implements Locator<String, String> {
         public String locate(String element) {
             return element.replace('_', ' ');
         }
-    };
+    }
 }

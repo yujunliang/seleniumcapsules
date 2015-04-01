@@ -16,7 +16,7 @@ public enum PartialLinkText implements Supplier<By> {
 
     private final By by;
 
-    private PartialLinkText(String id) {
+    PartialLinkText(String id) {
         this.by = partialLinkText(id);
     }
 

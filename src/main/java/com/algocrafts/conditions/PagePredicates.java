@@ -52,7 +52,7 @@ public enum PagePredicates implements Predicate<Page> {
     );
     private final Predicate<Page> predicate;
 
-    private PagePredicates(Predicate<Page> predicate) {
+    PagePredicates(Predicate<Page> predicate) {
         this.predicate = predicate;
     }
 

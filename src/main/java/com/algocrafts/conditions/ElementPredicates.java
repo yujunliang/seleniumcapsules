@@ -28,5 +28,5 @@ public enum ElementPredicates implements Predicate<Element> {
         public boolean test(Element input) {
             return input.isSelected();
         }
-    },
+    }
 }

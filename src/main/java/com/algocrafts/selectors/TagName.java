@@ -32,7 +32,7 @@ public enum TagName implements Supplier<By> {
 
     private final By by;
 
-    private TagName(String id) {
+    TagName(String id) {
         this.by = tagName(id);
     }
 
