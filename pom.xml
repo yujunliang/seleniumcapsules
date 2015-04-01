@@ -14,6 +14,7 @@
         <spring.version>4.1.4.RELEASE</spring.version>
         <selenium.version>2.45.0</selenium.version>
         <jbehave.version>3.8</jbehave.version>
+        <cucumber.version>1.2.2</cucumber.version>
     </properties>
     <build>
         <plugins>
@@ -29,6 +30,18 @@
         </plugins>
     </build>
     <dependencies>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java8</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
