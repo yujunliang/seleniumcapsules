@@ -24,7 +24,7 @@ public class Url<T extends Browser> implements Clickable {
         browser.save(url);
     }
 
-    public Browser<?> load() {
+    public T load() {
         click();
         return browser;
     }

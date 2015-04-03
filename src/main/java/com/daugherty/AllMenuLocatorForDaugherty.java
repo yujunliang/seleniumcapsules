@@ -18,10 +18,10 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
+import static com.algocrafts.converters.GetText.LINK_TEXT;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.OptionalGetter.GET;
 import static com.algocrafts.locators.Locators.elements;
-import static com.algocrafts.selectors.TagName.A;
 import static com.algocrafts.selectors.TagName.LI;
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -37,12 +37,9 @@ public class AllMenuLocatorForDaugherty implements Locator<Page, Stream<Clickabl
     }
 
     private List<Clickable> getClickables(Page page, Supplier<By> id) {
-        Locator<Page, Stream<Element>> menubars =
-            new ElementLocator<Page>(id)
-                    .andThen(elements(LI))
+        Locator<Page, Stream<Element>> menubars = new ElementLocator<Page>(id)
+                .andThen(elements(LI))
                 .andThen(new Filter<>(DISPLAYED));
-
-        Locator<Element, String> LINK_TEXT = new ElementLocator<Element>(A).andThen(TEXT);
 
         List<Clickable> allMenu = newArrayList();
         menubars.apply(page).forEach(header -> {
