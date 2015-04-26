@@ -4,6 +4,7 @@ package com.algocrafts.selectors;
 import org.openqa.selenium.By;
 
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import static org.openqa.selenium.By.linkText;
 
@@ -24,9 +25,11 @@ public enum LinkText implements Supplier<By> {
     ONTARIO("Ontario");
 
     private final By by;
+    private final String text;
 
-    LinkText(String id) {
-        this.by = linkText(id);
+    LinkText(String text) {
+        this.by = linkText(text);
+        this.text = text;
     }
 
     /**
@@ -40,5 +43,9 @@ public enum LinkText implements Supplier<By> {
     @Override
     public String toString() {
         return by.toString();
+    }
+
+    public static LinkText resolve(String text) {
+        return Stream.of(values()).filter( (LinkText t) -> t.text.equals(text)).findFirst().get();
     }
 }

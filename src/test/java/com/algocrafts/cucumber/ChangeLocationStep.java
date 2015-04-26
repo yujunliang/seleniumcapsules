@@ -22,7 +22,7 @@ public class ChangeLocationStep {
 
     @When("^I change the location to (.+) then (.+)$")
     public void changeLocation(String country, String region) {
-        page.changeLocation(LinkText.valueOf(country), LinkText.valueOf(region));
+        page.changeLocation(LinkText.resolve(country), LinkText.resolve(region));
     }
 
     @Then("^the default location is (.+)$")
