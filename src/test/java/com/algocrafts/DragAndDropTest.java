@@ -67,7 +67,6 @@ public class DragAndDropTest {
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void dragAndDropChrome() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
         WebDriver webDriver = new ChromeDriver();
         webDriver.get("http://www.w3schools.com/html/html5_draganddrop.asp");
         WebElement source = webDriver.findElement(id("drag1"));

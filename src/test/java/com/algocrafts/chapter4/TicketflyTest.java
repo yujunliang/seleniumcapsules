@@ -141,7 +141,6 @@ public class TicketflyTest {
 
     @Test
     public void discoverMoreEventUsingSelenium() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
         WebDriver webDriver = new ChromeDriver();
         webDriver.get("http://www.ticketfly.com");
         webDriver.findElement(linkText("Discover More Events")).click();

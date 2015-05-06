@@ -14,7 +14,6 @@ public class ConfirmTest {
 
     @Test
     public void clickConfirmUsingSelenium() {
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
         WebDriver webDriver = new ChromeDriver();
         webDriver.get("http://localhost:63342/seleniumcapsules/html/upload.html");
         webDriver.findElement(cssSelector("input[value='Need Confirm']")).click();
