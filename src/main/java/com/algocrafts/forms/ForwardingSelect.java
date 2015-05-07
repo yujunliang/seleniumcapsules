@@ -4,6 +4,7 @@ import com.algocrafts.locators.SelectLocator;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.SearchScope;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 
@@ -30,7 +31,10 @@ public class ForwardingSelect<Where extends SearchScope<Where>>
     public void selectByVisibleText(Object text) {
         log.info("selecting " + this + " using [" + text + "]");
         locate().selectByVisibleText(text.toString());
-    }
+        if (!locate().getFirstSelectedOption().getAttribute("value").equals(text.toString())) {
+            locate().getOptions().stream().filter( (WebElement e) -> e.getText().equals(text.toString())).findFirst().get().click();
+        }
+}
 
     public boolean isMultiple() {
         return locate().isMultiple();
