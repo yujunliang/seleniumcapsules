@@ -14,6 +14,7 @@ public enum Id implements Supplier<By> {
     LOCATION("location"),
     MAIN("main"),
     MAIN_NAV("main-nav"),
+    MAIN_LEANDER_BOARD("mainLeaderboard"),
     SECONDARY_NAV("secondary-nav"),
     GLOBAL_NAV("global-nav"),
     UI_DATEPICKER_DIV("ui-datepicker-div"),

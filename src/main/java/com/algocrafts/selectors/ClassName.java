@@ -26,7 +26,8 @@ public enum ClassName implements Supplier<By> {
 
     PAGE_TITLE("page-title"),
     UI_DATEPICKER_CLOSE("ui-datepicker-close"),
-    SBDD_B("sbdd_b");
+    SBDD_B("sbdd_b"),
+    MAIN("main");
 
     private final By by;
 

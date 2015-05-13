@@ -33,7 +33,7 @@ public class Table<T, Where extends SearchScope<Where>> extends Locating<Where, 
 
     public Stream<T> getRows() {
         return locate(elements(TR))
-                .filter(e -> Locators.<Element>optionalElement(TD).locate(e) != null)
+                .filter(e -> Locators.<Element>optionalElement(TD).locate(e).isPresent())
                 .map(elements(TD))
                 .map(mapper);
     }
