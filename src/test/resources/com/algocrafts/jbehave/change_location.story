@@ -3,7 +3,7 @@ As an event goer
 I want to change the default location to my location
 So that I can easily find out the local events
 
-Scenario: scenario description
+Scenario: Goto home page and change the location to desired location
 Given I am on TicketFly home page using CHROME
 When I change the location to CANADA then ALL_CANADA
 Then the default location is Canada
