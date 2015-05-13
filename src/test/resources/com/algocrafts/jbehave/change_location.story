@@ -1,7 +1,7 @@
 Narrative:
-As a user
-I want to perform an action
-So that I can achieve a business goal
+As an event goer
+I want to change the default location to my location
+So that I can easily find out the local events
 
 Scenario: scenario description
 Given I am on TicketFly home page using CHROME

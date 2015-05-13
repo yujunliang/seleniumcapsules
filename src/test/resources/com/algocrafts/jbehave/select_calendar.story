@@ -1,7 +1,7 @@
 Narrative:
 As a user
-I want to perform an action
-So that I can achieve a business goal
+I want to select a specific date from datepicker
+So that I can populate the date filed on the form
 
 Scenario: scenario description
 Given I am on jQuery Calendar page using <browser>
