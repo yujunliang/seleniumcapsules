@@ -1,7 +1,7 @@
 package com.algocrafts.jbehave;
 
 import com.algocrafts.browsers.Browsers;
-import com.algocrafts.clickables.Url;
+import com.algocrafts.selenium.Browser;
 import com.jquery.datepicker.JQueryDatePickerPage;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
@@ -16,7 +16,7 @@ public class SelectCalendarStep {
 
     @Given("I am on jQuery Calendar page using <browser>")
     public void given(String browser) {
-        Browsers browser1 = Browsers.valueOf(browser);
+        Browser browser1 = Browsers.valueOf(browser);
         page = new JQueryDatePickerPage(browser1);
         page.open();
     }
