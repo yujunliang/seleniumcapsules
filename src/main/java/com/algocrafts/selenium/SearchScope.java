@@ -66,8 +66,8 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @param by selector
      * @return the first element or throw NoSuchElementException
      */
-    default Element untilFound(Supplier<By> by) {
-        return until(by);
+    default Element untilFound(Supplier<By> by) {  //<1>
+        return until(by);                          //<2>
     }
 
     /**

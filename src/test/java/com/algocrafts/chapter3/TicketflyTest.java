@@ -46,24 +46,27 @@ public class TicketflyTest {
      */
     @Test
     public void changeLocationUsingSelenium() {
-        WebDriver webDriver = BetterWebDriverFactory.CHROME.get();
+        WebDriver webDriver = new ChromeDriver();
         webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(By.linkText("change location")).click();
+        webDriver.findElement(By.linkText("change location")).click();       //<1>
         WebElement location = webDriver.findElement(By.id("location"));
         location.findElement(By.linkText("CANADA")).click();
         WebElement element = location.findElement(By.linkText("Ontario"));
         element.click();
-        assertEquals(0, location.findElements(By.linkText("Ontario")).size());
-        assertEquals("Ontario", webDriver
-                .findElement(By.xpath("div[@class='tools-location']/descendant::strong")).getText());
+        assertEquals(0, location.findElements(By.linkText("Ontario")).size()); //<2>
+        assertEquals("Ontario", webDriver   //<3>
+                .findElement(
+                        By.xpath("div[@class='tools-location']/descendant::strong")
+                )
+                .getText());
 
     }
 
 
     @Test
     public void changeLocationWithImplicitWait() {
-        WebDriver webDriver = BetterWebDriverFactory.CHROME.get();
-        webDriver.manage().timeouts().implicitlyWait(30, SECONDS);
+        WebDriver webDriver = new ChromeDriver();
+        webDriver.manage().timeouts().implicitlyWait(30, SECONDS);     //<1>
         webDriver.get("http://www.ticketfly.com");
         webDriver.findElement(By.linkText("change location")).click();
         WebElement tabMenu = webDriver.findElement(By.id("location"));
@@ -71,44 +74,53 @@ public class TicketflyTest {
         WebElement element = tabMenu.findElement(By.linkText("Ontario"));
         element.click();
         assertEquals(0, tabMenu.findElements(By.linkText("Ontario")).size());
-        assertEquals("Ontario", webDriver
-                .findElement(By.xpath("div[@class='tools-location']/descendant::strong")).getText());
+        assertEquals("Ontario", webDriver   //<2>
+                .findElement(
+                        By.xpath("div[@class='tools-location']/descendant::strong")
+                )
+                .getText());
 
     }
 
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void changeLocationUsingExplicitWait() {
-        WebDriver webDriver = BetterWebDriverFactory.CHROME.get();
+        WebDriver webDriver = new ChromeDriver();
         webDriver.get("http://www.ticketfly.com");
         webDriver.findElement(linkText("change location")).click();
 
-        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);  //<1>
 
-        WebElement location = webDriverWait.until(new Function<WebDriver, WebElement>() {
-            @Override
-            public WebElement apply(WebDriver webDriver) {
-                return webDriver.findElement(By.id("location"));
-            }
-        });
+        WebElement location = webDriverWait.until(
+                new Function<WebDriver, WebElement>() {
+                    @Override
+                    public WebElement apply(WebDriver webDriver) {
+                        return webDriver.findElement(By.id("location"));
+                    }
+                }
+        );
 
-        FluentWait<WebElement> webElementWait
+        FluentWait<WebElement> webElementWait              //<2>
                 = new FluentWait<WebElement>(location)
                 .withTimeout(30, SECONDS)
                 .ignoring(NoSuchElementException.class);
-        WebElement canada = webElementWait.until(new Function<WebElement, WebElement>() {
-            @Override
-            public WebElement apply(WebElement element) {
-                return location.findElement(linkText("CANADA"));
-            }
-        });
+        WebElement canada = webElementWait.until(
+                new Function<WebElement, WebElement>() {
+                    @Override
+                    public WebElement apply(WebElement element) {
+                        return location.findElement(linkText("CANADA"));
+                    }
+                }
+        );
         canada.click();
-        WebElement allCanada = webElementWait.until(new Function<WebElement, WebElement>() {
-            @Override
-            public WebElement apply(WebElement element) {
-                return location.findElement(linkText("Ontario"));
-            }
-        });
+        WebElement allCanada = webElementWait.until(
+                new Function<WebElement, WebElement>() {
+                    @Override
+                    public WebElement apply(WebElement element) {
+                        return location.findElement(linkText("Ontario"));
+                    }
+                }
+        );
         allCanada.click();
         assertEquals(0, webDriver.findElements(linkText("Ontario")).size());
         assertEquals("Ontario", webDriver
@@ -194,11 +206,11 @@ public class TicketflyTest {
     public void changeLocationUsingBrowser() {
         Browser browser = CHROME;
         browser.get("http://www.ticketfly.com");
-        browser.untilFound(LinkText.CHANGE_LOCATION).click();
+        browser.untilFound(LinkText.CHANGE_LOCATION).click();   //<1>
         Element tabMenu = browser.untilFound(Id.LOCATION);
         tabMenu.untilFound(LinkText.CANADA).click();
         tabMenu.untilFound(LinkText.ONTARIO).click();
-        assertFalse(tabMenu.optionalElement(LinkText.ONTARIO).isPresent());
+        assertFalse(tabMenu.optionalElement(LinkText.ONTARIO).isPresent());     //<2>
         assertEquals("Ontario", browser.untilFound(Xpath.LOCATION).getText());
     }
 
@@ -209,7 +221,7 @@ public class TicketflyTest {
     public void changeLocation() {
         TicketflyPage page = new TicketflyPage(CHROME);
         page.open();
-        page.changeLocation(CANADA, ONTARIO);
+        page.changeLocation(CANADA, ONTARIO);        //<1>
         assertEquals("Ontario", page.currentLocation());
     }
 

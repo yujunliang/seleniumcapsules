@@ -25,7 +25,7 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
      * @throws NoSuchElementException not found
      */
     default Element until(Supplier<By> by) throws NoSuchElementException {
-        return until(30, SECONDS, by);
+        return until(30, SECONDS, by);      //<1>
     }
 
     /**
@@ -43,12 +43,18 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
      * @return the element found by using the locator
      * @throws NoSuchElementException not found
      */
-    default Element until(int duration, TimeUnit timeUnit, Supplier<By> by) throws NoSuchElementException {
+    default Element until(int duration,
+                          TimeUnit timeUnit,
+                          Supplier<By> by)
+            throws NoSuchElementException {
         try {
-            return explicitWait(duration, timeUnit).until((Where where) -> where.findElement(by.get()));
+            FluentWait<Where> fluentWait = fluentWait(duration, timeUnit);
+            return fluentWait.until(
+                    (Where where) -> where.findElement(by.get())     //<2>
+            );
         } catch (TimeoutException e) {
             onTimeout();
-            throw new NoSuchElementException("Nothing found by " + by, e);
+            throw new NoSuchElementException("Nothing found using " + by, e);
         }
     }
 
@@ -58,9 +64,15 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
      * @param predicate predicate
      * @throws TimeoutException timeout
      */
-    default void until(int duration, TimeUnit timeUnit, Predicate<Where> predicate) throws TimeoutException {
+    default void until(int duration,
+                       TimeUnit timeUnit,
+                       Predicate<Where> predicate)
+            throws TimeoutException {
         try {
-            explicitWait(duration, timeUnit).until((Where where) -> predicate.test(where));
+            FluentWait<Where> fluentWait = fluentWait(duration, timeUnit);
+            fluentWait.until(
+                    (Where where) -> predicate.test(where)
+            );
         } catch (TimeoutException e) {
             onTimeout();
             throw e;
@@ -73,8 +85,8 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
      * @return the FluentWait instance
      */
     @SuppressWarnings("unchecked")
-    default FluentWait<Where> explicitWait(int duration, TimeUnit timeUnit) {
-        return new FluentWait<>((Where) this)
+    default FluentWait<Where> fluentWait(int duration, TimeUnit timeUnit) {
+        return new FluentWait<>((Where) this)       //<3>
                 .withTimeout(duration, timeUnit)
                 .pollingEvery(5, MILLISECONDS)
                 .ignoring(Exception.class);

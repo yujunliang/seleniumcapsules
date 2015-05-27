@@ -18,12 +18,12 @@ public class TicketflyPage {
         browser.get(url);
     }
 
-    public void changeLocation(LinkText first, LinkText second) {
-        Stream.of(LinkText.CHANGE_LOCATION, first, second).forEach(
+    public void changeLocation(LinkText first, LinkText second) {   //<1>
+        Stream.of(LinkText.CHANGE_LOCATION, first, second).forEach( //<2>
                 linkText -> browser.untilFound(linkText).click());
     }
 
-    public String currentLocation() {
+    public String currentLocation() {    //<3>
         return browser.untilFound(Xpath.LOCATION).getText();
     }
 }

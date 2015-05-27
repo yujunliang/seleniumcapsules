@@ -101,7 +101,7 @@ public class TicketflyTest {
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void changeLocationUsingExplicitWaitLambda() {
-        WebDriver webDriver = BetterWebDriverFactory.CHROME.get();
+        WebDriver webDriver = new ChromeDriver();
         webDriver.get("http://www.ticketfly.com");
         webDriver.findElement(linkText("change location")).click();
 
