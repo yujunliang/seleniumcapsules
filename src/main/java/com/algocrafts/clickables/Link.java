@@ -5,9 +5,9 @@ import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.SearchScope;
 import com.algocrafts.selenium.Locator;
 
-public class Link<Where extends SearchScope<Where>> extends Clickables<Where> {
+public class Link<T extends SearchScope<T>> extends Clickables<T> {
 
-    public Link(Where where, Locator<Where, Element> locator) {
+    public Link(T where, Locator<T, Element> locator) {
         super(where, locator);
     }
 

@@ -9,18 +9,18 @@ import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
-public class Locators<Where extends SearchScope<Where>, What>
-        implements Locator<Where, What> {
+public class Locators<T1 extends SearchScope<T1>, T2>
+        implements Locator<T1, T2> {
 
-    public static <Where extends SearchScope<Where>> Locators<Where, Element> element(Supplier<By> selector) {
+    public static <T extends SearchScope<T>> Locators<T, Element> element(Supplier<By> selector) {
         return new ElementLocator<>(selector);
     }
 
-    public static <Where extends SearchScope<Where>> Locators<Where, Stream<Element>> elements(Supplier<By> selector) {
+    public static <T extends SearchScope<T>> Locators<T, Stream<Element>> elements(Supplier<By> selector) {
         return new ElementsLocator<>(selector);
     }
 
-    public static <Where extends SearchScope<Where>> Locators<Where, Optional<Element>> optionalElement(Supplier<By> selector) {
+    public static <T extends SearchScope<T>> Locators<T, Optional<Element>> optionalElement(Supplier<By> selector) {
         return new OptionalElementLocator<>(selector);
     }
 
@@ -28,14 +28,14 @@ public class Locators<Where extends SearchScope<Where>, What>
         return new SelectLocator(selector);
     }
 
-    private final Locator<Where, What> locator;
+    private final Locator<T1, T2> locator;
 
-    public Locators(Locator<Where, What> locator) {
+    public Locators(Locator<T1, T2> locator) {
         this.locator = locator;
     }
 
     @Override
-    public What locate(Where where) {
+    public T2 locate(T1 where) {
         return locator.locate(where);
     }
 }

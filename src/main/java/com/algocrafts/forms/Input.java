@@ -24,7 +24,7 @@ import static com.algocrafts.converters.OptionalGetter.GET;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class Input<Where extends SearchScope<Where>> extends Locating<Where, Optional<Element>> {
+public class Input<T extends SearchScope<T>> extends Locating<T, Optional<Element>> {
 
     public static final Logger log = getLogger(Input.class);
 
@@ -34,8 +34,8 @@ public class Input<Where extends SearchScope<Where>> extends Locating<Where, Opt
      * @param where    where
      * @param selector selector
      */
-    public Input(Where where, Supplier<By> selector) {
-        super(where, Locators.<Where>optionalElement(selector));
+    public Input(T where, Supplier<By> selector) {
+        super(where, Locators.<T>optionalElement(selector));
     }
 
     /**
@@ -97,10 +97,10 @@ public class Input<Where extends SearchScope<Where>> extends Locating<Where, Opt
      * @param value   value
      * @param locator locator
      */
-    public void autocomplete(Object value, Locator<Where, Stream<Element>> locator) {
+    public void autocomplete(Object value, Locator<T, Stream<Element>> locator) {
         Element element = locate(GET);
         element.clear();
-        Locator<Where, Optional<Element>> optionalLocator = locator.andThen(new FirstMatch<>(TEXT.and(new StringContains(value.toString()))));
+        Locator<T, Optional<Element>> optionalLocator = locator.andThen(new FirstMatch<>(TEXT.and(new StringContains(value.toString()))));
         for (char c : value.toString().toCharArray()) {
             element.sendKeys(String.valueOf(c));
             Optional<Element> locate = use(optionalLocator);

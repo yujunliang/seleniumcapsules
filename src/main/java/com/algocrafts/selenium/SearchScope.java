@@ -26,7 +26,7 @@ import static com.algocrafts.selectors.TagName.IMG;
 import static java.util.stream.Collectors.toList;
 
 
-public interface SearchScope<Where extends SearchScope<Where>> extends SearchContext, ExplicitWait<Where> {
+public interface SearchScope<T extends SearchScope<T>> extends SearchContext, ExplicitWait<T> {
 
     /**
      * Find the first element or throw NoSuchElementException
@@ -102,7 +102,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      */
     @SuppressWarnings("unchecked")
     default Clickable button(Supplier<By> by, int index) {
-        return new Button<>((Where) this, Locators.<Where>elements(by)
+        return new Button<>((T) this, Locators.<T>elements(by)
                 .andThen(new StreamToList<>())
                 .andThen(new ElementAtIndex<>(index)));
     }
@@ -114,8 +114,8 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @return button found by the locator
      */
     @SuppressWarnings("unchecked")
-    default Clickable button(Locator<Where, Element> locator) {
-        return new Button<>((Where) this, locator);
+    default Clickable button(Locator<T, Element> locator) {
+        return new Button<>((T) this, locator);
     }
 
     /**
@@ -148,10 +148,10 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      * @return the images  found by using the same image file.
      */
     default Stream<Element> images(String fileName) {
-        return Locators.<Where>elements(IMG)
+        return Locators.<T>elements(IMG)
                 .andThen(new Filter<>(NOT_NULL.and(DISPLAYED)
                         .and(SRC.and(new StringContains(fileName)))))
-                .locate((Where) this);
+                .locate((T) this);
     }
 
     /**
@@ -162,7 +162,7 @@ public interface SearchScope<Where extends SearchScope<Where>> extends SearchCon
      */
     @SuppressWarnings("unchecked")
     default Clickable link(Supplier<By> selector) {
-        return new Link<>((Where) this, element(selector));
+        return new Link<>((T) this, element(selector));
     }
 
 }

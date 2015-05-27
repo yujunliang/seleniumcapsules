@@ -8,13 +8,13 @@ import org.slf4j.Logger;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class Clickables<Where extends SearchScope<Where>> implements Clickable {
+public class Clickables<T extends SearchScope<T>> implements Clickable {
 
     private static final Logger log = getLogger(Clickables.class);
-    private final Where where;
-    private final Locator<Where, Element> locator;
+    private final T where;
+    private final Locator<T, Element> locator;
 
-    public Clickables(Where where, Locator<Where, Element> locator) {
+    public Clickables(T where, Locator<T, Element> locator) {
         this.locator = locator;
         this.where = where;
     }

@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
-public interface ExplicitWait<Where extends SearchScope<Where>> {
+public interface ExplicitWait<T extends SearchScope<T>> {
 
     /**
      * Save the screenshot if possible.
@@ -32,7 +32,7 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
      * @param predicate predicate
      * @throws TimeoutException timeout
      */
-    default void until(Predicate<Where> predicate) throws TimeoutException {
+    default void until(Predicate<T> predicate) throws TimeoutException {
         until(30, SECONDS, predicate);
     }
 
@@ -48,9 +48,9 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
                           Supplier<By> by)
             throws NoSuchElementException {
         try {
-            FluentWait<Where> fluentWait = fluentWait(duration, timeUnit);
+            FluentWait<T> fluentWait = fluentWait(duration, timeUnit);
             return fluentWait.until(
-                    (Where where) -> where.findElement(by.get())     //<2>
+                    (T where) -> where.findElement(by.get())     //<2>
             );
         } catch (TimeoutException e) {
             onTimeout();
@@ -66,12 +66,12 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
      */
     default void until(int duration,
                        TimeUnit timeUnit,
-                       Predicate<Where> predicate)
+                       Predicate<T> predicate)
             throws TimeoutException {
         try {
-            FluentWait<Where> fluentWait = fluentWait(duration, timeUnit);
+            FluentWait<T> fluentWait = fluentWait(duration, timeUnit);
             fluentWait.until(
-                    (Where where) -> predicate.test(where)
+                    (T where) -> predicate.test(where)
             );
         } catch (TimeoutException e) {
             onTimeout();
@@ -85,8 +85,8 @@ public interface ExplicitWait<Where extends SearchScope<Where>> {
      * @return the FluentWait instance
      */
     @SuppressWarnings("unchecked")
-    default FluentWait<Where> fluentWait(int duration, TimeUnit timeUnit) {
-        return new FluentWait<>((Where) this)       //<3>
+    default FluentWait<T> fluentWait(int duration, TimeUnit timeUnit) {
+        return new FluentWait<>((T) this)       //<3>
                 .withTimeout(duration, timeUnit)
                 .pollingEvery(5, MILLISECONDS)
                 .ignoring(Exception.class);

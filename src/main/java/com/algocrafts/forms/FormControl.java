@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 
-public interface FormControl<Where extends SearchScope<Where>> extends SearchScope<Where> {
+public interface FormControl<T extends SearchScope<T>> extends SearchScope<T> {
 
     /**
      * Check if the checkbox is checked by the given selector.
@@ -22,7 +22,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      */
     @SuppressWarnings("unchecked")
     default boolean isChecked(Supplier<By> selector) {
-        return new Checkbox<>((Where) this, selector).isChecked();
+        return new Checkbox<>((T) this, selector).isChecked();
     }
 
     /**
@@ -33,7 +33,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      */
     @SuppressWarnings("unchecked")
     default void setCheckbox(Supplier<By> selector, boolean value) {
-        new Checkbox<>((Where) this, selector).setValue(value);
+        new Checkbox<>((T) this, selector).setValue(value);
     }
 
     /**
@@ -44,7 +44,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      */
     @SuppressWarnings("unchecked")
     default String getRadio(Supplier<By> selector) {
-        return new RadioButton<>((Where) this, selector).getValue();
+        return new RadioButton<>((T) this, selector).getValue();
     }
 
     /**
@@ -66,7 +66,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      */
     @SuppressWarnings("unchecked")
     default void setRadioButton(Supplier<By> selector, Object option) {
-        new RadioButton<>((Where) this, selector).setValue(option);
+        new RadioButton<>((T) this, selector).setValue(option);
     }
 
     /**
@@ -77,7 +77,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      */
     @SuppressWarnings("unchecked")
     default void select(Supplier<By> selector, Object value) {
-        new ForwardingSelect<>((Where) this, Locators.<Where>select(selector)).selectByVisibleText(value);
+        new ForwardingSelect<>((T) this, Locators.<T>select(selector)).selectByVisibleText(value);
     }
 
     /**
@@ -88,8 +88,8 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @return its value.
      */
     @SuppressWarnings("unchecked")
-    default <T> T get(Supplier<By> selector, Locator<String, T> converter) {
-        return converter.locate(new Input<>((Where) this, selector).getValue());
+    default <T1> T1 get(Supplier<By> selector, Locator<String, T1> converter) {
+        return converter.locate(new Input<>((T) this, selector).getValue());
     }
 
     /**
@@ -100,7 +100,7 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      */
     @SuppressWarnings("unchecked")
     default String get(Supplier<By> selector) {
-        return new Input<>((Where) this, selector).getValue();
+        return new Input<>((T) this, selector).getValue();
     }
 
     /**
@@ -111,12 +111,12 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      */
     @SuppressWarnings("unchecked")
     default void put(Supplier<By> selector, Object value) {
-        new Input<>((Where) this, selector).put(value);
+        new Input<>((T) this, selector).put(value);
     }
 
     @SuppressWarnings("unchecked")
     default void upload(Supplier<By> selector, Supplier<By> submit, File filePath) {
-        new FileInput<>((Where) this, selector).put(filePath);
+        new FileInput<>((T) this, selector).put(filePath);
         button(submit).click();
     }
 
@@ -128,8 +128,8 @@ public interface FormControl<Where extends SearchScope<Where>> extends SearchSco
      * @param locator  locator
      */
     @SuppressWarnings("unchecked")
-    default void autocomplete(Supplier<By> selector, Object value, Locator<Where, Stream<Element>> locator) {
-        new Input<>((Where) this, selector).autocomplete(value, locator);
+    default void autocomplete(Supplier<By> selector, Object value, Locator<T, Stream<Element>> locator) {
+        new Input<>((T) this, selector).autocomplete(value, locator);
     }
 
 

@@ -17,7 +17,7 @@ import static com.algocrafts.converters.OptionalGetter.GET;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class FileInput<Where extends SearchScope<Where>> extends Locating<Where, Optional<Element>> {
+public class FileInput<T extends SearchScope<T>> extends Locating<T, Optional<Element>> {
 
     public static final Logger log = getLogger(FileInput.class);
 
@@ -27,8 +27,8 @@ public class FileInput<Where extends SearchScope<Where>> extends Locating<Where,
      * @param where    where
      * @param selector selector
      */
-    public FileInput(Where where, Supplier<By> selector) {
-        super(where, Locators.<Where>optionalElement(selector));
+    public FileInput(T where, Supplier<By> selector) {
+        super(where, Locators.<T>optionalElement(selector));
     }
 
     public void put(File file) {

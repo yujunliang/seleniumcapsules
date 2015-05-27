@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
-public class ForwardingSelect<Where extends SearchScope<Where>>
-        extends Locating<Where, Select> {
+public class ForwardingSelect<T extends SearchScope<T>>
+        extends Locating<T, Select> {
 
     private static final Logger log = getLogger(ForwardingSelect.class);
 
@@ -24,7 +24,7 @@ public class ForwardingSelect<Where extends SearchScope<Where>>
      * @param where
      * @param locator
      */
-    public ForwardingSelect(Where where, SelectLocator<Where> locator) {
+    public ForwardingSelect(T where, SelectLocator<T> locator) {
         super(where, locator);
     }
 

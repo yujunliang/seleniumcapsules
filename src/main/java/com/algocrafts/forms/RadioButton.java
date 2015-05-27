@@ -22,8 +22,8 @@ import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.locators.Locators.elements;
 import static com.algocrafts.selectors.Xpath.PARENT;
 
-public class RadioButton<Where extends SearchScope<Where>>
-        extends Locating<Where, Stream<Element>> {
+public class RadioButton<T extends SearchScope<T>>
+        extends Locating<T, Stream<Element>> {
 
     /**
      * Constructor this radio button.
@@ -31,7 +31,7 @@ public class RadioButton<Where extends SearchScope<Where>>
      * @param where    where
      * @param selector selector
      */
-    public RadioButton(Where where, Supplier<By> selector) {
+    public RadioButton(T where, Supplier<By> selector) {
         super(where, elements(selector));
     }
 

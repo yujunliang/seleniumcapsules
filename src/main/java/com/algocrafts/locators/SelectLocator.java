@@ -15,13 +15,13 @@ import static com.algocrafts.selectors.TagName.OPTION;
 import static org.slf4j.LoggerFactory.getLogger;
 
 
-public class SelectLocator<Where extends SearchScope<Where>>
-        extends Locators<Where, Select> {
+public class SelectLocator<T extends SearchScope<T>>
+        extends Locators<T, Select> {
 
     private static final Logger log = getLogger(SelectLocator.class);
 
     public SelectLocator(Supplier<By> selector) {
-        super((Where where) -> {
+        super((T where) -> {
             final Element element = where.untilFound(selector);
             try {
                 element.until(Locators.<Element>elements(OPTION).and(new HasElements<>()));
