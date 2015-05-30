@@ -16,7 +16,7 @@ public enum MailingOptions {
 
     private final String string;
 
-    private MailingOptions(String string) {
+    MailingOptions(String string) {
         this.string = string;
         MapHolder.map.put(string, this);
     }

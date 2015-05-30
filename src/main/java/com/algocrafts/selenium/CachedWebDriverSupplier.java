@@ -10,10 +10,10 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public interface CachedWebDriverSupplier<T extends WebDriver> extends Supplier<T> {
 
-    SelfPopulatingCache<CachedWebDriverSupplier<?>, ? extends WebDriver> store
-            = SelfPopulatingCache.create(CachedWebDriverSupplier::init);
+    public static final SelfPopulatingCache<CachedWebDriverSupplier<?>, ? extends WebDriver> store
+            = SelfPopulatingCache.create((CachedWebDriverSupplier<?> supplier) -> supplier.init());
 
-    Logger logger = getLogger(CachedWebDriverSupplier.class);
+    public static final Logger logger = getLogger(CachedWebDriverSupplier.class);
 
     T init();
 

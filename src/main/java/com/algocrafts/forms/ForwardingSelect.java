@@ -31,10 +31,13 @@ public class ForwardingSelect<T extends SearchScope<T>>
     public void selectByVisibleText(Object text) {
         log.info("selecting " + this + " using [" + text + "]");
         locate().selectByVisibleText(text.toString());
-        if (!locate().getFirstSelectedOption().getAttribute("value").equals(text.toString())) {
-            locate().getOptions().stream().filter( (WebElement e) -> e.getText().equals(text.toString())).findFirst().get().click();
+        try {
+            if (!locate().getFirstSelectedOption().getAttribute("value").equals(text.toString())) {
+                locate().getOptions().stream().filter((WebElement e) -> e.getText().equals(text.toString())).findFirst().get().click();
+            }
+        } catch (Exception e) {
         }
-}
+    }
 
     public boolean isMultiple() {
         return locate().isMultiple();

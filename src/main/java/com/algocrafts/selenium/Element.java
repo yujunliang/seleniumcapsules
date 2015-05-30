@@ -79,10 +79,10 @@ public class Element implements SearchScope<Element>, WebElement, Locatable {
     public Element findElement(By by) {
         Element locate;
         try {
-            locate = new ElementFinder(by).locate(element);
-        } catch (StaleElementReferenceException e) {
-            this.element = searchContext.findElement(this.by);
-            return findElement(by);
+            locate = new ElementFinder(by).locate(element);   //<1>
+        } catch (StaleElementReferenceException e) {          //<2>
+            this.element = searchContext.findElement(this.by);  //<3>
+            return findElement(by);                             //<4>
         }
         return locate;
     }

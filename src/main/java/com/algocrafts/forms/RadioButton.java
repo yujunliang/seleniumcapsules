@@ -3,7 +3,6 @@ package com.algocrafts.forms;
 
 import com.algocrafts.conditions.StringContains;
 import com.algocrafts.converters.FirstMatch;
-import com.algocrafts.locators.Locators;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locating;
 import com.algocrafts.selenium.SearchScope;
@@ -16,11 +15,9 @@ import static com.algocrafts.conditions.ElementPredicates.DISPLAYED;
 import static com.algocrafts.conditions.StringEquals.TRUE;
 import static com.algocrafts.converters.ElementFunctions.CLICK;
 import static com.algocrafts.converters.GetText.CHECKED;
-import static com.algocrafts.converters.GetText.TEXT;
+import static com.algocrafts.converters.GetText.VALUE;
 import static com.algocrafts.converters.OptionalGetter.GET;
-import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.locators.Locators.elements;
-import static com.algocrafts.selectors.Xpath.PARENT;
 
 public class RadioButton<T extends SearchScope<T>>
         extends Locating<T, Stream<Element>> {
@@ -39,10 +36,7 @@ public class RadioButton<T extends SearchScope<T>>
      * @param value value to set
      */
     public void setValue(Object value) {
-        locate(new FirstMatch<>(DISPLAYED
-                .and(Locators.<Element>element(PARENT)
-                        .andThen(TEXT)
-                        .and(new StringContains(value.toString()))))
+        locate(new FirstMatch<>(VALUE.and(new StringContains(value.toString())))
                 .andThen(GET).andThen(CLICK));
     }
 
@@ -53,8 +47,7 @@ public class RadioButton<T extends SearchScope<T>>
         return locate(new FirstMatch<>(DISPLAYED
                 .and(CHECKED.and(TRUE)))
                 .andThen(GET)
-                .andThen(element(PARENT))
-                .andThen(TEXT));
+                .andThen(VALUE));
     }
 }
 
