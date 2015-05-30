@@ -14,55 +14,55 @@ public class AlertTest {
 @Test
 public void dismiss()  {
     File file = new File("src/test/resources/html/confirm.html");
-    WebDriver webDriver = new ChromeDriver();
-    webDriver.get("file://" + file.getAbsolutePath());
-    webDriver.findElement(By.id("button2")).click();
+    WebDriver driver = new ChromeDriver();
+    driver.get("file://" + file.getAbsolutePath());
+    driver.findElement(By.id("button2")).click();
 
-    Alert alert = webDriver.switchTo().alert();
+    Alert alert = driver.switchTo().alert();
     alert.dismiss();
 }
 
 @Test
 public void accept()  {
     File file = new File("src/test/resources/html/alert.html");
-    WebDriver webDriver = new ChromeDriver();
-    webDriver.get("file://" + file.getAbsolutePath());
-    webDriver.findElement(By.id("button1")).click();
+    WebDriver driver = new ChromeDriver();
+    driver.get("file://" + file.getAbsolutePath());
+    driver.findElement(By.id("button1")).click();
 
-    Alert alert = webDriver.switchTo().alert();
+    Alert alert = driver.switchTo().alert();
     alert.accept();
 }
 
 @Test
 public void accept2()  {
     File file = new File("src/test/resources/html/confirm.html");
-    WebDriver webDriver = new ChromeDriver();
-    webDriver.get("file://" + file.getAbsolutePath());
-    webDriver.findElement(By.id("button2")).click();
+    WebDriver driver = new ChromeDriver();
+    driver.get("file://" + file.getAbsolutePath());
+    driver.findElement(By.id("button2")).click();
 
-    Alert alert = webDriver.switchTo().alert();
+    Alert alert = driver.switchTo().alert();
     alert.accept();
 }
 
 @Test
 public void getText()  {
     File file = new File("src/test/resources/html/confirm.html");
-    WebDriver webDriver = new ChromeDriver();
-    webDriver.get("file://" + file.getAbsolutePath());
-    webDriver.findElement(By.id("button2")).click();
+    WebDriver driver = new ChromeDriver();
+    driver.get("file://" + file.getAbsolutePath());
+    driver.findElement(By.id("button2")).click();
 
-    Alert alert = webDriver.switchTo().alert();
+    Alert alert = driver.switchTo().alert();
     System.out.println(alert.getText());
 }
 
 @Test
 public void sendKeys()  {
     File file = new File("src/test/resources/html/prompt.html");
-    WebDriver webDriver = new ChromeDriver();
-    webDriver.get("file://" + file.getAbsolutePath());
-    webDriver.findElement(By.id("button2")).click();
+    WebDriver driver = new ChromeDriver();
+    driver.get("file://" + file.getAbsolutePath());
+    driver.findElement(By.id("button2")).click();
 
-    Alert alert = webDriver.switchTo().alert();
+    Alert alert = driver.switchTo().alert();
     alert.sendKeys("35");
     alert.accept();
 }

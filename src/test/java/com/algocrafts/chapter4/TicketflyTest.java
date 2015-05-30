@@ -48,69 +48,69 @@ public class TicketflyTest {
 
     @Test
     public void findChangeLocationUsingClassName() {
-        WebDriver webDriver = Browsers.CHROME;
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(By.className("change-location")).click();
+        WebDriver driver = Browsers.CHROME;
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(By.className("change-location")).click();
     }
 
 
     @Test
     public void findChangeLocationUsingId() {
-        WebDriver webDriver = Browsers.CHROME;
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(By.id("change-location")).click();
+        WebDriver driver = Browsers.CHROME;
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(By.id("change-location")).click();
 
     }
 
     @Test
     public void findChangeLocationUsingTagName() {
-        WebDriver webDriver = Browsers.CHROME;
-        webDriver.get("http://www.ticketfly.com");
-        Stream<WebElement> links = webDriver.findElements(By.tagName("a")).stream();
+        WebDriver driver = Browsers.CHROME;
+        driver.get("http://www.ticketfly.com");
+        Stream<WebElement> links = driver.findElements(By.tagName("a")).stream();
         links.filter((WebElement e) -> e.getText().equals("change location")).findFirst().get().click();
     }
 
     @Test
     public void findChangeLocationUsingPartialLinkText() {
-        WebDriver webDriver = Browsers.CHROME;
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(By.partialLinkText("change")).click();
+        WebDriver driver = Browsers.CHROME;
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(By.partialLinkText("change")).click();
     }
 
     @Test
     public void findChangeLocationUsingLinkText() {
-        WebDriver webDriver = Browsers.CHROME;
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(By.linkText("change location")).click();
+        WebDriver driver = Browsers.CHROME;
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(By.linkText("change location")).click();
     }
 
     @Test
     public void findChangeLocationUsingCssSelecotr() {
-        WebDriver webDriver = Browsers.CHROME;
-        webDriver.get("http://www.ticketfly.com");
-      System.out.println(webDriver.findElement(By.cssSelector(".active")).toString());
+        WebDriver driver = Browsers.CHROME;
+        driver.get("http://www.ticketfly.com");
+      System.out.println(driver.findElement(By.cssSelector(".active")).toString());
     }
 
     @Test
     public void findChangeLocationUsingXpath() {
-        WebDriver webDriver = Browsers.CHROME;
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(By.xpath("//a[@id='change-location']")).click();
+        WebDriver driver = Browsers.CHROME;
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(By.xpath("//a[@id='change-location']")).click();
     }
 
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void changeLocationUsingExplicitWaitLambda() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(linkText("change location")).click();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(linkText("change location")).click();
 
-        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);
 
         WebElement location = webDriverWait.until(new Function<WebDriver, WebElement>() {
             @Override
-            public WebElement apply(WebDriver webDriver) {
-                return webDriver.findElement(By.id("location"));
+            public WebElement apply(WebDriver driver) {
+                return driver.findElement(By.id("location"));
             }
         });
 
@@ -132,8 +132,8 @@ public class TicketflyTest {
             }
         });
         allCanada.click();
-        assertEquals(0, webDriver.findElements(linkText("Ontario")).size());
-        assertEquals("Ontario", webDriver
+        assertEquals(0, driver.findElements(linkText("Ontario")).size());
+        assertEquals("Ontario", driver
                 .findElement(By.xpath("//div[@class='tools']/descendant::strong")).getText());
     }
 
@@ -177,10 +177,10 @@ public class TicketflyTest {
 
     @Test
     public void discoverMoreEventUsingSelenium() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(linkText("Discover More Events")).click();
-        webDriver.findElement(id("filter-events3")).click();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(linkText("Discover More Events")).click();
+        driver.findElement(id("filter-events3")).click();
     }
 
 }

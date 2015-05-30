@@ -18,9 +18,9 @@ public class BrowserTest {
 
     @Test
     public void findHowItWorksLinkUsingLinkText() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://ticketfly.com/careers");
-        WebElement element = webDriver.findElement(By.linkText("How It Works"));
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://ticketfly.com/careers");
+        WebElement element = driver.findElement(By.linkText("How It Works"));
         System.out.println("element=" + element);
         System.out.println("element.getTagName()=" + element.getTagName());
         System.out.println("element.getText()=" + element.getText());
@@ -28,9 +28,9 @@ public class BrowserTest {
 
     @Test
     public void findHowItWorksLinkUsingPartialLinkText() {
-        WebDriver webDriver = new SafariDriver();
-        webDriver.get("http://ticketfly.com/careers");
-        WebElement element = webDriver.findElement(By.linkText("How It Works"));
+        WebDriver driver = new SafariDriver();
+        driver.get("http://ticketfly.com/careers");
+        WebElement element = driver.findElement(By.linkText("How It Works"));
         System.out.println("element=" + element);
         System.out.println("element.getTagName()=" + element.getTagName());
         System.out.println("element.getText()=" + element.getText());
@@ -38,9 +38,9 @@ public class BrowserTest {
 
     @Test
     public void findHowItWorksLinkUsingPartialLinkText1() {
-        WebDriver webDriver = new FirefoxDriver();
-        webDriver.get("http://ticketfly.com/careers");
-        WebElement element = webDriver.findElement(By.linkText("How It Works"));
+        WebDriver driver = new FirefoxDriver();
+        driver.get("http://ticketfly.com/careers");
+        WebElement element = driver.findElement(By.linkText("How It Works"));
         System.out.println("element=" + element);
         System.out.println("element.getTagName()=" + element.getTagName());
         System.out.println("element.getText()=" + element.getText());

@@ -22,10 +22,10 @@ public class ImeHandlerTest {
 
     @Test
     public void getAvailableEngines() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://ticketfly.com");
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://ticketfly.com");
 
-        Options manage = webDriver.manage();
+        Options manage = driver.manage();
         WebDriver.ImeHandler ime = manage.ime();
         ime.getAvailableEngines();
     }

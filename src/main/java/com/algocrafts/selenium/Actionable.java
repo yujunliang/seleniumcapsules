@@ -49,12 +49,12 @@ public interface Actionable<T extends WebDriver> extends WebDriver, CachedWebDri
     }
 
     default void save(String title) {
-        T webDriver = get();
-        if (webDriver instanceof TakesScreenshot) {
+        T driver = get();
+        if (driver instanceof TakesScreenshot) {
             logger.info("Saving screenshot [title={}]", title);
             File scrFile = null;
             try {
-                TakesScreenshot camera = (TakesScreenshot) webDriver;
+                TakesScreenshot camera = (TakesScreenshot) driver;
                 scrFile = camera.getScreenshotAs(FILE);
                 copyFile(scrFile, new File("target/screenshots/" + title + new Date().getTime() + ".png"));
                 scrFile.delete();

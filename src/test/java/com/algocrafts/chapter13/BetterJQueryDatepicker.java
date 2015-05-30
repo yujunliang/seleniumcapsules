@@ -13,14 +13,14 @@ import java.util.List;
 public class BetterJQueryDatepicker {
 
     private WebDriver frame;
-    private WebDriver webDriver;
+    private WebDriver driver;
     private WebElement datepicker;
 
 
     public String pickDate(Date date) {
 
-        webDriver = new ChromeDriver();
-        webDriver.get("http://jqueryui.com/datepicker");
+        driver = new ChromeDriver();
+        driver.get("http://jqueryui.com/datepicker");
 
         show();
         pickYear(date.getYear() + 1900);
@@ -31,7 +31,7 @@ public class BetterJQueryDatepicker {
     }
 
     private void show() {
-        frame = webDriver.switchTo().frame(0);
+        frame = driver.switchTo().frame(0);
         WebElement element = frame.findElement(By.id("datepicker"));
         element.click();
     }

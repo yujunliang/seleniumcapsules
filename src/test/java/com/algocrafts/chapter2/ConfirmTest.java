@@ -14,10 +14,10 @@ public class ConfirmTest {
 
     @Test
     public void clickConfirmUsingSelenium() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://localhost:63342/seleniumcapsules/html/upload.html");
-        webDriver.findElement(cssSelector("input[value='Need Confirm']")).click();
-        webDriver.switchTo().alert().accept();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://localhost:63342/seleniumcapsules/html/upload.html");
+        driver.findElement(cssSelector("input[value='Need Confirm']")).click();
+        driver.switchTo().alert().accept();
     }
 
     @Test

@@ -12,16 +12,16 @@ Do you like this test?
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void autoCompeleteUsingSelenium() throws InterruptedException {
-        WebDriver webDriver = new FirefoxDriver();
-        webDriver.get("http://google.com");
-        WebElement q = webDriver.findElement(By.name("q"));
+        WebDriver driver = new FirefoxDriver();
+        driver.get("http://google.com");
+        WebElement q = driver.findElement(By.name("q"));
 
         q.clear();
         WebElement oracle = null;
         for (char c : "oracle".toCharArray()) {
             q.sendKeys(String.valueOf(c));
             try {
-                oracle = webDriver.findElement(
+                oracle = driver.findElement(
                         By.xpath("//table[contains(@class, 'gssb_c')]/descendant::span[text()='oracle']"));
                 oracle.click();
             } catch (NoSuchElementException e) {
@@ -29,10 +29,10 @@ Do you like this test?
             }
         }
         if (oracle == null) {
-            oracle = new WebDriverWait(webDriver, 1).until(new Function<WebDriver, WebElement>() {
+            oracle = new WebDriverWait(driver, 1).until(new Function<WebDriver, WebElement>() {
                 @Override
-                public WebElement apply(WebDriver webDriver) {
-                    return webDriver.findElement(
+                public WebElement apply(WebDriver driver) {
+                    return driver.findElement(
                             By.xpath("//table[contains(@class, 'gssb_c')]/descendant::span[text()='oracle']"));
                 }
             });

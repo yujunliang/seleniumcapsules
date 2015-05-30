@@ -34,13 +34,13 @@ public class DragAndDropTest {
     public void autoCompeleteUsingSelenium() throws InterruptedException {
         FirefoxBinary binary = new FirefoxBinary(new File("src/main/resources/Firefox/Contents/MacOS/firefox-bin"));
         FirefoxProfile profile = new FirefoxProfile(new File("src/main/resources/Firefox/Profiles/default"));
-        WebDriver webDriver = new FirefoxDriver(binary, profile);
-        webDriver.get("http://www.w3schools.com/html/html5_draganddrop.asp");
-        WebElement source = webDriver.findElement(id("drag1"));
+        WebDriver driver = new FirefoxDriver(binary, profile);
+        driver.get("http://www.w3schools.com/html/html5_draganddrop.asp");
+        WebElement source = driver.findElement(id("drag1"));
         System.out.println(source.getAttribute("src"));
-        WebElement target = webDriver.findElement(id("div2"));
+        WebElement target = driver.findElement(id("div2"));
         System.out.println(target.getTagName() + "=" + target.toString());
-        Actions actions = new Actions(webDriver);
+        Actions actions = new Actions(driver);
         actions.dragAndDrop(source, target);
         actions.perform();
     }
@@ -48,14 +48,14 @@ public class DragAndDropTest {
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void dragAndDropFirefox() throws InterruptedException {
-        WebDriver webDriver = new FirefoxDriver();
-        webDriver.get("http://www.w3schools.com/html/html5_draganddrop.asp");
-        WebElement source = webDriver.findElement(id("drag1"));
+        WebDriver driver = new FirefoxDriver();
+        driver.get("http://www.w3schools.com/html/html5_draganddrop.asp");
+        WebElement source = driver.findElement(id("drag1"));
         System.out.println(source.getAttribute("src"));
-        WebElement target = webDriver.findElement(id("div2"));
+        WebElement target = driver.findElement(id("div2"));
         System.out.println(target.getTagName() + "=" + target.toString());
 
-        Actions builder = new Actions(webDriver);
+        Actions builder = new Actions(driver);
 
         Action dragAndDrop = builder.clickAndHold(source)
                 .moveToElement(target)
@@ -67,14 +67,14 @@ public class DragAndDropTest {
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void dragAndDropChrome() throws InterruptedException {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://www.w3schools.com/html/html5_draganddrop.asp");
-        WebElement source = webDriver.findElement(id("drag1"));
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.w3schools.com/html/html5_draganddrop.asp");
+        WebElement source = driver.findElement(id("drag1"));
         System.out.println(source.getAttribute("src"));
-        WebElement target = webDriver.findElement(id("div2"));
+        WebElement target = driver.findElement(id("div2"));
         System.out.println(target.getTagName() + "=" + target.toString());
 
-        Actions builder = new Actions(webDriver);
+        Actions builder = new Actions(driver);
         Action dragAndDrop = builder.clickAndHold(source)
                 .moveToElement(target)
                 .release(source)
@@ -85,14 +85,14 @@ public class DragAndDropTest {
 
     @Test
     public void dragAndDropSafari() throws InterruptedException {
-        WebDriver webDriver = new SafariDriver();
-        webDriver.get("http://www.w3schools.com/html/html5_draganddrop.asp");
-        WebElement source = webDriver.findElement(id("drag1"));
+        WebDriver driver = new SafariDriver();
+        driver.get("http://www.w3schools.com/html/html5_draganddrop.asp");
+        WebElement source = driver.findElement(id("drag1"));
         System.out.println(source.getAttribute("src"));
-        WebElement target = webDriver.findElement(id("div2"));
+        WebElement target = driver.findElement(id("div2"));
         System.out.println(target.getTagName() + "=" + target.toString());
 
-        Actions builder = new Actions(webDriver);
+        Actions builder = new Actions(driver);
 
         Action dragAndDrop = builder.clickAndHold(source)
                 .moveToElement(target)

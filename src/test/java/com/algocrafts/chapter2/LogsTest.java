@@ -23,10 +23,10 @@ public class LogsTest {
 
     @Test
     public void getAvailableLogTypes() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://ticketfly.com");
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://ticketfly.com");
 
-        Options manage = webDriver.manage();
+        Options manage = driver.manage();
         Logs logs = manage.logs();
         Set<String> availableLogTypes = logs.getAvailableLogTypes();
         System.out.println(availableLogTypes);

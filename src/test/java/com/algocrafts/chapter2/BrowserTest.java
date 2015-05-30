@@ -24,9 +24,9 @@ public class BrowserTest {
 
     @Test
     public void findHowItWorksLinkUsingFirefoxt() {
-        WebDriver webDriver = NaiveWebDriverFactory.getInstance("firefox");
-        webDriver.get("http://ticketfly.com/careers");
-        WebElement element = webDriver.findElement(By.linkText("How It Works"));
+        WebDriver driver = NaiveWebDriverFactory.getInstance("firefox");
+        driver.get("http://ticketfly.com/careers");
+        WebElement element = driver.findElement(By.linkText("How It Works"));
         System.out.println("element=" + element);
         System.out.println("element.getTagName()=" + element.getTagName());
         System.out.println("element.getText()=" + element.getText());
@@ -34,9 +34,9 @@ public class BrowserTest {
 
     @Test
     public void findHowItWorksLinkUsingChromet() {
-        WebDriver webDriver = NaiveWebDriverFactory.getInstance("chrome");
-        webDriver.get("http://ticketfly.com/careers");
-        WebElement element = webDriver.findElement(By.linkText("How It Works"));
+        WebDriver driver = NaiveWebDriverFactory.getInstance("chrome");
+        driver.get("http://ticketfly.com/careers");
+        WebElement element = driver.findElement(By.linkText("How It Works"));
         System.out.println("element=" + element);
         System.out.println("element.getTagName()=" + element.getTagName());
         System.out.println("element.getText()=" + element.getText());
@@ -44,9 +44,9 @@ public class BrowserTest {
 
     @Test
     public void findHowItWorksLinkUsingSafari() {
-        WebDriver webDriver = NaiveWebDriverFactory.getInstance("safari");
-        webDriver.get("http://ticketfly.com/careers");
-        WebElement element = webDriver.findElement(By.linkText("How It Works"));
+        WebDriver driver = NaiveWebDriverFactory.getInstance("safari");
+        driver.get("http://ticketfly.com/careers");
+        WebElement element = driver.findElement(By.linkText("How It Works"));
         System.out.println("element=" + element);
         System.out.println("element.getTagName()=" + element.getTagName());
         System.out.println("element.getText()=" + element.getText());
@@ -54,9 +54,9 @@ public class BrowserTest {
 
     @Test
     public void findHowItWorksLinkUsingSafariEnum() {
-        WebDriver webDriver = BetterWebDriverFactory.SAFARI.get();
-        webDriver.get("http://ticketfly.com/careers");
-        WebElement element = webDriver.findElement(By.linkText("How It Works"));
+        WebDriver driver = BetterWebDriverFactory.SAFARI.get();
+        driver.get("http://ticketfly.com/careers");
+        WebElement element = driver.findElement(By.linkText("How It Works"));
         System.out.println("element=" + element);
         System.out.println("element.getTagName()=" + element.getTagName());
         System.out.println("element.getText()=" + element.getText());
@@ -64,9 +64,9 @@ public class BrowserTest {
 
     @Test
     public void findHowItWorksLinkUsingAllBrowsers() {
-        for (WebDriver webDriver : newArrayList(CHROME.init(),CHROME.init(), FIREFOX, SAFARI)) {
-            webDriver.get("http://ticketfly.com/careers");
-            WebElement element = webDriver.findElement(By.linkText("How It Works"));
+        for (WebDriver driver : newArrayList(CHROME.init(),CHROME.init(), FIREFOX, SAFARI)) {
+            driver.get("http://ticketfly.com/careers");
+            WebElement element = driver.findElement(By.linkText("How It Works"));
             System.out.println("element=" + element);
             System.out.println("element.getTagName()=" + element.getTagName());
             System.out.println("element.getText()=" + element.getText());

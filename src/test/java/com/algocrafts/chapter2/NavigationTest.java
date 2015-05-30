@@ -19,29 +19,29 @@ public class NavigationTest {
 
     @Test
     public void navagate() throws InterruptedException, MalformedURLException {
-        WebDriver webDriver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver();
 
-        webDriver.get("http://ticketfly.com");
-        webDriver.get("http://jqueryui.com");
+        driver.get("http://ticketfly.com");
+        driver.get("http://jqueryui.com");
 
-        Navigation navigate = webDriver.navigate();
+        Navigation navigate = driver.navigate();
         navigate.back();
-        System.out.println("navigate.back()=" + webDriver.getCurrentUrl());
+        System.out.println("navigate.back()=" + driver.getCurrentUrl());
 
         navigate.forward();
-        System.out.println("navigate.forward()=" + webDriver.getCurrentUrl());
+        System.out.println("navigate.forward()=" + driver.getCurrentUrl());
 
         navigate.to("http://ticketfly.com/events");
         System.out.println("navigate.to(\"http://ticketfly.com/events\")="
-                + webDriver.getCurrentUrl());
+                + driver.getCurrentUrl());
 
         navigate.to(new URL("http://jqueryui.com/datepicker"));
         System.out.println("navigate.to(new URL(\"http://jqueryui.com/datepicker\"))="
-                + webDriver.getCurrentUrl());
+                + driver.getCurrentUrl());
 
         navigate.refresh();
         System.out.println("navigate.refresh()="
-                + webDriver.getCurrentUrl());
+                + driver.getCurrentUrl());
 
     }
 

@@ -22,38 +22,38 @@ public class WebDriverTest {
 
     @Test
     public void listing21() throws InterruptedException {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://ticketfly.com");
-        WebElement element = webDriver.findElement(By.tagName("a"));
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://ticketfly.com");
+        WebElement element = driver.findElement(By.tagName("a"));
         out.println(element);
-        List<WebElement> elements = webDriver.findElements(By.tagName("a"));
+        List<WebElement> elements = driver.findElements(By.tagName("a"));
         out.println(elements.size());
-        String currentUrl = webDriver.getCurrentUrl();
+        String currentUrl = driver.getCurrentUrl();
         out.println(currentUrl);
-        String pageSource = webDriver.getPageSource();
+        String pageSource = driver.getPageSource();
         out.println(pageSource.substring(0, 100) + "... ...(The rest omitted)");
-        String title = webDriver.getTitle();
+        String title = driver.getTitle();
         out.println(title);
-        String windowHandle = webDriver.getWindowHandle();
+        String windowHandle = driver.getWindowHandle();
         out.println(windowHandle);
-        Set<String> windowHandles = webDriver.getWindowHandles();
+        Set<String> windowHandles = driver.getWindowHandles();
         out.println(windowHandles);
-        Options manage = webDriver.manage();
+        Options manage = driver.manage();
         out.println(manage);
-        Navigation navigate = webDriver.navigate();
+        Navigation navigate = driver.navigate();
         out.println(navigate);
-        TargetLocator targetLocator = webDriver.switchTo();
+        TargetLocator targetLocator = driver.switchTo();
         out.println(targetLocator);
-        webDriver.close();
+        driver.close();
     }
 
     @Test
     public void listing22() throws InterruptedException {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://ticketfly.com");
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://ticketfly.com");
         By tag = new ByTagName("input");
 
-        WebElement e = webDriver.findElement(By.tagName("input"));
+        WebElement e = driver.findElement(By.tagName("input"));
         out.println("e.getAttribute(\"value\")=" + e.getAttribute("value"));
         out.println("e.getCssValue(\"width\")=" + e.getCssValue("width"));
         out.println("e.getLocation()=" + e.getLocation());
@@ -72,25 +72,25 @@ public class WebDriverTest {
         e.clear();
         out.println("e.getAttribute(\"value\")=" + e.getAttribute("value"));
 
-        webDriver.quit();
+        driver.quit();
     }
 
 
     @Test
     public void listing23() throws InterruptedException {
-        WebDriver webDriver = new FirefoxDriver();
-        webDriver.get("http://jqueryui.com/datepicker/");
-        TargetLocator targetLocator = webDriver.switchTo();
+        WebDriver driver = new FirefoxDriver();
+        driver.get("http://jqueryui.com/datepicker/");
+        TargetLocator targetLocator = driver.switchTo();
         targetLocator.frame(0);
-        webDriver.findElement(By.id("datepicker")).click();
+        driver.findElement(By.id("datepicker")).click();
     }
 
     @Test
     public void listing24() throws InterruptedException {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://www.javascripter.net/faq/confirm.htm#top");
-        webDriver.findElements(By.tagName("input")).stream().filter((webElement) -> webElement.getAttribute("value").contains("Try it now")).findFirst().get().click();
-        TargetLocator targetLocator = webDriver.switchTo();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.javascripter.net/faq/confirm.htm#top");
+        driver.findElements(By.tagName("input")).stream().filter((webElement) -> webElement.getAttribute("value").contains("Try it now")).findFirst().get().click();
+        TargetLocator targetLocator = driver.switchTo();
         Alert alert = targetLocator.alert();
         alert.accept();
     }
@@ -98,14 +98,14 @@ public class WebDriverTest {
     @Test
     public void listing25() {
         String path = new File("src/test/resources/html/openWindow.html").getAbsolutePath();
-        WebDriver webDriver = new FirefoxDriver();
-        webDriver.get("file://" + path);
-        webDriver.findElement(By.id("button1")).click();
+        WebDriver driver = new FirefoxDriver();
+        driver.get("file://" + path);
+        driver.findElement(By.id("button1")).click();
 
-        Set<String> windowHandles = webDriver.getWindowHandles();
+        Set<String> windowHandles = driver.getWindowHandles();
         out.println(windowHandles);
 
-        TargetLocator targetLocator = webDriver.switchTo();
+        TargetLocator targetLocator = driver.switchTo();
         windowHandles.stream().forEach(windowHandle -> {
                     String title = targetLocator.window(windowHandle).getCurrentUrl();
                     out.println("URL for " + windowHandle + " is " + title);
@@ -118,20 +118,20 @@ public class WebDriverTest {
     @Test
     public void listing26() {
         String path = new File("src/test/resources/html/openWindow.html").getAbsolutePath();
-        WebDriver webDriver = new FirefoxDriver();
-        webDriver.get("file://" + path);
-        webDriver.findElement(By.id("button1")).click();
-        webDriver.close();
+        WebDriver driver = new FirefoxDriver();
+        driver.get("file://" + path);
+        driver.findElement(By.id("button1")).click();
+        driver.close();
     }
 
     @Test
     public void listing27() {
         String path = new File("src/test/resources/html/openWindow.html").getAbsolutePath();
-        WebDriver webDriver = new FirefoxDriver();
-        webDriver.get("file://" + path);
-        webDriver.findElement(By.id("button1")).click();
+        WebDriver driver = new FirefoxDriver();
+        driver.get("file://" + path);
+        driver.findElement(By.id("button1")).click();
 
-        webDriver.quit();
+        driver.quit();
 
     }
 

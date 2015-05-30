@@ -16,11 +16,11 @@ public class ActionsTest {
 
     @Test
     public void keyDown() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://www.ticketfly.com");
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.ticketfly.com");
 
-        Actions actions= new Actions(webDriver);
-        WebElement element = webDriver.findElement(By.xpath("//body"));
+        Actions actions= new Actions(driver);
+        WebElement element = driver.findElement(By.xpath("//body"));
         actions.keyDown(element, Keys.COMMAND).sendKeys(element,"a").perform();
 
     }

@@ -35,14 +35,14 @@ public class TimeoutsTest {
      */
     @Test
     public void failedTest() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(By.linkText("change location")).click();
-        webDriver.findElement(By.linkText("CANADA")).click();
-        WebElement element = webDriver.findElement(By.linkText("All Canada"));
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(By.linkText("change location")).click();
+        driver.findElement(By.linkText("CANADA")).click();
+        WebElement element = driver.findElement(By.linkText("All Canada"));
         element.click();
-        assertEquals(0, webDriver.findElements(By.linkText("All Canada")).size());
-        assertEquals("Canada", webDriver
+        assertEquals(0, driver.findElements(By.linkText("All Canada")).size());
+        assertEquals("Canada", driver
                 .findElements(By.tagName("p")).stream().filter((WebElement e) -> e.getAttribute("class").equals("tools-location"))
                 .findFirst().get()
                 .findElement(By.tagName("a"))
@@ -54,15 +54,15 @@ public class TimeoutsTest {
 
     @Test
     public void implicitlyWait() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(By.linkText("change location")).click();
-        webDriver.findElement(By.linkText("CANADA")).click();
-        WebElement element = webDriver.findElement(By.linkText("All Canada"));
+        WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(By.linkText("change location")).click();
+        driver.findElement(By.linkText("CANADA")).click();
+        WebElement element = driver.findElement(By.linkText("All Canada"));
         element.click();
-        assertEquals(0, webDriver.findElements(By.linkText("All Canada")).size());
-        assertEquals("Canada", webDriver
+        assertEquals(0, driver.findElements(By.linkText("All Canada")).size());
+        assertEquals("Canada", driver
                 .findElement(By.className("tools-location"))
                 .findElement(By.tagName("a"))
                 .findElement(By.tagName("strong"))
@@ -72,18 +72,18 @@ public class TimeoutsTest {
 
     @Test
     public void setScriptTimeout() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
-        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) webDriver;
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.ticketfly.com");
+        driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
+        JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
         javascriptExecutor.executeAsyncScript("alert('Hi')");
     }
 
     @Test
     public void pageLoadTimeout() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
-        webDriver.get("http://www.ticketfly.com");
+        WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        driver.get("http://www.ticketfly.com");
     }
 
 

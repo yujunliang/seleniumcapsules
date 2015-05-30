@@ -13,9 +13,9 @@ import java.util.List;
 public class NaiveDatepicker {
 
     public String pickDate(Date date) {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://jqueryui.com/datepicker");
-        WebDriver frame = webDriver.switchTo().frame(0);
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://jqueryui.com/datepicker");
+        WebDriver frame = driver.switchTo().frame(0);
         WebElement element = frame.findElement(By.id("datepicker"));
         element.click();
         WebElement datepicker = frame.findElement(By.id("ui-datepicker-div"));

@@ -40,15 +40,15 @@ public class GoogleAutoCompleteTest {
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void autoCompeleteUsingSelenium() throws InterruptedException {
-        WebDriver webDriver = new FirefoxDriver();
-        webDriver.get("http://google.com");
-        WebElement q = webDriver.findElement(By.name("q"));
+        WebDriver driver = new FirefoxDriver();
+        driver.get("http://google.com");
+        WebElement q = driver.findElement(By.name("q"));
 
         WebElement suggestion = null;
         for (char c : "ticketfly".toCharArray()) {
             q.sendKeys(String.valueOf(c));
             try {
-                suggestion = webDriver.findElement(
+                suggestion = driver.findElement(
                         By.xpath("//div[contains(@class, " +
                                 "'sbdd_b')]/descendant::div[text()='ticketfly']"));
                 suggestion.click();
@@ -57,10 +57,10 @@ public class GoogleAutoCompleteTest {
             }
         }
         if (suggestion == null) {
-            suggestion = new WebDriverWait(webDriver, 1).until(new Function<WebDriver, WebElement>() {
+            suggestion = new WebDriverWait(driver, 1).until(new Function<WebDriver, WebElement>() {
                 @Override
-                public WebElement apply(WebDriver webDriver) {
-                    return webDriver.findElement(
+                public WebElement apply(WebDriver driver) {
+                    return driver.findElement(
                             By.xpath("//div[contains(@class, " +
                                     "'sbdd_b')]/descendant::div[text()='ticketfly']"));
                 }
@@ -71,14 +71,14 @@ public class GoogleAutoCompleteTest {
 
     @Test
     public void autoCompeleteUsingSeleniumFiltering() throws InterruptedException {
-        Browser webDriver = Browsers.CHROME;
-        webDriver.get("http://google.com");
-        WebElement q = webDriver.findElement(By.name("q"));
+        Browser driver = Browsers.CHROME;
+        driver.get("http://google.com");
+        WebElement q = driver.findElement(By.name("q"));
 
         for (char c : "ticketfly".toCharArray()) {
             q.sendKeys(String.valueOf(c));
 
-            Optional<Element> first = webDriver.untilFound(() -> By.className("sbdd_b"))
+            Optional<Element> first = driver.untilFound(() -> By.className("sbdd_b"))
                     .untilFound(() -> By.tagName("ul"))
                     .findElements(() -> By.tagName("li"))
                     .filter((WebElement e) -> e.getText().equals("ticketfly")).findFirst();
@@ -92,10 +92,10 @@ public class GoogleAutoCompleteTest {
 
     @Test
     public void autoCompeleteUsingAutocompleteMethod() throws InterruptedException {
-        Browser webDriver = Browsers.CHROME;
-        webDriver.get("http://google.com");
-        Element q = webDriver.untilFound(() -> By.name("q"));
-        autocomplete(q, "ticketfly", webDriver,
+        Browser driver = Browsers.CHROME;
+        driver.get("http://google.com");
+        Element q = driver.untilFound(() -> By.name("q"));
+        autocomplete(q, "ticketfly", driver,
                 (Browser element) -> element.untilFound(ClassName.SBDD_B)
                         .untilFound(TagName.UL)
                         .findElements(TagName.LI)
@@ -106,41 +106,41 @@ public class GoogleAutoCompleteTest {
 
     @Test
     public void autoCompeleteUsingAutocompleteMethodWithFunctionalProgramming() throws InterruptedException {
-        Browser<ChromeDriver> webDriver = Browsers.CHROME;
-        webDriver.get("http://google.com");
-        Element q = webDriver.untilFound(() -> By.name("q"));
+        Browser<ChromeDriver> driver = Browsers.CHROME;
+        driver.get("http://google.com");
+        Element q = driver.untilFound(() -> By.name("q"));
         Locator<Browser<ChromeDriver>, Optional<Element>> locator = new ElementLocator<Browser<ChromeDriver>>(ClassName.SBDD_B)
                 .andThen(new ElementsLocator<>(TagName.LI))
                 .andThen(new FirstMatch<>((e) -> e.getText().equals("ticketfly")));
-        autocomplete(q, "ticketfly", webDriver, locator);
+        autocomplete(q, "ticketfly", driver, locator);
     }
 
     @Test
     public void autoCompeleteUsingAutocompleteMethodWithFunctionalProgrammingIllustration() throws InterruptedException {
-        Browser<ChromeDriver> webDriver = Browsers.CHROME;
-        webDriver.get("http://google.com");
-        Element q = webDriver.untilFound(() -> By.name("q"));
+        Browser<ChromeDriver> driver = Browsers.CHROME;
+        driver.get("http://google.com");
+        Element q = driver.untilFound(() -> By.name("q"));
         Locator<Browser<ChromeDriver>, Element> browserElementLocator = new ElementLocator<>(ClassName.SBDD_B);
         Locator<Element, Stream<Element>> after = new ElementsLocator<>(TagName.LI);
         Predicate<Element> elementPredicate = GetText.TEXT.and(new Equals("ticketfly"));
         Locator<Stream<Element>, Optional<Element>> ticketfly = new FirstMatch<>(elementPredicate);
         Locator<Browser<ChromeDriver>, Optional<Element>> locator = browserElementLocator.andThen(after).andThen(ticketfly);
-        autocomplete(q, "ticketfly", webDriver, locator);
+        autocomplete(q, "ticketfly", driver, locator);
     }
 
 
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void autoCompeleteUsingSelenium2() throws InterruptedException {
-        Browser<ChromeDriver> webDriver = Browsers.CHROME;
-        webDriver.get("http://google.com");
-        Element q = webDriver.untilFound(Name.Q);
+        Browser<ChromeDriver> driver = Browsers.CHROME;
+        driver.get("http://google.com");
+        Element q = driver.untilFound(Name.Q);
 
         Element suggestion = null;
         for (char c : "ticketfly".toCharArray()) {
             q.sendKeys(String.valueOf(c));
 
-            Optional<Element> optionalElement = webDriver.optionalElement(Xpath.GOOGLE_AUTOCOMPLETE);
+            Optional<Element> optionalElement = driver.optionalElement(Xpath.GOOGLE_AUTOCOMPLETE);
             if (optionalElement.isPresent()) {
                 suggestion = optionalElement.get();
                 suggestion.click();
@@ -148,7 +148,7 @@ public class GoogleAutoCompleteTest {
 
         }
         if (suggestion == null) {
-            suggestion = webDriver.untilFound(Xpath.GOOGLE_AUTOCOMPLETE);
+            suggestion = driver.untilFound(Xpath.GOOGLE_AUTOCOMPLETE);
             suggestion.click();
         }
     }

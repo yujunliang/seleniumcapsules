@@ -19,10 +19,10 @@ public class CookieTest {
 
     @Test
     public void cookies() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://ticketfly.com");
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://ticketfly.com");
 
-        Options manage = webDriver.manage();
+        Options manage = driver.manage();
         manage.getCookies().stream().forEach(System.out::println);
         manage.deleteAllCookies();
         System.out.println("After manage.deleteAllCookies();");

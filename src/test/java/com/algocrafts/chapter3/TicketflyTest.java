@@ -46,15 +46,15 @@ public class TicketflyTest {
      */
     @Test
     public void changeLocationUsingSelenium() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(By.linkText("change location")).click();       //<1>
-        WebElement location = webDriver.findElement(By.id("location"));
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(By.linkText("change location")).click();       //<1>
+        WebElement location = driver.findElement(By.id("location"));
         location.findElement(By.linkText("CANADA")).click();
         WebElement element = location.findElement(By.linkText("Ontario"));
         element.click();
         assertEquals(0, location.findElements(By.linkText("Ontario")).size()); //<2>
-        assertEquals("Ontario", webDriver   //<3>
+        assertEquals("Ontario", driver   //<3>
                 .findElement(
                         By.xpath("div[@class='tools-location']/descendant::strong")
                 )
@@ -65,16 +65,16 @@ public class TicketflyTest {
 
     @Test
     public void changeLocationWithImplicitWait() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.manage().timeouts().implicitlyWait(30, SECONDS);     //<1>
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(By.linkText("change location")).click();
-        WebElement tabMenu = webDriver.findElement(By.id("location"));
+        WebDriver driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(30, SECONDS);     //<1>
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(By.linkText("change location")).click();
+        WebElement tabMenu = driver.findElement(By.id("location"));
         tabMenu.findElement(By.linkText("CANADA")).click();
         WebElement element = tabMenu.findElement(By.linkText("Ontario"));
         element.click();
         assertEquals(0, tabMenu.findElements(By.linkText("Ontario")).size());
-        assertEquals("Ontario", webDriver   //<2>
+        assertEquals("Ontario", driver   //<2>
                 .findElement(
                         By.xpath("div[@class='tools-location']/descendant::strong")
                 )
@@ -85,17 +85,17 @@ public class TicketflyTest {
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void changeLocationUsingExplicitWait() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(linkText("change location")).click();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(linkText("change location")).click();
 
-        WebDriverWait webDriverWait = new WebDriverWait(webDriver, 5);  //<1>
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 5);  //<1>
 
         WebElement location = webDriverWait.until(
                 new Function<WebDriver, WebElement>() {
                     @Override
-                    public WebElement apply(WebDriver webDriver) {
-                        return webDriver.findElement(By.id("location"));
+                    public WebElement apply(WebDriver driver) {
+                        return driver.findElement(By.id("location"));
                     }
                 }
         );
@@ -122,23 +122,23 @@ public class TicketflyTest {
                 }
         );
         allCanada.click();
-        assertEquals(0, webDriver.findElements(linkText("Ontario")).size());
-        assertEquals("Ontario", webDriver
+        assertEquals(0, driver.findElements(linkText("Ontario")).size());
+        assertEquals("Ontario", driver
                 .findElement(By.xpath("//div[@class='tools']/descendant::strong")).getText());
     }
 
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void changeLocationUsingExplicitWaitLambda() {
-        WebDriver webDriver = BetterWebDriverFactory.CHROME.get();
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(linkText("change location")).click();
+        WebDriver driver = BetterWebDriverFactory.CHROME.get();
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(linkText("change location")).click();
         FluentWait<WebDriver> webDriverWait
-                = new FluentWait<WebDriver>(webDriver)
+                = new FluentWait<WebDriver>(driver)
                 .ignoring(NoSuchElementException.class);
         WebElement location = webDriverWait.until(
-                (WebDriver driver) ->
-                        driver.findElement(By.id("location"))
+                (WebDriver d) ->
+                        d.findElement(By.id("location"))
 
         );
 
@@ -154,7 +154,7 @@ public class TicketflyTest {
                 (WebElement element) ->
                         element.findElement(linkText("Ontario")));
         ontario.click();
-        assertEquals("Ontario", webDriver
+        assertEquals("Ontario", driver
                 .findElements(By.tagName("p")).stream().filter((WebElement e) -> e.getAttribute("class").equals("tools-location"))
                 .findFirst().get()
                 .findElement(By.tagName("a"))
@@ -165,15 +165,15 @@ public class TicketflyTest {
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void changeLocationUsingExplicitWaitLambda1() {
-        WebDriver webDriver = BetterWebDriverFactory.CHROME.get();
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(linkText("change location")).click();
+        WebDriver driver = BetterWebDriverFactory.CHROME.get();
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(linkText("change location")).click();
         FluentWait<WebDriver> webDriverWait
-                = new FluentWait<WebDriver>(webDriver)
+                = new FluentWait<>(driver)
                 .ignoring(NoSuchElementException.class);
         WebElement location = webDriverWait.until(
-                (WebDriver driver) ->
-                        driver.findElement(By.id("location"))
+                (WebDriver d) ->
+                        d.findElement(By.id("location"))
 
         );
 
@@ -189,7 +189,7 @@ public class TicketflyTest {
                 (WebElement element) ->
                         element.findElement(linkText("Ontario")));
         ontario.click();
-        Stream<WebElement> pStream = webDriver.findElements(By.tagName("p")).stream();
+        Stream<WebElement> pStream = driver.findElements(By.tagName("p")).stream();
         Stream<WebElement> filteredStream = pStream.filter((WebElement e) -> e.getAttribute("class").equals("tools-location"));
         WebElement element = filteredStream.findFirst().get();
         WebElement a = element.findElement(By.tagName("a"));
@@ -239,10 +239,10 @@ public class TicketflyTest {
 
     @Test
     public void discoverMoreEventUsingSelenium() {
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("http://www.ticketfly.com");
-        webDriver.findElement(linkText("Discover More Events")).click();
-        webDriver.findElement(id("filter-events3")).click();
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.ticketfly.com");
+        driver.findElement(linkText("Discover More Events")).click();
+        driver.findElement(id("filter-events3")).click();
     }
 
 }
