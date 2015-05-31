@@ -26,7 +26,9 @@ import static com.algocrafts.selectors.TagName.IMG;
 import static java.util.stream.Collectors.toList;
 
 
-public interface SearchScope<T extends SearchScope<T>> extends SearchContext, ExplicitWait<T> {
+public interface SearchScope<T extends SearchScope<T>>
+        extends SearchContext,    //<1>
+        ExplicitWait<T> {
 
     /**
      * Find the first element or throw NoSuchElementException
@@ -34,13 +36,13 @@ public interface SearchScope<T extends SearchScope<T>> extends SearchContext, Ex
      * @param by selector
      * @return the first element or throw NoSuchElementException
      */
-    @Deprecated
+    @Deprecated                                   //<2>
     @Override
     default Element findElement(By by) {
         return new ElementFinder(by).locate(this);
     }
 
-    @Deprecated
+    @Deprecated                                   //<3>
     @Override
     default List<WebElement> findElements(By by) {
         return by.findElements(this).stream().map(Element::new).collect(toList());
@@ -52,7 +54,7 @@ public interface SearchScope<T extends SearchScope<T>> extends SearchContext, Ex
      * @param by selector
      * @return the first element or return empty Optional if nothing found.
      */
-    default Optional<Element> optionalElement(Supplier<By> by) {
+    default Optional<Element> optionalElement(Supplier<By> by) {         //<4>
         try {
             return Optional.of(findElement(by.get()));
         } catch (NoSuchElementException e) {
@@ -66,8 +68,8 @@ public interface SearchScope<T extends SearchScope<T>> extends SearchContext, Ex
      * @param by selector
      * @return the first element or throw NoSuchElementException
      */
-    default Element untilFound(Supplier<By> by) {  //<1>
-        return until(by);                          //<2>
+    default Element untilFound(Supplier<By> by) {                     //<5>
+        return until(by);
     }
 
     /**
@@ -77,7 +79,7 @@ public interface SearchScope<T extends SearchScope<T>> extends SearchContext, Ex
      * @return A stream of all {@link Element}s, or an empty stream if nothing matches.
      * @see org.openqa.selenium.By
      */
-    default Stream<Element> findElements(Supplier<By> by) {
+    default Stream<Element> findElements(Supplier<By> by) {           //<6>
         return findElements(by.get()).stream().map(Element::new);
     }
 

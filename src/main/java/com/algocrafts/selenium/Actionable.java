@@ -14,7 +14,8 @@ import java.util.Date;
 import static org.apache.commons.io.FileUtils.copyFile;
 import static org.openqa.selenium.OutputType.FILE;
 
-public interface Actionable<T extends WebDriver> extends WebDriver, CachedWebDriverSupplier<T> {
+public interface Actionable<T extends WebDriver> extends WebDriver,
+        CachedWebDriverSupplier<T> {
 
     default void accept() {
         try {

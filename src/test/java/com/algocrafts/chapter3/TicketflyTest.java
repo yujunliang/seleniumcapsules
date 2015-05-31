@@ -130,16 +130,15 @@ public class TicketflyTest {
     //This is an ugly test not using page framework, it has the same function as the test below. :(
     @Test
     public void changeLocationUsingExplicitWaitLambda() {
-        WebDriver driver = BetterWebDriverFactory.CHROME.get();
+        WebDriver driver = new ChromeDriver();
         driver.get("http://www.ticketfly.com");
         driver.findElement(linkText("change location")).click();
         FluentWait<WebDriver> webDriverWait
-                = new FluentWait<WebDriver>(driver)
+                = new FluentWait<>(driver)
                 .ignoring(NoSuchElementException.class);
         WebElement location = webDriverWait.until(
                 (WebDriver d) ->
                         d.findElement(By.id("location"))
-
         );
 
         FluentWait<WebElement> webElementWait
@@ -155,47 +154,9 @@ public class TicketflyTest {
                         element.findElement(linkText("Ontario")));
         ontario.click();
         assertEquals("Ontario", driver
-                .findElements(By.tagName("p")).stream().filter((WebElement e) -> e.getAttribute("class").equals("tools-location"))
-                .findFirst().get()
-                .findElement(By.tagName("a"))
-                .findElement(By.tagName("strong"))
-                .getText());
-    }
-
-    //This is an ugly test not using page framework, it has the same function as the test below. :(
-    @Test
-    public void changeLocationUsingExplicitWaitLambda1() {
-        WebDriver driver = BetterWebDriverFactory.CHROME.get();
-        driver.get("http://www.ticketfly.com");
-        driver.findElement(linkText("change location")).click();
-        FluentWait<WebDriver> webDriverWait
-                = new FluentWait<>(driver)
-                .ignoring(NoSuchElementException.class);
-        WebElement location = webDriverWait.until(
-                (WebDriver d) ->
-                        d.findElement(By.id("location"))
-
-        );
-
-        FluentWait<WebElement> webElementWait
-                = new FluentWait<>(location)
-                .withTimeout(30, SECONDS)
-                .ignoring(NoSuchElementException.class);
-        WebElement canada = webElementWait.until(
-                (WebElement element) ->
-                        element.findElement(linkText("CANADA")));
-        canada.click();
-        WebElement ontario = webElementWait.until(
-                (WebElement element) ->
-                        element.findElement(linkText("Ontario")));
-        ontario.click();
-        Stream<WebElement> pStream = driver.findElements(By.tagName("p")).stream();
-        Stream<WebElement> filteredStream = pStream.filter((WebElement e) -> e.getAttribute("class").equals("tools-location"));
-        WebElement element = filteredStream.findFirst().get();
-        WebElement a = element.findElement(By.tagName("a"));
-        WebElement strong = a.findElement(By.tagName("strong"));
-
-        assertEquals("Ontario", strong
+                .findElement(
+                        By.xpath("//div[@class='tools']/descendant::strong")
+                )
                 .getText());
     }
 

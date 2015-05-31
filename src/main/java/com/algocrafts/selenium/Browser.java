@@ -8,7 +8,9 @@ import org.openqa.selenium.interactions.Mouse;
 import java.util.List;
 import java.util.Set;
 
-public interface Browser<T extends WebDriver> extends Actionable<T>, SearchScope<Browser<T>>, WebDriver,
+public interface Browser<T extends WebDriver> extends Actionable<T>,
+        SearchScope<Browser<T>>,
+        WebDriver,
         HasInputDevices, JavascriptExecutor, HasCapabilities {
 
     CachedWebDriverSupplier<T> getSupplier();
