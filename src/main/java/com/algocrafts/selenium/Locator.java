@@ -5,7 +5,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public interface Locator<Where, What> extends Function<Where, What> {
+public interface Locator<T1, T2> extends Function<T1, T2> {
 
     /**
      * locate the result on the search context.
@@ -13,7 +13,7 @@ public interface Locator<Where, What> extends Function<Where, What> {
      * @param where the search context
      * @return located result
      */
-    What locate(Where where);
+    T2 locate(T1 where);
 
     /**
      * Returns a composed function that first applies the {@code before}
@@ -30,7 +30,7 @@ public interface Locator<Where, What> extends Function<Where, What> {
      *
      * @see #andThen(Function)
      */
-    default <V> Locator<V, What> compose(Function<? super V, ? extends Where> before) {
+    default <V> Locator<V, T2> compose(Function<? super V, ? extends T1> before) {
         Objects.requireNonNull(before);
         return (V v) -> apply(before.apply(v));
     }
@@ -47,9 +47,9 @@ public interface Locator<Where, What> extends Function<Where, What> {
      * @throws NullPointerException if after is null
      * @see #compose(Function)
      */
-    default <V> Locator<Where, V> andThen(Locator<? super What, ? extends V> after) {
+    default <V> Locator<T1, V> andThen(Locator<? super T2, ? extends V> after) {
         Objects.requireNonNull(after);
-        return (Where t) -> after.locate(locate(t));
+        return (T1 t) -> after.locate(locate(t));
     }
 
     /**
@@ -67,9 +67,9 @@ public interface Locator<Where, What> extends Function<Where, What> {
      * the element located by this
      * @throws NullPointerException if other is null
      */
-    default Predicate<Where> and(Predicate<What> other) {
+    default Predicate<T1> and(Predicate<T2> other) {
         Objects.requireNonNull(other);
-        return (Where t) -> other.test(locate(t));
+        return (T1 t) -> other.test(locate(t));
     }
 
     /**
@@ -80,7 +80,7 @@ public interface Locator<Where, What> extends Function<Where, What> {
      * @return the function result
      */
     @Override
-    default What apply(Where t) {
+    default T2 apply(T1 t) {
         return locate(t);
     }
 }
