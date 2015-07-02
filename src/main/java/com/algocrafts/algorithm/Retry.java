@@ -31,8 +31,9 @@ public class Retry {
         return this;
     }
 
-    public void off() {
+    public Retry off() {
         this.on = false;
+        return this;
     }
 
     public <T> T attempt(Attemptable<T> task) throws Exception {

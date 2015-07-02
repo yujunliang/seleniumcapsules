@@ -37,7 +37,7 @@ public enum BookStoreId implements Supplier<By> {
 
     private final By by;
 
-    private BookStoreId(String id) {
+    BookStoreId(String id) {
         this.by = id(id);
     }
 

@@ -21,7 +21,7 @@ public class OtherInformationForm  {
         page.put(COMMENTS, info.comments);
         page.setCheckbox(CONFIRM_EMAIL, info.confirmEmail);
         page.setCheckbox(RATINGS, info.askRating);
-        page.setRadioButton(MAILING_OPTION, MailingOptions.Deal_Of_the_Day);
+        page.setRadioButton(MAILING_OPTION, info.mailingOptions);
     }
 
     public OtherInformation getOtherInformation() {
