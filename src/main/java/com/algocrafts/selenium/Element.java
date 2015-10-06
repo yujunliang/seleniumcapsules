@@ -131,4 +131,9 @@ public class Element implements SearchScope<Element>, WebElement, Locatable {
     public void setBy(By by) {
         this.by = by;
     }
+
+    @Override
+    public <X> X getScreenshotAs(OutputType<X> target) throws WebDriverException {
+        return element.getScreenshotAs(target);
+    }
 }

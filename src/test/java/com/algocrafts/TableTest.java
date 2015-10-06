@@ -16,7 +16,6 @@ import org.junit.Test;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
-import static com.algocrafts.browsers.Browsers.CHROME;
 import static com.algocrafts.converters.GetText.TEXT;
 import static com.algocrafts.converters.StringToInt.PARSE_INT;
 import static com.algocrafts.locators.Locators.element;
@@ -40,9 +39,9 @@ public class TableTest {
     @Test
     public void testReadFromTable() {
 
-        Browsers chrome = CHROME;
-        chrome.get("http://www.w3schools.com/html/html_tables.asp");
-        Page page = new Page(chrome);
+        Browsers browser = Browsers.FIREFOX;
+        browser.get("http://www.w3schools.com/html/html_tables.asp");
+        Page page = new Page(browser);
         Locator<Page, Element> locator = Locators.<Page>element(Xpath.TABLE_CONTAINER).andThen(element(TABLE));
         Locator<Stream<Element>, Person> mapper = (stream) -> {
             Iterator<String> iterator = stream.map(TEXT).iterator();
@@ -51,7 +50,7 @@ public class TableTest {
         Table<Person, Page> table = new Table<>(page, locator, mapper);
 
         assertTrue(expected, expected.equals(table.getContents()));
-        chrome.close();
+        browser.close();
     }
 
     private void assertTrue(Object diff, boolean pass) {

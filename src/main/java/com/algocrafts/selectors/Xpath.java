@@ -17,7 +17,7 @@ public enum Xpath implements Supplier<By> {
     //*[@id="sbse0"]/div[2]
     GOOGLE_AUTOCOMPLETE("//*[@id='sbse0']/descendant::div"),
     QUANTITY("//div[@id='ys_cartInfo']/descendant::input[@name='cartDS.shoppingcart_ROW0_m_orderItemVector_ROW0_m_quantity']"),
-    TABLE_CONTAINER("/html/body/div[4]/div/div[2]/div[2]/div[1]");
+    TABLE_CONTAINER("//*[@id=\"main\"]");
 
     private final By by;
 
