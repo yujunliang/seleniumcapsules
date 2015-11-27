@@ -4,6 +4,7 @@ package com.algocrafts;
 import com.algocrafts.browsers.Browsers;
 import com.algocrafts.locators.Locators;
 import com.algocrafts.pages.Page;
+import com.algocrafts.pages.Person;
 import com.algocrafts.selectors.Xpath;
 import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
@@ -21,8 +22,6 @@ import static com.algocrafts.converters.StringToInt.PARSE_INT;
 import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.TagName.TABLE;
 import static com.google.common.collect.Sets.newHashSet;
-import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
-import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
 
 public class TableTest {
 
@@ -42,10 +41,15 @@ public class TableTest {
         Browsers browser = Browsers.FIREFOX;
         browser.get("http://www.w3schools.com/html/html_tables.asp");
         Page page = new Page(browser);
-        Locator<Page, Element> locator = Locators.<Page>element(Xpath.TABLE_CONTAINER).andThen(element(TABLE));
+        Locator<Page, Element> locator =
+                Locators.<Page>element(Xpath.TABLE_CONTAINER)
+                        .andThen(element(TABLE));
         Locator<Stream<Element>, Person> mapper = (stream) -> {
             Iterator<String> iterator = stream.map(TEXT).iterator();
-            return new Person(PARSE_INT.locate(iterator.next()), iterator.next(), iterator.next(), PARSE_INT.locate(iterator.next()));
+            return new Person(PARSE_INT.locate(iterator.next()),
+                    iterator.next(),
+                    iterator.next(),
+                    PARSE_INT.locate(iterator.next()));
         };
         Table<Person, Page> table = new Table<>(page, locator, mapper);
 
@@ -56,35 +60,6 @@ public class TableTest {
     private void assertTrue(Object diff, boolean pass) {
         if (!pass) {
             Assert.assertTrue(diff.toString(), pass);
-        }
-    }
-
-    class Person {
-        private int number;
-        private final String firstName;
-        private final String lastName;
-        private final int points;
-
-        Person(int number, String firstName, String lastName, int points) {
-            this.number = number;
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.points = points;
-        }
-
-        @Override
-        public String toString() {
-            return "new Person(\"" + number + "\",\"" + firstName + "\",\"" + lastName + "\"," + points + ")\n";
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            return reflectionEquals(this, other);
-        }
-
-        @Override
-        public int hashCode() {
-            return reflectionHashCode(this);
         }
     }
 

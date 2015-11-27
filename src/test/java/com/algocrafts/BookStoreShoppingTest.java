@@ -1,9 +1,7 @@
 package com.algocrafts;
 
 
-import com.bookstore.BookDetailsPage;
-import com.bookstore.BookListPage;
-import com.bookstore.BookStoreHomePage;
+import com.bookstore.BookPage;
 import com.bookstore.ShoppingCartPage;
 import com.bookstore.domain.Address;
 import com.bookstore.domain.CreditCard;
@@ -17,9 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static com.algocrafts.conditions.PagePredicates.IS_COPYRIGHTED;
-import static com.algocrafts.selectors.LinkText.ACTIVE_MQ_IN_ACTION;
-import static com.algocrafts.selectors.LinkText.JAVA;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,21 +34,19 @@ public class BookStoreShoppingTest {
     private ErrorMessages expectedErrorMessages;
 
     @Autowired
-    private BookStoreHomePage homePage;
+    private BookPage homePage;
 
     @Test
     public void invalidCardInfo() {
+        homePage.secondAddToCart();
 
-        BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA)) {{
-            open();
-            link(ACTIVE_MQ_IN_ACTION).click();
-        }};
-        BookDetailsPage bookPage = new BookDetailsPage(listPage) {{
-            until(IS_COPYRIGHTED);
-            secondAddToCart().click();
-        }};
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        ShoppingCartPage cartPage = new ShoppingCartPage(bookPage) {{
+        ShoppingCartPage cartPage = new ShoppingCartPage(homePage) {{
             setQuantity(2);
             setBillingAddress(billingAddress);
             setCreditCard(creditCard);
@@ -67,15 +60,16 @@ public class BookStoreShoppingTest {
     @Test
     public void invalidCardInfoNormalWay() {
 
-        BookListPage listPage = new BookListPage(homePage, homePage.link(JAVA));
-        listPage.open();
-        listPage.link(ACTIVE_MQ_IN_ACTION).click();
+        homePage.secondAddToCart();
 
-        BookDetailsPage bookPage = new BookDetailsPage(listPage);
-        bookPage.until(IS_COPYRIGHTED);
-        bookPage.secondAddToCart().click();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        ShoppingCartPage cartPage = new ShoppingCartPage(bookPage);
+
+        ShoppingCartPage cartPage = new ShoppingCartPage(homePage);
         cartPage.setQuantity(2);
         cartPage.setBillingAddress(billingAddress);
         cartPage.setCreditCard(creditCard);

@@ -27,10 +27,12 @@ public class SetDiff<T> {
         actual.removeAll(expected);
 
         if (actual.size() > 0) {
-            diff += "\nunexpected results appeared in actual,\n" + actual + "\n";
+            diff += "\nunexpected results appeared in actual,\n" +
+                    actual + "\n";
         }
         if (onlyInExpected.size() > 0) {
-            diff += "\nexpected results not found in actual,\n" + onlyInExpected + "\n";
+            diff += "\nexpected results not found in actual,\n" +
+                    onlyInExpected + "\n";
         }
         return diff;
     }

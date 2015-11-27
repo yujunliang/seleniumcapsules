@@ -23,11 +23,15 @@ public class TableContents<T> {
             TableContents<T> actual = (TableContents) other;
 
             if (!headers.equals(actual.headers)) {
-                diff = new SetDiff<>("headers are different,", headers, actual.headers);
+                diff = new SetDiff<>("headers are different,",
+                        headers,
+                        actual.headers);
                 return false;
             } else {
                 if (!this.rows.equals(actual.rows)) {
-                    diff = new SetDiff<>("rows are different,", this.rows, actual.rows);
+                    diff = new SetDiff<>("rows are different,",
+                            this.rows,
+                            actual.rows);
                     return false;
                 }
                 return true;
