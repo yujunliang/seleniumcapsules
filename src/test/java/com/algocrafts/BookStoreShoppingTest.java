@@ -40,11 +40,7 @@ public class BookStoreShoppingTest {
     public void invalidCardInfo() {
         homePage.secondAddToCart();
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        homePage.cartButton().click();
 
         ShoppingCartPage cartPage = new ShoppingCartPage(homePage) {{
             setQuantity(2);
@@ -62,12 +58,7 @@ public class BookStoreShoppingTest {
 
         homePage.secondAddToCart();
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
+        homePage.cartButton().click();
 
         ShoppingCartPage cartPage = new ShoppingCartPage(homePage);
         cartPage.setQuantity(2);
