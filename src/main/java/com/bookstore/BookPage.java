@@ -1,10 +1,8 @@
 package com.bookstore;
 
 
-import com.algocrafts.browsers.Browsers;
 import com.algocrafts.pages.Page;
 import com.algocrafts.selectors.TagName;
-import com.algocrafts.selenium.Clickable;
 import com.algocrafts.selenium.Element;
 import com.google.common.base.Predicate;
 import org.openqa.selenium.By;
@@ -14,8 +12,8 @@ public class BookPage extends Page {
 
     private Predicate<Page> colorBecomeWhite = (Page b) -> cartButton().getCssValue("color").equals("rgba(255, 255, 255, 1)");
 
-    public BookPage(Browsers browser, Clickable url) {
-        super(browser, url);
+    public BookPage(Page page) {
+        super(page);
     }
 
     public void addToCart() {

@@ -15,7 +15,7 @@
         <constructor-arg value="${entry.url}"/>
     </bean>
 
-    <bean id="manningPage" class="com.bookstore.BookPage">
+    <bean id="manningPage" class="com.bookstore.BookstoreHomePage">
         <constructor-arg ref="browser"/>
         <constructor-arg ref="entryUrl"/>
     </bean>

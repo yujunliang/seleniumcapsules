@@ -2,6 +2,7 @@ package com.algocrafts;
 
 
 import com.bookstore.BookPage;
+import com.bookstore.BookstoreHomePage;
 import com.bookstore.ShoppingCartPage;
 import com.bookstore.domain.Address;
 import com.bookstore.domain.CreditCard;
@@ -34,13 +35,17 @@ public class BookStoreShoppingTest {
     private ErrorMessages expectedErrorMessages;
 
     @Autowired
-    private BookPage homePage;
+    private BookstoreHomePage homePage;
 
     @Test
     public void invalidCardInfo() {
-        homePage.secondAddToCart();
+        homePage.open();
+        homePage.searchBook("Selenium WebDriver in Practice");
 
-        homePage.cartButton().click();
+        new BookPage(homePage) {{
+            secondAddToCart();
+            cartButton().click();
+        }};
 
         ShoppingCartPage cartPage = new ShoppingCartPage(homePage) {{
             setQuantity(2);
@@ -55,10 +60,12 @@ public class BookStoreShoppingTest {
 
     @Test
     public void invalidCardInfoNormalWay() {
+        homePage.open();
+        homePage.searchBook("Selenium WebDriver in Practice");
 
-        homePage.secondAddToCart();
-
-        homePage.cartButton().click();
+        BookPage bookPage = new BookPage(homePage);
+        bookPage.secondAddToCart();
+        bookPage.cartButton().click();
 
         ShoppingCartPage cartPage = new ShoppingCartPage(homePage);
         cartPage.setQuantity(2);
