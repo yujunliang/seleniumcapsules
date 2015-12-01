@@ -24,6 +24,6 @@ public class ElementsFinder implements Locator<SearchContext, List<WebElement>>{
         logger.info("Seeking elements [{}]", by);
         List<WebElement> elements = t.findElements(by);
         logger.info("Found [{}]", elements);
-        return elements.stream().collect(toList());
+        return elements.stream().map(Element::new).collect(toList());
     }
 }

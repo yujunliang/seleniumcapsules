@@ -16,6 +16,7 @@ public class ShoppingCartPage extends Page {
     private final BillingAddressForm billingAddressForm = new BillingAddressForm(this);
     private final CreditCardForm creditCardForm = new CreditCardForm(this);
     private final OtherInformationForm otherInformationForm = new OtherInformationForm(this);
+    private final ShippingAddressForm shippingAddressForm = new ShippingAddressForm(this);
 
     public ShoppingCartPage(Page page) {
         super(page);
@@ -57,4 +58,13 @@ public class ShoppingCartPage extends Page {
     public ErrorMessages getErrorMessages() {
          return new ErrorMessages(this);
     }
+
+    public void setShippingAddress(Address shippingAddress) {
+        shippingAddressForm.setShippingAddress(shippingAddress);
+    }
+
+    public void getShippingAddress() {
+        shippingAddressForm.getShippingAddress();
+    }
+
 }

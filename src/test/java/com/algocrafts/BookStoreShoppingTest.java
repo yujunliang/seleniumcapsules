@@ -32,19 +32,21 @@ public class BookStoreShoppingTest {
     private OtherInformation otherInformation;
 
     @Autowired
-    private ErrorMessages expectedErrorMessages;
+    private ErrorMessages errorMessages;
+
+    @Autowired
+    private ErrorMessages errorMessages2;
 
     @Autowired
     private BookstoreHomePage homePage;
 
     @Test
     public void invalidCardInfo() {
-        homePage.open();
         homePage.searchBook("Selenium WebDriver in Practice");
 
         new BookPage(homePage) {{
             secondAddToCart();
-            cartButton().click();
+            gotoCart();
         }};
 
         ShoppingCartPage cartPage = new ShoppingCartPage(homePage) {{
@@ -55,26 +57,25 @@ public class BookStoreShoppingTest {
             continues();
         }};
 
-        assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
+        assertEquals(errorMessages, cartPage.getErrorMessages());
     }
 
     @Test
     public void invalidCardInfoNormalWay() {
-        homePage.open();
         homePage.searchBook("Selenium WebDriver in Practice");
 
         BookPage bookPage = new BookPage(homePage);
-        bookPage.secondAddToCart();
-        bookPage.cartButton().click();
+        bookPage.addToCart();
+        bookPage.gotoCart();
 
         ShoppingCartPage cartPage = new ShoppingCartPage(homePage);
         cartPage.setQuantity(2);
-        cartPage.setBillingAddress(billingAddress);
+        cartPage.setShippingAddress(billingAddress);
         cartPage.setCreditCard(creditCard);
         cartPage.setOtherInformation(otherInformation);
         cartPage.continues();
 
-        assertEquals(expectedErrorMessages, cartPage.getErrorMessages());
+        assertEquals(errorMessages2, cartPage.getErrorMessages());
     }
 
 

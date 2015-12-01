@@ -26,6 +26,10 @@ public class BookPage extends Page {
         new FluentWait<Page>(this).until(colorBecomeWhite) ;
     }
 
+    public void gotoCart() {
+       cartButton().click();
+    }
+
     public Element cartButton() {
         return untilFound(() -> By.xpath("//*[@id=\"primary-navbar\"]/ul[2]/li[2]/a"));
     }

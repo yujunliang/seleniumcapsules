@@ -8,6 +8,17 @@ import static org.openqa.selenium.By.id;
 
 public enum BookStoreId implements Supplier<By> {
 
+    SHIPPING_FIRST_NAME("shipping-first-name"),
+    SHIPPING_LAST_NAME("shipping-last-name"),
+    SHIPPING_ADDRESS1("shipping-address1"),
+    SHIPPING_ADDRESS2("shipping-address2"),
+    SHIPPING_CITY("shipping-city"),
+    SHIPPING_STATE("shipping-state"),
+    SHIPPING_COUNTRY("shipping-country"),
+    SHIPPING_ZIP("shipping-zip"),
+    SHIPPING_EMAIL("shipping-email"),
+
+
     BILLING_FIRST_NAME("billing-first-name"),
     BILLING_LAST_NAME("billing-last-name"),
     BILLING_ADDRESS1("billing-address1"),

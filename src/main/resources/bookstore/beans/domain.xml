@@ -41,4 +41,13 @@
         </constructor-arg>
     </bean>
 
+    <bean id="errorMessages2" class="com.bookstore.domain.ErrorMessages">
+        <constructor-arg>
+            <list>
+                <value>Credit card number does not match selected card type</value>
+                <value>You don't seem to have supplied the recipient's shipping Phone.</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
 </beans>
