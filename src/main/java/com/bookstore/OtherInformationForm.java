@@ -17,6 +17,7 @@ public class OtherInformationForm  {
     }
 
     public void setOtherInformation(OtherInformation info) {
+        page.put(COUPON_CODE, info.couponCode);
         page.put(BILLING_EMAIL, info.emailAddress);
         page.put(COMMENTS, info.comments);
         page.setCheckbox(CONFIRM_EMAIL, info.confirmEmail);
@@ -26,6 +27,7 @@ public class OtherInformationForm  {
 
     public OtherInformation getOtherInformation() {
         return new OtherInformation(
+                page.get(COUPON_CODE),
                 page.get(BILLING_EMAIL),
                 page.isChecked(CONFIRM_EMAIL),
                 page.isChecked(RATINGS),

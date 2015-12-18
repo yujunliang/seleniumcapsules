@@ -41,7 +41,7 @@ public class BookStoreShoppingTest {
     private BookstoreHomePage homePage;
 
     @Test
-    public void invalidCardInfo() {
+    public void invalidInput() {
         homePage.searchBook("Selenium WebDriver in Practice");
 
         new BookPage(homePage) {{
@@ -61,7 +61,7 @@ public class BookStoreShoppingTest {
     }
 
     @Test
-    public void invalidCardInfoNormalWay() {
+    public void invalidInputNormalWay() {
         homePage.searchBook("Selenium WebDriver in Practice");
 
         BookPage bookPage = new BookPage(homePage);
@@ -86,7 +86,7 @@ public class BookStoreShoppingTest {
 
     @After
     public void close() {
-        homePage.close();
+ //       homePage.close();
     }
 
 }

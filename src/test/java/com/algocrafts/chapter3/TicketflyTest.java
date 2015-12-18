@@ -1,7 +1,8 @@
 package com.algocrafts.chapter3;
 
-import com.algocrafts.chapter2.factory.BetterWebDriverFactory;
-import com.algocrafts.selectors.*;
+import com.algocrafts.selectors.Id;
+import com.algocrafts.selectors.LinkText;
+import com.algocrafts.selectors.Xpath;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Element;
 import com.google.common.base.Function;
@@ -17,15 +18,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.stream.Stream;
-
 import static com.algocrafts.browsers.Browsers.CHROME;
-import static com.algocrafts.selectors.LinkText.*;
-import static com.algocrafts.selectors.Name.FILTER_EVENT;
+import static com.algocrafts.selectors.LinkText.CANADA;
+import static com.algocrafts.selectors.LinkText.ONTARIO;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.openqa.selenium.By.*;
+import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.linkText;
 
 public class TicketflyTest {
 
@@ -40,6 +40,7 @@ public class TicketflyTest {
     public void print() {
         System.out.println("Time taken " + stopWatch);
     }
+
 
     /**
      * This test will fail.

@@ -35,6 +35,8 @@ public enum BookStoreId implements Supplier<By> {
     CARD_EXP_MONTH("card-exp-month"),
     CARD_EXP_YEAR("card-exp-year"),
 
+    COUPON_CODE("gc-redemption-code"),
+    SEARCH_INPUT("navbar-search"),
     RATINGS("ratings"),
     CONFIRM_EMAIL("confirm-email"),
 

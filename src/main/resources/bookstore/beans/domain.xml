@@ -25,6 +25,7 @@
     </bean>
 
     <bean id="otherInformation" class="com.bookstore.domain.OtherInformation">
+        <constructor-arg value="no code"/>
         <constructor-arg value="sanjay.rao@hotmail.com"/>
         <constructor-arg value="false"/>
         <constructor-arg value="true"/>
@@ -35,7 +36,6 @@
     <bean id="errorMessages" class="com.bookstore.domain.ErrorMessages">
         <constructor-arg>
             <list>
-                <value>Credit card number does not match selected card type</value>
                 <value>You don't seem to have supplied your billing Phone.</value>
             </list>
         </constructor-arg>
@@ -44,8 +44,14 @@
     <bean id="errorMessages2" class="com.bookstore.domain.ErrorMessages">
         <constructor-arg>
             <list>
-                <value>Credit card number does not match selected card type</value>
                 <value>You don't seem to have supplied the recipient's shipping Phone.</value>
+                <value>You don't seem to have supplied your billing First Name.</value>
+                <value>You don't seem to have supplied your billing Last Name.</value>
+                <value>You don't seem to have supplied your billing Street Address 1.</value>
+                <value>You don't seem to have supplied your billing City.</value>
+                <value>You don't seem to have supplied your billing State.</value>
+                <value>You don't seem to have supplied your billing Zip Code.</value>
+                <value>You don't seem to have supplied your billing Phone.</value>
             </list>
         </constructor-arg>
     </bean>

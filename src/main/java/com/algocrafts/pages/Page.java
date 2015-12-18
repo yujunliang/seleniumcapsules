@@ -121,4 +121,7 @@ public class Page implements FormControl<Page> {
         return this;
     }
 
+    public void reload() {
+        browser.navigate().refresh();
+    }
 }

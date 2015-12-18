@@ -3,8 +3,12 @@ package com.bookstore;
 
 import com.algocrafts.browsers.Browsers;
 import com.algocrafts.pages.Page;
+import com.algocrafts.selectors.Xpath;
 import com.algocrafts.selenium.Clickable;
 import org.openqa.selenium.By;
+
+import static com.algocrafts.selectors.Xpath.SEARCH_BUTTON;
+import static com.bookstore.BookStoreId.SEARCH_INPUT;
 
 public class BookstoreHomePage extends Page {
 
@@ -13,8 +17,8 @@ public class BookstoreHomePage extends Page {
     }
 
     public void searchBook(String bookname) {
-        put(() -> By.id("navbar-search"), bookname);
-        untilFound(() -> By.xpath("//*[@id=\"desktop-search-form\"]/div/div/span/button")).click();
+        put(SEARCH_INPUT, bookname);
+        untilFound(SEARCH_BUTTON).click();
         untilFound(() -> By.partialLinkText(bookname)).click();
     }
 
