@@ -54,7 +54,7 @@ public interface SearchScope<T extends SearchScope<T>>
      * @param by selector
      * @return the first element or return empty Optional if nothing found.
      */
-    default Optional<Element> optionalElement(Supplier<By> by) {         //<4>
+    default Optional<Element> optionalElement(Supplier<By> by) {
         try {
             return Optional.of(findElement(by.get()));
         } catch (NoSuchElementException e) {
@@ -68,7 +68,7 @@ public interface SearchScope<T extends SearchScope<T>>
      * @param by selector
      * @return the first element or throw NoSuchElementException
      */
-    default Element untilFound(Supplier<By> by) {                     //<5>
+    default Element untilFound(Supplier<By> by) {
         return until(by);
     }
 

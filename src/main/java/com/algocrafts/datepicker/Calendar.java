@@ -122,27 +122,6 @@ public class Calendar {
     }
 
     /**
-     * Some calendar allows user to select a year from a dropdown(select) or
-     * enter a value from an input field. This method is to cater that function.
-     *
-     * @param year year
-     */
-    public void pickYear(int year) {
-        YEAR_FLIPPER.flip(this, year);
-    }
-
-    /**
-     * Some calendar allows user to select a month from a dropdown(select) or
-     * enter a value from an input field. This method is to cater that function.
-     *
-     * @param month month
-     */
-    public void pickMonth(Enum month) {
-        MONTH_FLIPPER.flip(this, month.ordinal());
-    }
-
-
-    /**
      * Click the previous month button.
      */
     void previousMonth() {

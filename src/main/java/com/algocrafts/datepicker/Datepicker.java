@@ -4,6 +4,9 @@ package com.algocrafts.datepicker;
 import java.time.LocalDate;
 import java.time.Month;
 
+import static com.algocrafts.datepicker.CalendarFlipper.MONTH_FLIPPER;
+import static com.algocrafts.datepicker.CalendarFlipper.YEAR_FLIPPER;
+
 /**
  * A general purpose DatePicker can be used to pick a given date from
  * the calendar flyout provided by JavaScript framework.
@@ -36,8 +39,8 @@ public class Datepicker {
     public void pick(Month month, int day, int year) {
         LocalDate.of(year, month.ordinal() + 1, day);
         calendar.show();
-        calendar.pickYear(year);
-        calendar.pickMonth(month);
+        YEAR_FLIPPER.flip(calendar, year);
+        MONTH_FLIPPER.flip(calendar, month.ordinal());
         calendar.pickDay(day);
     }
 
