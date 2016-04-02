@@ -50,7 +50,7 @@ public class Input<T extends SearchScope<T>> extends Locating<T, Optional<Elemen
     public String getValue() {
         final Retry retry = new Retry(5, 1, SECONDS);
         try {
-            retry.attempt(() -> locate(GET.andThen(VALUE)));
+            return retry.attempt(() -> locate(GET.andThen(VALUE)));
         } catch (Exception e) {
             log.info("Failed to read text", e);
         }
