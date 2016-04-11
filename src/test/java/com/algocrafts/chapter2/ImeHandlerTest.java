@@ -1,5 +1,6 @@
 package com.algocrafts.chapter2;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,6 +19,7 @@ import static org.openqa.selenium.WebDriver.Options;
 /**
  * Created by yujunliang on 8/31/14.
  */
+@Ignore
 public class ImeHandlerTest {
 
     @Test

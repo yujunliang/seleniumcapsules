@@ -4,6 +4,7 @@ package com.algocrafts;
 import com.orgsync.OrgSyncHomePage;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:context/context.xml"})
 public class OrgSyncHomePageTest {

@@ -4,6 +4,7 @@ package com.algocrafts.colm;
 import com.algocrafts.browsers.Browsers;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Element;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+@Ignore
 public class LambdaTest {
 
     @Test

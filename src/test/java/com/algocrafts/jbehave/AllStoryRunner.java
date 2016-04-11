@@ -19,6 +19,7 @@ import org.jbehave.core.steps.InstanceStepsFactory;
 import org.jbehave.core.steps.ParameterConverters;
 import org.jbehave.core.steps.ParameterConverters.DateConverter;
 import org.jbehave.core.steps.SilentStepMonitor;
+import org.junit.Ignore;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -28,6 +29,7 @@ import static java.util.Arrays.asList;
 import static org.jbehave.core.io.CodeLocations.codeLocationFromClass;
 import static org.jbehave.core.reporters.StoryReporterBuilder.Format.*;
 
+@Ignore
 public class AllStoryRunner extends JUnitStories {
 
     private static Paranamer paranamer = new CachingParanamer(new BytecodeReadingParanamer());

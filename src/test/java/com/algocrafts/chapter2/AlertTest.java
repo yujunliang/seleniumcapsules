@@ -1,14 +1,13 @@
 package com.algocrafts.chapter2;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.io.File;
 
-/**
- * Created by yujunliang on 8/31/14.
- */
+@Ignore
 public class AlertTest {
 
 @Test

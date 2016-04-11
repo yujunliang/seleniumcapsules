@@ -1,5 +1,6 @@
 package com.algocrafts.chapter2;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12,9 +13,7 @@ import java.net.URL;
 
 import static org.openqa.selenium.WebDriver.Navigation;
 
-/**
- * Created by yujunliang on 8/31/14.
- */
+@Ignore
 public class NavigationTest {
 
     @Test

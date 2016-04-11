@@ -1,5 +1,6 @@
 package com.algocrafts.chapter2;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -12,6 +13,7 @@ import java.io.File;
 /**
  * Created by yujunliang on 8/31/14.
  */
+@Ignore
 public class TargetLocatorTest {
 
     @Test
@@ -89,6 +91,7 @@ public class TargetLocatorTest {
 
     }
 
+    @Ignore
     @Test
     public void switchBackToDefaultContent() {
         File file = new File("src/test/resources/html/iframeDemo.html");

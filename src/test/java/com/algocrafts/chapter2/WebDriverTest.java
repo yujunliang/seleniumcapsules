@@ -1,6 +1,7 @@
 package com.algocrafts.chapter2;
 
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -18,6 +19,7 @@ import static java.lang.System.out;
 import static org.openqa.selenium.By.ByTagName;
 import static org.openqa.selenium.WebDriver.*;
 
+@Ignore
 public class WebDriverTest {
 
     @Test

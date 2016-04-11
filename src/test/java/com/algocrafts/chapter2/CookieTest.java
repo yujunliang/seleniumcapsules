@@ -1,5 +1,6 @@
 package com.algocrafts.chapter2;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.Dimension;
@@ -12,9 +13,7 @@ import java.util.Set;
 import static org.openqa.selenium.WebDriver.Options;
 import static org.openqa.selenium.WebDriver.Window;
 
-/**
- * Created by yujunliang on 8/31/14.
- */
+@Ignore
 public class CookieTest {
 
     @Test

@@ -1,5 +1,6 @@
 package com.algocrafts.chapter2;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
@@ -12,6 +13,7 @@ import static org.openqa.selenium.WebDriver.Window;
 /**
  * Created by yujunliang on 8/31/14.
  */
+@Ignore
 public class WindowsTest {
 
     @Test

@@ -15,6 +15,7 @@ import com.algocrafts.selenium.Element;
 import com.algocrafts.selenium.Locator;
 import com.algocrafts.selenium.SearchScope;
 import com.google.common.base.Function;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -30,9 +31,7 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-/**
- * Created by yujunliang on 9/28/14.
- */
+@Ignore
 public class GoogleAutoCompleteTest {
 
     private static final Logger log = LoggerFactory.getLogger(GoogleAutoCompleteTest.class);

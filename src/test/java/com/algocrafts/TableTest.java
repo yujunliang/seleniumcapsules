@@ -12,6 +12,7 @@ import com.algocrafts.table.Table;
 import com.algocrafts.table.TableContents;
 import com.google.common.collect.Sets;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Iterator;
@@ -23,6 +24,7 @@ import static com.algocrafts.locators.Locators.element;
 import static com.algocrafts.selectors.TagName.TABLE;
 import static com.google.common.collect.Sets.newHashSet;
 
+@Ignore
 public class TableTest {
 
     private TableContents<Person> expected = new TableContents<>(

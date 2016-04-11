@@ -1,6 +1,7 @@
 package com.algocrafts.chapter3;
 
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -12,6 +13,7 @@ import org.openqa.selenium.interactions.Actions;
 
 import java.util.concurrent.TimeUnit;
 
+@Ignore
 public class ActionsTest {
 
     @Test

@@ -5,6 +5,7 @@ import com.algocrafts.pages.Page;
 import com.google.GooglePage;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import static com.algocrafts.selectors.TagName.DIV;
 import static com.algocrafts.selectors.Xpath.GOOGLE_AUTOCOMPLETE;
 import static org.openqa.selenium.By.id;
 
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:context/context.xml"})
 public class GoogleAutoCompleteTest {
@@ -38,6 +40,7 @@ public class GoogleAutoCompleteTest {
         googlePage.autocomplete(Q, "ticketfly", elements(GOOGLE_AUTOCOMPLETE));
     }
 
+    @Ignore
     @Test
     public void autoCompleteUsingLocator() {
         googlePage.autocomplete(Q, "ticketfly", Locators.<Page>element(() -> id("sbse0")).andThen(elements(DIV)));

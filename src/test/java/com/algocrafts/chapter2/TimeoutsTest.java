@@ -3,6 +3,7 @@ package com.algocrafts.chapter2;
 import org.apache.commons.lang.time.StopWatch;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -14,9 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by yujunliang on 8/31/14.
- */
+@Ignore
 public class TimeoutsTest {
 
     private StopWatch stopWatch = new StopWatch();
@@ -34,6 +33,7 @@ public class TimeoutsTest {
      * This test will fail.
      */
     @Test
+    @Ignore
     public void failedTest() {
         WebDriver driver = new ChromeDriver();
         driver.get("http://www.ticketfly.com");
@@ -53,6 +53,7 @@ public class TimeoutsTest {
 
 
     @Test
+    @Ignore
     public void implicitlyWait() {
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);

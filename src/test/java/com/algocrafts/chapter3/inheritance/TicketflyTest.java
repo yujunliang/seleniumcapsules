@@ -11,6 +11,7 @@ import com.google.common.base.Function;
 import org.apache.commons.lang.time.StopWatch;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -27,6 +28,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.openqa.selenium.By.*;
 
+@Ignore
 public class TicketflyTest {
 
     StopWatch stopWatch = new StopWatch();

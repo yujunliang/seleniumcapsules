@@ -1,14 +1,13 @@
 package com.algocrafts.chapter3;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.ticketfly.TicketflyPage;
 import static com.algocrafts.browsers.Browsers.CHROME;
 import static com.algocrafts.selectors.Name.FILTER_EVENT;
 
-/**
- * Created by yujunliang on 9/24/14.
- */
+@Ignore
 public class DiscoverMoreEventTest {
 
     @Test

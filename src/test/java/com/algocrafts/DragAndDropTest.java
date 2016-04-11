@@ -2,6 +2,7 @@ package com.algocrafts;
 
 
 import com.algocrafts.selenium.Browser;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,6 +20,7 @@ import static com.algocrafts.browsers.Browsers.*;
 import static java.util.EnumSet.of;
 import static org.openqa.selenium.By.id;
 
+@Ignore
 public class DragAndDropTest {
 
     @Test

@@ -2,6 +2,7 @@ package com.algocrafts.chapter2;
 
 
 import com.algocrafts.selenium.Browser;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +11,7 @@ import static com.algocrafts.browsers.Browsers.CHROME;
 import static com.algocrafts.selectors.CssSelector.NEED_CONIRM;
 import static org.openqa.selenium.By.cssSelector;
 
+@Ignore
 public class ConfirmTest {
 
     @Test

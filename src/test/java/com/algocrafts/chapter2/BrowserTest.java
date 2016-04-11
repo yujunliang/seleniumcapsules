@@ -3,6 +3,7 @@ package com.algocrafts.chapter2;
 
 import com.algocrafts.chapter2.factory.BetterWebDriverFactory;
 import com.algocrafts.chapter2.factory.NaiveWebDriverFactory;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ import java.util.stream.Stream;
 import static com.algocrafts.browsers.Browsers.*;
 import static com.google.common.collect.Lists.newArrayList;
 
+@Ignore
 public class BrowserTest {
 
     @Test
