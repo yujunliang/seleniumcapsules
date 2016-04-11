@@ -5,6 +5,7 @@ import com.algocrafts.pages.Page;
 import com.algocrafts.selenium.Browser;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -13,6 +14,7 @@ import static com.algocrafts.browsers.Browsers.CHROME;
 import static com.algocrafts.selectors.CssSelector.SUBMIT;
 import static com.algocrafts.selectors.Name.FILE;
 
+@Ignore
 public class UploadTest {
 
     private Browser browser = CHROME;

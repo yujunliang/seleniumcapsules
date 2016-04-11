@@ -5,6 +5,7 @@ import com.algocrafts.clickables.Url;
 import com.algocrafts.pages.Page;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.io.File;
 import static com.algocrafts.selectors.CssSelector.SUBMIT;
 import static com.algocrafts.selectors.Name.FILE;
 
+@Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:context/context.xml"})
 public class SpringUploadTest {
