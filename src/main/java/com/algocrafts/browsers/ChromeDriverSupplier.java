@@ -8,7 +8,7 @@ public class ChromeDriverSupplier implements CachedWebDriverSupplier<ChromeDrive
 
     @Override
     public ChromeDriver init() {
-      //  System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chrome/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--test-type");
         return new ChromeDriver(options);
