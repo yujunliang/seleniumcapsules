@@ -5,6 +5,7 @@ import com.algocrafts.locators.Locators;
 import com.algocrafts.selectors.TagName;
 import com.algocrafts.selenium.Browser;
 import com.algocrafts.selenium.Element;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,6 +25,7 @@ import static com.algocrafts.selectors.TagName.LI;
 import static com.algocrafts.selectors.TagName.UL;
 import static java.util.stream.Collectors.toList;
 
+@Ignore
 
 public class NaiveJQueryHomePageTest {
 
