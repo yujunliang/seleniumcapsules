@@ -147,7 +147,3 @@ more tests to illustrate the cleanness of the code,
 Clean, Agile, Simple and Elegant.
 
 http://seleniumcapsules.blogspot.com/
-
-test
-
-ttp://seleniumcapsules.blogspot.com/
